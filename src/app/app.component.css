@@ -1,0 +1,341 @@
+.ourTeamTextCenter{
+    text-align: center;
+    width: 60%;
+}
+
+.circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+  }
+
+
+
+
+
+  .whiteBoldText{
+    color: white; 
+    
+    font-size: 2em;
+  }
+
+  .lineHeightAdjustor{
+    line-height: 6em;
+    margin-right: 1em;
+    margin-left: -1em;
+  }
+
+  .companyLogo{
+      width: 150px ;
+      height: 150px ;
+  }
+
+  .nav1{
+    margin-top: -1em;
+    z-index: 10;
+  }
+  .regform{
+    max-width : 70% !important;
+  }
+  .createtech{
+  max-width : 70% !important;
+  }
+  @media only screen and (max-width: 480px) {
+    .createtech{
+      max-width : 100% !important;
+      }
+      .logo1{
+        margin-left: 86px;
+    margin-top: -9px;
+      }
+  }
+  @media only screen and (max-width: 768px) {
+    .hidden-xs {
+      display:none;
+  }
+    .logo1{
+      margin-left: 86px;
+    margin-top: -9px;
+    }
+    .createtech{
+      max-width : 1000% !important;
+      }
+   
+    .regform{
+      max-width : 100% !important;
+    }
+    .nav1{
+      padding-right: 15px;
+    }
+    .footerlogo{
+  margin-left:16%;
+}
+
+.companyLogo1{
+margin-left: 25%;
+}
+.footer1{
+  background-color: #56544c;
+}
+  }
+  .customUlFooter, .customUlFooter2 {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 1.2em;
+    text-indent: -1.2em;
+    color: white;
+    font-size: 1rem;
+}
+
+.customUlFooter li:before {
+    content: "";
+    display: block;
+    float: left;
+    width: 1.2em;
+    font-size: 1em;
+}
+
+.customUlFooter2 li:before {
+    
+    display: block;
+    float: left;
+    width: 1.2em;
+    font-size: 1em;
+}
+
+
+  
+.hrColorChange {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0; 
+    color: white;
+}
+
+.tile{
+  height:10em;
+  width:15em;
+}
+
+.resCarousel .item .tile {
+  margin:0px;
+}
+
+.resCarousel .item .tile img{
+  width: 70px;
+  height: 70px;
+}
+
+
+.contentContainer{
+  width: 90%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#myBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: red; /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 18px; /* Increase font size */
+  border-radius: 61px;
+  font-size: 20px;
+  width: 59px;
+}
+
+#myBtn:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+
+
+.staticNavHeader{
+  background-color: #19578A;
+    top: 0; /* Position the navbar at the top of the page */
+    /* width: 1367.280px; */
+    z-index: 100;
+}
+
+.nav-link{
+  padding : .5rem .2rem
+}
+
+.customUlFooter li {
+  cursor: pointer;
+}
+
+.text-center::before{
+  margin-left:calc(100% - 75%);
+} 
+
+
+/*new code***************/
+
+
+/*Strip the ul of padding and list styling*/
+ul {
+  list-style-type:none;
+  margin:0;
+  padding:0;
+  position: absolute;
+}
+/*Create a horizontal list with spacing*/
+.main-menu li {
+  display:inline-block;
+  float: left;
+  /* margin-right: 1px; */
+}
+/*Style for menu links*/
+.main-menu li a {
+  display:block;
+  min-width:115px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  color: #fff;
+  /* background: #2f3036; */
+  text-decoration: none;
+  font-weight: 800;
+}
+.browcher-btn{
+position: absolute;
+top: 120px;
+}
+/*Hover state for top level links*/
+.main-menu li:hover .main-header {
+  /* background: #19578A !important; */
+  /* color: white !important; */
+  border-bottom: 2px solid #19578A;
+  /* border-radius: 25px; */
+}
+/*Style for dropdown links*/
+li:hover ul a {
+  background: #f3f3f3;
+  color: #2f3036;
+  height: 40px;
+  line-height: 40px;
+}
+/*Hover state for dropdown links*/
+li:hover ul a:hover {
+  /* background: #19578A; */
+  /* border-bottom: 2px solid #19578A; */
+  color: #fff;
+}
+/*Hide dropdown links until they are needed*/
+li ul {
+  display: none;
+}
+/*Make dropdown links vertical*/
+li ul li {
+  display: block;
+  float: none;
+}
+/*Prevent text wrapping*/
+li ul li a {
+  width: auto;
+  min-width: 100px;
+  padding: 0 20px;
+}
+/*Display the dropdown on hover*/
+ul li a:hover + .hidden, .hidden:hover {
+  display: block;
+}
+/*Style 'show menu' label button and hide it by default*/
+.show-menu {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  color: #fff;
+  background: #19578A;
+  text-align: center;
+  padding: 10px 0;
+  display: none;
+}
+/*Hide checkbox*/
+.align-self-center input[type=checkbox]{
+  display: none;
+}
+/*Show menu when invisible checkbox is checked*/
+.align-self-center input[type=checkbox]:checked ~ #menu{
+  display: block;
+}
+
+.get-strt-sub{
+  width: 130px;
+}
+
+.sign-up-sub{
+  width:100px;
+  position: absolute;
+  top: 40px;
+  left: 130px;
+  /* margin-right: 20%; */
+}
+
+.sub-drop li{
+  border-bottom: 2px solid #19578A;
+}
+/*Responsive Styles*/
+@media screen and (max-width : 760px){
+  /*Make dropdown links appear inline*/
+  ul {
+      position: static;
+      display: none;
+  }
+
+  .get-strt-sub{
+    width: 50%;
+  }
+
+  .sign-up-sub{
+    width: 46% !important;
+    position: absolute;
+    top: 453px !important;
+    position: absolute;
+    left: 179px;
+   
+  }
+
+  /*Create vertical spacing*/
+  li {
+      margin-bottom: 1px;
+  }
+  /*Make all menu links full width*/
+  ul li, li a {
+      width: 100%;
+  }
+  /*Display 'show menu' link*/
+  .show-menu {
+      display:block;
+  }
+
+  .main-menu li a{
+   
+    font-size:14px;
+    color: #19578A !important;
+    background-color: white !important; 
+    }
+
+    .main-menu{
+        background-color: white !important; 
+        border-radius: 25px;
+
+    }
+
+    .staticNavHeader{
+      height: auto !important;
+  }
+}

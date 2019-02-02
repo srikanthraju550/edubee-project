@@ -1,0 +1,14 @@
+{
+    "editor.wordWrap": "off",
+    "files.autoSave": "afterDelay",
+    "html.autoClosingTags": true,
+    "html.format.contentUnformatted": "pre,code,textarea",
+    "html.format.extraLiners": "head, body, /html",
+    "html.format.unformatted": "wbr",
+    "html.format.wrapAttributes": "auto",
+    "diffEditor.ignoreTrimWhitespace": true,
+    "explorer.confirmDelete": false,
+    "editor.formatOnSave": true,
+    "javascript.validate.enable": false,
+    "editor.minimap.enabled": false,
+ }

@@ -1,0 +1,2190 @@
+<div class="container-fluid">
+    <!-- contentContainer -->
+    <div class="row staticNavHeader">
+        <div class="col-sm-2 col-lg-2">
+            <img class="d-block companyLogo companyLogo1" src="../assets/images/logo.png" alt="First slide">
+        </div>
+        <div class="align-self-center nav1 col-sm-8 col-lg-8">
+
+
+            <!-- .navbar -->
+            <label for="show-menu" class="show-menu"><i class="fa fa-bars"></i></label>
+            <input type="checkbox" class="nav-in" id="show-menu" role="button">
+            <ul id="menu" class="main-menu">
+                <li><a routerLink="/home" class="main-header">HOME</a></li>
+                <li>
+                    <a href="#" class="main-header">TECH WORLD ￬</a>
+                    <ul class="hidden sub-drop">
+                        <li><a routerLink="/techbank">TECH BANK</a></li>
+                        <li><a routerLink="/techevent">TECH CONNECT</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a routerLink="/stuvation" class="main-header">STUVATION</a>
+
+                </li>
+                <li><a routerLink="/engship" class="main-header">ENG SHIP</a></li>
+                <li><a routerLink="/prozectme" class="main-header">PROZECT ME</a></li>
+                <li><a href="#" class="main-header">BUSINESS</a></li>
+                <li *ngIf="checkLoginStatus()">
+                    <a href="#" class="main-header">GET STARTED ￬</a>
+                    <ul class="hidden get-strt-sub">
+                        <li><a class="main-header" style="font-size:13px;text-align: start;" data-toggle="modal" href="#"
+                                data-target="#loginModal">LOGIN</a></li>
+                        <li> <a class="main-header" style="font-size:13px;text-align: start;" data-toggle="dropdown"
+                                href="#" role="button">SIGN UP</a>
+
+                            <ul class="hidden sign-up-sub">
+                                <li><a class="main-header" style="font-size:13px;text-align: start;" data-toggle="modal"
+                                        data-target="#studentRegistrationModal" href="#">STUDENT</a></li>
+                                <li> <a class="main-header" style="font-size:13px;text-align: start;" data-toggle="modal"
+                                        data-target="#engineerRegistrationModal" href="#">ENGINEER</a></li>
+                            </ul>
+
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+            <!-- /.navbar -->
+
+
+
+
+
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-radius: 2em;display:none">
+                <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+                <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+                    <ul class="navbar-nav mr-auto" style="border-radius: 1.5em; background-color: white; font-size:13px;">
+                        <li class="nav-item">
+                            <a class="nav-item nav-link active" routerLink="/home">HOME
+                                <span class="sr-only">(current)</span>
+                            </a></li>
+                        <!-- <a class="nav-link" routerLink="/techbank" style="color:white !important;">TECH BANK</a>
+                    <a class="nav-link" routerLink="/techevent" style="color:white !important;">TECH CONNECT</a> -->
+                        <li ngbDropdown class="nav-item dropdown">
+                            <a id="signupDropdown" ngbDropdownToggle class="nav-link btn" style="text-align: start;font-size:13px;"
+                                data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="true">TECH WORLD</a>
+                            <div ngbDropdownMenu style="transform: none !important; top:0px !important; left: 0px !important;">
+                                <a class="nav-link" routerLink="/techbank" style="font-size:13px;color:#19578A !important;">TECH
+                                    BANK</a>
+                                <a class="nav-link" routerLink="/techevent" style="font-size:13px;color:#19578A !important;">TECH
+                                    CONNECT</a>
+                            </div>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" routerLink="/techbank" style="color:#19578A !important;">TECH BANK</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/techevent" style="color:#19578A !important;">TECH CONNECT</a></li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/stuvation">STUVATION</a></li>
+                        <!-- <a class="nav-link" routerLink="/engship">ENG SHIP</a>
+                    <a class="nav-link" routerLink="/home" style="color:white !important;">PROZECT ME</a>
+                    <a class="nav-link" routerLink="/home" style="color:white !important;">BUSINESS</a> -->
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/engship">ENG SHIP</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/prozectme">PROZECT ME</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link">BUSINESS</a>
+                        </li>
+                        <li ngbDropdown class="nav-item dropdown" *ngIf="checkLoginStatus()">
+                            <a class="nav-link btn " data-toggle="modal" data-target="#loginModal" style="text-align: start;font-size:13px;"
+                                ngbDropdownToggle class="nav-link  btn " data-toggle="dropdown" href="#" aria-haspopup="true"
+                                aria-expanded="false">GET STARTED</a>
+
+                            <div ngbDropdownMenu style="transform: none !important; top:0px !important;font-size:13px;left: 0px !important; ">
+                                <a class="nav-link btn btn-light" style="font-size:13px;text-align: start;" data-toggle="modal"
+                                    data-target="#loginModal">LOGIN</a>
+                        <li ngbDropdown class="nav-item dropdown">
+                            <a id="signupDropdown" ngbDropdownToggle class="nav-link dropdown-toggle btn btn-light"
+                                style="font-size:13px;text-align: start;" data-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="true" aria-expanded="true">SIGN UP</a>
+                            <div ngbDropdownMenu style="transform: none !important; top:0px !important; left: 0px !important;">
+                                <a class="dropdown-item nav-link btn btn-light" style="font-size:13px;" data-toggle="modal"
+                                    data-target="#studentRegistrationModal">STUDENT</a>
+                                <a class="dropdown-item nav-link btn btn-light" style="font-size:13px;" data-toggle="modal"
+                                    data-target="#engineerRegistrationModal">ENGINEER</a>
+                            </div>
+                        </li>
+                </div>
+                </li>
+                </ul>
+        </div>
+        </nav>
+
+
+    </div>
+
+    <div class="col-sm-2" style="margin-top: 2%; margin-bottom: 1%;">
+        <div class="row">
+            <!-- <ul *ngIf="checkLoginStatus()" class="nav nav-pills" style="float: right;margin-top: 16px;">
+
+                    <button class="nav-link btn btn-light" data-toggle="modal" data-target="#loginModal">LOGIN</button>
+
+                    <li ngbDropdown class="nav-item dropdown">
+                        <a id="signupDropdown" ngbDropdownToggle class="nav-link dropdown-toggle btn btn-light"
+                            data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">GET IN</a>
+                        <div ngbDropdownMenu style="transform: none !important; top:0px !important; left: 0px !important;">
+                            <a class="dropdown-item" data-toggle="modal" data-target="#studentRegistrationModal">STUDENT</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#engineerRegistrationModal">ENGINEER</a>
+                        </div>
+                    </li>
+                </ul> -->
+            <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="float: right; margin-left: 25%;">
+
+                <li ngbDropdown class="nav-item dropdown">
+
+                    <a id="signupDropdown" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" href="#"
+                        role="button" aria-haspopup="true" aria-expanded="false">
+
+                        <img class="profilepicture" style="border-radius: 10em;" src="assets/images/profileImages/{{getLoggedInUserObject()['profilepicture']}}">
+
+                    </a>
+                    <div ngbDropdownMenu style="transform: none !important; top:0px !important; left: 0px !important;">
+                        <a class="dropdown-item" routerLink="/myprofile">MY PROFILE</a>
+                        <a class="dropdown-item" routerLink="/engshipRequest">Engship Requests</a>
+                        <a class="dropdown-item" (click)="logout()">LOGOUT</a>
+                    </div>
+                </li>
+
+            </ul>
+            <span style="color: white; font-weight: bold; text-align: center; width: 100%;">
+                {{getLoggedInUserObject()['name'] | titlecase}}
+            </span>
+        </div>
+
+
+    </div>
+
+</div>
+<div class="row" style="margin-top:1em;">
+    <div class="col-1">
+
+    </div>
+
+    <div class="col-1">
+
+    </div>
+</div>
+<router-outlet></router-outlet>
+<div class="row " style="background-color: #e5e4e1; padding: 2em; ">
+    <div class="col-sm-2 footerlogo">
+        <img class="companyLogo" src="../assets/images/logo.png" alt="First slide">
+    </div>
+    <div class="col-sm-5">
+
+        <span class="whiteBoldText" style="font-size: 1em; color: black;">
+            <h4>Our Mission</h4> Bridge the gap between industry and academia<br />
+            <h4>Our Vision</h4> Make In India @ Made by Indians
+        </span>
+        <hr />
+    </div>
+    <div class="col-sm-2">
+        <ul class="customUlFooter" style="color: black;">
+            <li routerLink="/collegeChapter">College Chapter</li>
+            <li routerLink="/cityChapter">City Chapter</li>
+            <li routerLink="/membership">Membership</li>
+            <li routerLink="/certifications">Certifications</li>
+        </ul>
+
+    </div>
+    <div class="col-sm-3">
+        <ul class="customUlFooter" style=" color: black;">
+            <li>Contact Us</li>
+            <li>Careers</li>
+            <li>FAQ's</li>
+            <li>Privacy Policy</li>
+        </ul>
+        <div>
+            <button class="btn btn-primary browcher-btn">Download Brouchure</button>
+        </div>
+    </div>
+
+    <!--  <div class="col-3">
+            <span class="whiteBoldText" style="font-size: 1em; font-weight: bold;">Contact Us</span>
+            <ul class="customUlFooter2" style="margin-top: 1.5em;">
+                <li>
+                    <span class="fa fa-map-marker" style="color: white"></span>Address Line 1</li>
+                <li>Address Line 2</li>
+                <li>Address Line 3</li>
+                <li></li>
+                <li>
+                    <span class="fa fa-phone" style="color: white"></span>Phone Line 1</li>
+                <li>Phone Line 2</li>
+                <li></li>
+                <li>
+                    <span class="fa fa-envelope" style="color: white"></span>Email@email.com</li>
+            </ul>
+        </div> -->
+</div>
+
+<div class="row" style="background-color: #e5e4e1; padding: 2em; padding-top: 0;">
+    <span style="width: 100%;  color: black;">
+        <hr style="border-top: 1px solid black !important;" /></span>
+
+    <div class="col-6" style=" color: black;; font-size: small">
+        Copyright @ 2018 theengineersfactory.com. All rights reserved.
+    </div>
+    <div class="col-6">
+        <div style="float: right;">
+            <span class="fa fa-facebook" style=" color: black;"></span>&nbsp;
+            <span class="fa fa-twitter" style=" color: black;"></span>&nbsp;
+            <span class="fa fa-google" style=" color: black;"></span>&nbsp;
+            <span class="fa fa-pinterest" style=" color: black;"></span>&nbsp;
+            <span class="fa fa-linkedin" style=" color: black;"></span>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<!-- Modal -->
+<div id="createTechArticleModal" class="modal fade" role="dialog">
+    <div class="modal-dialog createtech">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+                <span style="text-align: center; color: white; width: 100%;">
+                    <h4>CREATE A TECH ARTICLE</h4>
+                </span>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeCreateTechArticleModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="createTechArticleForm" (ngSubmit)="onCreateTechArticleFormSubmit()" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="email">Contact Email:</label>
+                            <input type="email" email="true" class="form-control" formControlName="email">
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="contactnumber">Contact Number:</label>
+                            <input type="text" class="form-control" formControlName="contactnumber" minlength="10"
+                                maxlength="10" (keypress)="_keyPress($event)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" class="form-control" formControlName="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="abstract">Abstract:</label>
+                        <textarea class="form-control" formControlName="abstract" placeholder="1000 words"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="technology">Engineering Technology:</label>
+                            <select type="text" class="form-control" formControlName="technology" (change)="updateSubTechList(createTechArticleForm.value.technology)">
+                                <option *ngFor="let technology of technologyconfig; let i = index;" [value]="technology.technologyid">{{technology.technologyname}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="subtechnologylist?.length!=0" class="form-group col-6">
+                            <label for="subtechnology">Sub-Engineering Technology:</label>
+                            <select type="text" class="form-control" formControlName="subtechnology">
+                                <option *ngFor="let subtechnology of subtechnologylist; let i = index; " [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="subtechnology">Article Type:</label>
+                            <select type="text" class="form-control" formControlName="articleType">
+                                <option>Article</option>
+                                <option>Research Paper</option>
+                                <option>White Paper</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-6" *ngIf="createTechArticleForm.value.articleType=='Article'">
+                            <br />
+                            <br />
+                            <label for="paidArticle">Is Paid Article :</label>
+                            &nbsp;&nbsp;
+                            <input type="radio" name="paidArticle" formControlName="paidArticle" selected value="Y">&nbsp;
+                            Yes&nbsp;&nbsp;
+                            <input type="radio" name="paidArticle" formControlName="paidArticle" value="N">&nbsp; No
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-6" *ngIf="createTechArticleForm.value.paidArticle=='N'">
+                            <br />
+                            <br />
+                            <label for="paidArticle">Select Publication Type :</label>
+                            &nbsp;&nbsp;
+                            <input type="radio" name="publicationSelector" formControlName="publicationSelector"
+                                selected value="1">&nbsp;
+                            Publication Link&nbsp;&nbsp;
+                            <input type="radio" name="publicationSelector" formControlName="publicationSelector" value="2">&nbsp;
+                            File Upload
+                        </div>
+                        <div class="form-group col-6" *ngIf="createTechArticleForm.value.paidArticle=='Y' && createTechArticleForm.value.articleType=='Article'">
+                            <label for="cost">Cost:</label>
+                            <input type="number" class="form-control" formControlName="cost">
+                        </div>
+                        <div class="form-group col-6" *ngIf="createTechArticleForm.value.publicationSelector=='1'&&((createTechArticleForm.value.paidArticle=='N' && createTechArticleForm.value.articleType=='Article') ||(createTechArticleForm.value.articleType!='Article'))">
+                            <label for="publicationlink">Publication Link:</label>
+                            <input type="text" class="form-control" formControlName="publicationlink">
+                        </div>
+                        <div class="form-group col-6" *ngIf="createTechArticleForm.value.publicationSelector=='2'&&((createTechArticleForm.value.paidArticle=='N' && createTechArticleForm.value.articleType=='Article') ||(createTechArticleForm.value.articleType!='Article'))">
+                            <label for="publicationFileUpload">Upload Publication File:</label>
+                            <input ng2FileSelect type='file' class="form-control" (change)="readUrl($event)"
+                                formControlName="publicationFileUpload" accept="*.*" [uploader]="fileUploaderTechArticle">
+                        </div>
+                    </div>
+                    <div style="width: 100%; text-align: center; align-items: center">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" formControlName="agreeTermsAndConditions"> Agree to Terms and
+                                Conditions</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary" [disabled]="!createTechArticleForm.valid || !createTechArticleForm.value.agreeTermsAndConditions">Create
+                            Tech Article</button>
+                    </div>
+                </form>
+            </div>
+            <!--<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>-->
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="createStuvationModal" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="max-width : 70% !important;">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+                <span style="text-align: center; color: white; width: 100%;">
+                    <h4>CREATE STUVATION</h4>
+                </span>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeCreateStuvationFormModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="createStuvationForm" (ngSubmit)="onCreateStuvationFormSubmit()" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="projectType">Project Type:</label>
+                            <select type="text" class="form-control" formControlName="projectType">
+                                <option [value]="5">
+                                    Innovation</option>
+                            </select>
+
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="projectStatus">Project Status:</label>
+                            <select type="text" class="form-control" formControlName="projectStatus">
+                                <option value="completed">COMPLETED</option>
+                                <option value="ongoing">ONGOING</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="technology">Engineering Technology:</label>
+                            <select type="text" class="form-control" formControlName="technology" (change)="updateSubTechList(createStuvationForm.value.technology)">
+                                <option *ngFor="let technology of technologyconfig; let i = index;" [value]="technology.technologyid">{{technology.technologyname}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="subtechnologylist?.length!=0" class="form-group col-6">
+                            <label for="subtechnology">Sub-Engineering Technology:</label>
+                            <select type="text" class="form-control" formControlName="subtechnology">
+                                <option *ngFor="let subtechnology of subtechnologylist; let i = index; " [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <h3>Innovation Details</h3>
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="idea">Idea:</label>
+                            <input type="text" class="form-control" formControlName="idea">
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-12">
+
+                            <label for="ideaDescription">Idea Description:</label>
+                            <textarea class="form-control" formControlName="ideaDescription" maxlength="500"></textarea>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
+                        <div class="form-group col-6">
+                            <br />
+                            <label for="prototypeAvailable">Prototype Available :</label>
+                            &nbsp;&nbsp;
+                            <input type="radio" name="prototypeAvailable" formControlName="prototypeAvailable" selected
+                                value="Y">&nbsp;
+                            Yes&nbsp;&nbsp;
+                            <input type="radio" name="prototypeAvailable" formControlName="prototypeAvailable" value="N">&nbsp;
+                            No
+                        </div>
+                        <div class="form-group col-6" *ngIf="createStuvationForm.value.prototypeAvailable=='Y'">
+
+                            <label for="referenceLink">Reference Link :</label>
+                            &nbsp;&nbsp;
+                            <input type="text" class="form-control" formControlName="referenceLink">
+                            <input ng2FileSelect type='file' (change)="readUrl($event)" formControlName="referenceLink"
+                                accept=".*" [uploader]="uploader">
+                        </div>
+                    </div>
+
+                    <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
+
+                        <div class="form-group col-6">
+                            <br />
+                            <label for="lookingProfessorGuidance">Looking Guidance from academic professors :</label>
+                            &nbsp;&nbsp;
+                            <input type="radio" name="lookingProfessorGuidance" formControlName="lookingProfessorGuidance"
+                                selected value="Y">&nbsp;
+                            Yes&nbsp;&nbsp;
+                            <input type="radio" name="lookingProfessorGuidance" formControlName="lookingProfessorGuidance"
+                                value="N">&nbsp;
+                            No
+                        </div>
+                        <div class="form-group col-6">
+
+                            <label for="expectedBudget">Expected Budget :</label>
+                            &nbsp;&nbsp;
+                            <input type="text" class="form-control" formControlName="expectedBudget">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <br />
+                            <label for="lookingMentorship">Looking Mentorship from Industrial Experts :</label>
+                            &nbsp;&nbsp;
+                            <input type="radio" name="lookingMentorship" formControlName="lookingMentorship" selected
+                                value="Y">&nbsp;
+                            Yes&nbsp;&nbsp;
+                            <input type="radio" name="lookingMentorship" formControlName="lookingMentorship" value="N">&nbsp;
+                            No
+                        </div>
+
+                        <div class="form-group col-6" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
+
+                            <label for="teamSize">Team Size :</label>
+                            &nbsp;&nbsp;
+                            <input type="text" class="form-control" formControlName="teamSize">
+                        </div>
+
+                    </div>
+
+                    <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
+                        <div class="form-group col-6">
+                            <br />
+                            <label for="lookingStudentPartner">Looking Student partner :</label>
+                            &nbsp;&nbsp;
+                            <input type="radio" name="lookingStudentPartner" formControlName="lookingStudentPartner"
+                                selected value="Y">&nbsp;
+                            Yes&nbsp;&nbsp;
+                            <input type="radio" name="lookingStudentPartner" formControlName="lookingStudentPartner"
+                                value="N">&nbsp;
+                            No
+                        </div>
+                        <div class="form-group col-6">
+
+                            <label for="lastDateOfJoining">Last Date of joining :</label>
+                            &nbsp;&nbsp;
+                            <input type="date" class="form-control" formControlName="lastDateOfJoining" min='{{this.minDateString}}'>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
+
+                        <div class="form-group col-6">
+                            <br />
+                            <label for="lookingSponsorship">Looking sponsorship :</label>
+                            &nbsp;&nbsp;
+                            <input type="radio" name="lookingSponsorship" formControlName="lookingSponsorship" selected
+                                value="Y">&nbsp;
+                            Yes&nbsp;&nbsp;
+                            <input type="radio" name="lookingSponsorship" formControlName="lookingSponsorship" value="N">&nbsp;
+                            No
+                        </div>
+                        <div class="form-group col-6">
+
+                            <label for="noOfSponsors">Number of sponsors required :</label>
+                            &nbsp;&nbsp;
+                            <input type="text" class="form-control" formControlName="noOfSponsors">
+                        </div>
+                    </div>
+                    <div style="width: 100%; text-align: center; align-items: center">
+                        <button type="submit" class="btn btn-primary" [disabled]="!createStuvationForm.valid || createStuvationForm.value.idea=='' || createStuvationForm.value.ideaDescription==''">Create
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!--<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>-->
+        </div>
+
+    </div>
+</div>
+
+<div id="createEngshipModal" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="max-width : 70% !important;">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+                <span style="text-align: center; color: white; width: 100%;">
+                    <h4>CREATE ENGSHIP</h4>
+                </span>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeCreateEngshipnFormModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="createEngshipForm" (ngSubmit)="onCreateEngshipFormSubmit()" enctype="multipart/form-data">
+                    <div class="row">
+
+                        <span style="text-align: center; width: 100%;">
+                            <label style="font-weight: bold;">Looking for :&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <input type="radio" name="lookingFor" formControlName="lookingFor" selected value="Mentor">&nbsp;
+                            Mentor&nbsp;&nbsp;
+                            <input type="radio" name="lookingFor" formControlName="lookingFor" value="Mentee">&nbsp;
+                            Mentee
+                        </span>
+                    </div>
+                    <div *ngIf="createEngshipForm.value.lookingFor">
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="engshipType">Type:</label>
+                                <select type="text" class="form-control" formControlName="engshipType">
+                                    <option>
+                                        Career Guidance</option>
+                                    <option>
+                                        Technology Share</option>
+                                </select>
+
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="mentorName">Name:</label>
+                                <input type="text" class="form-control" formControlName="mentorName" disabled>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="email">Email:</label>
+                                <input type="text" class="form-control" formControlName="email" disabled>
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="contact">Contact Number:</label>
+                                <input type="text" class="form-control" formControlName="contact" disabled>
+                            </div>
+                        </div>
+
+                        <div class="row" *ngIf="createEngshipForm.value.lookingFor=='Mentee'">
+                            <div class="form-group col-6">
+                                <label for="organization">Organization:</label>
+                                <input type="text" class="form-control" formControlName="organization">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="position">Position:</label>
+                                <input type="text" class="form-control" formControlName="position">
+                            </div>
+                        </div>
+
+                        <div class="row" *ngIf="createEngshipForm.value.lookingFor=='Mentor'">
+                            <div class="form-group col-6">
+                                <label for="branch">Branch:</label>
+                                <input type="text" class="form-control" formControlName="branch">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="college">College:</label>
+                                <input type="text" class="form-control" formControlName="college">
+                            </div>
+                        </div>
+
+                        <div class="row" *ngIf="createEngshipForm.value.lookingFor=='Mentor'">
+                            <div class="form-group col-6">
+                                <label for="tenthPercent">10th Percentage:</label>
+                                <input type="text" class="form-control" formControlName="tenthPercent">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="plustwoPercent">12th Percentage:</label>
+                                <input type="text" class="form-control" formControlName="plustwoPercent">
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="createEngshipForm.value.lookingFor=='Mentor'">
+                            <div class="form-group col-6">
+                                <label for="graduationPercent">Graduation Percentage:</label>
+                                <input type="text" class="form-control" formControlName="graduationPercent">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="postgradPercent">Post Graduation Percentage:</label>
+                                <input type="text" class="form-control" formControlName="postgradPercent">
+                            </div>
+                        </div>
+
+                        <div class="row" *ngIf="createEngshipForm.value.lookingFor=='Mentor'">
+                            <div class="form-group col-12">
+                                <label for="learningGoals">Learning Goals:</label>
+                                <textarea type="text" class="form-control" formControlName="learningGoals"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row" *ngIf="createEngshipForm.value.lookingFor=='Mentee'">
+                            <div class="form-group col-6">
+                                <label for="workLocation">Working Location:</label>
+                                <input type="text" class="form-control" formControlName="workLocation">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="country">Country:</label>
+                                <input type="text" class="form-control" formControlName="country">
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="technology">Engineering Technology:</label>
+                                <select type="text" class="form-control" formControlName="technology" (change)="updateSubTechList(createStuvationForm.value.technology)">
+                                    <option *ngFor="let technology of technologyconfig; let i = index;" [value]="technology.technologyid">{{technology.technologyname}}</option>
+                                </select>
+                            </div>
+                            <div *ngIf="subtechnologylist?.length!=0" class="form-group col-6">
+                                <label for="subtechnology">Sub-Engineering Technology:</label>
+                                <select type="text" class="form-control" formControlName="subtechnology">
+                                    <option *ngFor="let subtechnology of subtechnologylist; let i = index; " [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="timeSpend">Time Spend:</label>
+                                <select type="text" class="form-control" formControlName="timeSpend">
+                                    <option>Daily</option>
+                                    <option>Weekly</option>
+                                    <option>Monthly</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="numberOfHours">Number of hours:</label>
+                                <input type="text" class="form-control" formControlName="numberOfHours">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <br />
+                                <label for="membershipChargeFlag">Charge for Membership ? :</label>
+                                &nbsp;&nbsp;
+                                <input type="radio" name="membershipChargeFlag" formControlName="membershipChargeFlag"
+                                    selected value="Y">&nbsp;
+                                Yes&nbsp;&nbsp;
+                                <input type="radio" name="membershipChargeFlag" formControlName="membershipChargeFlag"
+                                    value="N">&nbsp;
+                                No
+                            </div>
+                            <div class="form-group col-6" *ngIf="createEngshipForm.value.membershipChargeFlag=='Y'">
+                                <label for="membershipCharge">Rate :</label>
+                                &nbsp;&nbsp;
+                                <input type="text" class="form-control" formControlName="membershipCharge">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <br />
+                                <label for="willingToTravelFlag">Willing to travel ? :</label>
+                                &nbsp;&nbsp;
+                                <input type="radio" name="willingToTravelFlag" formControlName="willingToTravelFlag"
+                                    selected value="Y">&nbsp;
+                                Yes&nbsp;&nbsp;
+                                <input type="radio" name="willingToTravelFlag" formControlName="willingToTravelFlag"
+                                    value="N">&nbsp;
+                                No
+                            </div>
+                            <div class="form-group col-6">
+                                <br />
+                                <label for="mentorBeforeFlag">Have to been Mentor before ? :</label>
+                                &nbsp;&nbsp;
+                                <input type="radio" name="mentorBeforeFlag" formControlName="mentorBeforeFlag" selected
+                                    value="Y">&nbsp;
+                                Yes&nbsp;&nbsp;
+                                <input type="radio" name="mentorBeforeFlag" formControlName="mentorBeforeFlag" value="N">&nbsp;
+                                No
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <br />
+                                <label for="lookingForEFSupportFlag">Looking for Engineers Factory Support ? :</label>
+                                &nbsp;&nbsp;
+                                <input type="radio" name="lookingForEFSupportFlag" formControlName="lookingForEFSupportFlag"
+                                    selected value="Y">&nbsp;
+                                Yes&nbsp;&nbsp;
+                                <input type="radio" name="lookingForEFSupportFlag" formControlName="lookingForEFSupportFlag"
+                                    value="N">&nbsp;
+                                No
+                            </div>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" formControlName="tncAcceptFlag"> By checking this box, I verify
+                                that I have read, understood, and agreed fully with the
+                                <!-- <a data-toggle="modal"
+                            data-target="#EngshipModalTnCModal" style="color:blue; font-weight: bold;"> -->terms
+                                <!-- </a> --> of the Engineers Factory Code of Honor.</label>
+                        </div>
+
+                        <div style="width: 100%; text-align: center; align-items: center">
+                            <button type="submit" class="btn btn-primary" [disabled]="!createEngshipForm.valid">Create
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>-->
+        </div>
+
+    </div>
+</div>
+
+
+
+<div id="EngshipModalTnCModal" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="max-width : 70% !important;">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+                <span style="text-align: center; color: white; width: 100%;">
+                    <h4>Engship Terms and Conditions</h4>
+                </span>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeEngshipModalTnCModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                By completing this application form, I will obey the mentor code of honour and you agree to the goals
+                and purpose of the mentoring program. V-Engineers Factory encourages an open exchange of information
+                and ideas between members participating in the program. However, V-Engineers Factory cannot and does
+                not review such communications and does not guarantee or endorse the accuracy of any information
+                exchanged between mentor and mentee. You agree that you will participate in the mentor program in a
+                manner consistent with the V-Engineers Factory Mission and its constitution.
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="createProjectModal" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="max-width : 70% !important;">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+                <span style="text-align: center; color: white; width: 100%;">
+                    <h4>CREATE Academic Project</h4>
+                </span>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeCreateStuvationFormModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="createStuvationForm" (ngSubmit)="onCreateStuvationFormSubmit()" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="projectType">Project Type:</label>
+                            <select type="text" class="form-control" formControlName="projectType">
+
+                                <option *ngFor="let stuvationtype of stuvationtypeconfig; let i = index;" [value]="stuvationtype.typeId">{{stuvationtype.stuvationTypeValue
+                                    | uppercase}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="projectStatus">Project Status:</label>
+                            <select type="text" class="form-control" formControlName="projectStatus">
+                                <option value="completed">COMPLETED</option>
+                                <option value="ongoing">ONGOING</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" class="form-control" formControlName="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="abstract">Abstract:</label>
+                        <textarea class="form-control" formControlName="abstract" placeholder="1000 words" maxlength="1000"></textarea>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="technology">Engineering Technology:</label>
+                            <select type="text" class="form-control" formControlName="technology" (change)="updateSubTechList(createStuvationForm.value.technology)">
+                                <option *ngFor="let technology of technologyconfig; let i = index;" [value]="technology.technologyid">{{technology.technologyname}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="subtechnologylist?.length!=0" class="form-group col-6">
+                            <label for="subtechnology">Sub-Engineering Technology:</label>
+                            <select type="text" class="form-control" formControlName="subtechnology">
+                                <option *ngFor="let subtechnology of subtechnologylist; let i = index; " [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
+                        <div class="form-group col-6">
+                            <br />
+                            <label for="prototypeAvailable">Prototype Available :</label>
+                            &nbsp;&nbsp;
+                            <input type="radio" name="prototypeAvailable" formControlName="prototypeAvailable" selected
+                                value="Y">&nbsp;
+                            Yes&nbsp;&nbsp;
+                            <input type="radio" name="prototypeAvailable" formControlName="prototypeAvailable" value="N">&nbsp;
+                            No
+                        </div>
+                        <div class="form-group col-6" *ngIf="createStuvationForm.value.prototypeAvailable=='Y'">
+
+                            <label for="referenceLink">Reference Link :</label>
+                            &nbsp;&nbsp;
+                            <input type="text" class="form-control" formControlName="referenceLink">
+                            <input ng2FileSelect type='file' (change)="readUrl($event)" formControlName="referenceLink"
+                                accept=".*" [uploader]="uploader">
+
+                        </div>
+                    </div>
+
+                    <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
+
+                        <div class="form-group col-6">
+                            <br />
+                            <label for="lookingProfessorGuidance">Looking Guidance from academic professors :</label>
+                            &nbsp;&nbsp;
+                            <input type="radio" name="lookingProfessorGuidance" formControlName="lookingProfessorGuidance"
+                                selected value="Y">&nbsp;
+                            Yes&nbsp;&nbsp;
+                            <input type="radio" name="lookingProfessorGuidance" formControlName="lookingProfessorGuidance"
+                                value="N">&nbsp;
+                            No
+                        </div>
+                        <div class="form-group col-6">
+
+                            <label for="expectedBudget">Expected Budget :</label>
+                            &nbsp;&nbsp;
+                            <input type="text" class="form-control" formControlName="expectedBudget">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <br />
+                            <label for="lookingMentorship">Looking Mentorship from Industrial Experts :</label>
+                            &nbsp;&nbsp;
+                            <input type="radio" name="lookingMentorship" formControlName="lookingMentorship" selected
+                                value="Y">&nbsp;
+                            Yes&nbsp;&nbsp;
+                            <input type="radio" name="lookingMentorship" formControlName="lookingMentorship" value="N">&nbsp;
+                            No
+                        </div>
+
+                        <div class="form-group col-6" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
+
+                            <label for="teamSize">Team Size :</label>
+                            &nbsp;&nbsp;
+                            <input type="text" class="form-control" formControlName="teamSize">
+                        </div>
+
+                    </div>
+
+                    <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
+                        <div class="form-group col-6">
+                            <br />
+                            <label for="lookingStudentPartner">Looking Student partner :</label>
+                            &nbsp;&nbsp;
+                            <input type="radio" name="lookingStudentPartner" formControlName="lookingStudentPartner"
+                                selected value="Y">&nbsp;
+                            Yes&nbsp;&nbsp;
+                            <input type="radio" name="lookingStudentPartner" formControlName="lookingStudentPartner"
+                                value="N">&nbsp;
+                            No
+                        </div>
+                        <div class="form-group col-6">
+
+                            <label for="lastDateOfJoining">Last Date of joining :</label>
+                            &nbsp;&nbsp;
+                            <input type="date" class="form-control" formControlName="lastDateOfJoining" min='{{this.minDateString}}'>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
+
+                        <div class="form-group col-6">
+                            <br />
+                            <label for="lookingSponsorship">Looking sponsorship :</label>
+                            &nbsp;&nbsp;
+                            <input type="radio" name="lookingSponsorship" formControlName="lookingSponsorship" selected
+                                value="Y">&nbsp;
+                            Yes&nbsp;&nbsp;
+                            <input type="radio" name="lookingSponsorship" formControlName="lookingSponsorship" value="N">&nbsp;
+                            No
+                        </div>
+                        <div class="form-group col-6">
+
+                            <label for="noOfSponsors">Number of sponsors required :</label>
+                            &nbsp;&nbsp;
+                            <input type="text" class="form-control" formControlName="noOfSponsors">
+                        </div>
+                    </div>
+                    <div style="width: 100%; text-align: center; align-items: center">
+                        <button type="submit" class="btn btn-primary" [disabled]="!createStuvationForm.valid || createStuvationForm.value.title=='' || createStuvationForm.value.abstract==''">Create
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!--<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>-->
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="createTechConnectModal" class="modal fade" role="dialog">
+    <div class="modal-dialog createtech">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+                <span style="text-align: center; color: white; width: 100%;">
+                    <h4>CREATE A TECH CONNECT</h4>
+                </span>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeCreateTechTeachModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <span style="text-align: center; width: 100%;">
+                        <label style="font-weight: bold;">Select Connect Type:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <input type="radio" name="techConnectSelector" [(ngModel)]="techConnectSelector" (click)="openMe()"
+                            selected value="1">&nbsp;
+                        Tech Teach&nbsp;&nbsp;
+                        <input type="radio" name="techConnectSelector" [(ngModel)]="techConnectSelector" (click)="openMe()"
+                            value="2">&nbsp;
+                        Tech Talk
+                    </span>
+                </div>
+                <form *ngIf="techConnectSelector=='1'" [formGroup]="createTechTeachForm" (ngSubmit)="onCreateTechTeachFormSubmit()"
+                    enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="topic">Topic:</label>
+                        <input type="text" class="form-control" formControlName="topic">
+                    </div>
+                    <div class="form-group">
+                        <label for="topic">Tech Teach Type:</label>
+                        <select type="text" class="form-control" formControlName="techteachtype">
+                            <option *ngFor="let type of techTeachTypeConfig; let i = index;" [value]="type.typeId">{{type.techTeachTypeValue}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="abstract">Abstract:</label>
+                        <textarea class="form-control" formControlName="abstract" placeholder="1000 words"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="technologyArea">Technology Area:</label>
+                        <input type="text" class="form-control" formControlName="technologyArea">
+                    </div>
+                    <div class="form-group">
+                        <label for="technology">Technology:</label>
+                        <select type="text" class="form-control" formControlName="technology" (change)="updateSubTechList(createTechTeachForm.value.technology)">
+                            <option *ngFor="let technology of technologyconfig; let i = index;" [value]="technology.technologyid">{{technology.technologyname}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf="subtechnologylist?.length!=0" class="form-group">
+                        <label for="subtechnology">Sub-Technology:</label>
+                        <select type="text" class="form-control" formControlName="subtechnology">
+                            <option *ngFor="let subtechnology of subtechnologylist; let i = index; " [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
+                        </select>
+                    </div>
+
+
+
+                    <span style="color: #176086; text-decoration: underline; ">
+                        <h3>Venue Details</h3>
+                    </span>
+                    <div formGroupName="venueDetails">
+
+
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label>
+                                    Place:
+                                    <input type="text" class="form-control" formControlName="place">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    City:
+                                    <input type="text" class="form-control" formControlName="city">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Address:
+                                    <input type="text" class="form-control" formControlName="address">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label>
+                                    Event Date:
+
+                                    <input type="date" class="form-control" formControlName="date" min='{{this.minDateString}}'>
+                                </label>
+                                <!-- <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [minDate]="{year: 2010, month: 1, day: 1}" formControlName="date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" > -->
+
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    From Time:
+                                    <input type="text" class="form-control" formControlName="fromTime">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    To Time:
+                                    <input type="text" class="form-control" formControlName="toTime">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <span style="color: #176086; text-decoration: underline; ">
+                        <h3>Registration Details</h3>
+                    </span>
+                    <div formGroupName="registrationDetails">
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label>
+                                    Web Address:
+                                    <input type="text" class="form-control" formControlName="webaddress">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Maximum Registration Allowed:
+                                    <input type="text" class="form-control" formControlName="maxregcount">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Registration Fee:
+                                    <input type="text" class="form-control" formControlName="regfee">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label>
+                                    Eligibility:
+                                    <textarea type="text" class="form-control" formControlName="eligibility"></textarea>
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Seat Capacity:
+                                    <input type="text" class="form-control" formControlName="seatcapacity">
+                                </label>
+                            </div>
+                            <!-- <div class="form-group col-4">
+                                <label>
+                                    Upload Poster:
+                                    <input type='file' class="form-control" (change)="readUrl($event)" formControlName="poster">
+                                    <img [src]="url" style="max-width: 100px; max-height: 100px;">
+                                </label>
+                            </div> -->
+                        </div>
+                    </div>
+                    <span style="color: #176086; text-decoration: underline; ">
+                        <h3>Industrial Expert Details</h3><span id="addbox" style="cursor:pointer;">&#43;</span>
+                    </span>
+                    <div formGroupName="expertDetails">
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label>
+                                    Name:
+                                    <input type="text" class="form-control" formControlName="name">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Company:
+                                    <input type="text" class="form-control" formControlName="company">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Speaker Type:
+                                    <select type="text" class="form-control" formControlName="speakerType">
+                                        <option>Student</option>
+                                        <option>Professional</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label>
+                                    Working Location:
+                                    <input type="text" class="form-control" formControlName="worklocation">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Position:
+                                    <input type="text" class="form-control" formControlName="position">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Experience:
+                                    <input type="text" class="form-control" formControlName="experience">
+                                </label>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div style="width: 100%; text-align: center; align-items: center">
+                        <button type="submit" class="btn btn-primary" [disabled]="!createTechTeachForm.valid">Create a
+                            Tech Teach</button>
+                    </div>
+                </form>
+                <form *ngIf="techConnectSelector=='2'" [formGroup]="createTechTalkForm" (ngSubmit)="onCreateTechTalkFormSubmit()"
+                    enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="topic">Topic:</label>
+                        <input type="text" class="form-control" formControlName="topic">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="topic">Tech Talk Type:</label>
+                        <select type="text" class="form-control" formControlName="techtalktype">
+                            <option *ngFor="let type of techTalkTypeConfig; let i = index;" [value]="type.typeId">{{type.techTalkTypeValue}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="technology">Technology:</label>
+                        <select type="text" class="form-control" formControlName="technology" (change)="updateSubTechList(createTechTalkForm.value.technology)">
+                            <option *ngFor="let technology of technologyconfig; let i = index;" [value]="technology.technologyid">{{technology.technologyname}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf="subtechnologylist?.length!=0" class="form-group">
+                        <label for="subtechnology">Sub-Technology:</label>
+                        <select type="text" class="form-control" formControlName="subtechnology">
+                            <option *ngFor="let subtechnology of subtechnologylist; let i = index; " [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
+                        </select>
+                    </div>
+
+                    <span style="color: #176086; text-decoration: underline; ">
+                        <h3>Venue Details</h3>
+                    </span>
+                    <div formGroupName="venueDetails">
+
+
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label>
+                                    Place:
+                                    <input type="text" class="form-control" formControlName="place">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    City:
+                                    <input type="text" class="form-control" formControlName="city">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Address:
+                                    <input type="text" class="form-control" formControlName="address">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label>
+                                    Event Date:
+                                    <input type="date" class="form-control" formControlName="date" min='{{this.minDateString}}'>
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    From Time:
+                                    <input type="text" class="form-control" formControlName="fromTime">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    To Time:
+                                    <input type="text" class="form-control" formControlName="toTime">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <span style="color: #176086; text-decoration: underline; ">
+                        <h3>Registration Details</h3>
+                    </span>
+                    <div formGroupName="registrationDetails">
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label>
+                                    Web Address:
+                                    <input type="text" class="form-control" formControlName="webaddress">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Maximum Registration Allowed:
+                                    <input type="text" class="form-control" formControlName="maxregcount">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Registration Fee:
+                                    <input type="text" class="form-control" formControlName="regfee">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label>
+                                    Eligibility:
+                                    <textarea type="text" class="form-control" formControlName="eligibility"></textarea>
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Seat Capacity:
+                                    <input type="text" class="form-control" formControlName="seatcapacity">
+                                </label>
+                            </div>
+                            <!-- <div class="form-group col-4">
+                                    <label>
+                                        Upload Poster:
+                                        <input type='file' class="form-control" (change)="readUrl($event)" formControlName="poster">
+                                        <img [src]="url" style="max-width: 100px; max-height: 100px;">
+                                    </label>
+                                </div> -->
+                        </div>
+                    </div>
+                    <span style="color: #176086; text-decoration: underline; ">
+                        <h3>Speaker Details</h3>
+                    </span>
+                    <div formGroupName="expertDetails">
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label>
+                                    Name:
+                                    <input type="text" class="form-control" formControlName="name">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Company:
+                                    <input type="text" class="form-control" formControlName="company">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Speaker Type:
+                                    <select type="text" class="form-control" formControlName="speakerType">
+                                        <option>Student</option>
+                                        <option>Professional</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label>
+                                    Working Location:
+                                    <input type="text" class="form-control" formControlName="worklocation">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Position:
+                                    <input type="text" class="form-control" formControlName="position">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Experience:
+                                    <input type="text" class="form-control" formControlName="experience">
+                                </label>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div style="width: 100%; text-align: center; align-items: center">
+                        <button type="submit" class="btn btn-primary" [disabled]="!createTechTalkForm.valid">Create a
+                            Tech Talk</button>
+                    </div>
+                </form>
+            </div>
+            <!--<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>-->
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="createTechTalkModal" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="max-width : 70% !important;">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+                <span style="text-align: center; color: white; width: 100%;">
+                    <h4>CREATE A TECH TALK</h4>
+                </span>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeCreateTechTalkModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="createTechTalkForm" (ngSubmit)="onCreateTechTalkFormSubmit()" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="topic">Topic:</label>
+                        <input type="text" class="form-control" formControlName="topic">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="topic">Tech Talk Type:</label>
+                        <select type="text" class="form-control" formControlName="techtalktype">
+                            <option *ngFor="let type of techTalkTypeConfig; let i = index;" [value]="type.typeId">{{type.techTalkTypeValue}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="technology">Technology:</label>
+                        <select type="text" class="form-control" formControlName="technology" (change)="updateSubTechList(createTechTalkForm.value.technology)">
+                            <option *ngFor="let technology of technologyconfig; let i = index;" [value]="technology.technologyid">{{technology.technologyname}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf="subtechnologylist?.length!=0" class="form-group">
+                        <label for="subtechnology">Sub-Technology:</label>
+                        <select type="text" class="form-control" formControlName="subtechnology">
+                            <option *ngFor="let subtechnology of subtechnologylist; let i = index; " [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
+                        </select>
+                    </div>
+
+                    <span style="color: #176086; text-decoration: underline; ">
+                        <h3>Venue Details</h3>
+                    </span>
+                    <div formGroupName="venueDetails">
+
+
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label>
+                                    Place:
+                                    <input type="text" class="form-control" formControlName="place">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    City:
+                                    <input type="text" class="form-control" formControlName="city">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Address:
+                                    <input type="text" class="form-control" formControlName="address">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label>
+                                    Event Date:
+                                    <input type="date" class="form-control" formControlName="date" min='{{this.minDateString}}'>
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    From Time:
+                                    <input type="text" class="form-control" formControlName="fromTime">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    To Time:
+                                    <input type="text" class="form-control" formControlName="toTime">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <span style="color: #176086; text-decoration: underline; ">
+                        <h3>Registration Details</h3>
+                    </span>
+                    <div formGroupName="registrationDetails">
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label>
+                                    Web Address:
+                                    <input type="text" class="form-control" formControlName="webaddress">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Maximum Registration Allowed:
+                                    <input type="text" class="form-control" formControlName="maxregcount">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Registration Fee:
+                                    <input type="text" class="form-control" formControlName="regfee">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label>
+                                    Eligibility:
+                                    <textarea type="text" class="form-control" formControlName="eligibility"></textarea>
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Seat Capacity:
+                                    <input type="text" class="form-control" formControlName="seatcapacity">
+                                </label>
+                            </div>
+                            <!-- <div class="form-group col-4">
+                                    <label>
+                                        Upload Poster:
+                                        <input type='file' class="form-control" (change)="readUrl($event)" formControlName="poster">
+                                        <img [src]="url" style="max-width: 100px; max-height: 100px;">
+                                    </label>
+                                </div> -->
+                        </div>
+                    </div>
+                    <span style="color: #176086; text-decoration: underline; ">
+                        <h3>Speaker Details</h3>
+                    </span>
+                    <div formGroupName="expertDetails">
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label>
+                                    Name:
+                                    <input type="text" class="form-control" formControlName="name">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Company:
+                                    <input type="text" class="form-control" formControlName="company">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Speaker Type:
+                                    <select type="text" class="form-control" formControlName="speakerType">
+                                        <option>Student</option>
+                                        <option>Professional</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label>
+                                    Working Location:
+                                    <input type="text" class="form-control" formControlName="worklocation">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Position:
+                                    <input type="text" class="form-control" formControlName="position">
+                                </label>
+                            </div>
+                            <div class="form-group col-4">
+                                <label>
+                                    Experience:
+                                    <input type="text" class="form-control" formControlName="experience">
+                                </label>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div style="width: 100%; text-align: center; align-items: center">
+                        <button type="submit" class="btn btn-primary">Create a Tech Talk</button>
+                    </div>
+                </form>
+            </div>
+            <!--<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>-->
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="loginModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+                <span style="text-align: center; color: white; width: 100%;">
+                    <h4>LOGIN</h4>
+                </span>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeLoginForm">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmit()" enctype="multipart/form-data">
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" formControlName="username" placeholder="Username or Email">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                    </div>
+                    <!-- <div class="checkbox">
+                            <label>
+                                <input type="checkbox" formControlName="rememberMe"> Remember me</label>
+                            <a href="" style="float:right;">Forgot Password</a>
+                        </div> -->
+
+                    <div style="width: 100%; text-align: center; align-items: center">
+                        <button style="width: 100%;" type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">LOGIN</button>
+                        <br /> OR
+                        <br />
+
+                    </div>
+
+                </form>
+                <div ngbDropdown class="nav-item dropdown">
+                    <a id="signupDropdown2" style="margin-left: 0;" ngbDropdownToggle class="nav-link dropdown-toggle btn btn-primary"
+                        data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">SIGNUP</a>
+                    <div ngbDropdownMenu style="transform: none !important; top:0px !important; left: 0px !important;">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#studentRegistrationModal" (click)="closeLoginBox()">STUDENT</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#engineerRegistrationModal" (click)="closeLoginBox()">ENGINEER</a>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>-->
+        </div>
+
+    </div>
+</div>
+
+<div id="loginAlertModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+                <span style="text-align: center; color: white; width: 100%;">
+                    <h4>LOGIN ALERT</h4>
+                </span>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeLoginForm">&times;</button>
+            </div>
+            <div class="modal-body" style="text-align:center; align-content: center;">
+                Kindly Login to access this section.<br />
+                <button class=" btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#loginModal">LOGIN</button>
+            </div>
+            <!--<div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>-->
+        </div>
+
+    </div>
+</div>
+
+<div id="viewStuvationDetailsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+                <span style="text-align: center; color: white; width: 100%;">
+                    <h4>Stuvation Details</h4>
+                </span>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeLoginForm">&times;</button>
+            </div>
+            <div class="modal-body" style="text-align:center; align-content: center;">
+                Student + Innovation<br />
+
+                An initiative platform to express & excute your brilliant idea with help of co-students , Academicians
+                , Industrial Experts & Sponsors support<br />
+
+                register your academic project or Innovation<br />
+
+                Register & Execute
+
+            </div>
+            <!--<div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>-->
+        </div>
+
+    </div>
+</div>
+
+<div id="viewTechTeachDetailsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+                <span style="text-align: center; color: white; width: 100%;">
+                    <h4>TechTeach Details</h4>
+                </span>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeLoginForm">&times;</button>
+            </div>
+            <div class="modal-body" style="text-align:center; align-content: center;">
+                * Tech Teach * :<br />
+                <br />
+                A Platform to register Tech Activities where student can connect with industrial Experts <br />
+                <br />
+                Are you freelance Trainer <br />
+                or <br />
+                Industrial Expert want to share your knowledge <br />
+                or <br />
+                Startup Organization want to register your Workshops <br />
+                or <br />
+                Student want to register your Tech festivals <br />
+                <br />
+                Register Here <br />
+
+
+            </div>
+            <!--<div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>-->
+        </div>
+
+    </div>
+</div>
+
+<div id="viewTechTalkDetailsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+                <span style="text-align: center; color: white; width: 100%;">
+                    <h4>TechTalk Details</h4>
+                </span>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeLoginForm">&times;</button>
+            </div>
+            <div class="modal-body" style="text-align:center; align-content: center;">
+                * Tech Talk * : <br />
+                <br />
+                Want to connect with experts & Talk on Technology !! <br />
+                <br />
+                A Platform to interchange your views on technology <br />
+                <br />
+                Register & Connect & Talk<br />
+
+
+            </div>
+            <!--<div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>-->
+        </div>
+
+    </div>
+</div>
+
+
+
+<div id="viewAcademicProjectDetailsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+                <span style="text-align: center; color: white; width: 100%;">
+                    <h4>Academic Project Details</h4>
+                </span>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeLoginForm">&times;</button>
+            </div>
+            <div class="modal-body" style="text-align:center; align-content: center;">
+                * Acamedic ProZ * : <br />
+                <br />
+                An initiative platform to express & excute your brilliant idea with help of co-students , Academicians
+                , Industrial Experts & Sponsors support <br />
+                <br />
+                register your academic project or Innovation <br />
+                <br />
+                Register & Execute <br />
+
+
+            </div>
+            <!--<div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>-->
+        </div>
+
+    </div>
+</div>
+
+<div id="viewProzectMeDetailsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+                <span style="text-align: center; color: white; width: 100%;">
+                    <h4>ProzectMe Details</h4>
+                </span>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeLoginForm">&times;</button>
+            </div>
+            <div class="modal-body" style="text-align:center; align-content: center;">
+                * Prozect me * :<br />
+                <br />
+                Platform to start work from university !! <br />
+                <br />
+                No need to wait until completion of academics !! <br />
+                <br />
+                You had enough potential !! Lets start work !!<br />
+                <br />
+                Apply & Work <br />
+
+
+            </div>
+            <!--<div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>-->
+        </div>
+
+    </div>
+</div>
+
+<div id="viewEngshipDetailsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+                <span style="text-align: center; color: white; width: 100%;">
+                    <h4>Engship Details</h4>
+                </span>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeLoginForm">&times;</button>
+            </div>
+            <div class="modal-body" style="text-align:center; align-content: center;">
+                * Engship * :<br />
+                <br />
+                Are you looking for guidance , encouragement & support from trusted experience professional ?<br />
+                <br />
+                A Platform to connect Mentor & Mentee<br />
+                <br />
+                Register & Connect <br />
+
+
+            </div>
+            <!--<div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>-->
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="engineerRegistrationModal" class="modal fade" role="dialog">
+    <div class="modal-dialog regform">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+                <span style="text-align: center; color: white; width: 100%;">
+                    <h4>Join as Engineer</h4>
+                </span>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeEngineerRegistrationForm">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="engineerRegistrationForm" (ngSubmit)="onEngineerRegistrationFormSubmit()" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="firstname">Name:</label>
+                                <input type="text" class="form-control" formControlName="name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" email="true" class="form-control" formControlName="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number:</label>
+                                <input type="text" class="form-control" formControlName="contact" minlength="10"
+                                    maxlength="10" (keypress)="_keyPress($event)">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="username">Username:</label>
+                                <input type="text" class="form-control" formControlName="username">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" formControlName="password">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmpassword">Confirm Password:</label>
+                                <input type="password" class="form-control" formControlName="confirmpassword">
+                            </div>
+                            <!-- <div class="form-group">
+                                <label for="dob">Date of birth:</label>
+                                <input type="date" class="form-control" formControlName="dob">
+                            </div>
+                            <div class="form-group">
+                                <label for="school">School:</label>
+                                <input type="text" class="form-control" formControlName="schoolname">
+                            </div>
+                            <div class="form-group">
+                                <label for="schoolcity">School City:</label>
+                                <input type="text" class="form-control" formControlName="schoolcity">
+                            </div>
+                            <div class="form-group">
+                                <label for="schoolstate">School State:</label>
+                                <input type="text" class="form-control" formControlName="schoolstate">
+                            </div>
+                            <div class="form-group">
+                                <label for="college">College:</label>
+                                <input type="text" class="form-control" formControlName="college">
+                            </div>
+                            <div class="form-group">
+                                <label for="collegecity">College City:</label>
+                                <input type="text" class="form-control" formControlName="collegecity">
+                            </div>
+                            <div class="form-group">
+                                <label for="collegestate">College State:</label>
+                                <input type="text" class="form-control" formControlName="collegestate">
+                            </div>
+                            <div class="form-group">
+                                <label for="collegebranch">College Branch:</label>
+                                <input type="text" class="form-control" formControlName="collegebranch">
+                            </div> -->
+                        </div>
+                    </div>
+                    <!-- <span style="color: #176086; text-decoration: underline; ">
+                        <h3>Project Description</h3>
+                    </span>
+                    <div class="row">
+                        <div class="col-6">
+
+                            <span style="color: #176086; text-decoration: underline; ">
+                                <h4>Mini Project</h4>
+                            </span>
+                            <div class="form-group">
+                                <label for="miniprojecttitle">Title:</label>
+                                <input type="text" class="form-control" formControlName="miniprojecttitle">
+                            </div>
+                            <div class="form-group">
+                                <label for="miniprojectdescription">Description:</label>
+                                <input type="text" class="form-control" formControlName="miniprojectdescription">
+                            </div>
+
+
+
+                            <span style="color: #176086; text-decoration: underline; ">
+                                <h4>Technologies(seperated by commas)</h4>
+                            </span>
+                            <div class="form-group">
+                                <label for="technologies">Technologies:</label>
+                                <input type="text" class="form-control" formControlName="technologies">
+                            </div>
+
+                        </div>
+                        <div class="col-6">
+                            <span style="color: #176086; text-decoration: underline; ">
+                                <h4>Major Project</h4>
+                            </span>
+                            <div class="form-group">
+                                <label for="majorprojecttitle">Title:</label>
+                                <input type="text" class="form-control" formControlName="majorprojecttitle">
+                            </div>
+                            <div class="form-group">
+                                <label for="majorprojectdescription">Description:</label>
+                                <input type="text" class="form-control" formControlName="majorprojectdescription">
+                            </div>
+
+                            <span style="color: #176086; text-decoration: underline; ">
+                                <h4>Skills(seperated by commas)</h4>
+                            </span>
+                            <div class="form-group">
+                                <label for="skills">Skills:</label>
+                                <input type="text" class="form-control" formControlName="skills">
+                            </div>
+                        </div>
+                    </div>
+                    <span style="color: #176086; text-decoration: underline; ">
+                        <h4>Work Experience</h4>
+                    </span>
+                    <div formArrayName="workExperience">
+
+
+                        <div *ngFor="let exp of workExperience.controls; let i=index">
+
+                            <div [formGroupName]="i" class="row">
+                                <div class="form-group col-3">
+                                    <label for="role">Role:</label>
+                                    <input type="text" class="form-control" formControlName="role">
+                                </div>
+
+                                <div class="form-group col-3">
+                                    <label for="companyName">Company Name:</label>
+                                    <input type="text" class="form-control" formControlName="companyName">
+                                </div>
+
+                                <div class="form-group col-3">
+                                    <label for="yearsOfExperience">Years of Experience:</label>
+                                    <input type="text" class="form-control" formControlName="yearsOfExperience">
+
+                                </div>
+                                <div class="col-3">
+                                    <label for="yearsOfExperience">&nbsp;</label>
+                                    <button class="form-control btn-primary" *ngIf="i==workExperience.controls.length-1" (click)="addWorkExperience()">Add More</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>-->
+                    <div class="form-group">
+                        <label for="profilePicture">Upload Profile Picture: &nbsp;&nbsp;&nbsp;
+                            <input ng2FileSelect type='file' (change)="readUrl($event)" formControlName="profilePicture"
+                                accept=".jpg" [uploader]="uploader">
+                            <!-- <input ng2FileSelect type="file" accept=".xml" [uploader]="uploader"/> -->
+                            <img [src]="url" style="max-width: 100px; max-height: 100px;">
+                        </label>
+                    </div>
+                    <div style="width: 100%; text-align: center; align-items: center">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" formControlName="agreeTermsAndConditions"> Agree to Terms and
+                                Conditions</label>
+                        </div>
+
+                        <button type="submit" [disabled]="!engineerRegistrationForm.valid || !engineerRegistrationForm.value.agreeTermsAndConditions"
+                            class="btn btn-primary">Sign Up!</button>
+                    </div>
+                </form>
+            </div>
+            <!--<div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>-->
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="studentRegistrationModal" class="modal fade" role="dialog">
+    <div class="modal-dialog regform">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+                <span style="text-align: center; color: white; width: 100%;">
+                    <h4>Join as Student</h4>
+                </span>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeStudentRegistrationForm">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="studentRegistrationForm" (ngSubmit)="onStudentRegistrationFormSubmit()" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="firstname">Name:</label>
+                                <input type="text" class="form-control" formControlName="name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" email="true" class="form-control" formControlName="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number:</label>
+                                <input type="text" class="form-control" formControlName="contact" minlength="10"
+                                    maxlength="10" (keypress)="_keyPress($event)">
+                            </div>
+
+
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="username">Username:</label>
+                                <input type="text" class="form-control" formControlName="username">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" formControlName="password">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmpassword">Confirm Password:</label>
+                                <input type="password" class="form-control" formControlName="confirmpassword">
+                            </div>
+                            <!-- <div class="form-group">
+                                    <label for="dob">Date of birth:</label>
+                                    <input type="date" class="form-control" formControlName="dob">
+                                </div>
+                                <div class="form-group">
+                                    <label for="school">School:</label>
+                                    <input type="text" class="form-control" formControlName="schoolname">
+                                </div>
+                                <div class="form-group">
+                                    <label for="schoolcity">School City:</label>
+                                    <input type="text" class="form-control" formControlName="schoolcity">
+                                </div>
+                                <div class="form-group">
+                                    <label for="schoolstate">School State:</label>
+                                    <input type="text" class="form-control" formControlName="schoolstate">
+                                </div>
+                                <div class="form-group">
+                                    <label for="college">College:</label>
+                                    <input type="text" class="form-control" formControlName="college">
+                                </div>
+                                <div class="form-group">
+                                    <label for="collegecity">College City:</label>
+                                    <input type="text" class="form-control" formControlName="collegecity">
+                                </div>
+                                <div class="form-group">
+                                    <label for="collegestate">College State:</label>
+                                    <input type="text" class="form-control" formControlName="collegestate">
+                                </div>
+                                <div class="form-group">
+                                    <label for="collegebranch">College Branch:</label>
+                                    <input type="text" class="form-control" formControlName="collegebranch">
+                                </div> -->
+                        </div>
+                    </div>
+                    <!-- <span style="color: #176086; text-decoration: underline; ">
+                            <h3>Project Description</h3>
+                        </span>
+                        <div class="row">
+                            <div class="col-6">
+    
+                                <span style="color: #176086; text-decoration: underline; ">
+                                    <h4>Mini Project</h4>
+                                </span>
+                                <div class="form-group">
+                                    <label for="miniprojecttitle">Title:</label>
+                                    <input type="text" class="form-control" formControlName="miniprojecttitle">
+                                </div>
+                                <div class="form-group">
+                                    <label for="miniprojectdescription">Description:</label>
+                                    <input type="text" class="form-control" formControlName="miniprojectdescription">
+                                </div>
+    
+    
+    
+                                <span style="color: #176086; text-decoration: underline; ">
+                                    <h4>Technologies(seperated by commas)</h4>
+                                </span>
+                                <div class="form-group">
+                                    <label for="technologies">Technologies:</label>
+                                    <input type="text" class="form-control" formControlName="technologies">
+                                </div>
+    
+                            </div>
+                            <div class="col-6">
+                                <span style="color: #176086; text-decoration: underline; ">
+                                    <h4>Major Project</h4>
+                                </span>
+                                <div class="form-group">
+                                    <label for="majorprojecttitle">Title:</label>
+                                    <input type="text" class="form-control" formControlName="majorprojecttitle">
+                                </div>
+                                <div class="form-group">
+                                    <label for="majorprojectdescription">Description:</label>
+                                    <input type="text" class="form-control" formControlName="majorprojectdescription">
+                                </div>
+    
+                                <span style="color: #176086; text-decoration: underline; ">
+                                    <h4>Skills(seperated by commas)</h4>
+                                </span>
+                                <div class="form-group">
+                                    <label for="skills">Skills:</label>
+                                    <input type="text" class="form-control" formControlName="skills">
+                                </div>
+                            </div>
+                        </div>-->
+                    <div class="form-group">
+                        <label for="profilePicture">Upload Profile Picture: &nbsp;&nbsp;&nbsp;
+                            <input ng2FileSelect type='file' (change)="readUrl($event)" formControlName="profilePicture"
+                                accept=".jpg" [uploader]="uploader">
+                            <!-- <input ng2FileSelect type="file" accept=".xml" [uploader]="uploader"/> -->
+                            <img [src]="url" style="max-width: 100px; max-height: 100px;">
+                        </label>
+                    </div>
+                    <div style="width: 100%; text-align: center; align-items: center">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" formControlName="agreeTermsAndConditions"> Agree to Terms and
+                                Conditions</label>
+                        </div>
+
+                        <button type="submit" [disabled]="!studentRegistrationForm.valid || !studentRegistrationForm.value.agreeTermsAndConditions"
+                            class="btn btn-primary">Sign Up!</button>
+                    </div>
+                </form>
+            </div>
+            <!--<div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>-->
+        </div>
+
+    </div>
+</div>
+
+<button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>
+
+<script>
+
+    $(document).ready(function () {
+        $(".setsize").each(function () {
+            $(this).height($(this).width());
+        });
+    });
+    $(window).on('resize', function () {
+        $(".setsize").each(function () {
+            $(this).height($(this).width());
+        });
+    });
+</script>

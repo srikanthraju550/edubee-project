@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>The Engineers Factory</title>
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="viewport" content="width=1024"> -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <app-root></app-root>
+
+    <script>
+        console.log(document.getElementById("datefield"));
+        const st = {};
+
+        st.flap = document.querySelector('#flap');
+        st.toggle = document.querySelector('.toggle');
+
+        st.choice1 = document.querySelector('#choice1');
+        st.choice2 = document.querySelector('#choice2');
+
+        st.flap.addEventListener('transitionend', () => {
+
+            if (st.choice1.checked) {
+                st.toggle.style.transform = 'rotateY(-15deg)';
+                setTimeout(() => st.toggle.style.transform = '', 400);
+            } else {
+                st.toggle.style.transform = 'rotateY(15deg)';
+                setTimeout(() => st.toggle.style.transform = '', 400);
+            }
+
+        })
+
+        st.clickHandler = (e) => {
+
+            if (e.target.tagName === 'LABEL') {
+                setTimeout(() => {
+                    st.flap.children[0].textContent = e.target.textContent;
+                }, 250);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            st.flap.children[0].textContent = st.choice2.nextElementSibling.textContent;
+        });
+
+        document.addEventListener('click', (e) => st.clickHandler(e));
+    </script>
+    <script>
+        window.onscroll = function () { scrollFunction() };
+        window.onload = function () { setSizeFunctionForProgress() };
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("myBtn").style.display = "block";
+            } else {
+                document.getElementById("myBtn").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+        function setSizeFunctionForProgress() {
+            $(".setsize").each(function () {
+                $(this).height($(this).width());
+            });
+        }
+$('.counter-count').each(function () {
+      $(this).prop('Counter', 0).animate({
+        Counter: $(this).text()
+      }, {
+          duration: 5000,
+          easing: 'swing',
+          step: function (now) {
+            $(this).text(Math.ceil(now));
+          }
+        });
+    });
+
+
+    </script>
+
+</body>
+
+</html>

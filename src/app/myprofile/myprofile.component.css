@@ -1,0 +1,14 @@
+.circle {
+    width: 111px;
+    height: 111px;
+    border-radius: 50%;
+    font-size: 30px;
+    color: white;
+    line-height: 111px;
+    text-align: center;
+    background: #19578A;
+  }
+.hrnew{
+  border-top: 2px solid green !important;
+  margin-top: 0rem !important;
+}

@@ -1,0 +1,403 @@
+<div class="container" style="margin: 3em;">
+  <div class="row" style="text-align: center;">
+    <div class="col-4">
+      <button class="btn btn-primary"  data-toggle="modal" data-target="#showArticleQueueModal" (click)="getPageContent()">
+        Show Article Approval Queue
+      </button>
+    </div>
+    <div class="col-4">
+      <button class="btn btn-primary"  data-toggle="modal" data-target="#showTechTalkQueueModal" (click)="getPageContent()">
+        Show Techtalk Approval Queue
+      </button>
+    </div>
+    <div class="col-4">
+      <button class="btn btn-primary"  data-toggle="modal" data-target="#showTechTeachQueueModal" (click)="getPageContent()">
+        Show Techteach Approval Queue
+      </button>
+    </div>
+  </div>
+  <br/>
+
+   <div class="row" style="text-align: center;">
+    <div class="col-4">
+      <button class="btn btn-primary"  data-toggle="modal" data-target="#showStuvationQueueModal" (click)="getPageContent()">
+        Show Stuvation Approval Queue
+      </button>
+    </div>
+    <div class="col-4">
+      <button class="btn btn-primary"  data-toggle="modal" data-target="#updateSliderContentModal" (click)="getPageContent()">
+        Update Slider Content
+      </button>
+    </div><!--
+    <div class="col-4">
+      <button class="btn btn-primary"  data-toggle="modal" data-target="#showTechTalkQueueModal" (click)="getPageContent()">
+        Show Techtalk Approval Queue
+      </button>
+    </div>
+    <div class="col-4">
+      <button class="btn btn-primary"  data-toggle="modal" data-target="#showTechTeachQueueModal" (click)="getPageContent()">
+        Show Techteach Approval Queue
+      </button>
+    </div>-->
+  </div> 
+</div>
+
+<div id="showStuvationQueueModal" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="max-width : 70% !important;">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+          <span style="text-align: center; color: white; width: 100%;">
+            <h4>Stuvation Registrations</h4>
+          </span>
+          <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeShowArticleQueueModal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <h1 *ngIf="stuvationdetails?.length==0">No Stuvation available for Approval</h1>
+          <div class="row">
+            <div class="col-12" style="margin-top: 1em;">
+                <div class="card" style="width: 100%;" *ngFor="let stuvation of stuvationdetails | filter:techArticleFilter:keywordFilter:articleTypeFilter:techFilter:subTechFilter:authorFilter:freeFilter:'articleFilter' ; let i = index; "
+                [ngClass]="{'techarticleRow1' : i%2==0 }">
+                <div class="card-body">
+          
+                  <div style="float:right">
+                    <h3>
+                      Project Type : <u>{{stuvation.projectType | uppercase}}</u>
+                    </h3>
+                  </div>
+          
+                  <b>Mentor Name</b> : {{stuvation.projectTitle}}
+                  <br/>
+                  <b>Created On</b> : {{stuvation.createdon}}
+                  <div *ngIf="stuvation.projectType!='Innovation'">
+                  <br/>
+                  <b>Title</b> : {{stuvation.projectTitle}}
+                  <br/>
+                  <b>Abstract</b> : {{stuvation.abstract}}
+                  </div>
+                  <br/>
+                  <b>Technology</b> : {{stuvation.technologyname}}
+                  <br/>
+                  <b>Sub-Technology</b> : {{stuvation.subtechname}}
+                  
+                  <div *ngIf="stuvation.projectType=='Innovation'">
+                    <br/>
+                    <b>Idea</b> : {{stuvation.idea}}
+                    <br/>
+                    <b>Idea Description</b> : {{stuvation.ideaDescription}}
+                    
+                  </div>
+                  <br/>
+                  <div *ngIf="stuvation.projectStatus=='ongoing'">
+                  <b>Prototype Available ?</b> : {{stuvation.prototypeAvailable}}
+                  <br/>
+                  <b>Reference Link</b> : {{stuvation.referenceLink}}
+                  <br/>
+                  <b>Expected Budget</b> : {{stuvation.expectedBudget}}
+                  <br/>
+                  <b>Team Size</b> : {{stuvation.teamSize}}
+                  <br/>
+                  <b>Last Date Of Joining</b> : {{stuvation.lastDateOfJoining}}
+                  <br/>
+          
+                </div>
+                  <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="float: right;">
+                    <button class="btn btn-primary" style="height: 2.5em;" (click)="updateStatusOperation(stuvation.stuvationid, 'approved', stuvation.authcode, 'stuvation')">
+                      Approve
+                    </button>&nbsp;&nbsp;
+                    <button class="btn btn-primary" style=" height: 2.5em;" (click)="updateStatusOperation(stuvation.stuvationid, 'declined', stuvation.authcode, 'stuvation')">
+                      Decline
+                    </button>
+                  </ul>
+                </div>
+              </div>
+              
+  
+            </div>
+          </div>
+  
+  
+        </div>
+  
+      </div>
+  
+    </div>
+  </div>
+
+<div id="updateSliderContentModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="max-width : 70% !important;">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+        <span style="text-align: center; color: white; width: 100%;">
+          <h4>Update Slider Content</h4>
+        </span>
+        <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeCommentsModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="card" *ngFor="let slider of sliderContent; let i = index; ">
+          <div class="card-body row">
+            <div class="col-10">
+              <b>Image Link</b> :
+              <br/>{{slider.imagelink}}
+              <br/>
+              <b>Image Heading</b> :
+              <br/>{{slider.imageHeading}}
+              <br/>
+              <b>Image Description</b> :
+              <br/>{{slider.imageDescription}}
+              <br/>
+              <span *ngIf="getLoggedInUserObject()['userid']!=slider.userid">
+                {{slider.comment}}</span>
+              <textarea style="width: 100%;" *ngIf="getLoggedInUserObject()['userid']==slider.userid" [(ngModel)]="slider.comment"
+                placeholder="500 Characters" maxlength="500"></textarea>
+            </div>
+            <!-- <div class="col-2">
+              <button *ngIf="getLoggedInUserObject()['userid']==slider.userid" class="btn btn-light" style="background-color: #9A9A9A;height: 2.5em;"
+                (click)="commentOperation(selectedTecharticle.articleid, slider.id, slider.comment, 'U')">
+                Edit
+              </button>
+              <button *ngIf="getLoggedInUserObject()['userid']==slider.userid || getLoggedInUserObject()['userid']==selectedTecharticle.userId"
+                class="btn btn-light" style="background-color: #9A9A9A;height: 2.5em;" (click)="commentOperation(selectedTecharticle.articleid, slider.id, null, 'D')">
+                Delete
+              </button>
+            </div> -->
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body row">
+            <div class="col-10">
+              <textarea style="width: 100%;" [(ngModel)]="commentToBeAdded" placeholder="500 Characters" maxlength="500"></textarea>
+            </div>
+            <div class="col-2">
+              <button class="btn btn-light" [disabled]="commentToBeAdded==''" style="background-color: #9A9A9A;height: 2.5em;" (click)="commentOperation(selectedTecharticle.articleid, null, commentToBeAdded, 'A')">
+                Add Comment
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div id="showArticleQueueModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="max-width : 70% !important;">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+        <span style="text-align: center; color: white; width: 100%;">
+          <h4>Article Registrations</h4>
+        </span>
+        <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeShowArticleQueueModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h1 *ngIf="techarticledetails?.length==0">No Articles available for Approval</h1>
+        <div class="row">
+          <div class="col-12" style="margin-top: 1em;">
+            <div class="card" style="width: 100%;" *ngFor="let techarticle of techarticledetails" [ngClass]="{'techarticleRow1' : i%2==0 }">
+              <div class="card-body">
+                <h5 class="card-title" style="color:#07567F;">Author:</h5>
+                <div style="float:right">
+                  <h3>
+                    <u>{{techarticle.articletype}}</u>
+                  </h3>
+                </div>
+                <div class="row">
+                  <div>
+                    <img class="profilepicture" src="../assets/images/profileImages/{{techarticle.profilepicture}}" alt="Card image cap">
+                  </div>
+                  <div style="margin-left: 1em;">
+                    <b>{{techarticle.name}}</b>
+                    <br/>
+                    <span style="font-size: 0.85rem;">{{techarticle.followerCount}} followers</span>
+                    <br/>
+
+                  </div>
+                </div>
+
+                <b>Title</b> : {{techarticle.articletitle}}
+                <br/>
+                <b>Technology</b> : {{techarticle.technologyname}}
+                <br/>
+                <b>Sub-Technology</b> : {{techarticle.subtechname}}
+                <br/>
+                <b>Abstract</b> : {{techarticle.abstract}}
+                <br/>
+
+                <b> Price :
+                  <span style="color:#255B88">{{techarticle.cost}} rs</span>
+                </b>
+                <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="float: right;">
+                  <button class="btn btn-primary" style="height: 2.5em;" (click)="updateStatusOperation(techarticle.articleid, 'approved', techarticle.authcode, 'techarticle')">
+                    Approve
+                  </button>&nbsp;&nbsp;
+                  <button class="btn btn-primary" style=" height: 2.5em;" (click)="updateStatusOperation(techarticle.articleid, 'declined', techarticle.authcode, 'techarticle')">
+                    Decline
+                  </button>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div id="showTechTeachQueueModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="max-width : 70% !important;">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+        <span style="text-align: center; color: white; width: 100%;">
+          <h4>Tech Teach Registrations</h4>
+        </span>
+        <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeTechTeachQueueModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h1 *ngIf="techteachdetails?.length==0">No Tech Teachs available for Approval</h1>
+        <div class="row">
+          <div class="col-12" style="margin-top: 1em;">
+            <div class="card" style="width: 100%;" *ngFor="let techteach of techteachdetails">
+              <div class="card-body">
+                <div class="col-12">
+                  <span class="cardSubHeading">Originator</span>
+                  <br/>
+                  <b>Name</b> : {{techteach.originatorname}}
+                  <span style="float:right;">
+                    <b>Created on</b> : {{techteach.createdon}}</span>
+                  <br/>
+                  <b>Contact Number</b> : {{techteach.originatorcontactnumber}}
+                  <span style="float:right;">
+                    <b>Event on</b> : {{techteach.venuedate}}</span>
+                  <br/>
+                  <b>Email</b> : {{techteach.originatoremail}}
+                  <br/>
+                  <span style="float:right;">
+                    <b>Number of people applied</b> : {{techteach.registrationCount}}</span>
+                  <br/>
+                  <span class="cardSubHeading">Other Details</span>
+                  <br/>
+                  <b>Tech Teach Topic</b> : {{techteach.topic}}
+                  <br/>
+                  <b>Industrial Expert</b> : {{techteach.speakername}}
+                  <br/>
+                  <b>No. of Years Experience</b> : {{techteach.experience}}
+                  <ul class="nav nav-pills" style="float: right;">
+                    <li class="nav-item">
+                      <button class="nav-link btn btn-light" style="background-color: #FE9404; color: white !important;" (click)="viewTechTeachDetails(techteach)"
+                        data-toggle="modal" data-target="#detailsModal">View Detail's</button>
+                    </li>
+
+                  </ul>
+                  <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="float: right;">
+                    <button class="btn btn-primary" style="height: 2.5em;" (click)="updateStatusOperation(techteach.techteachid, 'approved', techteach.authcode, 'techteach')">
+                      Approve
+                    </button>&nbsp;&nbsp;
+                    <button class="btn btn-primary" style=" height: 2.5em;" (click)="updateStatusOperation(techteach.techteachid, 'declined', techteach.authcode, 'techteach')">
+                      Decline
+                    </button>
+                  </ul>
+
+                  <br/>
+                  <b>Registration Fee</b> : {{techteach.regfee}}Rs Per Person
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div id="showTechTalkQueueModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="max-width : 70% !important;">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+        <span style="text-align: center; color: white; width: 100%;">
+          <h4>Tech Talk Registrations</h4>
+        </span>
+        <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeShowTalkQueueModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h1 *ngIf="techtalkdetails?.length==0">No Tech Talks available for Approval</h1>
+        <div class="row">
+          <div class="col-12" style="margin-top: 1em;">
+            <div class="card" style="width: 100%;" *ngFor="let techtalk of techtalkdetails">
+              <div class="card-body">
+                <div class="col-12">
+                  <span class="cardSubHeading">Originator</span>
+                  <br/>
+                  <b>Name</b> : {{techtalk.originatorname}}
+                  <span style="float:right;">
+                    <b>Created on</b> : {{techtalk.createdon}}</span>
+                  <br/>
+                  <b>Contact Number</b> : {{techtalk.originatorcontactnumber}}
+                  <span style="float:right;">
+                    <b>Event on</b> : {{techtalk.venuedate}}</span>
+                  <br/>
+                  <b>Email</b> : {{techtalk.originatoremail}}
+                  <br/>
+                  <span style="float:right;">
+                    <b>Number of people applied</b> : {{techtalk.registrationCount}}
+                    <br/>
+                    <b>Tech Talk Type</b> : {{techtalk.techtalktype}}
+                  </span>
+
+                  <br/>
+                  <span class="cardSubHeading">Other Details</span>
+                  <br/>
+                  <b>Tech Panel Speaker Name</b> : {{techtalk.speakername}}
+
+                  <ul class="nav nav-pills" style="float: right;">
+                    <li class="nav-item">
+                      <button class="nav-link btn btn-light" style="background-color: #FE9404; color: white !important;" (click)="viewTechTalkDetails(techtalk)"
+                        data-toggle="modal" data-target="#detailsModal">View Detail's</button>
+                    </li>
+                  </ul>
+                  <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="float: right;">
+                    <button class="btn btn-primary" style="height: 2.5em;" (click)="updateStatusOperation(techtalk.techtalkid, 'approved', techtalk.authcode, 'techtalk')">
+                      Approve
+                    </button>&nbsp;&nbsp;
+                    <button class="btn btn-primary" style=" height: 2.5em;" (click)="updateStatusOperation(techtalk.techtalkid, 'declined', techtalk.authcode, 'techtalk')">
+                      Decline
+                    </button>
+                  </ul>
+
+                  <br/>
+                  <b>Registration Fee</b> : {{techtalk.regfee}} Rs Per Person
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

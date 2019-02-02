@@ -1,0 +1,290 @@
+<div class="row" style="z-index: 1;">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style=" width: 100%;">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div *ngFor="let imageObj of sliderContent; let i = index;" class="carousel-item" [ngClass]="{'active' : i==0 }">
+        <img class="d-block w-100 sliderImageStyle" src="../assets/images/{{imageObj.imagelink}}?auto=yes&bg=666&fg=444" alt="{{imageObj.sliderid}} slide">
+        
+      </div>
+
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+<div class="row" style="background-color: #F4F6F5; height: 4em; ">
+  <div class="col-12">
+    <h2 style="margin: 0.4em;">All Tech Articles</h2>
+  </div>
+</div>
+<div id="techArticleFilterDiv" class="row" style="font-size: 1.4rem; padding: 1em;">
+    <div style="float:right;" *ngIf="!checkLoginStatus()">
+        <div class="col-12">
+      <button type="button" class="buttonarticle" data-toggle="modal"
+        data-target="#createTechArticleModal">Create Tech Article</button><br>
+        </div>
+    <br/>
+    <form id="filter">
+      <label>Filter:</label>
+      <input type="text" class="form-control" name="techarticledetails" [(ngModel)]="techArticleFilter" />
+      <div class="row" style="font-size: 1rem;">
+        <div class=" col-6">
+          <input type="checkbox" class="techBankEventCheckbox" name="keywordFilter" [(ngModel)]="keywordFilter" value="Keyword">&nbsp;Keyword
+        </div>
+        <div class=" col-6">
+          <input type="checkbox" name="articleTypeFilter" class="techBankEventCheckbox" [(ngModel)]="articleTypeFilter" value="Type">&nbsp;Type
+        </div>
+        <div class=" col-6">
+          <input type="checkbox" name="techFilter" class="techBankEventCheckbox" [(ngModel)]="techFilter" value="Technology">&nbsp;Technology
+        </div>
+        <div class=" col-6">
+          <input type="checkbox" name="subTechFilter" class="techBankEventCheckbox" [(ngModel)]="subTechFilter" value="SubTechnology">&nbsp;SubTechnology
+        </div>
+        <div class="col-6">
+          <input type="checkbox" name="authorFilter" class="techBankEventCheckbox" [(ngModel)]="authorFilter" value="SubTechnology">&nbsp;Author
+        </div>
+            <div class="col-6">
+          <input type="checkbox" name="freeFilter" class="techBankEventCheckbox" [(ngModel)]="freeFilter" value="SubTechnology">&nbsp;Free
+        </div>
+      </div>
+    </form>
+
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12" style="margin-top: 1em;">
+    <div class="card" style="width: 100%;" *ngFor="let techarticle of techarticledetails | filter:techArticleFilter:keywordFilter:articleTypeFilter:techFilter:subTechFilter:authorFilter:freeFilter:'articleFilter' ; let i = index; "
+      [ngClass]="{'techarticleRow1' : i%2==0 }">
+      <div class="card-body">
+        <h5 class="card-title" style="color:#07567F;">Author:</h5>
+        <div style="float:right">
+          <h3>
+            <u>{{techarticle.articletype}}</u>
+          </h3>
+        </div>
+        <div class="row">
+          <div style="margin-left:0.5em;">
+            <img class="profilepicture" src="../assets/images/profileImages/{{techarticle.profilepicture}}" alt="Card image cap">
+          </div>
+          
+          <div style="margin-left: 1em;">
+            <b>{{techarticle.name}}</b>
+            <br/>
+            <span style="font-size: 0.85rem;">{{techarticle.followerCount}} followers</span>
+            <br/>
+            <button *ngIf="!checkLoginStatus() && techarticle.isFollowed==0 && getLoggedInUserObject()['userid']!=techarticle.userid" class="nav-link btn btn-light" style="background-color: #144E80; margin-left: 0 !important; color: white !important;" (click)="followerUpdate(techarticle.userId,'F');">FOLLOW</button>
+            <button *ngIf="!checkLoginStatus() && techarticle.isFollowed==1 && getLoggedInUserObject()['userid']!=techarticle.userid" class="nav-link btn btn-light" style="background-color: #144E80; margin-left: 0 !important; color: white !important;" (click)="followerUpdate(techarticle.userId,'U');">UNFOLLOW</button>
+          </div>
+        </div>
+         
+        <b>Title</b> : {{techarticle.articletitle}}
+        <br/>
+        <b>Technology</b> : {{techarticle.technologyname}}
+        <br/>
+        <b>Sub-Technology</b> : {{techarticle.subtechname}}
+        <br/>
+        <b>Abstract</b> : {{techarticle.abstract}}
+        <br/>
+        
+        <b *ngIf="techarticle.articlepaymentindcd=='Y'">Price :
+          <span style="color:#255B88">{{techarticle.cost}} rs</span>
+        </b>
+        <br/>
+        <button *ngIf="!checkLoginStatus()" class="btn btn-light" style="background-color: green; height: 2.5em; color: white" (click)="articleUpDownCountUpdate(techarticle.articleid,'UP')">
+          {{techarticle.upCount}}
+          <img src="../assets/images/thumbsUp.png" alt="Card image cap" style="height: 1.5em;">
+        </button>
+        &nbsp;&nbsp;
+        <button *ngIf="!checkLoginStatus()" class="btn btn-light" style="background-color: red;height: 2.5em; color: white;" (click)="articleUpDownCountUpdate(techarticle.articleid,'DOWN')">
+          {{techarticle.downCount}}
+          <img src="../assets/images/thumbsDown.png" alt="Card image cap" style="height: 1.5em;">
+        </button>
+        <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="float:right;">
+        
+          <li class="nav-item ">
+            <button class="nav-link btn btn-light buybutton" *ngIf="techarticle.articlepaymentindcd=='Y' && techarticle.articletype=='Article'" data-toggle="modal" data-target="#buynowModal"
+            (click)="buyNowModelClick(techarticle)">Buy Now</button>
+          </li>
+          
+          <li class="nav-item">
+            <button class="nav-link btn btn-light veiwbutton" *ngIf="techarticle.publicationlink!='' &&  techarticle.articletype =='White Paper' || techarticle.articletype =='Research Paper' " data-toggle="modal" data-target="#buynowModal1"
+            (click)="viewTechTeachDetails(techteach)">View/Download full Article</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link btn btn-light commentbutton"  data-toggle="modal" data-target="#commentsModal"
+              (click)="showTechArticleComments(techarticle)">Comments</button>
+          </li>
+      </ul>
+      </div>
+        <div id="buynowModal1" class="modal fade" role="dialog">
+          <div class="modal-dialog createarticle1">
+              <div class="col-12" style="margin-top: 1em;">
+            <!-- Modal content-->
+            <div class="modal-content">
+      
+              <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+                <span style="text-align: center; color: white; width: 100%;">
+                  <h4>Tech Article Details</h4>
+                </span>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeDetailsModal">&times;</button>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                    <div class="col-4">
+                      <br/>
+                      <b>Contact Email</b> : {{techarticle.emailaddress}}
+                      <br/>
+                      <b>Contact Number</b> : {{techarticle.contactnumber}} 
+                      <br/>
+                      <b>Title</b> : {{techarticle.articletitle}}
+                      <br/>
+                    </div>
+                      <div class="col-4">
+                      <br/>
+                      <b>Abstract</b> : {{techarticle.abstract}}
+                      <br/>
+                      <b>Engineering Technology</b> : {{techarticle.technologyname}}
+                      <br/>
+                      <b>Sub-Engineering Technology</b> : {{techarticle.subtechname}}
+                      <br/>
+                      <b>Article Type</b> : {{techarticle.articletype}}
+                      <br/>
+                      </div>
+                    <div class="col-4">
+                      <br/>
+                        <b>If Paid Article</b> : 
+                        <br/>
+                        <b>Cost</b> : {{techarticle.cost}}
+                        <br />
+                        </div>
+                    </div>
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+        
+      </div>
+    </div>
+
+  </div>
+</div>
+<br/>
+
+<div id="commentsModal" class="modal fade" role="dialog">
+  <div class="modal-dialog createarticle1" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+        <span style="text-align: center; color: white; width: 100%;">
+          <h4>Article Comments</h4>
+        </span>
+        <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeCommentsModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="card" *ngFor="let articlecomment of articlecomments; let i = index; ">
+          <div class="card-body row">
+            <div class="col-10">
+              <b>Name</b> :
+              <br/>{{articlecomment.name}}
+              <br/>
+              <b>Comment</b> :
+              <br/>
+              <span *ngIf="getLoggedInUserObject()['userid']!=articlecomment.userid">
+                {{articlecomment.comment}}</span>
+              <textarea style="width: 100%;" *ngIf="getLoggedInUserObject()['userid']==articlecomment.userid" [(ngModel)]="articlecomment.comment"
+                placeholder="500 Characters" maxlength="500"></textarea>
+            </div>
+            <div class="col-2">
+              <button *ngIf="getLoggedInUserObject()['userid']==articlecomment.userid" class="btn btn-light" style="background-color: #9A9A9A;height: 2.5em;"
+                (click)="commentOperation(selectedTecharticle.articleid, articlecomment.id, articlecomment.comment, 'U')">
+                Edit
+              </button>
+              <button *ngIf="getLoggedInUserObject()['userid']==articlecomment.userid || getLoggedInUserObject()['userid']==selectedTecharticle.userId" class="btn btn-light" style="background-color: #9A9A9A;height: 2.5em;"
+                (click)="commentOperation(selectedTecharticle.articleid, articlecomment.id, null, 'D')">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body row">
+            <div class="col-10">
+              <textarea style="width: 100%;" [(ngModel)]="commentToBeAdded" placeholder="500 Characters" maxlength="500"></textarea>
+            </div>
+            <div class="col-2">
+              <button class="btn btn-light" [disabled]="commentToBeAdded==''" style="background-color: #9A9A9A;height: 2.5em;" (click)="commentOperation(selectedTecharticle.articleid, null, commentToBeAdded, 'A')">
+                Add Comment
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div id="buynowModal" class="modal fade" role="dialog">
+  <div class="modal-dialog createarticle1" >
+
+    <!-- Modal content-->
+    <div class="modal-content" *ngIf="selectedTecharticle!=undefined">
+      <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+        <span style="text-align: center; color: white; width: 100%;">
+          <h4>Purchase Article</h4>
+        </span>
+        <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeBuynowModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h2>Kindly provide your contact details for purchase(Mail will be sent to Author)</h2>
+        <!-- <div class="card">
+          <div class="card-body row">
+            <div class="col-10">
+              <b>Author Name</b> :
+              <br/>{{selectedTecharticle.name}}
+              <br/>
+              <b>Author Email</b> :
+              <br/>{{selectedTecharticle.emailaddress}}
+              <br/>
+              <b>Author Contact Number</b> :
+              <br/>{{selectedTecharticle.contactnumber}}
+              <br/>
+
+            </div>
+            
+          </div>
+        </div> -->
+        <div class="card">
+          <div class="card-body row">
+            <div class="col-10">
+              <textarea style="width: 100%;" [(ngModel)]="mailContent" placeholder="500 Characters" maxlength="500"></textarea>
+            </div>
+            <div class="col-2">
+              <button class="btn btn-light" [disabled]="mailContent==''" style="background-color: #9A9A9A;height: 2.5em;" (click)="sendMailToAuthorForPurchase(selectedTecharticle.articleid, mailContent)">
+                Send Mail
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,47 @@
+.techBankEventCheckbox{
+    
+  cursor: pointer;
+}
+
+.card-header{
+    background-color: #07567F;
+    color: white;
+}
+
+.btn-link{
+    color: white;
+    font-size: 1.5rem;
+    font-style: unset;
+}
+
+.cardSubHeading{
+    font-size: 1.5rem; 
+    color: #07567F; 
+   
+}
+
+.createbank{
+    max-width : 70% !important;
+}
+.text1{
+    margin: 0.4em;
+}
+@media only screen and (max-width: 768px) {
+    .createbank{
+        max-width : 100% !important;
+    }
+    .text1{
+        margin: 0.4em;
+        font-size: 25px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .createbank{
+        max-width : 100% !important;
+    }
+    .text1{
+        margin: 0.4em;
+        font-size: 25px;
+    }
+}

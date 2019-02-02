@@ -1,0 +1,119 @@
+.techBankEventCheckbox{
+    
+  cursor: pointer;
+}
+
+.card-header{
+    background-color: #07567F;
+    color: white;
+}
+
+.btn-link{
+    color: white;
+    font-size: 1.5rem;
+    font-style: unset;
+}
+
+.cardSubHeading{
+    font-size: 1.5rem; 
+    color: #07567F; 
+    text-decoration: underline;
+}
+
+.techarticleRow1{
+    background-color: #F4F6F5;
+}
+
+.buttonarticle{
+    height: 30%;
+    background-color: #19578A;
+    color: white;
+    font-weight: bold;
+}
+.commentbutton{
+    background-color: black; color: white !important;
+}
+.veiwbutton{
+    background-color: #B3B3B3; color: black !important;
+}
+.buybutton{
+    background-color: #FE9404; color: white !important;
+}
+.createarticle1{
+    max-width : 70% !important;
+}
+@media only screen and (max-width: 768px) {
+.buttonarticle{
+    height: 18%;
+    background: -webkit-gradient(linear,left top,right top,color-stop(0,#ff2c65),color-stop(100%,#ff5d3b));
+    color: white;
+    border: 3px solid darksalmon;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: medium;
+    float: right;
+    font-family: inherit;
+    padding: 18px 45px 18px 45px !important;
+}
+.createarticle1{
+    max-width : 100% !important;
+}
+.checkbox1{
+    margin: 14px 34px 13px 3px !important; 
+}
+.veiwbutton{
+    padding: 15px 53px;
+}
+.buybutton{
+    padding:15px 120px;
+}
+.commentbutton{
+    padding:15px 115px;
+}
+
+}
+
+@media only screen and (max-width: 320px) {
+    .buttonarticle{
+        font-size: small;
+    }
+    .threebutton{
+        margin-left: 19px;
+    }
+    .buybutton{
+        padding: 15px 100px 15px 100px;
+        margin: 10px 10px 10px 0px;
+    }
+    .veiwbutton{
+        padding: 15px 32px 15px 32px;
+        margin: 10px 0px 10px 0px;
+    }
+    .commentbutton{
+        padding:15px 95px 15px 95px;
+        margin: 10px 10px 10px 0px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .createarticle1{
+        max-width : 100% !important;
+    }
+.buttonarticle{
+    font-size: small;
+}
+.threebutton{
+    margin-left: 19px;
+}
+.buybutton{
+    padding: 15px 100px 15px 100px;
+    margin: 10px 10px 10px 0px;
+}
+.veiwbutton{
+    padding: 15px 32px 15px 32px;
+    margin: 10px 0px 10px 0px;
+}
+.commentbutton{
+    padding:15px 95px 15px 95px;
+    margin: 10px 10px 10px 0px;
+}
+}

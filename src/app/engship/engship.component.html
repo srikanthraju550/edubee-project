@@ -1,0 +1,250 @@
+<div class="row" style="z-index: 1;">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style=" width: 100%;">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div *ngFor="let imageObj of sliderContent; let i = index;" class="carousel-item" [ngClass]="{'active' : i==0 }">
+          <img class="d-block w-100 sliderImageStyle" src="../assets/images/{{imageObj.imagelink}}?auto=yes&bg=666&fg=444" alt="{{imageObj.sliderid}} slide">
+          <div class="carousel-caption d-none d-md-block">
+            
+          </div>
+        </div>
+  
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+  <!-- <div class="row" style="background-color: #F4F6F5;  height: 4em; ">
+    <div class="col-12">
+      <h2 style="margin: 0.4em;">All Engships</h2>
+    </div>
+  </div> -->
+  <div id="techArticleFilterDiv" class="row" style="padding: 1em;">
+    <div class="col-6">
+      <div style="float:right;" *ngIf="!checkLoginStatus()">
+        <button type="button" class="btn btn-primary" style="height: 30%; background-color: #19578A; color: white;font-weight: bold;" data-toggle="modal"
+          data-target="#createEngshipModal">Join as Mentor</button>
+      </div>
+      <br/>
+      <form id="filter1">
+        <!-- <label>Filter:</label>
+        <input type="text" class="form-control" name="engshipdetails" [(ngModel)]="engshipFilter" /> -->
+        <div class="row" style="font-size: 1rem;">
+          <!-- <div class="col-2">
+            <input type="checkbox" class="techBankEventCheckbox" name="keywordFilter" [(ngModel)]="keywordFilter" value="Keyword">&nbsp;Time Spend Type
+          </div> 
+          <div class="col-2">
+            <input type="checkbox" name="articleTypeFilter" class="techBankEventCheckbox" [(ngModel)]="articleTypeFilter" value="Type">&nbsp;Time Spend Type
+          </div>
+          <div class="col-2">
+            <input type="checkbox" name="techFilter" class="techBankEventCheckbox" [(ngModel)]="techFilter" value="Technology">&nbsp;Technology
+          </div>
+          <div class="col-3">
+            <input type="checkbox" name="subTechFilter" class="techBankEventCheckbox" [(ngModel)]="subTechFilter" value="SubTechnology">&nbsp;Sub-Technology
+          </div>
+          -->
+          <div class="col-6">
+              <div class="form-group">
+                  <input type="text" class="form-control" name="stuvationdetails" [(ngModel)]="engshipTechnologyMentorFilter" placeholder="Technology Filter"/>
+              </div>
+          </div>
+          <div class="col-6">
+              Time Spend Type : <select class="techBankEventCheckbox" name="spendTypeMentorFilter" [(ngModel)]="spendTypeMentorFilter" value="spendTypeMentorFilter">
+                <option>Daily</option>
+                <option>Weekly</option>
+                <option>Monthly</option>
+              </select>
+            </div>
+        </div>
+      </form>
+      <div class="row">
+          <div class="col-12" style="margin-top: 1em;">
+            <div class="card" style="width: 100%;" *ngFor="let engshipMentorObj of engshipMentordetails ; let i = index; "
+              [ngClass]="{'techarticleRow1' : i%2==0 }">
+              <div class="card-body">
+        
+                  <div style="float:right">
+                      <h4>
+                        Engship Type : <u>{{engshipMentorObj.engshipType | uppercase}}</u>
+                      </h4>
+                    </div>
+            <br/>
+            <br/>
+            <br/>
+                    <b>Mentor Name</b> : {{engshipMentorObj.originatorname}}
+                    <br/>
+                    <b>Mentor Email</b> : {{engshipMentorObj.originatoremail}}
+                    <br/>
+                    <b>Mentor Contact Number</b> : {{engshipMentorObj.originatorcontactnumber}}
+                    <br/>
+                    <b>Technology</b> : {{engshipMentorObj.technologyname}}
+                    <br/>
+                    <b>Sub Technology</b> : {{engshipMentorObj.subtechname}}
+                    <br/>
+                    <b>Can spend time</b> : {{engshipMentorObj.timeSpend}} : {{engshipMentorObj.numberOfHours}} Hours
+                    <br/>
+                    <span *ngIf="engshipMentorObj.membershipChargeFlag!='N'"><b>Membership Charge</b> : {{engshipMentorObj.membershipCharge}}</span>
+                    <br/>
+                    <b>Can Travel</b> : <span *ngIf="engshipMentorObj.willingToTravelFlag=='Y'">Yes</span>
+                    <span *ngIf="engshipMentorObj.willingToTravelFlag=='N'">No</span>
+                    
+                    
+            
+            
+                    <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="float: right;">
+                      <li class="nav-item">
+                        <button class="nav-link btn btn-light" style="background-color: #FE9404; color: white !important;" data-toggle="modal" data-target="#showViewDetailsPopupModal"
+                          (click)="showViewDetailsPopup(engshipMentorObj)">View Details</button>
+                      </li>
+            
+                      <li class="nav-item">
+                        <button class="nav-link btn btn-light" style="background-color: black; color: white !important;" 
+                          (click)="selectMentorPopup(engshipMentorObj)" *ngIf="engshipMentorObj.createdBy!=getLoggedInUserObject()['userid']">Select as Mentor</button>
+                      </li>
+                    </ul>
+              </div>
+            </div>
+        
+          </div>
+        </div>
+  
+    </div>
+    <div class="col-6">
+        <div style="float:right;" *ngIf="!checkLoginStatus()">
+          <button type="button"  class="btn btn-primary" style="height: 30%; background-color: #19578A; color: white;font-weight: bold;" data-toggle="modal"
+            data-target="#createEngshipModal">Join as Mentee</button>
+        </div>
+        <br/>
+        
+        <form id="filter2">
+            <div class="row" style="font-size: 1rem;">
+            <div class="col-6">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="stuvationdetails" [(ngModel)]="engshipTechnologyMenteeFilter" placeholder="Technology Filter"/>
+                </div>
+            </div>
+            <div class="col-6">
+                Time Spend Type : <select class="techBankEventCheckbox" name="spendTypeMenteeFilter" [(ngModel)]="spendTypeMenteeFilter" value="spendTypeFilter">
+                  <option>Daily</option>
+                  <option>Weekly</option>
+                  <option>Monthly</option>
+                </select>
+              </div>
+            </div>
+        </form>
+    
+        <div class="row">
+            <div class="col-12" style="margin-top: 1em;">
+              <div class="card" style="width: 100%;" *ngFor="let engshipMentorObj of engshipMenteedetails ; let i = index; "
+                [ngClass]="{'techarticleRow1' : i%2==0 }">
+                <div class="card-body">
+          
+                  <div style="float:right">
+                    <h4>
+                      Engship Type : <u>{{engshipMentorObj.engshipType | uppercase}}</u>
+                    </h4>
+                  </div>
+          <br/>
+          <br/>
+          <br/>
+                  <b>Mentee Name</b> : {{engshipMentorObj.originatorname}}
+                  <br/>
+                  <b>Mentee Email</b> : {{engshipMentorObj.originatoremail}}
+                  <br/>
+                  <b>Mentee Contact Number</b> : {{engshipMentorObj.originatorcontactnumber}}
+                  <br/>
+                  <b>Technology</b> : {{engshipMentorObj.technologyname}}
+                  <br/>
+                  <b>Sub Technology</b> : {{engshipMentorObj.subtechname}}
+                  <br/>
+                  <b>Can spend time</b> : {{engshipMentorObj.timeSpend}} : {{engshipMentorObj.numberOfHours}} Hours
+                  <br/>
+                  <span *ngIf="engshipMentorObj.membershipChargeFlag!='N'"><b>Membership Charge</b> : {{engshipMentorObj.membershipCharge}}</span>
+                  <br/>
+                  <b>Can Travel</b> : <span *ngIf="engshipMentorObj.willingToTravelFlag=='Y'">Yes</span>
+                  <span *ngIf="engshipMentorObj.willingToTravelFlag=='N'">No</span>
+                  
+                  
+          
+          
+                  <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="float: right;">
+                    <li class="nav-item">
+                      <button class="nav-link btn btn-light" style="background-color: #FE9404; color: white !important;" data-toggle="modal" data-target="#showViewDetailsPopupModal"
+                        (click)="showViewDetailsPopup(engshipMentorObj)">View Details</button>
+                    </li>
+          
+                    <li class="nav-item">
+                      <button class="nav-link btn btn-light" style="background-color: black; color: white !important;" 
+                        (click)="selectMenteePopup(engshipMentorObj)" *ngIf="engshipMentorObj.createdBy!=getLoggedInUserObject()['userid']">Select as Mentee</button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+          
+            </div>
+          </div>
+      </div>
+  </div>
+  
+  
+  <br/>
+  
+  
+  <div id="showViewDetailsPopupModal" class="modal fade" role="dialog" *ngIf="selectedEngship!=undefined">
+    <div class="modal-dialog" style="max-width : 30% !important;">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+          <span style="text-align: center; color: white; width: 100%;">
+            <h4>Details</h4>
+          </span>
+          <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeViewDetailsPopupModal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div style="float:right">
+            <h4>
+              Engship Type : <u>{{selectedEngship.engshipType | uppercase}}</u>
+            </h4>
+          </div>
+  <br/>
+  <br/>
+  <br/>
+          <b>Mentee Name</b> : {{selectedEngship.originatorname}}
+          <br/>
+          <b>Mentee Email</b> : {{selectedEngship.originatoremail}}
+          <br/>
+          <b>Mentee Contact Number</b> : {{selectedEngship.originatorcontactnumber}}
+          <br/>
+          <b>Technology</b> : {{selectedEngship.technologyname}}
+          <br/>
+          <b>Sub Technology</b> : {{selectedEngship.subtechname}}
+          <br/>
+          <b>Can spend time</b> : {{selectedEngship.timeSpend}} : {{selectedEngship.numberOfHours}} Hours
+          <br/>
+          <span *ngIf="selectedEngship.membershipChargeFlag!='N'"><b>Membership Charge</b> : {{selectedEngship.membershipCharge}}</span>
+          <br/>
+          <b>Can Travel</b> : <span *ngIf="selectedEngship.willingToTravelFlag=='Y'">Yes</span>
+          <span *ngIf="selectedEngship.willingToTravelFlag=='N'">No</span>
+          <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="float: right;">
+            <li class="nav-item">
+              <button class="nav-link btn btn-light" style="background-color: black; color: white !important;" 
+                (click)="selectMenteePopup(selectedEngship)" *ngIf="selectedEngship.createdBy!=getLoggedInUserObject()['userid']">Select as Mentee</button>
+            </li>
+          </ul>
+        </div>
+  
+      </div>
+  
+    </div>
+  </div>
