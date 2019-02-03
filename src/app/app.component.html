@@ -98,7 +98,7 @@
                                 ngbDropdownToggle class="nav-link  btn " data-toggle="dropdown" href="#" aria-haspopup="true"
                                 aria-expanded="false">GET STARTED</a>
 
-                            <div ngbDropdownMenu style="transform: none !important; top:0px !important;font-size:13px;left: 0px !important; ">
+                            <div ngbDropont-downMenu style="transform: none !important; top:0px !important;font-size:13px;left: 0px !important; ">
                                 <a class="nav-link btn btn-light" style="font-size:13px;text-align: start;" data-toggle="modal"
                                     data-target="#loginModal">LOGIN</a>
                         <li ngbDropdown class="nav-item dropdown">
@@ -154,7 +154,8 @@
                 </li>
 
             </ul>
-            <span style="color: white; font-weight: bold; text-align: center; width: 100%;">
+            <span style="color: white; font-weight: bold; text-align: center; width: 100%;    top: 100px;
+            position: absolute;left:-10px;">
                 {{getLoggedInUserObject()['name'] | titlecase}}
             </span>
         </div>
