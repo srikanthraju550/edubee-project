@@ -124,21 +124,31 @@ height: 2em !important;
 }
 
 .staticNavHeader{
-    height: 150px;
+    background: url(./assets/images/headerbg.png) no-repeat fixed center center;
+    background-size: cover;
+    height: 700px;
 }
-
-.main-menu li a{
+.main-menu li a{   
     font-size:14px;
-    color: #19578A !important;
-    /* background-color: white !important;  */
+    color: white !important;
     }
-
+    .main-menu li:hover a{
+      background-color: white!important;
+      color: #19578a !important; 
+      border-radius: 25px;
+    }
+    .sub-drop li a{
+        border-bottom: 2px solid #19578A;
+    }
+    .sub-drop li{
+        border-bottom: 2px solid transparent!important;
+    }
     .main-menu{
-        background-color: white !important; 
-        border-radius: 25px;
-
+        background-color: transparent!important;   
     }
-
+    .align-self-center.nav1.col-sm-8.col-lg-8 {
+        top: -120px;
+    }
     .show-menu{
         background-color: white !important;
         color: #19578A !important;

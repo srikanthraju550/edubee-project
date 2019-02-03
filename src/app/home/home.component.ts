@@ -149,7 +149,7 @@ export class HomeComponent implements OnInit {
   teamDetails: any = [];
   url;
   getHomePageCounterValues;
-  endpoint: string = "http://localhost/services/";
+  endpoint: string = "http://theengineersfactory.com/assets/services/";
   loadMe;
   ngOnInit(): void {
 

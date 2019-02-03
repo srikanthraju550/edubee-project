@@ -26,8 +26,8 @@
   }
 
   .companyLogo{
-      width: 150px ;
-      height: 150px ;
+    width: 155px;
+    margin: 20px auto;
   }
 
   .nav1{
@@ -182,8 +182,33 @@ margin-left: 25%;
 } 
 
 
-/*new code***************/
-
+/***********newcode***************/
+.w_100{
+  text-align: center;
+  width: 100%!important;
+  position: relative;
+  top: -200px;
+}
+.custom-ss{
+  color: white;
+    font-size: 25px;
+    font-weight: 500;
+    font-style: italic;
+}
+h1.custom-heading{
+  font-size: 80px;
+    text-shadow: 2px 2px #0000;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+.custom-heading span{
+  background: linear-gradient(to right, #c7f265 20%, #5a67f4 65%, #5a67f4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(-2px 4px 1px #000);
+}
 
 /*Strip the ul of padding and list styling*/
 ul {
@@ -322,18 +347,7 @@ ul li a:hover + .hidden, .hidden:hover {
       display:block;
   }
 
-  .main-menu li a{
-   
-    font-size:14px;
-    color: #19578A !important;
-    background-color: white !important; 
-    }
-
-    .main-menu{
-        background-color: white !important; 
-        border-radius: 25px;
-
-    }
+  
 
     .staticNavHeader{
       height: auto !important;

@@ -3,14 +3,13 @@
     <!--start slider code-->
     <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel" data-interval="5000">
         <ol class="carousel-indicators">
-            <li *ngFor="let imageObj of sliderContent; let i = index;" data-target="#carouselExampleIndicators"
-                [attr.data-slide-to]="i" [ngClass]="{'active' : i==0 }"></li>
+            <li *ngFor="let imageObj of sliderContent; let i = index;" data-target="#carouselExampleIndicators" [attr.data-slide-to]="i"
+                [ngClass]="{'active' : i==0 }"></li>
 
         </ol>
         <div class="carousel-inner">
             <div *ngFor="let imageObj of sliderContent; let i = index;" class="carousel-item" [ngClass]="{'active' : i==0 }">
-                <img class="d-block w-100 sliderImageStyle" src="../assets/images/{{imageObj.imagelink}}?auto=yes&bg=666&fg=444"
-                    alt="{{imageObj.sliderid}} slide">
+                <img class="d-block w-100 sliderImageStyle" src="../assets/images/{{imageObj.imagelink}}?auto=yes&bg=666&fg=444" alt="{{imageObj.sliderid}} slide">
                 <div class="carousel-caption d-none d-md-block">
                 </div>
             </div>
@@ -164,9 +163,12 @@
                 </div>
 
             </div>
-            <button class='btn btn-default leftRs'><i class="fa fa-arrow-circle-left" style="font-size: 43px;background-color:white;color:#014da7;margin-top: -19px;"></i>
+            <button class='btn btn-default leftRs'>
+                <i class="fa fa-arrow-circle-left" style="font-size: 43px;background-color:white;color:#014da7;margin-top: -19px;"></i>
             </button>
-            <button class='btn btn-default rightRs'><i class="fa fa-arrow-circle-right" style="font-size: 43px;background-color:white;color:#014da7;margin-top: -19px;"></i></button>
+            <button class='btn btn-default rightRs'>
+                <i class="fa fa-arrow-circle-right" style="font-size: 43px;background-color:white;color:#014da7;margin-top: -19px;"></i>
+            </button>
         </div>
     </div>
 </div>
@@ -232,8 +234,7 @@
         <div class="row text-center event3">
             <div class="event">
                 <div class="btn-group" style="float: right;">
-                    <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
-                        (viewDateChange)="activeDayIsOpen = false">
+                    <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
                         Previous
                     </div>
                 </div>
@@ -243,8 +244,7 @@
             </div>
             <div class="event2">
                 <div class="btn-group" style="float: left;">
-                    <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
-                        (viewDateChange)="activeDayIsOpen = false">
+                    <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
                         Next
                     </div>
                 </div>
@@ -252,15 +252,14 @@
         </div>
         <br>
         <div [ngSwitch]="view" style="background-color: white !important;">
-            <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
-                [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)"
-                (eventTimesChanged)="eventTimesChanged($event)">
+            <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen"
+                (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
             </mwl-calendar-month-view>
-            <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
-                (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+            <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
+                (eventTimesChanged)="eventTimesChanged($event)">
             </mwl-calendar-week-view>
-            <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
-                (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+            <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
+                (eventTimesChanged)="eventTimesChanged($event)">
             </mwl-calendar-day-view>
         </div>
 
@@ -276,29 +275,30 @@
             <br />
             <h4> Who </h4>
         </span>
-        The Engineers Factory is a socio-tech startup which objects to reform the Engineering Education System, formed
-        by team of IIT Alumni and Industrial Experts with mission of bridge the gap between industry and academia.
-        <br /><br />
+        The Engineers Factory is a socio-tech startup which objects to reform the Engineering Education System, formed by team of
+        IIT Alumni and Industrial Experts with mission of bridge the gap between industry and academia.
+        <br />
+        <br />
         <span style="text-align: center">
             <h4> Why </h4>
         </span>
 
-        When there is a need for every gadget or application updating according to the contemporary trend, then why &
-        how the academic curriculum almost remains the same.
-        Helping students imbibe practical knowledge, making them mindful of the trends being set in the industry and
-        Building a better nation where academia works in synergy with industry.
+        When there is a need for every gadget or application updating according to the contemporary trend, then why &amp; how the
+        academic curriculum almost remains the same. Helping students imbibe practical knowledge, making them mindful of
+        the trends being set in the industry and Building a better nation where academia works in synergy with industry.
         <div *ngIf="viewMoreClicked">
             <br />
             <h4> How </h4>
 
-            Get the experts insight, think like a professional, know the latest industry trends and interact directly
-            with the professionals through The Engineers Factory innovations Tech Bank, Stuvations, Tech Connect
-            ,Engship and many more.
-            <br /><br />
+            Get the experts insight, think like a professional, know the latest industry trends and interact directly with the professionals
+            through The Engineers Factory innovations Tech Bank, Stuvations, Tech Connect ,Engship and many more.
+            <br />
+            <br />
             <h4> Our Mission </h4>
 
             Bridge the gap between industry and academia
-            <br /><br />
+            <br />
+            <br />
             <h4> Our Vision </h4>
 
             Make In India @ Made by Indians
@@ -358,9 +358,9 @@
         </a>
     </div>
 </div>
+
+<!--old counter-->
 <div class="row" style="background-color: #89CFF0" *ngIf="this.getHomePageCounterValues!=undefined">
-
-
     <div class="col-sm-12" style="padding-left: 0;padding-right: 0; ">
         <section class="progress" style="background-color: #89CFF0 !important;     margin-left: 15%; margin-bottom: 0; margin-top:2em; ">
             <div class="row" style="width:100%;">
