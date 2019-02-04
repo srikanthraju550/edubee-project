@@ -181,13 +181,13 @@
         </span>
     </div>
 </div>
-<!-- <div class="row" style="background-color: #F4F6F5;" *ngIf="this.getHomePageCounterValues!=undefined" *ngIf="false"> -->
+<!-- <div class="row" style="background-color: #F4F6F5;" *ngIf="getHomePageCounterValues!=undefined" *ngIf="false"> -->
 <div class="row" style="background-color: #F4F6F5;">
     <div class="col-sm-4" style="margin-top: 2.5em;">
         <div class="card" style=" text-align: center !important; color: white;">
             <a class=" aboutbutton1" routerLink="/techevent">
                 <h5>Tech Talk</h5>
-                <p class="card-text">{{this.getHomePageCounterValues['@techTalkCount']}}</p>
+                <p class="card-text">{{getHomePageCounterValues['@techTalkCount']}}</p>
 
             </a>
         </div>
@@ -196,7 +196,7 @@
         <div class="card" style=" text-align: center !important;  color: white;">
             <a class=" aboutbutton1" routerLink="/techevent" style="background-color: #07567F !important; border-color: transparent;">
                 <h5>Tech Teach</h5>
-                <p class="card-text">{{this.getHomePageCounterValues['@techMeetCount']}}</p>
+                <p class="card-text">{{getHomePageCounterValues['@techMeetCount']}}</p>
             </a>
         </div>
     </div>
@@ -359,109 +359,88 @@
     </div>
 </div>
 
-<!--old counter-->
-<div class="row" style="background-color: #89CFF0" *ngIf="this.getHomePageCounterValues!=undefined">
-    <div class="col-sm-12" style="padding-left: 0;padding-right: 0; ">
-        <section class="progress" style="background-color: #89CFF0 !important;     margin-left: 15%; margin-bottom: 0; margin-top:2em; ">
-            <div class="row" style="width:100%;">
-                <div class="col-sm-4">
-                    <div class="round progress-radial progress-45 setsize2" style="color : black !important;  height: 150px; width: 150px; ">
-                        <div class="overlay setsize2 " style="height: 120px;">
-                            <p class="whiteBoldText" style="color : black !important;">{{this.getHomePageCounterValues['@studentCount']}}</p>
-                        </div>
-                    </div>
-                    <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">Students</p>
-                </div>
-                <div class="col-sm-4">
+<div class="counter-map">
+    <div class="container">
+        <div class="row" *ngIf="getHomePageCounterValues!=undefined">
 
-                    <div class="round progress-radial progress-55 setsize2 " style="color : black !important; height: 150px; width: 150px;">
-                        <div class="overlay setsize2  " style="height: 120px;">
-                            <p class=" whiteBoldText" style="color : black !important;">{{this.getHomePageCounterValues['@engineerCount']}}</p>
-                        </div>
-                    </div>
 
-                    <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">Engineers</p>
-                </div>
-                <div class="col-sm-4">
-                    <div class="round progress-radial progress-65 setsize2 " style="color : black !important; height: 150px; width: 150px;">
-                        <div class="overlay setsize2 " style="height: 120px;">
-                            <p class="whiteBoldText" style="color : black !important;">{{this.getHomePageCounterValues['@stuvationCount']}}</p>
+            <div class="col-sm-12" style="padding-left: 0;padding-right: 0; ">
+                <section class="progress" style="background-color: none !important; margin-bottom: 0; margin-top:2em; ">
+                    <div class="row" style="width:100%;">
+                        <div class="col-sm-4">
+                            <div class="round progress-radial progress-45 setsize2" style="color : black !important;  height: 150px; width: 150px;box-shadow: 1px 5px 21px #19578a; ">
+                                <div class="overlay setsize2 " style="height: 120px;">
+                                    <p class="whiteBoldText counter-count" style="color : black !important;">{{getHomePageCounterValues['@studentCount']}}</p>
+                                    <span class="counter-underline">&nbsp;</span>
+                                </div>
+                            </div>
+                            <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">Students</p>
+                        </div>
+                        <div class="col-sm-4">
+
+                            <div class="round progress-radial progress-55 setsize2 " style="color : black !important; height: 150px; width: 150px;box-shadow: 1px 5px 21px #19578a;">
+                                <div class="overlay setsize2  " style="height: 120px;">
+                                    <p class=" whiteBoldText counter-count" style="color : black !important;">{{getHomePageCounterValues['@engineerCount']}}</p>
+                                    <span class="counter-underline">&nbsp;</span>
+                                </div>
+                            </div>
+
+                            <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">Engineers</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="round progress-radial progress-65 setsize2 " style="color : black !important; height: 150px; width: 150px;box-shadow: 1px 5px 21px #19578a;">
+                                <div class="overlay setsize2 " style="height: 120px;">
+                                    <p class="whiteBoldText counter-count" style="color : black !important;">{{getHomePageCounterValues['@stuvationCount']}}</p>
+                                    <span class="counter-underline">&nbsp;</span>
+                                </div>
+                            </div>
+                            <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">Stuvation</p>
                         </div>
                     </div>
-                    <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">Stuvation</p>
-                </div>
+                </section>
             </div>
-        </section>
-    </div>
-    <div class="col-sm-12" style="padding-left: 0;padding-right: 0; ">
-        <section class="progress" style="background-color: #89CFF0 !important;     margin-left: 15%; margin-bottom: 0; margin-top:2em; ">
-            <div class="row" style="width:100%;">
-                <div class="col-sm-4">
-                    <div class="round progress-radial progress-45 setsize2" style="color : black !important;  height: 150px; width: 150px; ">
-                        <div class="overlay setsize2 " style="height: 120px;">
-                            <p class="whiteBoldText" style="color : black !important;">{{this.getHomePageCounterValues['@techMeetCount']}}</p>
+            <div class="col-sm-12" style="padding-left: 0;padding-right: 0; ">
+                <section class="progress" style="background-color: none !important; margin-bottom: 0; margin-top:2em; ">
+                    <div class="row" style="width:100%;">
+                        <div class="col-sm-4">
+                            <div class="round progress-radial progress-45 setsize2" style="color : black !important;  height: 150px; width: 150px; box-shadow: 1px 5px 21px #19578a;">
+                                <div class="overlay setsize2 " style="height: 120px;">
+                                    <p class="whiteBoldText counter-count" style="color : black !important;">{{getHomePageCounterValues['@techMeetCount']}}</p>
+                                    <span class="counter-underline">&nbsp;</span>
+                                </div>
+                            </div>
+                            <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">TechTeach</p>
                         </div>
-                    </div>
-                    <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">TechTeach</p>
-                </div>
-                <div class="col-sm-4">
+                        <div class="col-sm-4">
 
-                    <div class="round progress-radial progress-55 setsize2 " style="color : black !important; height: 150px; width: 150px;">
-                        <div class="overlay setsize2  " style="height: 120px;">
-                            <p class=" whiteBoldText" style="color : black !important;">{{this.getHomePageCounterValues['@techTalkCount']}}</p>
-                        </div>
-                    </div>
+                            <div class="round progress-radial progress-55 setsize2 " style="color : black !important; height: 150px; width: 150px;box-shadow: 1px 5px 21px #19578a;">
+                                <div class="overlay setsize2  " style="height: 120px;">
+                                    <p class=" whiteBoldText counter-count" style="color : black !important;">{{getHomePageCounterValues['@techTalkCount']}}</p>
+                                    <span class="counter-underline">&nbsp;</span>
+                                </div>
+                            </div>
 
-                    <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">TechTalk</p>
-                </div>
-                <div class="col-sm-4">
-                    <div class="round progress-radial progress-65 setsize2 " style="color : black !important; height: 150px; width: 150px;">
-                        <div class="overlay setsize2 " style="height: 120px;">
-                            <p class="whiteBoldText" style="color : black !important;">{{this.getHomePageCounterValues['@stuvationCount']}}</p>
+                            <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">TechTalk</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="round progress-radial progress-65 setsize2 " style="color : black !important; height: 150px; width: 150px;box-shadow: 1px 5px 21px #19578a;">
+                                <div class="overlay setsize2 " style="height: 120px;">
+                                    <p class="whiteBoldText counter-count" style="color : black !important;">{{getHomePageCounterValues['@stuvationCount']}}</p>
+                                    <span class="counter-underline">&nbsp;</span>
+                                </div>
+                            </div>
+                            <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">ProzectMe</p>
                         </div>
                     </div>
-                    <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">ProzectMe</p>
-                </div>
+                </section>
             </div>
-        </section>
+        </div>
+
     </div>
 </div>
 
 
 
-<!-- <div class="counter">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                <div class="employees">
-                    <p class="counter-count">879</p>
-                    <p class="employee-p">Employee</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                <div class="customer">
-                    <p class="counter-count">954</p>
-                    <p class="customer-p">Customer</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                <div class="design">
-                    <p class="counter-count">1050</p>
-                    <p class="design-p">Design</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                <div class="order">
-                    <p class="counter-count">652</p>
-                    <p class="order-p">Orders</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
 
 
 
@@ -475,21 +454,21 @@
 
             <div class="progress-radial progress-45 setsize">
                 <div class="overlay setsize">
-                    <p class="whiteBoldText">{{this.getHomePageCounterValues['@techTalkCount']}}</p>
+                    <p class="whiteBoldText">{{getHomePageCounterValues['@techTalkCount']}}</p>
                 </div>
             </div>
             <p class="whiteBoldText lineHeightAdjustor">Tech Talk</p>
 
             <div class="progress-radial progress-80 setsize">
                 <div class="overlay setsize">
-                    <p class="whiteBoldText">{{this.getHomePageCounterValues['@techMeetCount']}}</p>
+                    <p class="whiteBoldText">{{getHomePageCounterValues['@techMeetCount']}}</p>
                 </div>
             </div>
             <p class="whiteBoldText lineHeightAdjustor">Tech Teach</p>
 
             <div class="progress-radial progress-80 setsize">
                 <div class="overlay setsize">
-                    <p class="whiteBoldText">{{this.getHomePageCounterValues['@projectMeCount']}}</p>
+                    <p class="whiteBoldText">{{getHomePageCounterValues['@projectMeCount']}}</p>
                 </div>
             </div>
             <p class="whiteBoldText lineHeightAdjustor">Prozect Me</p>

@@ -10,6 +10,7 @@
     <!-- <meta name="viewport" content="width=1024"> -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -73,20 +74,8 @@
                 $(this).height($(this).width());
             });
         }
-$('.counter-count').each(function () {
-      $(this).prop('Counter', 0).animate({
-        Counter: $(this).text()
-      }, {
-          duration: 5000,
-          easing: 'swing',
-          step: function (now) {
-            $(this).text(Math.ceil(now));
-          }
-        });
-    });
-
-
     </script>
+
 </body>
 
 </html>

@@ -115,8 +115,8 @@ height: 2em !important;
 
 
 .profilepicture{
-    width: 111px;
-    height: 111px;
+    width: 90px;
+    height: 90px;
 }
 
 .bg-dark{
@@ -147,7 +147,7 @@ height: 2em !important;
         background-color: transparent!important;   
     }
     .align-self-center.nav1.col-sm-8.col-lg-8 {
-        top: -120px;
+        /* top: -120px; */
     }
     .show-menu{
         background-color: white !important;
@@ -156,3 +156,7 @@ height: 2em !important;
         width: 50px;
         float: right;
     }
+
+    .progress{
+        background-color: #e9ecef24 !important;
+      }

@@ -183,11 +183,23 @@ margin-left: 25%;
 
 
 /***********newcode***************/
+
+.custom-ss-content{
+  font-family: 'Charm', cursive;
+    font-size: 35px;
+    margin: 20px 0px;
+    color: #f8ec6a;
+}
+.content-ryt h3{
+  text-align: right!important;
+  color: #f8ec6a;
+  font-size: 28px;
+}
 .w_100{
   text-align: center;
   width: 100%!important;
   position: relative;
-  top: -200px;
+  /* top: -200px; */
 }
 .custom-ss{
   color: white;
@@ -346,10 +358,8 @@ ul li a:hover + .hidden, .hidden:hover {
   .show-menu {
       display:block;
   }
-
-  
-
     .staticNavHeader{
       height: auto !important;
   }
 }
+

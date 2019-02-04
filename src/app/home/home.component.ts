@@ -28,7 +28,7 @@ import {
 } from 'angular-calendar';
 // import $ from 'jquery';
 import { HttpClient } from '@angular/common/http';
-
+import * as $ from 'jquery';
 import { HttpModule, Http, Response, Headers, RequestOptions } from '@angular/http';
 
 const colors: any = {
@@ -149,7 +149,9 @@ export class HomeComponent implements OnInit {
   teamDetails: any = [];
   url;
   getHomePageCounterValues;
+
   endpoint: string = "http://theengineersfactory.com/assets/services/";
+
   loadMe;
   ngOnInit(): void {
 
@@ -164,7 +166,6 @@ export class HomeComponent implements OnInit {
       this.getHomePageCounterValues = data['12'].getHomePageCounterValues[0];
       var techtalkdetails = data['4'].techtalkdetails;
       var techteachdetails = data['5'].techteachdetails;
-      console.log(new Date());
       for (let techTalk of techtalkdetails) {
         var eventObject = {
           start: new Date(techTalk.venuedate),
@@ -183,16 +184,12 @@ export class HomeComponent implements OnInit {
           title: 'Tech Teach Topic : ' + techTeach.topic,
           color: colors.blue
         };
-        console.log(eventObject);
         this.events.push(eventObject);
       }
 
 
       console.log(this.getHomePageCounterValues);
-      console.log(this.sliderContent);
-      console.log(this.homePageContent);
-      console.log(this.teamDetails);
-      console.log(this.events);
+
       this.refresh.next();
     });
 
@@ -200,17 +197,6 @@ export class HomeComponent implements OnInit {
 
 
 
-    // $('.counter-count').each(function () {
-    //   $(this).prop('Counter', 0).animate({
-    //     Counter: $(this).text()
-    //   }, {
-    //       duration: 5000,
-    //       easing: 'swing',
-    //       step: function (now) {
-    //         $(this).text(Math.ceil(now));
-    //       }
-    //     });
-    // });
   }
 
   closeLoginBox(): void {

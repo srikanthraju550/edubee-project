@@ -98,7 +98,7 @@
                                 ngbDropdownToggle class="nav-link  btn " data-toggle="dropdown" href="#" aria-haspopup="true"
                                 aria-expanded="false">GET STARTED</a>
 
-                            <div ngbDropdownMenu style="transform: none !important; top:0px !important;font-size:13px;left: 0px !important; ">
+                            <div ngbDropont-downMenu style="transform: none !important; top:0px !important;font-size:13px;left: 0px !important; ">
                                 <a class="nav-link btn btn-light" style="font-size:13px;text-align: start;" data-toggle="modal"
                                     data-target="#loginModal">LOGIN</a>
                         <li ngbDropdown class="nav-item dropdown">
@@ -154,7 +154,8 @@
                 </li>
 
             </ul>
-            <span style="color: white; font-weight: bold; text-align: center; width: 100%;">
+            <span style="color: white; font-weight: bold; text-align: center; width: 100%;    top: 100px;
+            position: absolute;left:-10px;">
                 {{getLoggedInUserObject()['name'] | titlecase}}
             </span>
         </div>
@@ -162,6 +163,20 @@
 <div class="w_100">
     <h1 class="custom-heading animated zoomInLeftBig"><span>STUVATION</span></h1>
     <p class="custom-ss animated fadeInRightBig">S t u d e n t <span>+</span> i n n o v a t i o n</p>
+
+    <div class="row">
+        <div class="col-md-6">
+            <img src="assets/images/tef-stuvation.png" />
+        </div>
+        <div class="col-md-6">
+            <div class="content-ryt">
+                <h4 class="custom-ss-content"> Execute &amp; Express</h4>
+                <p> Your innovation or Academic project We connect experts, student partners , Academisions &amp; sponsers</p>
+                <h3 class="custom-s-content"> <span>" </span>IT'S NOT ABOUT IDEAS.<br> ITS ABOUT MAKING IDEAS HAPPEN</h3>
+       
+            </div>
+    </div>
+    </div>
 </div>
 
 </div><!--row end-->
@@ -180,7 +195,7 @@
 <router-outlet></router-outlet>
 <div class="row " style="background-color: #e5e4e1; padding: 2em; ">
     <div class="col-sm-2 footerlogo">
-        <img class="companyLogo" src="../assets/images/logo.png" alt="First slide">
+        <img class="companyLogo" src="../assets/images/logo1.png" alt="First slide">
     </div>
     <div class="col-sm-5">
 
