@@ -183,17 +183,26 @@ margin-left: 25%;
 
 
 /***********newcode***************/
-
+.img-lft img{
+  width:auto;
+}
+.content-ryt p {
+  font-weight: 500;
+  color: white;
+  font-size: 20px;
+}
 .custom-ss-content{
   font-family: 'Charm', cursive;
     font-size: 35px;
-    margin: 20px 0px;
+    margin: 40px 0px;
     color: #f8ec6a;
 }
 .content-ryt h3{
   text-align: right!important;
   color: #f8ec6a;
   font-size: 28px;
+  margin-top: 20px;
+  margin-right: 30px;
 }
 .w_100{
   text-align: center;
@@ -363,3 +372,53 @@ ul li a:hover + .hidden, .hidden:hover {
   }
 }
 
+/************mediaquaries*******/
+@media screen and (min-width: 320px) and (max-width: 567px) {
+  h1.custom-heading{
+      font-size: 40px;
+  }  
+.align-self-center.nav1.col-sm-8.col-lg-8 {
+  top: 120px;
+  position: absolute;
+}
+ul.main-menu li{
+  background: #2661bd;
+}
+.custom-ss{
+  font-size: 20px;
+}
+.custom-ss-content{
+  font-family: 'Charm', cursive;
+  font-size: 30px;
+  margin: 25px 0px;
+}
+.content-ryt h3{
+  font-size: 22px
+}
+.content-ryt p{
+  font-size: 18px;
+}
+.img-lft img{
+  width:100%;
+}
+}
+
+@media screen and (min-width: 360px) and (max-width: 539px) {
+
+}
+
+@media screen and (min-width: 460px) and (max-width: 767px) {}
+
+@media only screen and (min-width: 540px) and (max-width: 767px) {}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {}
+
+@media only screen and (min-width: 799px) and (max-width: 960px) {}
+
+@media only screen and (min-width: 960px) and (max-width: 1023px) {}
+
+@media only screen and (min-width: 1024px) and (max-width: 1280px) {}
+
+@media only screen and (min-width: 1280px) and (max-width: 1365px) {}
+
+@media screen and (max-width: 1600px) {}

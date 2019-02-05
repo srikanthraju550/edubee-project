@@ -268,49 +268,135 @@
 
 
 </div>
-<div class="row" style=" background: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(25, 87, 138, 1) 45%, rgba( 25, 87, 138, 1) 100%), url(./assets/images/about-us.jpg);">
+<div class="row about-section" style=" background: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(25, 87, 138, 1) 45%, rgba( 25, 87, 138, 1) 100%), url(./assets/images/aboutbanner.png);">
     <div class="col-10" style="margin-left: 8%;color: white;text-align: justify;">
-        <span style="text-align: center">
-            <h1>About Us</h1>
-            <br />
-            <h4> Who </h4>
-        </span>
-        The Engineers Factory is a socio-tech startup which objects to reform the Engineering Education System, formed by team of
-        IIT Alumni and Industrial Experts with mission of bridge the gap between industry and academia.
-        <br />
-        <br />
-        <span style="text-align: center">
-            <h4> Why </h4>
-        </span>
 
-        When there is a need for every gadget or application updating according to the contemporary trend, then why &amp; how the
-        academic curriculum almost remains the same. Helping students imbibe practical knowledge, making them mindful of
-        the trends being set in the industry and Building a better nation where academia works in synergy with industry.
-        <div *ngIf="viewMoreClicked">
-            <br />
-            <h4> How </h4>
+        <h1 class="text-center about-us-head">ABOUT <strong>US</strong></h1>
+        <div class="row">
+            <div class="col-md-8 col-sm-12">
+                <span>
 
-            Get the experts insight, think like a professional, know the latest industry trends and interact directly with the professionals
-            through The Engineers Factory innovations Tech Bank, Stuvations, Tech Connect ,Engship and many more.
-            <br />
-            <br />
-            <h4> Our Mission </h4>
+                    <h4> Who We Are</h4>
+                </span>
+               <p> The Engineers Factory is a socio-tech startup which objects to reform the Engineering Education System,
+                formed
+                by team of IIT Alumni and Industrial Experts with mission of bridge the gap between industry and
+                academia.</p>                
+                <br /><br />
+                <span>
+                    <h4> Why Choose Us</h4>
+                </span>
+                <p>
+                When there is a need for every gadget or application updating according to the contemporary trend, then
+                why &amp;
+                how the academic curriculum almost remains the same.
+                Helping students imbibe practical knowledge, making them mindful of the trends being set in the
+                industry and
+                Building a better nation where academia works in synergy with industry.</p>
+                <div *ngIf="viewMoreClicked">
+                    <br />
+                    <h4> How </h4>
+                    <p>
+                    Get the experts insight, think like a professional, know the latest industry trends and interact
+                    directly
+                    with the professionals through The Engineers Factory innovations Tech Bank, Stuvations, Tech
+                    Connect
+                    ,Engship and many more.</p>
+                    <br /><br />
+                    <h4> Our Mission </h4>
+                    <p>Bridge the gap between industry and academia</p>
+                    <br /><br />
+                    <h4> Our Vision </h4>
 
-            Bridge the gap between industry and academia
-            <br />
-            <br />
-            <h4> Our Vision </h4>
+                    Make In India @ Made by Indians
+                </div>
+                <button class="float-right custom-ss-viewmore-btn" (click)="viewMoreClickChange()">
+                    <span *ngIf="!viewMoreClicked">View More</span>
+                    <span *ngIf="viewMoreClicked">View Less</span>
+                </button>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <img class="about-png" src="../assets/images/aboutengg.png" alt="advertisement">
+            </div>
 
-            Make In India @ Made by Indians
         </div>
+
         <div class="col-lg-12">
-            <button class="btn aboutbutton btn-success" (click)="viewMoreClickChange()">
-                <span *ngIf="!viewMoreClicked">View More</span>
-                <span *ngIf="viewMoreClicked">View Less</span>
-            </button>
+            <!-- <button class="btn aboutbutton btn-success" (click)="viewMoreClickChange()"> -->
+
+            <!-- </button> -->
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+<div class="custom-ss-student-thoughts-block">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-12">
+            <h1 class="custom-ss-student-thoughts-heading text-center">STUDENTS <span>THOUGHTS</span></h1>
+        </div>
+            <div class="col-md-4">
+                <img class="custom-ss-student-thoughts-block-img" src="assets/images/studentthought.png">
+            </div>
+            <div class="col-md-8">
+                <div id="ourTeamSlider" class="carousel slide w-100 testimo" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#ourTeamSlider" data-slide-to="0" class="active"></li>
+                        <li data-target="#ourTeamSlider" data-slide-to="1"></li>
+                        <li data-target="#ourTeamSlider" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner" style="text-align: center;">
+                        <div *ngFor="let userInfo of teamDetails; let i = index" class="carousel-item document" [ngClass]="{'active' : i==0 }">
+            
+                            <p class="card-text" >
+                                <span>
+                                    <img src="assets/images/quote.png">
+                                </span>
+                                {{userInfo.comments}}
+                            </p>
+                            <div class="row">
+                                <div class="col-sm-3 col-md-3 col-lg-2"></div>
+                                <div class="col-sm-3 col-md-3 col-lg-4">
+                                    <img class="profilepicture" style="border-radius: 10em;" src="../assets/images/{{userInfo.profileimage}}">
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-lg-6 ">
+                                    <br />
+                                    <div class="student1 custom-ss-testimoni-details">
+                                        <h4>&nbsp;{{userInfo.name}}</h4>
+                                    </div>
+                                    <!-- <br/>
+                                    <span style="color: #505251;">{{userInfo.designation}}</span> -->
+                                </div>
+                            </div>            
+                        </div>                
+                    </div>
+                    <br />
+                    <br />
+                    <a class="carousel-control-prev" href="#ourTeamSlider" role="button" data-slide="prev">
+                        <span class="fa fa-chevron-left" style="color: black;" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#ourTeamSlider" role="button" data-slide="next">
+                        <span class="fa fa-chevron-right" style="color: black;" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+
+
+<!--students thoughts old
 <div class="row" style="background-color: #F4F6F5; padding-top:3em;">
     <div class="col-sm-12">
         <h2 class="card-title" style="text-align: center !important;">Student Thoughts</h2>
@@ -337,7 +423,7 @@
                             &nbsp;{{userInfo.name}}
                         </div>
                         <!-- <br/>
-                        <span style="color: #505251;">{{userInfo.designation}}</span> -->
+                        <span style="color: #505251;">{{userInfo.designation}}</span> 
                     </div>
                 </div>
 
@@ -357,7 +443,7 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-</div>
+</div>-->
 
 <div class="counter-map">
     <div class="container">
@@ -432,14 +518,24 @@
                             <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">ProzectMe</p>
                         </div>
                     </div>
+
+
                 </section>
             </div>
+
         </div>
 
     </div>
 </div>
 
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <button type="button" class="mb-5 mt-5 custom-ss-download-broucher-btn"><i class="fa fa-download"></i>
+                &nbsp;Download Broucher</button>
+        </div>
+    </div>
+</div>
 
 
 
@@ -476,8 +572,8 @@
         </section>
     </div>
 </div> -->
-<div class="row" style="margin-top: 1em; margin-bottom: 1em;">
+<!-- <div class="row" style="margin-top: 1em; margin-bottom: 1em;">
     <a>
         <img class="w-100" src="../assets/images/Stuvation_1.jpg" alt="advertisement">
     </a>
-</div>
+</div> -->
