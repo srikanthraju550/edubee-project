@@ -324,13 +324,20 @@ ul li a:hover + .hidden, .hidden:hover {
 }
 
 .sign-up-sub{
-  width:100px;
+  width: 100px;
   position: absolute;
-  top: 40px;
-  left: 130px;
+  top: 36px;
+  left: 107px;
   /* margin-right: 20%; */
 }
 
+.sign-up-sub a{
+  padding: 0px 3px !important;
+  line-height: 10px !important;
+}
+.sign-up-sub li{
+  margin-bottom: -10px !important;
+}
 .sub-drop li{
   border-bottom: 2px solid #19578A;
 }
@@ -403,6 +410,36 @@ ul.main-menu li{
 }
 }
 
+.login-btn{
+  display: inline-flex !important;
+}
+
+.login-btn li{
+  margin: 10px;
+
+}
+
+.login-btn a{
+  display: block;
+    min-width: 86px !important;
+    height: 36px !important;
+    text-align: center !important;
+    line-height: 38px !important;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    background-color: white!important;
+    color: #19578a !important;
+    border-radius: 25px;
+    text-decoration: none !important;
+    font-weight: 800 !important;
+}
+
+.login-btn li:hover a{
+  background-color: white!important;
+  color: #19578a !important; 
+  border-radius: 25px;
+ 
+
+}
 @media screen and (min-width: 360px) and (max-width: 539px) {
 
 }

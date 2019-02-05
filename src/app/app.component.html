@@ -26,7 +26,7 @@
                 <li><a routerLink="/engship" class="main-header">ENG SHIP</a></li>
                 <li><a routerLink="/prozectme" class="main-header">PROZECT ME</a></li>
                 <li><a href="#" class="main-header">BUSINESS</a></li>
-                <li *ngIf="checkLoginStatus()">
+                <!-- <li *ngIf="checkLoginStatus()">
                     <a href="#" class="main-header">GET STARTED ￬</a>
                     <ul class="hidden get-strt-sub">
                         <li><a class="main-header" style="font-size:13px;text-align: start;" data-toggle="modal" href="#"
@@ -43,7 +43,9 @@
 
                         </li>
                     </ul>
-                </li>
+                </li> -->
+
+
 
             </ul>
             <!-- /.navbar -->
@@ -59,10 +61,10 @@
                 </button>
 
 
-                <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+                <div class="collapse navbar-collapse" *ngIf="navbarOpen" [ngClass]="{ 'show': navbarOpen }">
                     <ul class="navbar-nav mr-auto" style="border-radius: 1.5em; background-color: white; font-size:13px;">
                         <li class="nav-item">
-                            <a class="nav-item nav-link active" routerLink="/home">HOME
+                            <a class="nav-item nav-link active" (click)="goHome()">HOME
                                 <span class="sr-only">(current)</span>
                             </a></li>
                         <!-- <a class="nav-link" routerLink="/techbank" style="color:white !important;">TECH BANK</a>
@@ -71,9 +73,9 @@
                             <a id="signupDropdown" ngbDropdownToggle class="nav-link btn" style="text-align: start;font-size:13px;"
                                 data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="true">TECH WORLD</a>
                             <div ngbDropdownMenu style="transform: none !important; top:0px !important; left: 0px !important;">
-                                <a class="nav-link" routerLink="/techbank" style="font-size:13px;color:#19578A !important;">TECH
+                                <a class="nav-link" (click)="goTechBank()" style="font-size:13px;color:#19578A !important;">TECH
                                     BANK</a>
-                                <a class="nav-link" routerLink="/techevent" style="font-size:13px;color:#19578A !important;">TECH
+                                <a class="nav-link" (click)="goTechEvent()" style="font-size:13px;color:#19578A !important;">TECH
                                     CONNECT</a>
                             </div>
                         </li>
@@ -82,14 +84,14 @@
                         <li class="nav-item">
                             <a class="nav-link" routerLink="/techevent" style="color:#19578A !important;">TECH CONNECT</a></li> -->
                         <li class="nav-item">
-                            <a class="nav-link" routerLink="/stuvation">STUVATION</a></li>
+                            <a class="nav-link" (click)="goStuation()">STUVATION</a></li>
                         <!-- <a class="nav-link" routerLink="/engship">ENG SHIP</a>
                     <a class="nav-link" routerLink="/home" style="color:white !important;">PROZECT ME</a>
                     <a class="nav-link" routerLink="/home" style="color:white !important;">BUSINESS</a> -->
                         <li class="nav-item">
-                            <a class="nav-link" routerLink="/engship">ENG SHIP</a></li>
+                            <a class="nav-link" (click)="goEngShip()">ENG SHIP</a></li>
                         <li class="nav-item">
-                            <a class="nav-link" routerLink="/prozectme">PROZECT ME</a></li>
+                            <a class="nav-link" (click)="goProzeMe()">PROZECT ME</a></li>
                         <li class="nav-item">
                             <a class="nav-link">BUSINESS</a>
                         </li>
@@ -136,6 +138,21 @@
                         </div>
                     </li>
                 </ul> -->
+            <ul class="login-btn" *ngIf="checkLoginStatus()">
+                <li><a class="main-header" style="font-size:13px;text-align: center;" data-toggle="modal" href="#"
+                        data-target="#loginModal"><i class="fa fa-sign-in-alt"></i>&nbsp;LOGIN</a></li>
+                <li> <a class="main-header" style="font-size:13px;text-align: center;" data-toggle="dropdown" href="#"
+                        role="button">&nbsp;<i class="fa fa-user-plus"></i>&nbsp; SIGN UP</a>
+
+                    <ul class="hidden sign-up-sub">
+                        <li><a class="main-header" style="font-size:13px;" data-toggle="modal" data-target="#studentRegistrationModal"
+                                href="#">STUDENT</a></li>
+                        <li> <a class="main-header" style="font-size:13px;" data-toggle="modal" data-target="#engineerRegistrationModal"
+                                href="#">ENGINEER</a></li>
+                    </ul>
+
+                </li>
+            </ul>
             <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="float: right; margin-left: 25%;">
 
                 <li ngbDropdown class="nav-item dropdown">
@@ -160,28 +177,31 @@
             </span>
         </div>
     </div>
-<div class="w_100">
-    <h1 class="custom-heading animated zoomInLeft"><span>STUVATION</span></h1>
-    <p class="custom-ss animated fadeInRight">S t u d e n t <span>+</span> i n n o v a t i o n</p>
-<div class="container-fluid">
-    <div class="row ">
-        <div class="img-lft col-md-6 col-sm-12 animated fadeInLeft">
-            <img src="assets/images/tef-stuvation.png" />
-        </div>
-        <div class="col-md-5 col-sm-12 animated fadeInRight">
-            <div class="content-ryt">
-                <h4 class="custom-ss-content"> Execute &amp; Express</h4>
-                <p> Your innovation or Academic project We connect experts, student partners , Academisions &amp; sponsers</p>
-                <h3 class="custom-s-content"> <span>" </span>IT'S NOT ABOUT IDEAS.<br> ITS ABOUT MAKING IDEAS HAPPEN</h3>
-       
-            </div>
-    </div>
-    <div class="col-md-1 col-sm-0"></div>
-    </div>
-</div>
-</div>
+    <div class="w_100">
+        <h1 class="custom-heading animated zoomInLeft"><span>STUVATION</span></h1>
+        <p class="custom-ss animated fadeInRight">S t u d e n t <span>+</span> i n n o v a t i o n</p>
+        <div class="container-fluid">
+            <div class="row ">
+                <div class="img-lft col-md-6 col-sm-12 animated fadeInLeft">
+                    <img src="assets/images/tef-stuvation.png" />
+                </div>
+                <div class="col-md-5 col-sm-12 animated fadeInRight">
+                    <div class="content-ryt">
+                        <h4 class="custom-ss-content"> Execute &amp; Express</h4>
+                        <p> Your innovation or Academic project We connect experts, student partners , Academisions
+                            &amp; sponsers</p>
+                        <h3 class="custom-s-content"> <span>" </span>IT'S NOT ABOUT IDEAS.<br> ITS ABOUT MAKING IDEAS
+                            HAPPEN</h3>
 
-</div><!--row end-->
+                    </div>
+                </div>
+                <div class="col-md-1 col-sm-0"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--row end-->
 
 
 

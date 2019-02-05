@@ -27,6 +27,7 @@ import { Validators, FormBuilder, FormArray, ValidationErrors } from '../../node
 import { HttpClient } from '../../node_modules/@angular/common/http';
 import { FileUploader } from 'ng2-file-upload';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 const colors: any = {
   red: {
@@ -143,7 +144,7 @@ export class AppComponent {
   activeDayIsOpen: boolean = false;
   date: { year: number, month: number };
 
-  constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private fb: FormBuilder, private calendar: NgbCalendar) { }
+  constructor(private modal: NgbModal, public router: Router, private http: HttpClient, private mainService: MainServiceService, private fb: FormBuilder, private calendar: NgbCalendar) { }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -690,4 +691,34 @@ export class AppComponent {
     });
 
   }
+
+
+
+  goHome() {
+    this.router.navigate(['/home']);
+    this.navbarOpen = false;
+  }
+  goTechBank() {
+    this.router.navigate(['/techbank']);
+    this.navbarOpen = false;
+  }
+  goTechEvent() {
+    this.router.navigate(['/techevent']);
+    this.navbarOpen = false;
+  }
+  goStuation() {
+    this.router.navigate(['/stuvation']);
+    this.navbarOpen = false;
+  }
+  goEngShip() {
+    this.router.navigate(['/engship']);
+    this.navbarOpen = false;
+  }
+  goProzeMe() {
+    this.router.navigate(['/prozectme']);
+    this.navbarOpen = false;
+  }
+
+
+
 }
