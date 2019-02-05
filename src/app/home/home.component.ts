@@ -197,6 +197,7 @@ export class HomeComponent implements OnInit {
 
 
 
+
   }
 
   closeLoginBox(): void {
@@ -234,5 +235,58 @@ export class HomeComponent implements OnInit {
   logout(): void {
     this.mainService.logout();
   }
+  techTitle = 'Tech Teach';
+  showTechTeach = true;
+  showTechTalk = false;
+  showAcadamicProz = false;
+  showStuation = false;
+  showProzMe = false;
+  showEngship = false;
 
+  showData(action) {
+    this.techTitle = action;
+    if (action === 'Tech Teach') {
+      this.showTechTeach = true;
+      this.showTechTalk = false;
+      this.showAcadamicProz = false;
+      this.showStuation = false;
+      this.showProzMe = false;
+      this.showEngship = false;
+    } else if (action === 'Tech Talk') {
+      this.showTechTeach = false;
+      this.showTechTalk = true;
+      this.showAcadamicProz = false;
+      this.showStuation = false;
+      this.showProzMe = false;
+      this.showEngship = false;
+    } else if (action === 'Academic Proz') {
+      this.showTechTeach = false;
+      this.showTechTalk = false;
+      this.showAcadamicProz = true;
+      this.showStuation = false;
+      this.showProzMe = false;
+      this.showEngship = false;
+    } else if (action === 'Stuvation') {
+      this.showTechTeach = false;
+      this.showTechTalk = false;
+      this.showAcadamicProz = false;
+      this.showStuation = true;
+      this.showProzMe = false;
+      this.showEngship = false;
+    } else if (action === 'Eng-Ship') {
+      this.showTechTeach = false;
+      this.showTechTalk = false;
+      this.showAcadamicProz = false;
+      this.showStuation = false;
+      this.showProzMe = false;
+      this.showEngship = true;
+    } else if (action === 'Prozect Me') {
+      this.showTechTeach = false;
+      this.showTechTalk = false;
+      this.showAcadamicProz = false;
+      this.showStuation = false;
+      this.showProzMe = true;
+      this.showEngship = false;
+    }
+  }
 }

@@ -1,6 +1,5 @@
 <br />
-<div class="row" style="z-index: 1;">
-    <!--start slider code-->
+<!-- <div class="row" style="z-index: 1;">
     <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel" data-interval="5000">
         <ol class="carousel-indicators">
             <li *ngFor="let imageObj of sliderContent; let i = index;" data-target="#carouselExampleIndicators" [attr.data-slide-to]="i"
@@ -24,162 +23,140 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    <!--end slider code-->
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div *ngIf="false" class="row" style="background-color: #F4F6F5 !important;">
-    <div class="col-sm-2">
-        <a class="nav-link" style="text-align: center;" href="#">
-            <img src="../assets/images/techTeach.png">
-            <br/>
-            <span>Tech Teach</span>
-        </a>
-    </div>
-    <div class="col-sm-3">
-        <a class="nav-link" style="text-align: center;" href="#">
-            <img src="../assets/images/techTalk.png">
-            <br/>
-            <span>Tech Talk</span>
-        </a>
-    </div>
-    <div class="col-sm-2">
-        <a class="nav-link" style="text-align: center;" href="#">
-            <img src="../assets/images/stuvation.png">
-            <br/>
-            <span>Stuvation</span>
-        </a>
-    </div>
-    <div class="col-sm-3">
-        <a class="nav-link" style="text-align: center;" href="#">
-            <img src="../assets/images/engship.png">
-            <br/>
-            <span>Eng Ship</span>
-        </a>
-    </div>
-    <div class="col-sm-2">
-        <a class="nav-link" style="text-align: center;" href="#">
-            <img src="../assets/images/prozectMe.png">
-            <br/>
-            <span>Prozect Me</span>
-        </a>
-    </div>
 </div> -->
-<div *ngIf="homePageContent.quickRegistrationContent!=undefined" class="row" style="text-align: center; margin: 2em;">
-    <div class="col-sm-12" style="color: #19578A;">
-        <div class="heading heading1">
-            <p>Quick Registration</p>
-        </div>
-        <span>
-            {{homePageContent.quickRegistrationContent}}
-        </span>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-12">
-        <div class="resCarousel" data-items="2-4-4-4" data-interval="4000" data-slide="1" data-animator="lazy">
-            <div class="resCarousel-inner" style="width:100%;">
-
-                <div class="item item1">
-                    <div class="tile" style="text-align: center; cursor: pointer;">
-                        <img src="../assets/images/techTeach2.png">
-                        <br />
-                        <span style="font-weight: bold;">Tech Teach</span>
-                        <button type="button" class="btn btn-primary" style="padding-top:0.5em; width: 100%; height: 30%; background-color: #19578A; color: white;font-weight: bold;"
-                            data-toggle="modal" data-target="#viewTechTeachDetailsModal">View Details</button>
-                    </div>
-                </div>
 
 
 
-                <div class="item item1">
-                    <div class="tile" style="text-align: center; cursor: pointer;">
-                        <img src="../assets/images/techTalk2.png">
-                        <br />
-                        <span style="font-weight: bold;">Tech Talk</span>
-                        <button type="button" class="btn btn-primary" style="padding-top:0.5em; width: 100%; height: 30%; background-color: #19578A; color: white;font-weight: bold;"
-                            data-toggle="modal" data-target="#viewTechTalkDetailsModal">View Details</button>
-                    </div>
-                </div>
-                <div class="item item1">
-                    <div class="tile" style="text-align: center; cursor: pointer;">
-                        <img src="../assets/images/techTalk2.png">
-                        <br />
-                        <span style="font-weight: bold;">Academic Proz</span>
-                        <button type="button" class="btn btn-primary" style="padding-top:0.5em; width: 100%; height: 30%; background-color: #19578A; color: white;font-weight: bold;"
-                            data-toggle="modal" data-target="#viewTechArticleDetailsModal">View Details</button>
-                    </div>
-                </div>
-
-                <div class="item item1">
-                    <div class="tile" style="text-align: center; cursor: pointer;padding-top: 25px;">
-                        <img src="../assets/images/stuvation2.png" routerLink="/stuvation">
-                        <br />
-                        <span style="font-weight: bold;">Stuvation</span>
-                        <button type="button" class="btn btn-primary" style="padding-top:0.5em; width: 100%; height: 30%; background-color: #19578A; color: white;font-weight: bold;"
-                            data-toggle="modal" data-target="#viewStuvationDetailsModal">View Details</button>
-                    </div>
-                </div>
-
-                <div class="item item1">
-                    <div class="tile" style="text-align: center; cursor: pointer;">
-                        <img src="../assets/images/engship2.png">
-                        <br />
-                        <span style="font-weight: bold;">Eng-Ship</span>
-                        <button type="button" class="btn btn-primary" style="padding-top:0.5em; width: 100%; height: 30%; background-color: #19578A; color: white;font-weight: bold;"
-                            data-toggle="modal" data-target="#viewEngshipDetailsModal">View Details</button>
-                    </div>
-                </div>
-
-                <div class="item item1">
-                    <div class="tile" style="text-align: center; cursor: pointer;padding-top: 20px;">
-                        <img src="../assets/images/prozectMe2.png">
-                        <br />
-                        <span style="font-weight: bold;">Prozect Me</span>
-                        <button type="button" class="btn btn-primary" style="padding-top:0.5em; width: 100%; height: 30%; background-color: #19578A; color: white;font-weight: bold;"
-                            data-toggle="modal" data-target="#viewProzectMeDetailsModal">View Details</button>
-                    </div>
-                </div>
-
+<div class="row tech-data-div">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="custom-ss-student-thoughts-heading text-center">QUICK <span>REGISTRATION</span></h1>
             </div>
-            <button class='btn btn-default leftRs'>
-                <i class="fa fa-arrow-circle-left" style="font-size: 43px;background-color:white;color:#014da7;margin-top: -19px;"></i>
-            </button>
-            <button class='btn btn-default rightRs'>
-                <i class="fa fa-arrow-circle-right" style="font-size: 43px;background-color:white;color:#014da7;margin-top: -19px;"></i>
-            </button>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-12 col-lg-3">
+                <ul>
+                    <li (click)="showData('Tech Teach')" [ngClass]="{'activeTech':showTechTeach}">
+                        Tech Teach
+                    </li>
+                    <li (click)="showData('Tech Talk')" [ngClass]="{'activeTech':showTechTalk}">
+                        Tech Talk
+                    </li>
+                    <li (click)="showData('Academic Proz')" [ngClass]="{'activeTech':showAcadamicProz}">
+                        Academic Proz
+                    </li>
+                    <li (click)="showData('Stuvation')" [ngClass]="{'activeTech':showStuation}">
+                        Stuvation
+                    </li>
+                    <li (click)="showData('Eng-Ship')" [ngClass]="{'activeTech':showEngship}">
+                        Eng-Ship
+                    </li>
+                    <li (click)="showData('Prozect Me')" [ngClass]="{'activeTech':showProzMe}">
+                        Prozect Me
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-md-9 col-sm-12 col-lg-9">
+                <h2 class="custom-ss-quick-register-tab-heading">
+                    <div class="custom-ss-quick-register-block-shape"></div><span class="custom-ss-quick-register-block-heading">{{techTitle}}</span>
+                </h2>
+
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <img src="../assets/images/slide-img.png">
+                    </div>
+                    <div class="col-md-6 col-sm-6" *ngIf="showTechTeach">
+                        <p>A Platform to register Tech Activities where student can connect with industrial Experts <br />
+                            <br />
+                            Are you freelance Trainer <br />
+                            or <br />
+                            Industrial Expert want to share your knowledge <br />
+                            or <br />
+                            Startup Organization want to register your Workshops <br />
+                            or <br />
+                            Student want to register your Tech festivals <br />
+                        </p>
+                        <button class="custom-ss-quick-register-block-button"> Register Here </button>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6" *ngIf="showTechTalk">
+                        <p> Want to connect with experts & Talk on Technology !! <br />
+                            <br />
+                            A Platform to interchange your views on technology <br />
+
+                        </p>
+                        <button class="custom-ss-quick-register-block-button">Register & Connect & Talk </button>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6" *ngIf="showAcadamicProz">
+                        <p>
+                            An initiative platform to express & excute your brilliant idea with help of co-students ,
+                            Academicians
+                            , Industrial Experts & Sponsors support <br />
+                            <br />
+                            register your academic project or Innovation
+                        </p>
+                        <button class="custom-ss-quick-register-block-button"> Register & Execute</button>
+                    </div>
+
+
+                    <div class="col-md-6 col-sm-6" *ngIf="showStuation">
+                        <p>
+                            An initiative platform to express & excute your brilliant idea with help of co-students ,
+                            Academicians
+                            , Industrial Experts & Sponsors support<br />
+
+                            register your academic project or Innovation
+                        </p>
+                        <button class="custom-ss-quick-register-block-button"> Register & Execute</button>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6" *ngIf="showProzMe">
+                        <p> Platform to start work from university !! <br />
+                            <br />
+                            No need to wait until completion of academics !! <br />
+                            <br />
+                            You had enough potential !! Lets start work !!
+                        </p>
+                        <button class="custom-ss-quick-register-block-button"> Apply & Work</button>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6" *ngIf="showEngship">
+                        <p> Are you looking for guidance , encouragement & support from trusted experience professional
+                            ?<br />
+                            <br />
+                            A Platform to connect Mentor & Mentee
+                        </p>
+                        <button class="custom-ss-quick-register-block-button"> Register & Connect</button>
+                    </div>
+
+
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<div class="row" style="text-align: center; margin: 2em;" *ngIf="false">
+
+
+
+
+
+<div class="row" style="text-align: center; margin: 2em;">
+
+    <div class="col-md-12">
+        <h1 class="custom-ss-student-thoughts-heading text-center">OUR <span>EVENTS</span></h1>
+    </div>
+    <!-- 
     <div class="col-sm-12" style="color: #19578A;">
         <h1>Event Calendar</h1>
         <br />
         <span>
             {{homePageContent.eventCalendarContent}}
         </span>
-    </div>
+    </div> -->
 </div>
 <!-- <div class="row" style="background-color: #F4F6F5;" *ngIf="getHomePageCounterValues!=undefined" *ngIf="false"> -->
 <div class="row" style="background-color: #F4F6F5;">
@@ -234,7 +211,8 @@
         <div class="row text-center event3">
             <div class="event">
                 <div class="btn-group" style="float: right;">
-                    <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+                    <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+                        (viewDateChange)="activeDayIsOpen = false">
                         Previous
                     </div>
                 </div>
@@ -244,7 +222,8 @@
             </div>
             <div class="event2">
                 <div class="btn-group" style="float: left;">
-                    <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+                    <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+                        (viewDateChange)="activeDayIsOpen = false">
                         Next
                     </div>
                 </div>
@@ -252,14 +231,15 @@
         </div>
         <br>
         <div [ngSwitch]="view" style="background-color: white !important;">
-            <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen"
-                (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+            <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+                [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)"
+                (eventTimesChanged)="eventTimesChanged($event)">
             </mwl-calendar-month-view>
-            <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
-                (eventTimesChanged)="eventTimesChanged($event)">
+            <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+                (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
             </mwl-calendar-week-view>
-            <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
-                (eventTimesChanged)="eventTimesChanged($event)">
+            <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+                (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
             </mwl-calendar-day-view>
         </div>
 
@@ -278,30 +258,33 @@
 
                     <h4> Who We Are</h4>
                 </span>
-               <p> The Engineers Factory is a socio-tech startup which objects to reform the Engineering Education System,
-                formed
-                by team of IIT Alumni and Industrial Experts with mission of bridge the gap between industry and
-                academia.</p>                
+                <p> The Engineers Factory is a socio-tech startup which objects to reform the Engineering Education
+                    System,
+                    formed
+                    by team of IIT Alumni and Industrial Experts with mission of bridge the gap between industry and
+                    academia.</p>
                 <br /><br />
                 <span>
                     <h4> Why Choose Us</h4>
                 </span>
                 <p>
-                When there is a need for every gadget or application updating according to the contemporary trend, then
-                why &amp;
-                how the academic curriculum almost remains the same.
-                Helping students imbibe practical knowledge, making them mindful of the trends being set in the
-                industry and
-                Building a better nation where academia works in synergy with industry.</p>
+                    When there is a need for every gadget or application updating according to the contemporary trend,
+                    then
+                    why &amp;
+                    how the academic curriculum almost remains the same.
+                    Helping students imbibe practical knowledge, making them mindful of the trends being set in the
+                    industry and
+                    Building a better nation where academia works in synergy with industry.</p>
                 <div *ngIf="viewMoreClicked">
                     <br />
                     <h4> How </h4>
                     <p>
-                    Get the experts insight, think like a professional, know the latest industry trends and interact
-                    directly
-                    with the professionals through The Engineers Factory innovations Tech Bank, Stuvations, Tech
-                    Connect
-                    ,Engship and many more.</p>
+                        Get the experts insight, think like a professional, know the latest industry trends and
+                        interact
+                        directly
+                        with the professionals through The Engineers Factory innovations Tech Bank, Stuvations, Tech
+                        Connect
+                        ,Engship and many more.</p>
                     <br /><br />
                     <h4> Our Mission </h4>
                     <p>Bridge the gap between industry and academia</p>
@@ -340,9 +323,9 @@
 <div class="custom-ss-student-thoughts-block">
     <div class="container">
         <div class="row">
-        <div class="col-md-12">
-            <h1 class="custom-ss-student-thoughts-heading text-center">STUDENTS <span>THOUGHTS</span></h1>
-        </div>
+            <div class="col-md-12">
+                <h1 class="custom-ss-student-thoughts-heading text-center">STUDENTS <span>THOUGHTS</span></h1>
+            </div>
             <div class="col-md-4">
                 <img class="custom-ss-student-thoughts-block-img" src="assets/images/studentthought.png">
             </div>
@@ -354,9 +337,10 @@
                         <li data-target="#ourTeamSlider" data-slide-to="2"></li>
                     </ol>
                     <div class="carousel-inner" style="text-align: center;">
-                        <div *ngFor="let userInfo of teamDetails; let i = index" class="carousel-item document" [ngClass]="{'active' : i==0 }">
-            
-                            <p class="card-text" >
+                        <div *ngFor="let userInfo of teamDetails; let i = index" class="carousel-item document"
+                            [ngClass]="{'active' : i==0 }">
+
+                            <p class="card-text">
                                 <span>
                                     <img src="assets/images/quote.png">
                                 </span>
@@ -375,8 +359,8 @@
                                     <!-- <br/>
                                     <span style="color: #505251;">{{userInfo.designation}}</span> -->
                                 </div>
-                            </div>            
-                        </div>                
+                            </div>
+                        </div>
                     </div>
                     <br />
                     <br />
