@@ -27,15 +27,15 @@
                 <li><a routerLink="/prozectme" class="main-header">PROZECT ME</a></li>
                 <li><a href="#" class="main-header">BUSINESS</a></li>
 
-                <li class="showInMobile" *ngIf="checkLoginStatus()"><a class="main-header" style="font-size:13px;text-align: start;"
+                <li class="showInMobile" *ngIf="checkLoginStatus()"><a class="main-header" style="font-size:13px;"
                         data-toggle="modal" href="#" data-target="#loginModal">LOGIN</a></li>
-                <li class="showInMobile" *ngIf="checkLoginStatus()"> <a class="main-header" style="font-size:13px;text-align: start;"
-                        data-toggle="dropdown" href="#" role="button">SIGN UP</a>
+                <li class="showInMobile" *ngIf="checkLoginStatus()"> <a class="main-header" style="font-size:13px;"
+                        data-toggle="dropdown" href="#" role="button">SIGN UP ￬</a>
 
                     <ul class="hidden sign-up-sub">
-                        <li><a class="main-header" style="font-size:13px;text-align: start;" data-toggle="modal"
+                        <li><a class="main-header" style="font-size:13px;" data-toggle="modal"
                                 data-target="#studentRegistrationModal" href="#">STUDENT</a></li>
-                        <li> <a class="main-header" style="font-size:13px;text-align: start;" data-toggle="modal"
+                        <li> <a class="main-header" style="font-size:13px;" data-toggle="modal"
                                 data-target="#engineerRegistrationModal" href="#">ENGINEER</a></li>
                     </ul>
 
@@ -66,74 +66,46 @@
 
 
 
+            <!--toggle menu for mobile start-->
+            <div class="phone">
+          
+                <nav role="navigation slideInLeft">
+                  <div id="menuToggle">
+                    <input type="checkbox" />
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                  <ul id="menu" class="animated slideInLeft">
+                    <li><a routerLink="/home">Home</a></li>
+                    <li><a href="#">Tech World ￬</a>
+                        <ul class="hidden sub-drop">
+                            <li><a routerLink="/techbank">TECH BANK</a></li>
+                            <li><a routerLink="/techevent">TECH CONNECT</a></li>
+                        </ul>
+                    </li>
+                    <li><a routerLink="/stuvation">Stuvation</a></li> 
+                    <li><a routerLink="/engship" >ENG SHIP</a></li>
+                    <li><a routerLink="/prozectme" >PROZECT ME</a></li>
+                    <li><a href="#" >BUSINESS</a></li>
+                    <li class="showInMobile" *ngIf="checkLoginStatus()"><a class="main-header" style="font-size:13px;"
+                        data-toggle="modal" href="#" data-target="#loginModal">LOGIN</a></li>
+                <li class="showInMobile" *ngIf="checkLoginStatus()"> <a class="main-header" style="font-size:13px;"
+                        data-toggle="dropdown" href="#" role="button">SIGN UP ￬</a>
+
+                    <ul class="hidden sign-up-sub">
+                        <li><a class="main-header" style="font-size:13px;" data-toggle="modal"
+                                data-target="#studentRegistrationModal" href="#">STUDENT</a></li>
+                        <li> <a class="main-header" style="font-size:13px;" data-toggle="modal"
+                                data-target="#engineerRegistrationModal" href="#">ENGINEER</a></li>
+                    </ul>
+                  </ul>
+                 </div>
+                </nav>
+              </div>
+          <!--toggle menu for mobile end-->
 
 
-
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-radius: 2em;display:none">
-                <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-
-                <div class="collapse navbar-collapse" *ngIf="navbarOpen" [ngClass]="{ 'show': navbarOpen }">
-                    <ul class="navbar-nav mr-auto" style="border-radius: 1.5em; background-color: white; font-size:13px;">
-                        <li class="nav-item">
-                            <a class="nav-item nav-link active" (click)="goHome()">HOME
-                                <span class="sr-only">(current)</span>
-                            </a></li>
-                        <!-- <a class="nav-link" routerLink="/techbank" style="color:white !important;">TECH BANK</a>
-                    <a class="nav-link" routerLink="/techevent" style="color:white !important;">TECH CONNECT</a> -->
-                        <li ngbDropdown class="nav-item dropdown">
-                            <a id="signupDropdown" ngbDropdownToggle class="nav-link btn" style="text-align: start;font-size:13px;"
-                                data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="true">TECH WORLD</a>
-                            <div ngbDropdownMenu style="transform: none !important; top:0px !important; left: 0px !important;">
-                                <a class="nav-link" (click)="goTechBank()" style="font-size:13px;color:#19578A !important;">TECH
-                                    BANK</a>
-                                <a class="nav-link" (click)="goTechEvent()" style="font-size:13px;color:#19578A !important;">TECH
-                                    CONNECT</a>
-                            </div>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" routerLink="/techbank" style="color:#19578A !important;">TECH BANK</a></li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/techevent" style="color:#19578A !important;">TECH CONNECT</a></li> -->
-                        <li class="nav-item">
-                            <a class="nav-link" (click)="goStuation()">STUVATION</a></li>
-                        <!-- <a class="nav-link" routerLink="/engship">ENG SHIP</a>
-                    <a class="nav-link" routerLink="/home" style="color:white !important;">PROZECT ME</a>
-                    <a class="nav-link" routerLink="/home" style="color:white !important;">BUSINESS</a> -->
-                        <li class="nav-item">
-                            <a class="nav-link" (click)="goEngShip()">ENG SHIP</a></li>
-                        <li class="nav-item">
-                            <a class="nav-link" (click)="goProzeMe()">PROZECT ME</a></li>
-                        <li class="nav-item">
-                            <a class="nav-link">BUSINESS</a>
-                        </li>
-                        <li ngbDropdown class="nav-item dropdown" *ngIf="checkLoginStatus()">
-                            <a class="nav-link btn " data-toggle="modal" data-target="#loginModal" style="text-align: start;font-size:13px;"
-                                ngbDropdownToggle class="nav-link  btn " data-toggle="dropdown" href="#" aria-haspopup="true"
-                                aria-expanded="false">GET STARTED</a>
-
-                            <div ngbDropont-downMenu style="transform: none !important; top:0px !important;font-size:13px;left: 0px !important; ">
-                                <a class="nav-link btn btn-light" style="font-size:13px;text-align: start;" data-toggle="modal"
-                                    data-target="#loginModal">LOGIN</a>
-                        <li ngbDropdown class="nav-item dropdown">
-                            <a id="signupDropdown" ngbDropdownToggle class="nav-link dropdown-toggle btn btn-light"
-                                style="font-size:13px;text-align: start;" data-toggle="dropdown" href="#" role="button"
-                                aria-haspopup="true" aria-expanded="true">SIGN UP</a>
-                            <div ngbDropdownMenu style="transform: none !important; top:0px !important; left: 0px !important;">
-                                <a class="dropdown-item nav-link btn btn-light" style="font-size:13px;" data-toggle="modal"
-                                    data-target="#studentRegistrationModal">STUDENT</a>
-                                <a class="dropdown-item nav-link btn btn-light" style="font-size:13px;" data-toggle="modal"
-                                    data-target="#engineerRegistrationModal">ENGINEER</a>
-                            </div>
-                        </li>
-                </div>
-                </li>
-                </ul>
-        </div>
-        </nav>
-
+           
 
     </div>
 
