@@ -601,6 +601,48 @@ img.custom-ss-student-thoughts-block-img {
   font-weight: 400;
   font-size: 22px;
 }
+
+.calender ul{
+  list-style:none;
+}
+
+.custom-ss-our-events-block li {
+  list-style: none;
+  text-align: center;
+  padding: 10px 30px;
+  margin-bottom: 10px;
+}
+ .custom-ss-events-info {
+  background: #191970;
+  float: left;
+  height: 600px;
+}
+ .custom-ss-events-info h2 {
+  color: #c3c3c3 !important;
+  text-align: center !important;
+}
+
+ .custom-ss-events-info .custom-ss-event-date-info {
+  color: #1099ca !important;
+  text-align: center !important;
+}
+
+.custom-ss-our-events-block .active {
+  border-bottom: 8px solid #1099ca;
+  -webkit-box-shadow: 1px 6px 49px -4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 6px 49px -4px rgba(0, 0, 0, 0.75);
+  box-shadow: 1px 6px 49px -4px rgba(0, 0, 0, 0.75) !important;
+}
+
+.custom-ss-our-events-block .custom-ss-our-event-menu-block {
+  padding-left: 0px;
+  margin: 0px;
+}
+
+
+
+
+
  /***************mediaquaries*********/
  @media screen and (min-width:120px)and (max-width:319px) {}
 

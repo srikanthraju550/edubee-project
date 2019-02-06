@@ -230,17 +230,83 @@
             </div>
         </div>
         <br>
-        <div [ngSwitch]="view" style="background-color: white !important;">
-            <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
-                [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)"
-                (eventTimesChanged)="eventTimesChanged($event)">
-            </mwl-calendar-month-view>
-            <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
-                (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
-            </mwl-calendar-week-view>
-            <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
-                (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
-            </mwl-calendar-day-view>
+
+        <div class="container-fluid calender">
+            <div class="row">
+                    <div class="col-md-2 custom-ss-our-events-block">
+                            <ul class="custom-ss-our-event-menu-block" id="mydiv">
+                                <li class="active">
+                                    <a href="#">
+                                        <h4>Tech Teach</h4>
+                                        <img src="../assets/images/events-tech-talk.png">
+                                        <p>6 Events</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <h4>Tech Talk</h4>
+                                        <img src="../assets/images/tech-teach-events.png">
+                                        <p>12 Events</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <h4>All Events</h4>
+                                        <img src="../assets/images/events.png">
+                                        <p>18 Events</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 custom-ss-our-events-block custom-ss-events-info">
+                            <div>
+                                <h2>Latest Events</h2>
+                                <div class="custom-ss-event-date-info">
+                                    <h3>Environmental Engineering</h3>
+                                    <div class="row">
+                                        <div class="md-5">
+                                         <div class="custom-ss-event-image"></div>
+                                        </div>
+                                        <div class="md-5">
+                                            <p><img src="../assets/images/calendar.svg" class="custom-ss-event-date-img"> 9th oct 7:30pm</p>
+                                            <p><img src="../assets/images/placeholder.SVG" class="custom-ss-event-date-img"> Electronic city,banglore</p>
+                                        </div>
+                                    </div>
+                                    <div class="btn custom-ss-event-btn">Register Now</div>
+                                </div>
+                                <div class="custom-ss-event-date-info">
+                                    <h3>computer Engineering</h3>
+                                    <div class="row">
+                                        <div class="md-5">
+                                            <div class="custom-ss-event-image"></div>
+                                        </div>
+                                        <div class="md-5">
+                                            <p> <img src="../assets/images/calendar.svg" class="custom-ss-event-date-img"> 22nd oct 7:30pm</p>
+                                            <p> <img src="../assets/images/placeholder.svg" class="custom-ss-event-date-img"> Electronic city,banglore</p>
+                                        </div>
+                                    </div>
+                                    <div class="btn custom-ss-event-btn">Register Now</div>
+                                </div>
+                            </div>
+                        </div>
+                <div class="col-md-7 col-lg-7">
+                    <!-- <ng-fullcalendar #ucCalendar [options]="calendarOptions"></ng-fullcalendar> -->
+                    <div [ngSwitch]="view" style="background-color: white !important;">
+                        <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events"
+                            [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+                            (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+                        </mwl-calendar-month-view>
+                        <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events"
+                            [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
+                            (eventTimesChanged)="eventTimesChanged($event)">
+                        </mwl-calendar-week-view>
+                        <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+                            (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+                        </mwl-calendar-day-view>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
 

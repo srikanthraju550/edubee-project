@@ -1,4 +1,5 @@
 import { BotDetectCaptchaModule } from 'angular-captcha';
+import { FullCalendarModule } from 'ng-fullcalendar';
  
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -79,7 +80,7 @@ const appRoutes: Routes = [
     CalendarModule.forRoot(),
     RouterModule.forRoot(appRoutes, {useHash: true, enableTracing: true }),
     HttpClientModule,
-    
+    FullCalendarModule,
     ReactiveFormsModule,
     HttpModule,
     FileUploadModule

@@ -30,6 +30,8 @@ import {
 import { HttpClient } from '@angular/common/http';
 import * as $ from 'jquery';
 import { HttpModule, Http, Response, Headers, RequestOptions } from '@angular/http';
+import { CalendarComponent } from 'ng-fullcalendar';
+import { Options } from 'fullcalendar';
 
 const colors: any = {
   red: {
@@ -58,6 +60,10 @@ const colors: any = {
 export class HomeComponent implements OnInit {
 
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
+
+  calendarOptions: Options;
+  displayEvent: any;
+  @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
 
   view: string = 'month';
 
@@ -153,6 +159,7 @@ export class HomeComponent implements OnInit {
   endpoint: string = "http://theengineersfactory.com/assets/services/";
 
   loadMe;
+  calenderData = [];
   ngOnInit(): void {
 
     this.loadMe = true;
@@ -173,7 +180,7 @@ export class HomeComponent implements OnInit {
           title: 'Tech Talk Topic : ' + techTalk.techtalktopic,
           color: colors.lightblue
         };
-        console.log(eventObject);
+        // console.log(eventObject);
         this.events.push(eventObject);
       }
 
@@ -188,17 +195,33 @@ export class HomeComponent implements OnInit {
       }
 
 
-      console.log(this.getHomePageCounterValues);
+      // console.log(this.getHomePageCounterValues);
 
       this.refresh.next();
+
+     
+
+      console.log(this.calenderData);
+
+      this.calendarOptions = {
+        editable: true,
+        eventLimit: false,
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay,listMonth'
+        },
+        events: this.events
+      };
     });
 
 
 
 
-
-
   }
+
+
+
 
   closeLoginBox(): void {
     console.log('closeLoginBox');

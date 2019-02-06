@@ -1,4 +1,4 @@
-
+@import "~fullcalendar/dist/fullcalendar.min.css";
 .nav-link{
     color: #19578A !important; 
     font-weight: bold !important;
@@ -163,6 +163,48 @@ height: 2em !important;
       }
 
 
+      .cal-month-view .cal-day-number {
+        font-size: 31px !important;
+        font-weight: 400;
+        opacity: 0.5;
+        /* color: #7c12d0 !important; */
+        /* margin-top: 15px; */
+        /* margin-right: 15px; */
+        /* float: right; */
+        text-align: center;
+        float: none  !important;
+        /* margin-bottom: 10px; */
+        margin: auto !important;
+        display: block !important;
+        position:  relative !important;
+        top: 17px !important;
+    }
+
+    .cal-month-view .cal-day-cell.cal-today {
+        background-color: #007bff !important;;
+        border-radius: 271px !important;;
+        color: white !important;;
+    }
+
+    .cal-month-view .cal-day-cell:not(:last-child) {
+        border-right: 0px solid #e1e1e1 !important;
+        border-bottom: 0px solid #e1e1e1 !important;
+    }
+
+    .cal-month-view .cal-days .cal-cell-row {
+        border-bottom: 0px solid #e1e1e1 !important;
+    }
+
+    .cal-month-view .cal-header .cal-cell {
+        padding: 6px 0px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+        white-space: nowrap;
+        margin: 13px !important;;
+        font-size: 25px !important;;
+        color: #7c12d0 !important;;
+    }
       /***************mediaquaries*********/
 @media screen and (min-width:120px)and (max-width:319px) {}
 
