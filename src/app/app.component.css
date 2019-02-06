@@ -341,6 +341,13 @@ ul li a:hover + .hidden, .hidden:hover {
 .sub-drop li{
   border-bottom: 2px solid #19578A;
 }
+
+.showInMobile{
+  display: none !important;
+}
+/* .login-btn{
+  display: block;
+} */
 /*Responsive Styles*/
 @media screen and (max-width : 760px){
   /*Make dropdown links appear inline*/
@@ -355,11 +362,19 @@ ul li a:hover + .hidden, .hidden:hover {
 
   .sign-up-sub{
     width: 46% !important;
-    position: absolute;
-    top: 453px !important;
+    position: initial !important;
+    /* top: 453px !important; */
     position: absolute;
     left: 179px;
    
+  }
+
+  .login-btn{
+    display: none !important;
+  }
+
+  .showInMobile{
+    display: block !important;
   }
 
   /*Create vertical spacing*/
@@ -439,6 +454,20 @@ ul.main-menu li{
   border-radius: 25px;
  
 
+}
+.custom-ss-footer {
+  background: #7d7d7d;
+  padding: 25px;
+  background-size: cover;
+}
+
+.custom-ss-footer  img{
+ height: 150px;
+ width: 150px;
+}
+
+.custom-ss-footer li,h3,p{
+  color: white !important;
 }
 @media screen and (min-width: 360px) and (max-width: 539px) {
 

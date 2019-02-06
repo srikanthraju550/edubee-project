@@ -228,11 +228,6 @@ export class AppComponent {
       this.techTalkTypeConfig = data['8'].techtalktypeconfig;
       this.techTeachTypeConfig = data['9'].techteachtypeconfig;
       this.stuvationtypeconfig = data['11'].stuvationtypeconfig;
-      console.log(this.stuvationtypeconfig);
-      console.log(this.technologyconfig);
-      console.log(this.sliderContent);
-      console.log(this.homePageContent);
-      console.log(this.teamDetails);
       document.getElementById("signupDropdown").click();
       document.getElementById("signupDropdown").click();
       this.updateSubTechList(this.createTechArticleForm.value.technology);

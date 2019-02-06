@@ -26,6 +26,20 @@
                 <li><a routerLink="/engship" class="main-header">ENG SHIP</a></li>
                 <li><a routerLink="/prozectme" class="main-header">PROZECT ME</a></li>
                 <li><a href="#" class="main-header">BUSINESS</a></li>
+
+                <li class="showInMobile" *ngIf="checkLoginStatus()"><a class="main-header" style="font-size:13px;text-align: start;"
+                        data-toggle="modal" href="#" data-target="#loginModal">LOGIN</a></li>
+                <li class="showInMobile" *ngIf="checkLoginStatus()"> <a class="main-header" style="font-size:13px;text-align: start;"
+                        data-toggle="dropdown" href="#" role="button">SIGN UP</a>
+
+                    <ul class="hidden sign-up-sub">
+                        <li><a class="main-header" style="font-size:13px;text-align: start;" data-toggle="modal"
+                                data-target="#studentRegistrationModal" href="#">STUDENT</a></li>
+                        <li> <a class="main-header" style="font-size:13px;text-align: start;" data-toggle="modal"
+                                data-target="#engineerRegistrationModal" href="#">ENGINEER</a></li>
+                    </ul>
+
+                </li>
                 <!-- <li *ngIf="checkLoginStatus()">
                     <a href="#" class="main-header">GET STARTED ￬</a>
                     <ul class="hidden get-strt-sub">
@@ -138,11 +152,13 @@
                         </div>
                     </li>
                 </ul> -->
-            <ul class="login-btn" *ngIf="checkLoginStatus()">
-                <li><a class="main-header" style="font-size:13px;text-align: center;" data-toggle="modal" href="#"
-                        data-target="#loginModal"><i class="fa fa-sign-in-alt"></i>&nbsp;LOGIN</a></li>
-                <li> <a class="main-header" style="font-size:13px;text-align: center;" data-toggle="dropdown" href="#"
-                        role="button">&nbsp;<i class="fa fa-user-plus"></i>&nbsp; SIGN UP</a>
+            <ul class="login-btn">
+                <li *ngIf="checkLoginStatus()"><a class="main-header" style="font-size:13px;text-align: center;"
+                        data-toggle="modal" href="#" data-target="#loginModal"><i class="fa fa-sign-in"></i>&nbsp;
+                        LOGIN</a></li>
+                <li *ngIf="checkLoginStatus()"> <a class="main-header" style="font-size:13px;text-align: center;"
+                        data-toggle="dropdown" href="#" role="button">&nbsp;<i class="fa fa-user-plus"></i>&nbsp; SIGN
+                        UP</a>
 
                     <ul class="hidden sign-up-sub">
                         <li><a class="main-header" style="font-size:13px;" data-toggle="modal" data-target="#studentRegistrationModal"
@@ -215,7 +231,38 @@
     </div>
 </div>
 <router-outlet></router-outlet>
-<div class="row " style="background-color: #e5e4e1; padding: 2em; ">
+<div class="custom-ss-footer">
+    <div class="row">
+        <div class="col-md-2">
+            <img class="custom-ss-footer-logo" src="../assets/images/logo.png" />
+        </div>
+        <div class="col-md-3">
+            <h3>Our Mission</h3>
+            <p>Bridge the gap between industry and academia</p>
+        </div>
+        <div class="col-md-3">
+            <h3>Our Vission</h3>
+            <p>Make In India @ Made by Indians</p>
+        </div>
+        <div class="col-md-2">
+            <ul>
+                <li>College Chapter</li>
+                <li>City Chapter</li>
+                <li>Membership</li>
+                <li>Certifications</li>
+            </ul>
+        </div>
+        <div class="col-md-2">
+            <ul>
+                <li>Contact Us</li>
+                <li>Careers</li>
+                <li>FAQ's</li>
+                <li>Privacy Policy</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- <div class="row " style="background-color: #e5e4e1; padding: 2em; ">
     <div class="col-sm-2 footerlogo">
         <img class="companyLogo" src="../assets/images/logo1.png" alt="First slide">
     </div>
@@ -243,37 +290,20 @@
             <li>FAQ's</li>
             <li>Privacy Policy</li>
         </ul>
-        <!-- <div>
-            <button class="btn btn-primary browcher-btn">Download Brouchure</button>
-        </div> -->
+       
     </div>
 
-    <!--  <div class="col-3">
-            <span class="whiteBoldText" style="font-size: 1em; font-weight: bold;">Contact Us</span>
-            <ul class="customUlFooter2" style="margin-top: 1.5em;">
-                <li>
-                    <span class="fa fa-map-marker" style="color: white"></span>Address Line 1</li>
-                <li>Address Line 2</li>
-                <li>Address Line 3</li>
-                <li></li>
-                <li>
-                    <span class="fa fa-phone" style="color: white"></span>Phone Line 1</li>
-                <li>Phone Line 2</li>
-                <li></li>
-                <li>
-                    <span class="fa fa-envelope" style="color: white"></span>Email@email.com</li>
-            </ul>
-        </div> -->
-</div>
+    
+</div> -->
 
 <div class="row" style="background-color: #e5e4e1; padding: 2em; padding-top: 0;">
-    <span style="width: 100%;  color: black;">
-        <hr style="border-top: 1px solid black !important;" /></span>
+    <!-- <span style="width: 100%;  color: black;">
+        <hr style="border-top: 1px solid black !important;" /></span> -->
 
-    <div class="col-6" style=" color: black;; font-size: small">
+    <div class="col-12" style=" color: black;; font-size: small;margin-top: 13px;text-align: center;color: #7c12d0;">
         Copyright @ 2018 theengineersfactory.com. All rights reserved.
     </div>
-    <div class="col-6">
+    <!-- <div class="col-6">
         <div style="float: right;">
             <span class="fa fa-facebook" style=" color: black;"></span>&nbsp;
             <span class="fa fa-twitter" style=" color: black;"></span>&nbsp;
@@ -281,7 +311,7 @@
             <span class="fa fa-pinterest" style=" color: black;"></span>&nbsp;
             <span class="fa fa-linkedin" style=" color: black;"></span>
         </div>
-    </div>
+    </div> -->
 </div>
 
 </div>
