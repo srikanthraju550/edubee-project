@@ -58,8 +58,8 @@ export class AppComponent {
   isCollapsed = true;
   title = 'app';
   url;
-  endpoint: string = "http://localhost/services/";
-  //endpoint: string="http://localhost/services/"
+  endpoint: string = "../assets/services/";
+  //endpoint: string="../assets/services/"
   userid;
   uploader: FileUploader = new FileUploader({ url: this.endpoint + "profilePictureUpload.php", removeAfterUpload: false, autoUpload: false });
   fileUploaderTechArticle: FileUploader = new FileUploader({ url: this.endpoint + "publicationFileUpload.php", removeAfterUpload: false, autoUpload: false });
@@ -204,7 +204,12 @@ export class AppComponent {
     console.log(document.getElementById("datefield"));
   }
   minDateString;
+
   ngOnInit(): void {
+
+
+
+
     let today = new Date();
     console.dir(today);
     this.minDateString = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
@@ -687,7 +692,13 @@ export class AppComponent {
 
   }
 
+  openmenu() {
+    this.navbarOpen = true;
+  }
 
+  hideMenu() {
+    $("#menu").hide();
+  }
 
   goHome() {
     this.router.navigate(['/home']);

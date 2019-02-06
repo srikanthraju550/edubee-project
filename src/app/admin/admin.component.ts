@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  endpoint: string="http://localhost/services/"
+  endpoint: string = "../assets/services/"
   techarticleregistration: any = [];
   techeventsregistration: any = [];
   technologyconfig: any = [];
@@ -32,8 +32,8 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     let userDetails = this.getLoggedInUserObject();
     console.log(this.getLoggedInUserObject());
-    console.log(userDetails!=null && userDetails['usertype']=='admin');
-    if(userDetails!=null && userDetails['usertype']=='admin')
+    console.log(userDetails != null && userDetails['usertype'] == 'admin');
+    if (userDetails != null && userDetails['usertype'] == 'admin')
       this.getPageContent();
     else
       this.router.navigate(['/home']);
@@ -63,13 +63,13 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  techArticleFilter="";
-  keywordFilter="";
-  techFilter="";
-  subTechFilter="";
-  articleTypeFilter="";
-  freeFilter="";
-  authorFilter="";
+  techArticleFilter = "";
+  keywordFilter = "";
+  techFilter = "";
+  subTechFilter = "";
+  articleTypeFilter = "";
+  freeFilter = "";
+  authorFilter = "";
   selectedTecharticle;
   updateStatusOperation(id, approvalStatus, authcode, updateSection) {
     let userDetails = this.getLoggedInUserObject();

@@ -10,7 +10,7 @@ import { MainServiceService } from '../main-service.service';
 })
 export class EngshipRequestComponent implements OnInit {
 
-  endpoint: string="http://localhost/services/"
+  endpoint: string="../assets/services/"
   selectedEngship: any;
   constructor(private modal: NgbModal, private http: HttpClient, private mainService : MainServiceService) {}
   sliderContent:any=[];

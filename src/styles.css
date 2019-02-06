@@ -205,6 +205,46 @@ height: 2em !important;
         font-size: 25px !important;;
         color: #7c12d0 !important;;
     }
+
+
+    .phone[_ngcontent-c0] #menuToggle[_ngcontent-c0] span[_ngcontent-c0] {
+        display: flex;
+        width: 29px !important;
+        height: 2px !important;
+        margin-bottom: 6px !important;
+        margin-left: -12% !important;
+        margin-top: -2px !important;
+        position: relative;
+        background: #4f0cb0 !important;
+        border-radius: 3px;
+        z-index: 1;
+        -webkit-transform-origin: 5px 0px;
+        transform-origin: 5px 0px;
+       
+    }
+    
+    .phone[_ngcontent-c0] nav[_ngcontent-c0] {
+        background-color: #efeff1 !important;
+        height: 48px !important;
+        width: 54px !important;
+        border-radius: 5px !important;
+    }
+
+    .slideInLeft li a{
+        cursor: pointer!important;
+        font-size: 18px!important;
+        }
+
+
+
+
+
+
+
+
+
+
+
       /***************mediaquaries*********/
 @media screen and (min-width:120px)and (max-width:319px) {}
 

@@ -8,8 +8,8 @@
 
 
             <!-- .navbar -->
-            <label for="show-menu" class="show-menu"><i class="fa fa-bars"></i></label>
-            <input type="checkbox" class="nav-in" id="show-menu" role="button">
+            <!-- <label for="show-menu" class="show-menu"><i class="fa fa-bars"></i></label>
+            <input type="checkbox" class="nav-in" id="show-menu" role="button"> -->
             <ul id="menu" class="main-menu">
                 <li><a routerLink="/home" class="main-header">HOME</a></li>
                 <li>
@@ -33,10 +33,10 @@
                         data-toggle="dropdown" href="#" role="button">SIGN UP ￬</a>
 
                     <ul class="hidden sign-up-sub">
-                        <li><a class="main-header" style="font-size:13px;" data-toggle="modal"
-                                data-target="#studentRegistrationModal" href="#">STUDENT</a></li>
-                        <li> <a class="main-header" style="font-size:13px;" data-toggle="modal"
-                                data-target="#engineerRegistrationModal" href="#">ENGINEER</a></li>
+                        <li><a class="main-header" style="font-size:13px;" data-toggle="modal" data-target="#studentRegistrationModal"
+                                href="#">STUDENT</a></li>
+                        <li> <a class="main-header" style="font-size:13px;" data-toggle="modal" data-target="#engineerRegistrationModal"
+                                href="#">ENGINEER</a></li>
                     </ul>
 
                 </li>
@@ -68,50 +68,50 @@
 
             <!--toggle menu for mobile start-->
             <div class="phone">
-          
+
                 <nav role="navigation slideInLeft">
-                  <div id="menuToggle">
-                    <input type="checkbox" />
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                  <ul id="menu" class="animated slideInLeft">
-                    <li><a routerLink="/home">Home</a></li>
-                    <li><a href="#">Tech World ￬</a>
-                        <ul class="hidden sub-drop">
-                            <li><a routerLink="/techbank">TECH BANK</a></li>
-                            <li><a routerLink="/techevent">TECH CONNECT</a></li>
+                    <div id="menuToggle">
+                        <input type="checkbox" class="nav-in" (click)="openmenu()" />
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <ul id="menu" class="animated slideInLeft" *ngIf="navbarOpen">
+                            <li><a (click)="goHome()">Home</a></li>
+                            <li><a href="#">Tech World ￬</a>
+                                <ul class="hidden sub-drop">
+                                    <li><a (click)="goTechBank()">TECH BANK</a></li>
+                                    <li><a (click)="goTechEvent()">TECH CONNECT</a></li>
+                                </ul>
+                            </li>
+                            <li><a (click)="goStuation()">Stuvation</a></li>
+                            <li><a (click)="goEngShip()">ENG SHIP</a></li>
+                            <li><a (click)="goProzeMe()">PROZECT ME</a></li>
+                            <li><a href="#">BUSINESS</a></li>
+                            <li class="showInMobile" *ngIf="checkLoginStatus()"><a class="main-header" style="font-size:13px;"
+                                    data-toggle="modal" href="#" data-target="#loginModal">LOGIN</a></li>
+                            <li class="showInMobile" *ngIf="checkLoginStatus()"> <a class="main-header" style="font-size:13px;"
+                                    data-toggle="dropdown" href="#" role="button">SIGN UP ￬</a>
+
+                                <ul class="hidden sign-up-sub">
+                                    <li><a class="main-header" style="font-size:13px;" data-toggle="modal" data-target="#studentRegistrationModal"
+                                            href="#">STUDENT</a></li>
+                                    <li> <a class="main-header" style="font-size:13px;" data-toggle="modal" data-target="#engineerRegistrationModal"
+                                            href="#">ENGINEER</a></li>
+                                </ul>
                         </ul>
-                    </li>
-                    <li><a routerLink="/stuvation">Stuvation</a></li> 
-                    <li><a routerLink="/engship" >ENG SHIP</a></li>
-                    <li><a routerLink="/prozectme" >PROZECT ME</a></li>
-                    <li><a href="#" >BUSINESS</a></li>
-                    <li class="showInMobile" *ngIf="checkLoginStatus()"><a class="main-header" style="font-size:13px;"
-                        data-toggle="modal" href="#" data-target="#loginModal">LOGIN</a></li>
-                <li class="showInMobile" *ngIf="checkLoginStatus()"> <a class="main-header" style="font-size:13px;"
-                        data-toggle="dropdown" href="#" role="button">SIGN UP ￬</a>
-
-                    <ul class="hidden sign-up-sub">
-                        <li><a class="main-header" style="font-size:13px;" data-toggle="modal"
-                                data-target="#studentRegistrationModal" href="#">STUDENT</a></li>
-                        <li> <a class="main-header" style="font-size:13px;" data-toggle="modal"
-                                data-target="#engineerRegistrationModal" href="#">ENGINEER</a></li>
-                    </ul>
-                  </ul>
-                 </div>
+                    </div>
                 </nav>
-              </div>
-          <!--toggle menu for mobile end-->
+            </div>
+            <!--toggle menu for mobile end-->
 
 
-           
 
-    </div>
 
-    <div class="col-sm-2" style="margin-top: 2%; margin-bottom: 1%;">
-        <div class="row">
-            <!-- <ul *ngIf="checkLoginStatus()" class="nav nav-pills" style="float: right;margin-top: 16px;">
+        </div>
+
+        <div class="col-sm-2" style="margin-top: 2%; margin-bottom: 1%;">
+            <div class="row">
+                <!-- <ul *ngIf="checkLoginStatus()" class="nav nav-pills" style="float: right;margin-top: 16px;">
 
                     <button class="nav-link btn btn-light" data-toggle="modal" data-target="#loginModal">LOGIN</button>
 
@@ -124,117 +124,119 @@
                         </div>
                     </li>
                 </ul> -->
-            <ul class="login-btn">
-                <li *ngIf="checkLoginStatus()"><a class="main-header" style="font-size:13px;text-align: center;"
-                        data-toggle="modal" href="#" data-target="#loginModal"><i class="fa fa-sign-in"></i>&nbsp;
-                        LOGIN</a></li>
-                <li *ngIf="checkLoginStatus()"> <a class="main-header" style="font-size:13px;text-align: center;"
-                        data-toggle="dropdown" href="#" role="button">&nbsp;<i class="fa fa-user-plus"></i>&nbsp; SIGN
-                        UP</a>
+                <ul class="login-btn">
+                    <li *ngIf="checkLoginStatus()"><a class="main-header" style="font-size:13px;text-align: center;"
+                            data-toggle="modal" href="#" data-target="#loginModal"><i class="fa fa-sign-in"></i>&nbsp;
+                            LOGIN</a></li>
+                    <li *ngIf="checkLoginStatus()"> <a class="main-header" style="font-size:13px;text-align: center;"
+                            data-toggle="dropdown" href="#" role="button">&nbsp;<i class="fa fa-user-plus"></i>&nbsp;
+                            SIGN
+                            UP</a>
 
-                    <ul class="hidden sign-up-sub">
-                        <li><a class="main-header" style="font-size:13px;" data-toggle="modal" data-target="#studentRegistrationModal"
-                                href="#">STUDENT</a></li>
-                        <li> <a class="main-header" style="font-size:13px;" data-toggle="modal" data-target="#engineerRegistrationModal"
-                                href="#">ENGINEER</a></li>
-                    </ul>
+                        <ul class="hidden sign-up-sub">
+                            <li><a class="main-header" style="font-size:13px;" data-toggle="modal" data-target="#studentRegistrationModal"
+                                    href="#">STUDENT</a></li>
+                            <li> <a class="main-header" style="font-size:13px;" data-toggle="modal" data-target="#engineerRegistrationModal"
+                                    href="#">ENGINEER</a></li>
+                        </ul>
 
-                </li>
-            </ul>
-            <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="float: right; margin-left: 25%;">
+                    </li>
+                </ul>
+                <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="float: right; margin-left: 25%;">
 
-                <li ngbDropdown class="nav-item dropdown">
+                    <li ngbDropdown class="nav-item dropdown">
 
-                    <a id="signupDropdown" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" href="#"
-                        role="button" aria-haspopup="true" aria-expanded="false">
+                        <a id="signupDropdown" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" href="#"
+                            role="button" aria-haspopup="true" aria-expanded="false">
 
-                        <img class="profilepicture" style="border-radius: 10em;" src="assets/images/profileImages/{{getLoggedInUserObject()['profilepicture']}}">
+                            <img class="profilepicture" style="border-radius: 10em;" src="assets/images/profileImages/{{getLoggedInUserObject()['profilepicture']}}">
 
-                    </a>
-                    <div ngbDropdownMenu style="transform: none !important; top:0px !important; left: 0px !important;">
-                        <a class="dropdown-item" routerLink="/myprofile">MY PROFILE</a>
-                        <a class="dropdown-item" routerLink="/engshipRequest">Engship Requests</a>
-                        <a class="dropdown-item" (click)="logout()">LOGOUT</a>
-                    </div>
-                </li>
+                        </a>
+                        <div ngbDropdownMenu style="transform: none !important; top:0px !important; left: 0px !important;">
+                            <a class="dropdown-item" routerLink="/myprofile">MY PROFILE</a>
+                            <a class="dropdown-item" routerLink="/engshipRequest">Engship Requests</a>
+                            <a class="dropdown-item" (click)="logout()">LOGOUT</a>
+                        </div>
+                    </li>
 
-            </ul>
-            <span style="color: white; font-weight: bold; text-align: center; width: 100%;    top: 100px;
+                </ul>
+                <span style="color: white; font-weight: bold; text-align: center; width: 100%;    top: 100px;
             position: absolute;left:-10px;">
-                {{getLoggedInUserObject()['name'] | titlecase}}
-            </span>
+                    {{getLoggedInUserObject()['name'] | titlecase}}
+                </span>
+            </div>
+        </div>
+        <div class="w_100">
+            <h1 class="custom-heading animated zoomInLeft"><span>STUVATION</span></h1>
+            <p class="custom-ss animated fadeInRight">S t u d e n t <span>+</span> i n n o v a t i o n</p>
+            <div class="container-fluid">
+                <div class="row ">
+                    <div class="img-lft col-md-6 col-sm-12 animated fadeInLeft">
+                        <img src="assets/images/tef-stuvation.png" />
+                    </div>
+                    <div class="col-md-5 col-sm-12 animated fadeInRight">
+                        <div class="content-ryt">
+                            <h4 class="custom-ss-content"> Execute &amp; Express</h4>
+                            <p> Your innovation or Academic project We connect experts, student partners , Academisions
+                                &amp; sponsers</p>
+                            <h3 class="custom-s-content"> <span>" </span>IT'S NOT ABOUT IDEAS.<br> ITS ABOUT MAKING
+                                IDEAS
+                                HAPPEN</h3>
+
+                        </div>
+                    </div>
+                    <div class="col-md-1 col-sm-0"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--row end-->
+
+
+
+    <div class="row" style="margin-top:1em;">
+        <div class="col-1">
+
+        </div>
+
+        <div class="col-1">
+
         </div>
     </div>
-    <div class="w_100">
-        <h1 class="custom-heading animated zoomInLeft"><span>STUVATION</span></h1>
-        <p class="custom-ss animated fadeInRight">S t u d e n t <span>+</span> i n n o v a t i o n</p>
-        <div class="container-fluid">
-            <div class="row ">
-                <div class="img-lft col-md-6 col-sm-12 animated fadeInLeft">
-                    <img src="assets/images/tef-stuvation.png" />
-                </div>
-                <div class="col-md-5 col-sm-12 animated fadeInRight">
-                    <div class="content-ryt">
-                        <h4 class="custom-ss-content"> Execute &amp; Express</h4>
-                        <p> Your innovation or Academic project We connect experts, student partners , Academisions
-                            &amp; sponsers</p>
-                        <h3 class="custom-s-content"> <span>" </span>IT'S NOT ABOUT IDEAS.<br> ITS ABOUT MAKING IDEAS
-                            HAPPEN</h3>
-
-                    </div>
-                </div>
-                <div class="col-md-1 col-sm-0"></div>
+    <router-outlet></router-outlet>
+    <div class="custom-ss-footer">
+        <div class="row">
+            <div class="col-md-2">
+                <img class="custom-ss-footer-logo" src="../assets/images/logo.png" />
+            </div>
+            <div class="col-md-3">
+                <h3>Our Mission</h3>
+                <p>Bridge the gap between industry and academia</p>
+            </div>
+            <div class="col-md-3">
+                <h3>Our Vission</h3>
+                <p>Make In India @ Made by Indians</p>
+            </div>
+            <div class="col-md-2">
+                <ul>
+                    <li>College Chapter</li>
+                    <li>City Chapter</li>
+                    <li>Membership</li>
+                    <li>Certifications</li>
+                </ul>
+            </div>
+            <div class="col-md-2">
+                <ul>
+                    <li>Contact Us</li>
+                    <li>Careers</li>
+                    <li>FAQ's</li>
+                    <li>Privacy Policy</li>
+                </ul>
             </div>
         </div>
     </div>
-
-</div>
-<!--row end-->
-
-
-
-<div class="row" style="margin-top:1em;">
-    <div class="col-1">
-
-    </div>
-
-    <div class="col-1">
-
-    </div>
-</div>
-<router-outlet></router-outlet>
-<div class="custom-ss-footer">
-    <div class="row">
-        <div class="col-md-2">
-            <img class="custom-ss-footer-logo" src="../assets/images/logo.png" />
-        </div>
-        <div class="col-md-3">
-            <h3>Our Mission</h3>
-            <p>Bridge the gap between industry and academia</p>
-        </div>
-        <div class="col-md-3">
-            <h3>Our Vission</h3>
-            <p>Make In India @ Made by Indians</p>
-        </div>
-        <div class="col-md-2">
-            <ul>
-                <li>College Chapter</li>
-                <li>City Chapter</li>
-                <li>Membership</li>
-                <li>Certifications</li>
-            </ul>
-        </div>
-        <div class="col-md-2">
-            <ul>
-                <li>Contact Us</li>
-                <li>Careers</li>
-                <li>FAQ's</li>
-                <li>Privacy Policy</li>
-            </ul>
-        </div>
-    </div>
-</div>
-<!-- <div class="row " style="background-color: #e5e4e1; padding: 2em; ">
+    <!-- <div class="row " style="background-color: #e5e4e1; padding: 2em; ">
     <div class="col-sm-2 footerlogo">
         <img class="companyLogo" src="../assets/images/logo1.png" alt="First slide">
     </div>
@@ -268,14 +270,14 @@
     
 </div> -->
 
-<div class="row" style="background-color: #e5e4e1; padding: 2em; padding-top: 0;">
-    <!-- <span style="width: 100%;  color: black;">
+    <div class="row" style="background-color: #e5e4e1; padding: 2em; padding-top: 0;">
+        <!-- <span style="width: 100%;  color: black;">
         <hr style="border-top: 1px solid black !important;" /></span> -->
 
-    <div class="col-12" style=" color: black;; font-size: small;margin-top: 13px;text-align: center;color: #7c12d0;">
-        Copyright @ 2018 theengineersfactory.com. All rights reserved.
-    </div>
-    <!-- <div class="col-6">
+        <div class="col-12" style=" color: black;; font-size: small;margin-top: 13px;text-align: center;color: #7c12d0;">
+            Copyright @ 2018 theengineersfactory.com. All rights reserved.
+        </div>
+        <!-- <div class="col-6">
         <div style="float: right;">
             <span class="fa fa-facebook" style=" color: black;"></span>&nbsp;
             <span class="fa fa-twitter" style=" color: black;"></span>&nbsp;
@@ -284,7 +286,7 @@
             <span class="fa fa-linkedin" style=" color: black;"></span>
         </div>
     </div> -->
-</div>
+    </div>
 
 </div>
 

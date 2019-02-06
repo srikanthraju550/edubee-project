@@ -156,7 +156,7 @@ export class HomeComponent implements OnInit {
   url;
   getHomePageCounterValues;
 
-  endpoint: string = "http://theengineersfactory.com/assets/services/";
+  endpoint: string = "../assets/services/";
 
   loadMe;
   calenderData = [];
