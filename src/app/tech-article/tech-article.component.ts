@@ -10,7 +10,7 @@ import { FilterPipe } from '../filter.pipe';
   styleUrls: ['./tech-article.component.css']
 })
 export class TechArticleComponent implements OnInit {
-  endpoint: string = "../assets/services/"
+  endpoint: string = "http://localhost/services/"
   selectedTecharticle: any;
   constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService) { }
   sliderContent: any = [];
@@ -19,7 +19,7 @@ export class TechArticleComponent implements OnInit {
   teamDetails: any = [];
   techarticledetails: any = [];
   ngOnInit(): void {
-    //this.http.get('../assets/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
+    //this.http.get('http://localhost/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
     let url = this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime();
     let userDetails = this.getLoggedInUserObject();
     if (!this.checkLoginStatus())

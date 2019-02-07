@@ -521,7 +521,32 @@ ul li a:hover + .hidden, .hidden:hover {
 cursor: pointer;
 }
 
+.arrows{
+  position: absolute;
+    right: 0;
+    top: 0;
+    left: 75%;
+    
+}
 
+.arrows span{
+  position: relative;
+  top: -5px;
+}
+
+.arrows i{
+  font-size: 30px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.toggle-menu-icon{
+height: -webkit-fill-available;
+    width: 38px;
+    position: absolute;
+    top: -19px;
+    left: -11px;
+  }
 
 /*********************************************************************************************************************************************************************************
 ************************************************************Responsive Styles*****************************************************************************************/

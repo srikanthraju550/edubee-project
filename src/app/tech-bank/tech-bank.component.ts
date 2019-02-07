@@ -10,7 +10,7 @@ import { FilterPipe } from '../filter.pipe';
   styleUrls: ['./tech-bank.component.css']
 })
 export class TechBankComponent implements OnInit {
-  endpoint: string="../assets/services/"
+  endpoint: string="http://localhost/services/"
   constructor(private modal: NgbModal, private http: HttpClient, private mainService : MainServiceService) {}
   sliderContent:any=[];
   //homePageDataFromService=[];

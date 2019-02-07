@@ -236,9 +236,13 @@ height: 2em !important;
         }
 
 
-
-
-
+.phone[_ngcontent-c0] #menu[_ngcontent-c0]{
+padding-top: 17px !important;
+}
+.phone[_ngcontent-c0] a[_ngcontent-c0]{
+color:#540db4 !important;
+cursor: pointer !important;
+}
 
 
 
