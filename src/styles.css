@@ -253,8 +253,7 @@ cursor: pointer !important;
     height: auto !important;
 }
 
-.fc-unthemed td.fc-today
-
+.fc-unthemed td.fc-today{}
 
 
       /***************mediaquaries*********/

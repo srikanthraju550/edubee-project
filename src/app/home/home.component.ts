@@ -235,7 +235,7 @@ export class HomeComponent implements OnInit {
       },
       events: this.data
     };
-  code
+
     //dummy  code ends
 
     this.loadMe = true;
@@ -277,7 +277,7 @@ export class HomeComponent implements OnInit {
 
 
 
-      
+
     });
 
 
