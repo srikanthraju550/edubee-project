@@ -404,6 +404,7 @@ ul li a:hover + .hidden, .hidden:hover {
   font-weight: 400;
   transition: 200ms;
   text-transform: uppercase;
+  padding-left: 12px;
 }
 .phone a:hover {
   opacity:0.5;
@@ -425,11 +426,10 @@ ul li a:hover + .hidden, .hidden:hover {
   display: flex;
   flex-direction: column;
   position: relative; 
-  top: 20px;
-  left: 20px;
   z-index: 1;
   -webkit-user-select: none;
   user-select: none;
+  height: 50px;
 }
 
 .phone #menuToggle input
@@ -541,12 +541,21 @@ cursor: pointer;
 }
 
 .toggle-menu-icon{
-height: -webkit-fill-available;
-    width: 38px;
-    position: absolute;
-    top: -19px;
-    left: -11px;
+  width: 32px;
+  position: absolute;
+  top: 9px;
+  left: 10px;
+  height: 32px;
+  opacity: .9;
   }
+
+.close_btn{
+  font-size: 26px!important;
+    font-family: sans-serif!important;
+    font-weight: 600!important;
+}
+
+
 
 /*********************************************************************************************************************************************************************************
 ************************************************************Responsive Styles*****************************************************************************************/
@@ -591,13 +600,22 @@ height: -webkit-fill-available;
     .staticNavHeader{
       height: auto !important;
   }
+  .sub-drop li a{
+    height: 20px!important;
+    line-height: 12px!important;
+    border: none;
+  }
 }
 
 /************mediaquaries*******/
 @media screen and (min-width: 320px) and (max-width: 567px) {
   .phone {
-    display: block;
-   
+    display: block;   
+}
+.sub-drop li a{
+  height: 20px!important;
+  line-height: 12px!important;
+  border: none;
 }
 .phone ul#menu{
   -webkit-animation-duration:.5s;

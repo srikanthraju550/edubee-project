@@ -59,7 +59,7 @@ export class AppComponent {
   title = 'app';
   url;
   sliderValue = 1;
-  endpoint: string = "http://localhost/services/";
+  endpoint: string = "http://theengineersfactory.com/assets/services/";
   //endpoint: string="http://localhost/services/"
   userid;
   uploader: FileUploader = new FileUploader({ url: this.endpoint + "profilePictureUpload.php", removeAfterUpload: false, autoUpload: false });
@@ -698,7 +698,7 @@ export class AppComponent {
   }
 
   hidemenu() {
-    this.navbarOpen =false;
+    this.navbarOpen = false;
   }
 
   goHome() {
