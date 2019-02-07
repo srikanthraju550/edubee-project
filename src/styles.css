@@ -245,7 +245,15 @@ cursor: pointer !important;
 }
 
 
+.fc-widget-content{
+    height: 80px !important;
+}
 
+.fc-day-grid-container{
+    height: auto !important;
+}
+
+.fc-unthemed td.fc-today
 
 
 
