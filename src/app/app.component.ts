@@ -60,7 +60,7 @@ export class AppComponent {
   url;
   sliderValue = 1;
   endpoint: string = "http://localhost/services/";
-  //endpoint: string="http://localhost/services/"
+  //endpoint: string="../assets/services/"
   userid;
   uploader: FileUploader = new FileUploader({ url: this.endpoint + "profilePictureUpload.php", removeAfterUpload: false, autoUpload: false });
   fileUploaderTechArticle: FileUploader = new FileUploader({ url: this.endpoint + "publicationFileUpload.php", removeAfterUpload: false, autoUpload: false });
@@ -223,7 +223,7 @@ export class AppComponent {
     if (!this.checkLoginStatus())
       url += "?userid=" + userDetails['userid'];
 
-    //this.http.get('http://localhost/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
+    //this.http.get('../assets/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
     this.http.get(url).subscribe(data => {
       console.log(data);
       this.sliderContent = data['0'].sliderContent;
@@ -475,7 +475,7 @@ export class AppComponent {
   onCreateTechTeachFormSubmit() {
     this.createTechTeachForm.value.userDetails = this.getLoggedInUserObject();
     console.warn(this.createTechTeachForm.value);
-    //this.http.post('http://localhost/services/createTechTeach.php', this.createTechTeachForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
+    //this.http.post('../assets/services/createTechTeach.php', this.createTechTeachForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
     this.http.post(this.endpoint + 'createTechTeach.php', this.createTechTeachForm.value, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
       console.log(data);
       let parsedData: JSON = JSON.parse('' + data);
@@ -684,7 +684,7 @@ export class AppComponent {
       let body = _formData;
       let headers = new Headers();
      
-      this._http.post("http://localhost/services/profilePictureUpload.php", body, {
+      this._http.post("../assets/services/profilePictureUpload.php", body, {
         headers: headers
     })
         .subscribe((data) => this.message = data);
@@ -698,7 +698,7 @@ export class AppComponent {
   }
 
   hidemenu() {
-    this.navbarOpen =false;
+    this.navbarOpen = false;
   }
 
   goHome() {
@@ -728,7 +728,7 @@ export class AppComponent {
   firstSlide = true;
   secondSlide = false;
 
-  decreaseSlider(sliderValue) {
+  decreaseSlider() {
     if (this.sliderValue === 1) {
       return;
     }
@@ -739,7 +739,7 @@ export class AppComponent {
       this.secondSlide = false;
     }
   }
-  increaseSlider(sliderValue) {
+  increaseSlider() {
     if (this.sliderValue === 2) {
       return;
     }
