@@ -60,7 +60,8 @@
             </div>
             <div class="col-md-9 col-sm-12 col-lg-9">
                 <h2 class="custom-ss-quick-register-tab-heading">
-                    <div class="custom-ss-quick-register-block-shape"></div><span class="custom-ss-quick-register-block-heading">{{techTitle}}</span>
+                    <div class="custom-ss-quick-register-block-shape"></div><span
+                        class="custom-ss-quick-register-block-heading">{{techTitle}}</span>
                 </h2>
 
 
@@ -69,7 +70,8 @@
                         <img src="../assets/images/slide-img.png">
                     </div>
                     <div class="col-md-6 col-sm-6" *ngIf="showTechTeach">
-                        <p>A Platform to register Tech Activities where student can connect with industrial Experts <br />
+                        <p>A Platform to register Tech Activities where student can connect with industrial Experts
+                            <br />
                             <br />
                             Are you freelance Trainer <br />
                             or <br />
@@ -164,32 +166,9 @@
 </div>
 <!-- <div class="row" style="background-color: #F4F6F5;" *ngIf="getHomePageCounterValues!=undefined" *ngIf="false"> -->
 <div class="row" style="background-color: #F4F6F5;">
-    <div class="col-sm-4" style="margin-top: 2.5em;">
-        <div class="card" style=" text-align: center !important; color: white;">
-            <a class=" aboutbutton1" routerLink="/techevent">
-                <h5>Tech Talk</h5>
-                <p class="card-text">{{getHomePageCounterValues['@techTalkCount']}}</p>
 
-            </a>
-        </div>
-    </div>
-    <div class="col-sm-4" style="margin-top: 2.5em;">
-        <div class="card" style=" text-align: center !important;  color: white;">
-            <a class=" aboutbutton1" routerLink="/techevent" style="background-color: #07567F !important; border-color: transparent;">
-                <h5>Tech Teach</h5>
-                <p class="card-text">{{getHomePageCounterValues['@techMeetCount']}}</p>
-            </a>
-        </div>
-    </div>
-    <div class="col-sm-4" style="margin-top: 2.5em;">
-        <div class="card" style="text-align: center !important; color: white;">
-            <a class="aboutbutton1" routerLink="/techevent" style="background-color: midnightblue; border: 0px;">
-                <h5 style="margin-bottom: 30px;margin-top: 19px;">View All Events</h5>
-            </a>
-        </div>
-    </div>
 
-    <div class="col-sm-12" style="zoom : 0.65; margin-top: 2em; margin-bottom: 3em; ">
+    <div class="col-sm-12" style="zoom : 0.65;margin-bottom: 3em; ">
         <ng-template #modalContent let-close="close">
             <div class="modal-header">
                 <h5 class="modal-title">Event action occurred</h5>
@@ -239,62 +218,56 @@
             <div class="row">
                 <div class="col-md-2 custom-ss-our-events-block">
                     <ul class="custom-ss-our-event-menu-block" id="mydiv">
-                        <li class="active">
-                            <a href="#">
+                        <li (click)="showTechTeachCal()" [ngClass]="{'active':selCal=='tech teach'}">
+                            <a>
                                 <h4>Tech Teach</h4>
                                 <img src="../assets/images/events-tech-talk.png">
-                                <p>6 Events</p>
+                                <p>{{getHomePageCounterValues['@techTalkCount']}} Events</p>
                             </a>
                         </li>
-                        <li>
-                            <a href="#">
+                        <li (click)="showTechTalkCal()" [ngClass]="{'active':selCal=='tech talk'}">
+                            <a>
                                 <h4>Tech Talk</h4>
                                 <img src="../assets/images/tech-teach-events.png">
-                                <p>12 Events</p>
+                                <p>{{getHomePageCounterValues['@techMeetCount']}} Events</p>
                             </a>
                         </li>
-                        <li>
-                            <a href="#">
+                        <li (click)="showAllEventsCal()" [ngClass]="{'active':selCal=='all events'}">
+                            <a>
                                 <h4>All Events</h4>
                                 <img src="../assets/images/events.png">
-                                <p>18 Events</p>
+                                <p>{{allEventsCount}}
+                                    Events</p>
                             </a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-md-3 custom-ss-our-events-block custom-ss-events-info">
                     &nbsp;
-                    <!-- <div>
-                                <h2>Latest Events</h2>
-                                <div class="custom-ss-event-date-info">
-                                    <h3>Environmental Engineering</h3>
-                                    <div class="row">
-                                        <div class="md-5">
-                                         <div class="custom-ss-event-image"></div>
-                                        </div>
-                                        <div class="md-5">
-                                            <p><img src="../assets/images/calendar.svg" class="custom-ss-event-date-img"> 9th oct 7:30pm</p>
-                                            <p><img src="../assets/images/placeholder.SVG" class="custom-ss-event-date-img"> Electronic city,banglore</p>
-                                        </div>
-                                    </div>
-                                    <div class="btn custom-ss-event-btn">Register Now</div>
+                    <div>
+                        <h2>Latest Events</h2>
+                        <div class="custom-ss-event-date-info " *ngFor="let data of calenderDataForCalender">
+                            <h3>{{data.technologyname}}</h3>
+                            <div class="row">
+                                <div class="col-md-2 col-lg-2">
+                                    <div class="custom-ss-event-image"></div>
                                 </div>
-                                <div class="custom-ss-event-date-info">
-                                    <h3>computer Engineering</h3>
-                                    <div class="row">
-                                        <div class="md-5">
-                                            <div class="custom-ss-event-image"></div>
-                                        </div>
-                                        <div class="md-5">
-                                            <p> <img src="../assets/images/calendar.svg" class="custom-ss-event-date-img"> 22nd oct 7:30pm</p>
-                                            <p> <img src="../assets/images/placeholder.svg" class="custom-ss-event-date-img"> Electronic city,banglore</p>
-                                        </div>
-                                    </div>
-                                    <div class="btn custom-ss-event-btn">Register Now</div>
+                                <div class="col-md-10 col-lg-10 cal-ico">
+                                    <p><img src="../assets/images/calendar.png" class="custom-ss-event-date-img">
+                                        {{data.venuedate}}</p>
+                                    <p>
+                                        <img src="../assets/images/placeholder.png" class="custom-ss-event-date-img">
+                                        {{data.address}},{{data.city}}</p>
                                 </div>
-                            </div> -->
+                            </div>
+                            <div class="btn custom-ss-event-btn">Register Now</div>
+                        </div>
+
+                    </div>
                 </div>
-                <div class="col-md-7 col-lg-7">
+                <div class="col-md-7 col-lg-7 calender-div">
+                    <img class="calender-img" src="../assets/images/calendar-background.png"><span
+                        class="cal-date">{{todayDaate}}</span>
                     <ng-fullcalendar #ucCalendar [options]="calendarOptions"></ng-fullcalendar>
                     <!-- <div [ngSwitch]="view" style="background-color: white !important;">
                         <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events"
@@ -319,7 +292,8 @@
 
 
 </div>
-<div class="row about-section" style=" background: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(25, 87, 138, 1) 45%, rgba( 25, 87, 138, 1) 100%), url(./assets/images/aboutbanner.png);">
+<div class="row about-section"
+    style=" background: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(25, 87, 138, 1) 45%, rgba( 25, 87, 138, 1) 100%), url(./assets/images/aboutbanner.png);">
     <div class="col-10" style="margin-left: 8%;color: white;text-align: justify;">
 
         <h1 class="text-center about-us-head">ABOUT <strong>US</strong></h1>
@@ -420,7 +394,8 @@
                             <div class="row">
                                 <div class="col-sm-3 col-md-3 col-lg-2"></div>
                                 <div class="col-sm-3 col-md-3 col-lg-4">
-                                    <img class="profilepicture" style="border-radius: 10em;" src="../assets/images/{{userInfo.profileimage}}">
+                                    <img class="profilepicture" style="border-radius: 10em;"
+                                        src="../assets/images/{{userInfo.profileimage}}">
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-6 ">
                                     <br />
@@ -509,33 +484,42 @@
                 <section class="progress" style="background-color: none !important; margin-bottom: 0; margin-top:2em; ">
                     <div class="row" style="width:100%;">
                         <div class="col-sm-4">
-                            <div class="round progress-radial progress-45 setsize2" style="color : black !important;  height: 150px; width: 150px;box-shadow: 1px 5px 21px #19578a; ">
+                            <div class="round progress-radial progress-45 setsize2"
+                                style="color : black !important;  height: 150px; width: 150px;box-shadow: 1px 5px 21px #19578a; ">
                                 <div class="overlay setsize2 " style="height: 120px;">
-                                    <p class="whiteBoldText counter-count" style="color : black !important;">{{getHomePageCounterValues['@studentCount']}}</p>
+                                    <p class="whiteBoldText counter-count" style="color : black !important;">
+                                        {{getHomePageCounterValues['@studentCount']}}</p>
                                     <span class="counter-underline">&nbsp;</span>
                                 </div>
                             </div>
-                            <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">Students</p>
+                            <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">
+                                Students</p>
                         </div>
                         <div class="col-sm-4">
 
-                            <div class="round progress-radial progress-55 setsize2 " style="color : black !important; height: 150px; width: 150px;box-shadow: 1px 5px 21px #19578a;">
+                            <div class="round progress-radial progress-55 setsize2 "
+                                style="color : black !important; height: 150px; width: 150px;box-shadow: 1px 5px 21px #19578a;">
                                 <div class="overlay setsize2  " style="height: 120px;">
-                                    <p class=" whiteBoldText counter-count" style="color : black !important;">{{getHomePageCounterValues['@engineerCount']}}</p>
+                                    <p class=" whiteBoldText counter-count" style="color : black !important;">
+                                        {{getHomePageCounterValues['@engineerCount']}}</p>
                                     <span class="counter-underline">&nbsp;</span>
                                 </div>
                             </div>
 
-                            <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">Engineers</p>
+                            <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">
+                                Engineers</p>
                         </div>
                         <div class="col-sm-4">
-                            <div class="round progress-radial progress-65 setsize2 " style="color : black !important; height: 150px; width: 150px;box-shadow: 1px 5px 21px #19578a;">
+                            <div class="round progress-radial progress-65 setsize2 "
+                                style="color : black !important; height: 150px; width: 150px;box-shadow: 1px 5px 21px #19578a;">
                                 <div class="overlay setsize2 " style="height: 120px;">
-                                    <p class="whiteBoldText counter-count" style="color : black !important;">{{getHomePageCounterValues['@stuvationCount']}}</p>
+                                    <p class="whiteBoldText counter-count" style="color : black !important;">
+                                        {{getHomePageCounterValues['@stuvationCount']}}</p>
                                     <span class="counter-underline">&nbsp;</span>
                                 </div>
                             </div>
-                            <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">Stuvation</p>
+                            <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">
+                                Stuvation</p>
                         </div>
                     </div>
                 </section>
@@ -544,33 +528,42 @@
                 <section class="progress" style="background-color: none !important; margin-bottom: 0; margin-top:2em; ">
                     <div class="row" style="width:100%;">
                         <div class="col-sm-4">
-                            <div class="round progress-radial progress-45 setsize2" style="color : black !important;  height: 150px; width: 150px; box-shadow: 1px 5px 21px #19578a;">
+                            <div class="round progress-radial progress-45 setsize2"
+                                style="color : black !important;  height: 150px; width: 150px; box-shadow: 1px 5px 21px #19578a;">
                                 <div class="overlay setsize2 " style="height: 120px;">
-                                    <p class="whiteBoldText counter-count" style="color : black !important;">{{getHomePageCounterValues['@techMeetCount']}}</p>
+                                    <p class="whiteBoldText counter-count" style="color : black !important;">
+                                        {{getHomePageCounterValues['@techMeetCount']}}</p>
                                     <span class="counter-underline">&nbsp;</span>
                                 </div>
                             </div>
-                            <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">TechTeach</p>
+                            <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">
+                                TechTeach</p>
                         </div>
                         <div class="col-sm-4">
 
-                            <div class="round progress-radial progress-55 setsize2 " style="color : black !important; height: 150px; width: 150px;box-shadow: 1px 5px 21px #19578a;">
+                            <div class="round progress-radial progress-55 setsize2 "
+                                style="color : black !important; height: 150px; width: 150px;box-shadow: 1px 5px 21px #19578a;">
                                 <div class="overlay setsize2  " style="height: 120px;">
-                                    <p class=" whiteBoldText counter-count" style="color : black !important;">{{getHomePageCounterValues['@techTalkCount']}}</p>
+                                    <p class=" whiteBoldText counter-count" style="color : black !important;">
+                                        {{getHomePageCounterValues['@techTalkCount']}}</p>
                                     <span class="counter-underline">&nbsp;</span>
                                 </div>
                             </div>
 
-                            <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">TechTalk</p>
+                            <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">
+                                TechTalk</p>
                         </div>
                         <div class="col-sm-4">
-                            <div class="round progress-radial progress-65 setsize2 " style="color : black !important; height: 150px; width: 150px;box-shadow: 1px 5px 21px #19578a;">
+                            <div class="round progress-radial progress-65 setsize2 "
+                                style="color : black !important; height: 150px; width: 150px;box-shadow: 1px 5px 21px #19578a;">
                                 <div class="overlay setsize2 " style="height: 120px;">
-                                    <p class="whiteBoldText counter-count" style="color : black !important;">{{getHomePageCounterValues['@stuvationCount']}}</p>
+                                    <p class="whiteBoldText counter-count" style="color : black !important;">
+                                        {{getHomePageCounterValues['@stuvationCount']}}</p>
                                     <span class="counter-underline">&nbsp;</span>
                                 </div>
                             </div>
-                            <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">ProzectMe</p>
+                            <p class="student whiteBoldText lineHeightAdjustor" style="color : black !important;">
+                                ProzectMe</p>
                         </div>
                     </div>
 

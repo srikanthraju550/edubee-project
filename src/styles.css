@@ -259,16 +259,95 @@ cursor: pointer !important;
 
 
 .fc-widget-content{
-    height: 80px !important;
+    height: 90px !important;
 }
 
 .fc-day-grid-container{
     height: auto !important;
 }
 
-.fc-unthemed td.fc-today
+.fc-today span{
+     background-color: #19578a !important;
+    color: white !important;
+    font-size: 37px !important;
+}
+.fc-ltr .fc-basic-view .fc-day-top .fc-day-number{
+    text-align: center !important;
+    float: none !important;
+    margin: auto;
+    display: block;
+    width: 59px;
+    border-radius: 36px;
+    font-size: 37px !important;
+    color: #7c12d0;
+}
 
+.fc-widget-header{
+    font-size: 25px !important;
+    color: #19578a !important;
+}
 
+.fc-unthemed tbody{
+    border-color: #f4f6f5 !important;
+}
+
+.fc-month-button,
+.fc-agendaWeek-button,
+.fc-agendaDay-button,
+.fc-listMonth-button,.fc-today-button{
+    display: none !important;
+}
+
+.fc-toolbar .fc-left{
+    float: right !important;
+}
+
+.fc button .fc-icon {
+    position: relative;
+    top: 8px !important;
+    margin: -1px 0.2em !important;
+    vertical-align: middle;
+    font-size: 34px !important;
+    height: 55px !important;
+    color: #a259dc !important;
+}
+
+.fc-toolbar .fc-center {
+    display: inline  !important;
+    position: absolute  !important;
+    left: 111px  !important;
+    top: 32px  !important;
+}
+
+.fc-button-group{
+    position: relative;
+    top: 25px !important;
+}
+
+.fc button {
+    box-sizing: border-box;
+    margin: 0;
+    height: 3.1em  !important;
+}
+
+.fc-center h2{
+    color: #7c12d0 !important;
+}
+.fc-toolbar.fc-header-toolbar{
+    margin-bottom: 4em !important;
+  }
+
+  .custom-ss-our-events-block li {
+    list-style: none;
+    text-align: center;
+    padding: 22px 30px !important;
+    margin-bottom: -7px;
+}
+
+.custom-ss-our-event-menu-block img{
+    height: auto;
+    width: 100px !important;
+}
 
       /***************mediaquaries*********/
 @media screen and (min-width:120px)and (max-width:319px) {}
