@@ -161,83 +161,18 @@ export class HomeComponent implements OnInit {
   loadMe;
   calenderData = [];
   data = [];
+  todayDaate;
+  today;
+  allEventsCount;
+  techtalkdetails = [];
+  techteachdetails = [];
+  selCal = 'tech teach';
+  calenderDataForCalender = [];
+  viewAllData=[];
   ngOnInit(): void {
 
-
-    //dummy service...................................
-    const dateObj = new Date();
-    const yearMonth = dateObj.getUTCFullYear() + '-' + (dateObj.getUTCMonth() + 1);
-    this.data.push({
-      title: 'All Day Event',
-      start: yearMonth + '-01'
-    },
-      {
-        title: 'Long Event',
-        start: yearMonth + '-07',
-        end: yearMonth + '-10'
-      },
-      {
-        id: 999,
-        title: 'Repeating Event',
-        start: yearMonth + '-09T16:00:00'
-      },
-      {
-        id: 999,
-        title: 'Repeating Event',
-        start: yearMonth + '-16T16:00:00'
-      },
-      {
-        title: 'Conference',
-        start: yearMonth + '-11',
-        end: yearMonth + '-13'
-      },
-      {
-        title: 'Meeting',
-        start: yearMonth + '-12T10:30:00',
-        end: yearMonth + '-12T12:30:00'
-      },
-      {
-        title: 'Lunch',
-        start: yearMonth + '-12T12:00:00'
-      },
-      {
-        title: 'Meeting',
-        start: yearMonth + '-12T14:30:00'
-      },
-      {
-        title: 'Happy Hour',
-        start: yearMonth + '-12T17:30:00'
-      },
-      {
-        title: 'Dinner',
-        start: yearMonth + '-12T20:00:00'
-      },
-      {
-        title: 'Birthday Party',
-        start: yearMonth + '-13T07:00:00'
-      },
-      {
-        title: 'Click for Google',
-        url: 'http://google.com/',
-        start: yearMonth + '-28'
-      });
-
-
-    console.log(this.calenderData);
-
-    this.calendarOptions = {
-      editable: true,
-      eventLimit: false,
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay,listMonth'
-      },
-      events: this.data
-    };
-
     //dummy  code ends
-
+    this.viewAllData=[];
     this.loadMe = true;
     //document.getElementById('signupDropdown2').click();document.getElementById('signupDropdown2').click();
     //this.http.get('http://localhost/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
@@ -247,9 +182,10 @@ export class HomeComponent implements OnInit {
       this.teamDetails = data['1'].teamDetails;
       this.homePageContent = data['3'].homePageData;
       this.getHomePageCounterValues = data['12'].getHomePageCounterValues[0];
-      var techtalkdetails = data['4'].techtalkdetails;
-      var techteachdetails = data['5'].techteachdetails;
-      for (let techTalk of techtalkdetails) {
+      this.techtalkdetails = data['4'].techtalkdetails;
+      this.techteachdetails = data['5'].techteachdetails;
+      
+      for (let techTalk of this.techtalkdetails) {
         var eventObject = {
           start: new Date(techTalk.venuedate),
           end: new Date(techTalk.venuedate),
@@ -258,9 +194,10 @@ export class HomeComponent implements OnInit {
         };
         // console.log(eventObject);
         this.events.push(eventObject);
+        this.viewAllData.push(techTalk);
       }
 
-      for (let techTeach of techteachdetails) {
+      for (let techTeach of this.techteachdetails) {
         var eventObject = {
           start: new Date(techTeach.venuedate),
           end: new Date(techTeach.venuedate),
@@ -268,6 +205,7 @@ export class HomeComponent implements OnInit {
           color: colors.blue
         };
         this.events.push(eventObject);
+        this.viewAllData.push(techTeach);
       }
 
 
@@ -275,8 +213,21 @@ export class HomeComponent implements OnInit {
 
       this.refresh.next();
 
+      this.calendarOptions = {
+        editable: true,
+        eventLimit: false,
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay,listMonth'
+        },
+        events: this.techteachdetails
+      };
+      this.today = new Date();
+      this.todayDaate = this.today.getDate();
+      this.calenderDataForCalender = this.techtalkdetails;
 
-
+      this.allEventsCount = this.events.length;
 
     });
 
@@ -285,7 +236,73 @@ export class HomeComponent implements OnInit {
 
   }
 
+  showTechTalkCal() {
+    this.selCal = 'tech talk';
+    this.calenderDataForCalender = this.techtalkdetails;
 
+    for (let techTalk of this.techtalkdetails) {
+      var eventObject = {
+        start: new Date(techTalk.venuedate),
+        end: new Date(techTalk.venuedate),
+        title: 'Tech Talk Topic : ' + techTalk.techtalktopic,
+        color: colors.lightblue
+      };
+      // console.log(eventObject);
+      this.events.push(eventObject);
+    }
+
+    this.calendarOptions = {
+      editable: true,
+      eventLimit: false,
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay,listMonth'
+      },
+      events: this.events
+    };
+  }
+
+  showTechTeachCal() {
+    this.selCal = 'tech teach';
+    console.log(this.techteachdetails);
+    this.calenderDataForCalender = this.techteachdetails;
+    for (let techTeach of this.techteachdetails) {
+      var eventObject = {
+        start: new Date(techTeach.venuedate),
+        end: new Date(techTeach.venuedate),
+        title: 'Tech Teach Topic : ' + techTeach.topic,
+        color: colors.blue
+      };
+      this.events.push(eventObject);
+    }
+    this.calendarOptions = {
+      editable: true,
+      eventLimit: false,
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay,listMonth'
+      },
+      events: this.events
+    };
+  }
+
+  showAllEventsCal() {
+    this.selCal = 'all events';
+    this.calenderDataForCalender = this.viewAllData;
+    console.log(this.calenderDataForCalender);
+    this.calendarOptions = {
+      editable: true,
+      eventLimit: false,
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay,listMonth'
+      },
+      events: this.events
+    };
+  }
 
 
   closeLoginBox(): void {
