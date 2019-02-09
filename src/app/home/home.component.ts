@@ -55,7 +55,8 @@ const colors: any = {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+
 })
 export class HomeComponent implements OnInit {
 
@@ -65,6 +66,7 @@ export class HomeComponent implements OnInit {
   displayEvent: any;
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
 
+  sliderValue=1;
   view: string = 'month';
 
   viewDate: Date = new Date();
@@ -397,4 +399,36 @@ export class HomeComponent implements OnInit {
       this.showEngship = false;
     }
   }
+
+
+
+  firstSlide = true;
+  secondSlide = false;
+
+  decreaseSlider() {
+    if (this.sliderValue === 1) {
+      return;
+    }
+    this.sliderValue = this.sliderValue - 1;
+
+    if (this.sliderValue === 1) {
+      this.firstSlide = true;
+      this.secondSlide = false;
+    }
+  }
+  increaseSlider() {
+    if (this.sliderValue === 2) {
+      return;
+    }
+    this.sliderValue = this.sliderValue + 1;
+
+    if (this.sliderValue === 2) {
+      this.firstSlide = false;
+      this.secondSlide = true;
+    }
+
+
+  }
+
+
 }

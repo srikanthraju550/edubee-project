@@ -1,29 +1,52 @@
-<br />
-<!-- <div class="row" style="z-index: 1;">
-    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel" data-interval="5000">
-        <ol class="carousel-indicators">
-            <li *ngFor="let imageObj of sliderContent; let i = index;" data-target="#carouselExampleIndicators" [attr.data-slide-to]="i"
-                [ngClass]="{'active' : i==0 }"></li>
+<div class="w_100">
+    <h1 class="custom-heading animated zoomInLeft"><span>STUVATION</span></h1>
+    <p class="custom-ss animated fadeInRight">S t u d e n t <span>+</span> i n n o v a t i o n</p>
+    <p class="arrows"><i class="fa fa-arrow-circle-left" (click)="decreaseSlider()"></i>&nbsp;&nbsp;
+        <span>{{sliderValue}}</span>&nbsp;&nbsp;<i class="fa fa-arrow-circle-right" (click)="increaseSlider()"></i></p>
+    <div class="container-fluid" *ngIf="firstSlide">
+        <div class="row ">
+            <div class="img-lft col-md-6 col-sm-12 animated fadeInLeft">
+                <img src="assets/images/tef-stuvation.png" />
+            </div>
+            <div class="col-md-5 col-sm-12 animated fadeInRight">
+                <div class="content-ryt">
+                    <h4 class="custom-ss-content"> Execute &amp; Express</h4>
+                    <p> Your innovation or Academic project We connect experts, student partners , Academisions
+                        &amp; sponsers</p>
+                    <h3 class="custom-s-content"> <span>" </span>IT'S NOT ABOUT IDEAS.<br> ITS ABOUT MAKING
+                        IDEAS
+                        HAPPEN</h3>
 
-        </ol>
-        <div class="carousel-inner">
-            <div *ngFor="let imageObj of sliderContent; let i = index;" class="carousel-item" [ngClass]="{'active' : i==0 }">
-                <img class="d-block w-100 sliderImageStyle" src="../assets/images/{{imageObj.imagelink}}?auto=yes&bg=666&fg=444" alt="{{imageObj.sliderid}} slide">
-                <div class="carousel-caption d-none d-md-block">
                 </div>
             </div>
-
+            <div class="col-md-1 col-sm-0"></div>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
     </div>
-</div> -->
+
+    <div class="container-fluid" *ngIf="secondSlide">
+        <div class="row ">
+            <div class="img-lft col-md-6 col-sm-12 animated fadeInLeft">
+                <img src="assets/images/slide2.png" />
+            </div>
+            <div class="col-md-5 col-sm-12 animated fadeInRight">
+                <div class="content-ryt">
+                    <p> An initative plateform launched by The Engineers Factory through which students
+                        can get help from co-students, Academicians ,Industrial Experts &amp;
+                        sponsers to execute yourbrilliant innovative thoughts and
+                        academics projucts thus creating a path from being a student to the
+                        next Aryabhata.</p>
+                    <h3 class="custom-s-content"> <span>" </span>IT'S NOT ABOUT IDEAS.<br> ITS ABOUT MAKING
+                        IDEAS
+                        HAPPEN</h3>
+
+                </div>
+            </div>
+            <div class="col-md-1 col-sm-0"></div>
+        </div>
+    </div>
+</div>
+
+
 
 
 
