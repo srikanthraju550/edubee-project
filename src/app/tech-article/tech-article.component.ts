@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { MainServiceService } from '../main-service.service';
-import { FilterPipe } from '../filter.pipe';
+// import { FilterPipe } from '../filter.pipe';
+import { FilterPipe } from 'ngx-filter-pipe';
 
 @Component({
   selector: 'app-tech-article',
@@ -12,18 +13,18 @@ import { FilterPipe } from '../filter.pipe';
 export class TechArticleComponent implements OnInit {
   endpoint: string = "http://localhost/services/"
   selectedTecharticle: any;
-  constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService) { }
+  constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService,private filterPipe: FilterPipe) { }
   sliderContent: any = [];
   //homePageDataFromService=[];
   homePageContent: any = [];
   teamDetails: any = [];
   techarticledetails: any = [];
   ngOnInit(): void {
-    //this.http.get('http://localhost/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
+    //this.http.get('../assets/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
     let url = this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime();
     let userDetails = this.getLoggedInUserObject();
     if (!this.checkLoginStatus())
-      url += "?userid=" + userDetails['userid'];
+      // url += "?userid=" + userDetails['userid'];
 
     this.http.get(url).subscribe(data => {
       console.log(data);
@@ -31,18 +32,15 @@ export class TechArticleComponent implements OnInit {
       this.teamDetails = data['1'].teamDetails;
       this.techarticledetails = data['2'].techarticledetails;
       this.homePageContent = data['3'].homePageData;
-      console.log(this.sliderContent);
-      console.log(this.homePageContent);
-      console.log(this.teamDetails);
       console.log(this.techarticledetails);
     });
   }
-  techArticleFilter = "";
+  techArticleFilter : any = { name: '' };;
   keywordFilter = "";
   techFilter = "";
   subTechFilter = "";
   articleTypeFilter = "";
-  freeFilter = "";
+  freeFilter: any = { name: Number };
   authorFilter = "";
 
   articleUpDownCountUpdate(techarticleid, updateType) {

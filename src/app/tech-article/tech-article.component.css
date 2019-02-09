@@ -42,6 +42,24 @@
 .createarticle1{
     max-width : 70% !important;
 }
+
+.title-name{
+    font-size: 22px;
+    color: #420ba7;
+}
+.abstract-name{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.article-type{
+    background: #3e0aa5;
+    color: white !important;
+    text-decoration: none !important;
+    padding: 6px;
+    font-size: 19px;
+    border-radius: 4px;
+}
 @media only screen and (max-width: 768px) {
 .buttonarticle{
     height: 18%;

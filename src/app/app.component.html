@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid full-w">
     <!-- contentContainer -->
     <div class="row staticNavHeader">
         <div class="col-sm-2 col-lg-2">
@@ -15,8 +15,8 @@
                 <li>
                     <a href="#" class="main-header">TECH WORLD ￬</a>
                     <ul class="hidden sub-drop">
-                        <li><a routerLink="/techbank">TECH BANK</a></li>
-                        <li><a routerLink="/techevent">TECH CONNECT</a></li>
+                        <li class="sub-menu-header"><a routerLink="/techbank">TECH BANK</a></li>
+                        <li class="sub-menu-header"><a routerLink="/techevent">TECH CONNECT</a></li>
                     </ul>
                 </li>
                 <li>
@@ -27,19 +27,31 @@
                 <li><a routerLink="/prozectme" class="main-header">PROZECT ME</a></li>
                 <li><a href="#" class="main-header">BUSINESS</a></li>
 
+
+                <li *ngIf="!checkLoginStatus()">
+                    <a href="#" class="main-header">PROFILE ￬</a>
+                    <ul class="hidden sub-drop">
+                        <li class="sub-menu-header"><a class="dropdown-item" routerLink="/myprofile">MY PROFILE</a></li>
+                        <li class="sub-menu-header"><a class="dropdown-item" routerLink="/engshipRequest">Engship
+                                Requests</a></li>
+                        <li class="sub-menu-header"><a class="dropdown-item" (click)="logout()">LOGOUT</a>
+
+                    </ul>
+                </li>
                 <li class="showInMobile" *ngIf="checkLoginStatus()"><a class="main-header" style="font-size:13px;"
                         data-toggle="modal" href="#" data-target="#loginModal">LOGIN</a></li>
                 <li class="showInMobile" *ngIf="checkLoginStatus()"> <a class="main-header" style="font-size:13px;"
                         data-toggle="dropdown" href="#" role="button">SIGN UP ￬</a>
 
                     <ul class="hidden sign-up-sub">
-                        <li><a class="main-header" style="font-size:13px;" data-toggle="modal" data-target="#studentRegistrationModal"
-                                href="#">STUDENT</a></li>
-                        <li> <a class="main-header" style="font-size:13px;" data-toggle="modal" data-target="#engineerRegistrationModal"
-                                href="#">ENGINEER</a></li>
+                        <li><a class="main-header" style="font-size:13px;" data-toggle="modal"
+                                data-target="#studentRegistrationModal" href="#">STUDENT</a></li>
+                        <li> <a class="main-header" style="font-size:13px;" data-toggle="modal"
+                                data-target="#engineerRegistrationModal" href="#">ENGINEER</a></li>
                     </ul>
 
                 </li>
+
                 <!-- <li *ngIf="checkLoginStatus()">
                     <a href="#" class="main-header">GET STARTED ￬</a>
                     <ul class="hidden get-strt-sub">
@@ -76,9 +88,9 @@
                         <span></span>
                         <span></span> -->
                         <img class="toggle-menu-icon" src="../assets/images/menu-icon.png" (click)="openmenu()">
-                       
+
                         <ul id="menu" class="animated slideInLeft" *ngIf="navbarOpen">
-                                <li><a (click)="hidemenu()" class="close_btn">x</a></li>
+                            <li><a (click)="hidemenu()" class="close_btn">x</a></li>
                             <li><a (click)="goHome()">Home</a></li>
                             <li><a href="#">Tech World ￬</a>
                                 <ul class="hidden sub-drop">
@@ -90,17 +102,25 @@
                             <li><a (click)="goEngShip()">ENG SHIP</a></li>
                             <li><a (click)="goProzeMe()">PROZECT ME</a></li>
                             <li><a href="#">BUSINESS</a></li>
-                            <li class="showInMobile" *ngIf="checkLoginStatus()"><a class="main-header" style="font-size:13px;"
-                                    data-toggle="modal" href="#" data-target="#loginModal">LOGIN</a></li>
-                            <li class="showInMobile" *ngIf="checkLoginStatus()"> <a class="main-header" style="font-size:13px;"
-                                    data-toggle="dropdown" href="#" role="button">SIGN UP ￬</a>
+                            <li class="showInMobile" *ngIf="checkLoginStatus()"><a class="main-header"
+                                    style="font-size:13px;" data-toggle="modal" href="#"
+                                    data-target="#loginModal">LOGIN</a></li>
+                            <li class="showInMobile" *ngIf="checkLoginStatus()"> <a class="main-header"
+                                    style="font-size:13px;" data-toggle="dropdown" href="#" role="button">SIGN UP ￬</a>
 
                                 <ul class="hidden sign-up-sub">
-                                    <li><a class="main-header" style="font-size:13px;" data-toggle="modal" data-target="#studentRegistrationModal"
-                                            href="#">STUDENT</a></li>
-                                    <li> <a class="main-header" style="font-size:13px;" data-toggle="modal" data-target="#engineerRegistrationModal"
-                                            href="#">ENGINEER</a></li>
+                                    <li><a class="main-header" style="font-size:13px;" data-toggle="modal"
+                                            data-target="#studentRegistrationModal" href="#">STUDENT</a></li>
+                                    <li> <a class="main-header" style="font-size:13px;" data-toggle="modal"
+                                            data-target="#engineerRegistrationModal" href="#">ENGINEER</a></li>
                                 </ul>
+                            </li>
+                            <li *ngIf="!checkLoginStatus()">
+                                <a class="dropdown-item" routerLink="/myprofile">MY PROFILE</a></li>
+                            <li *ngIf="!checkLoginStatus()"><a class="dropdown-item"
+                                    routerLink="/engshipRequest">Engship Requests</a></li>
+                            <li *ngIf="!checkLoginStatus()"><a class="dropdown-item" (click)="logout()">LOGOUT</a>
+                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -137,29 +157,30 @@
                             UP</a>
 
                         <ul class="hidden sign-up-sub">
-                            <li><a class="main-header" style="font-size:13px;" data-toggle="modal" data-target="#studentRegistrationModal"
-                                    href="#">STUDENT</a></li>
-                            <li> <a class="main-header" style="font-size:13px;" data-toggle="modal" data-target="#engineerRegistrationModal"
-                                    href="#">ENGINEER</a></li>
+                            <li><a class="main-header" style="font-size:13px;" data-toggle="modal"
+                                    data-target="#studentRegistrationModal" href="#">STUDENT</a></li>
+                            <li> <a class="main-header" style="font-size:13px;" data-toggle="modal"
+                                    data-target="#engineerRegistrationModal" href="#">ENGINEER</a></li>
                         </ul>
 
                     </li>
                 </ul>
                 <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="float: right; margin-left: 25%;">
 
-                    <li ngbDropdown class="nav-item dropdown">
+                    <li class="nav-item">
 
-                        <a id="signupDropdown" ngbDropdownToggle class="dropdown-toggle" data-toggle="dropdown" href="#"
-                            role="button" aria-haspopup="true" aria-expanded="false">
+                        <a role="button" aria-haspopup="true" aria-expanded="false">
 
-                            <img class="profilepicture" style="border-radius: 10em;" src="assets/images/profileImages/{{getLoggedInUserObject()['profilepicture']}}">
+                            <img class="profilepicture" style="border-radius: 10em;"
+                                src="assets/images/profileImages/{{getLoggedInUserObject()['profilepicture']}}">
 
                         </a>
-                        <div ngbDropdownMenu style="transform: none !important; top:0px !important; left: 0px !important;">
+                        <!-- <div ngbDropdownMenu
+                            style="transform: none !important; top:0px !important; left: 0px !important;">
                             <a class="dropdown-item" routerLink="/myprofile">MY PROFILE</a>
                             <a class="dropdown-item" routerLink="/engshipRequest">Engship Requests</a>
                             <a class="dropdown-item" (click)="logout()">LOGOUT</a>
-                        </div>
+                        </div> -->
                     </li>
 
                 </ul>
@@ -169,53 +190,10 @@
                 </span>
             </div>
         </div>
-        <div class="w_100">
-            <h1 class="custom-heading animated zoomInLeft"><span>STUVATION</span></h1>
-            <p class="custom-ss animated fadeInRight">S t u d e n t <span>+</span> i n n o v a t i o n</p>
-            <p class="arrows"><i class="fa fa-arrow-circle-left" (click)="decreaseSlider()"></i>&nbsp;&nbsp;
-                <span>{{sliderValue}}</span>&nbsp;&nbsp;<i class="fa fa-arrow-circle-right" (click)="increaseSlider()"></i></p>
-            <div class="container-fluid" *ngIf="firstSlide">
-                <div class="row ">
-                    <div class="img-lft col-md-6 col-sm-12 animated fadeInLeft">
-                        <img src="assets/images/tef-stuvation.png" />
-                    </div>
-                    <div class="col-md-5 col-sm-12 animated fadeInRight">
-                        <div class="content-ryt">
-                            <h4 class="custom-ss-content"> Execute &amp; Express</h4>
-                            <p> Your innovation or Academic project We connect experts, student partners , Academisions
-                                &amp; sponsers</p>
-                            <h3 class="custom-s-content"> <span>" </span>IT'S NOT ABOUT IDEAS.<br> ITS ABOUT MAKING
-                                IDEAS
-                                HAPPEN</h3>
 
-                        </div>
-                    </div>
-                    <div class="col-md-1 col-sm-0"></div>
-                </div>
-            </div>
 
-            <div class="container-fluid" *ngIf="secondSlide">
-                <div class="row ">
-                    <div class="img-lft col-md-6 col-sm-12 animated fadeInLeft">
-                        <img src="assets/images/slide2.png" />
-                    </div>
-                    <div class="col-md-5 col-sm-12 animated fadeInRight">
-                        <div class="content-ryt">
-                            <p> An initative plateform launched by The Engineers Factory through which students
-                                can get help from co-students, Academicians ,Industrial Experts &amp;
-                                sponsers to execute yourbrilliant innovative thoughts and
-                                academics projucts thus creating a path from being a student to the
-                                next Aryabhata.</p>
-                            <h3 class="custom-s-content"> <span>" </span>IT'S NOT ABOUT IDEAS.<br> ITS ABOUT MAKING
-                                IDEAS
-                                HAPPEN</h3>
 
-                        </div>
-                    </div>
-                    <div class="col-md-1 col-sm-0"></div>
-                </div>
-            </div>
-        </div>
+
 
     </div>
 
@@ -224,7 +202,7 @@
 
 
 
-    <div class="row" style="margin-top:1em;">
+    <div class="row" style="margin-top:-1px;">
         <div class="col-1">
 
         </div>
@@ -303,7 +281,8 @@
         <!-- <span style="width: 100%;  color: black;">
         <hr style="border-top: 1px solid black !important;" /></span> -->
 
-        <div class="col-12" style=" color: black;; font-size: small;margin-top: 13px;text-align: center;color: #7c12d0;">
+        <div class="col-12"
+            style=" color: black;; font-size: small;margin-top: 13px;text-align: center;color: #7c12d0;">
             Copyright @ 2018 theengineersfactory.com. All rights reserved.
         </div>
         <!-- <div class="col-6">
@@ -329,10 +308,12 @@
                 <span style="text-align: center; color: white; width: 100%;">
                     <h4>CREATE A TECH ARTICLE</h4>
                 </span>
-                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeCreateTechArticleModal">&times;</button>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                    id="closeCreateTechArticleModal">&times;</button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="createTechArticleForm" (ngSubmit)="onCreateTechArticleFormSubmit()" enctype="multipart/form-data">
+                <form [formGroup]="createTechArticleForm" (ngSubmit)="onCreateTechArticleFormSubmit()"
+                    enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="email">Contact Email:</label>
@@ -355,14 +336,17 @@
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="technology">Engineering Technology:</label>
-                            <select type="text" class="form-control" formControlName="technology" (change)="updateSubTechList(createTechArticleForm.value.technology)">
-                                <option *ngFor="let technology of technologyconfig; let i = index;" [value]="technology.technologyid">{{technology.technologyname}}</option>
+                            <select type="text" class="form-control" formControlName="technology"
+                                (change)="updateSubTechList(createTechArticleForm.value.technology)">
+                                <option *ngFor="let technology of technologyconfig; let i = index;"
+                                    [value]="technology.technologyid">{{technology.technologyname}}</option>
                             </select>
                         </div>
                         <div *ngIf="subtechnologylist?.length!=0" class="form-group col-6">
                             <label for="subtechnology">Sub-Engineering Technology:</label>
                             <select type="text" class="form-control" formControlName="subtechnology">
-                                <option *ngFor="let subtechnology of subtechnologylist; let i = index; " [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
+                                <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
+                                    [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
                             </select>
                         </div>
                     </div>
@@ -381,7 +365,8 @@
                             <br />
                             <label for="paidArticle">Is Paid Article :</label>
                             &nbsp;&nbsp;
-                            <input type="radio" name="paidArticle" formControlName="paidArticle" selected value="Y">&nbsp;
+                            <input type="radio" name="paidArticle" formControlName="paidArticle" selected
+                                value="Y">&nbsp;
                             Yes&nbsp;&nbsp;
                             <input type="radio" name="paidArticle" formControlName="paidArticle" value="N">&nbsp; No
                         </div>
@@ -397,21 +382,26 @@
                             <input type="radio" name="publicationSelector" formControlName="publicationSelector"
                                 selected value="1">&nbsp;
                             Publication Link&nbsp;&nbsp;
-                            <input type="radio" name="publicationSelector" formControlName="publicationSelector" value="2">&nbsp;
+                            <input type="radio" name="publicationSelector" formControlName="publicationSelector"
+                                value="2">&nbsp;
                             File Upload
                         </div>
-                        <div class="form-group col-6" *ngIf="createTechArticleForm.value.paidArticle=='Y' && createTechArticleForm.value.articleType=='Article'">
+                        <div class="form-group col-6"
+                            *ngIf="createTechArticleForm.value.paidArticle=='Y' && createTechArticleForm.value.articleType=='Article'">
                             <label for="cost">Cost:</label>
                             <input type="number" class="form-control" formControlName="cost">
                         </div>
-                        <div class="form-group col-6" *ngIf="createTechArticleForm.value.publicationSelector=='1'&&((createTechArticleForm.value.paidArticle=='N' && createTechArticleForm.value.articleType=='Article') ||(createTechArticleForm.value.articleType!='Article'))">
+                        <div class="form-group col-6"
+                            *ngIf="createTechArticleForm.value.publicationSelector=='1'&&((createTechArticleForm.value.paidArticle=='N' && createTechArticleForm.value.articleType=='Article') ||(createTechArticleForm.value.articleType!='Article'))">
                             <label for="publicationlink">Publication Link:</label>
                             <input type="text" class="form-control" formControlName="publicationlink">
                         </div>
-                        <div class="form-group col-6" *ngIf="createTechArticleForm.value.publicationSelector=='2'&&((createTechArticleForm.value.paidArticle=='N' && createTechArticleForm.value.articleType=='Article') ||(createTechArticleForm.value.articleType!='Article'))">
+                        <div class="form-group col-6"
+                            *ngIf="createTechArticleForm.value.publicationSelector=='2'&&((createTechArticleForm.value.paidArticle=='N' && createTechArticleForm.value.articleType=='Article') ||(createTechArticleForm.value.articleType!='Article'))">
                             <label for="publicationFileUpload">Upload Publication File:</label>
                             <input ng2FileSelect type='file' class="form-control" (change)="readUrl($event)"
-                                formControlName="publicationFileUpload" accept="*.*" [uploader]="fileUploaderTechArticle">
+                                formControlName="publicationFileUpload" accept="*.*"
+                                [uploader]="fileUploaderTechArticle">
                         </div>
                     </div>
                     <div style="width: 100%; text-align: center; align-items: center">
@@ -420,7 +410,8 @@
                                 <input type="checkbox" formControlName="agreeTermsAndConditions"> Agree to Terms and
                                 Conditions</label>
                         </div>
-                        <button type="submit" class="btn btn-primary" [disabled]="!createTechArticleForm.valid || !createTechArticleForm.value.agreeTermsAndConditions">Create
+                        <button type="submit" class="btn btn-primary"
+                            [disabled]="!createTechArticleForm.valid || !createTechArticleForm.value.agreeTermsAndConditions">Create
                             Tech Article</button>
                     </div>
                 </form>
@@ -443,10 +434,12 @@
                 <span style="text-align: center; color: white; width: 100%;">
                     <h4>CREATE STUVATION</h4>
                 </span>
-                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeCreateStuvationFormModal">&times;</button>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                    id="closeCreateStuvationFormModal">&times;</button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="createStuvationForm" (ngSubmit)="onCreateStuvationFormSubmit()" enctype="multipart/form-data">
+                <form [formGroup]="createStuvationForm" (ngSubmit)="onCreateStuvationFormSubmit()"
+                    enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="projectType">Project Type:</label>
@@ -470,14 +463,17 @@
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="technology">Engineering Technology:</label>
-                            <select type="text" class="form-control" formControlName="technology" (change)="updateSubTechList(createStuvationForm.value.technology)">
-                                <option *ngFor="let technology of technologyconfig; let i = index;" [value]="technology.technologyid">{{technology.technologyname}}</option>
+                            <select type="text" class="form-control" formControlName="technology"
+                                (change)="updateSubTechList(createStuvationForm.value.technology)">
+                                <option *ngFor="let technology of technologyconfig; let i = index;"
+                                    [value]="technology.technologyid">{{technology.technologyname}}</option>
                             </select>
                         </div>
                         <div *ngIf="subtechnologylist?.length!=0" class="form-group col-6">
                             <label for="subtechnology">Sub-Engineering Technology:</label>
                             <select type="text" class="form-control" formControlName="subtechnology">
-                                <option *ngFor="let subtechnology of subtechnologylist; let i = index; " [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
+                                <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
+                                    [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
                             </select>
                         </div>
                     </div>
@@ -506,7 +502,8 @@
                             <input type="radio" name="prototypeAvailable" formControlName="prototypeAvailable" selected
                                 value="Y">&nbsp;
                             Yes&nbsp;&nbsp;
-                            <input type="radio" name="prototypeAvailable" formControlName="prototypeAvailable" value="N">&nbsp;
+                            <input type="radio" name="prototypeAvailable" formControlName="prototypeAvailable"
+                                value="N">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6" *ngIf="createStuvationForm.value.prototypeAvailable=='Y'">
@@ -525,11 +522,11 @@
                             <br />
                             <label for="lookingProfessorGuidance">Looking Guidance from academic professors :</label>
                             &nbsp;&nbsp;
-                            <input type="radio" name="lookingProfessorGuidance" formControlName="lookingProfessorGuidance"
-                                selected value="Y">&nbsp;
+                            <input type="radio" name="lookingProfessorGuidance"
+                                formControlName="lookingProfessorGuidance" selected value="Y">&nbsp;
                             Yes&nbsp;&nbsp;
-                            <input type="radio" name="lookingProfessorGuidance" formControlName="lookingProfessorGuidance"
-                                value="N">&nbsp;
+                            <input type="radio" name="lookingProfessorGuidance"
+                                formControlName="lookingProfessorGuidance" value="N">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6">
@@ -548,7 +545,8 @@
                             <input type="radio" name="lookingMentorship" formControlName="lookingMentorship" selected
                                 value="Y">&nbsp;
                             Yes&nbsp;&nbsp;
-                            <input type="radio" name="lookingMentorship" formControlName="lookingMentorship" value="N">&nbsp;
+                            <input type="radio" name="lookingMentorship" formControlName="lookingMentorship"
+                                value="N">&nbsp;
                             No
                         </div>
 
@@ -577,7 +575,8 @@
 
                             <label for="lastDateOfJoining">Last Date of joining :</label>
                             &nbsp;&nbsp;
-                            <input type="date" class="form-control" formControlName="lastDateOfJoining" min='{{this.minDateString}}'>
+                            <input type="date" class="form-control" formControlName="lastDateOfJoining"
+                                min='{{this.minDateString}}'>
                         </div>
                     </div>
                     <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
@@ -589,7 +588,8 @@
                             <input type="radio" name="lookingSponsorship" formControlName="lookingSponsorship" selected
                                 value="Y">&nbsp;
                             Yes&nbsp;&nbsp;
-                            <input type="radio" name="lookingSponsorship" formControlName="lookingSponsorship" value="N">&nbsp;
+                            <input type="radio" name="lookingSponsorship" formControlName="lookingSponsorship"
+                                value="N">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6">
@@ -600,7 +600,8 @@
                         </div>
                     </div>
                     <div style="width: 100%; text-align: center; align-items: center">
-                        <button type="submit" class="btn btn-primary" [disabled]="!createStuvationForm.valid || createStuvationForm.value.idea=='' || createStuvationForm.value.ideaDescription==''">Create
+                        <button type="submit" class="btn btn-primary"
+                            [disabled]="!createStuvationForm.valid || createStuvationForm.value.idea=='' || createStuvationForm.value.ideaDescription==''">Create
                         </button>
                     </div>
                 </form>
@@ -622,15 +623,18 @@
                 <span style="text-align: center; color: white; width: 100%;">
                     <h4>CREATE ENGSHIP</h4>
                 </span>
-                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeCreateEngshipnFormModal">&times;</button>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                    id="closeCreateEngshipnFormModal">&times;</button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="createEngshipForm" (ngSubmit)="onCreateEngshipFormSubmit()" enctype="multipart/form-data">
+                <form [formGroup]="createEngshipForm" (ngSubmit)="onCreateEngshipFormSubmit()"
+                    enctype="multipart/form-data">
                     <div class="row">
 
                         <span style="text-align: center; width: 100%;">
                             <label style="font-weight: bold;">Looking for :&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <input type="radio" name="lookingFor" formControlName="lookingFor" selected value="Mentor">&nbsp;
+                            <input type="radio" name="lookingFor" formControlName="lookingFor" selected
+                                value="Mentor">&nbsp;
                             Mentor&nbsp;&nbsp;
                             <input type="radio" name="lookingFor" formControlName="lookingFor" value="Mentee">&nbsp;
                             Mentee
@@ -730,14 +734,17 @@
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="technology">Engineering Technology:</label>
-                                <select type="text" class="form-control" formControlName="technology" (change)="updateSubTechList(createStuvationForm.value.technology)">
-                                    <option *ngFor="let technology of technologyconfig; let i = index;" [value]="technology.technologyid">{{technology.technologyname}}</option>
+                                <select type="text" class="form-control" formControlName="technology"
+                                    (change)="updateSubTechList(createStuvationForm.value.technology)">
+                                    <option *ngFor="let technology of technologyconfig; let i = index;"
+                                        [value]="technology.technologyid">{{technology.technologyname}}</option>
                                 </select>
                             </div>
                             <div *ngIf="subtechnologylist?.length!=0" class="form-group col-6">
                                 <label for="subtechnology">Sub-Engineering Technology:</label>
                                 <select type="text" class="form-control" formControlName="subtechnology">
-                                    <option *ngFor="let subtechnology of subtechnologylist; let i = index; " [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
+                                    <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
+                                        [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
                                 </select>
                             </div>
                         </div>
@@ -795,7 +802,8 @@
                                 <input type="radio" name="mentorBeforeFlag" formControlName="mentorBeforeFlag" selected
                                     value="Y">&nbsp;
                                 Yes&nbsp;&nbsp;
-                                <input type="radio" name="mentorBeforeFlag" formControlName="mentorBeforeFlag" value="N">&nbsp;
+                                <input type="radio" name="mentorBeforeFlag" formControlName="mentorBeforeFlag"
+                                    value="N">&nbsp;
                                 No
                             </div>
                         </div>
@@ -805,11 +813,11 @@
                                 <br />
                                 <label for="lookingForEFSupportFlag">Looking for Engineers Factory Support ? :</label>
                                 &nbsp;&nbsp;
-                                <input type="radio" name="lookingForEFSupportFlag" formControlName="lookingForEFSupportFlag"
-                                    selected value="Y">&nbsp;
+                                <input type="radio" name="lookingForEFSupportFlag"
+                                    formControlName="lookingForEFSupportFlag" selected value="Y">&nbsp;
                                 Yes&nbsp;&nbsp;
-                                <input type="radio" name="lookingForEFSupportFlag" formControlName="lookingForEFSupportFlag"
-                                    value="N">&nbsp;
+                                <input type="radio" name="lookingForEFSupportFlag"
+                                    formControlName="lookingForEFSupportFlag" value="N">&nbsp;
                                 No
                             </div>
                         </div>
@@ -849,7 +857,8 @@
                 <span style="text-align: center; color: white; width: 100%;">
                     <h4>Engship Terms and Conditions</h4>
                 </span>
-                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeEngshipModalTnCModal">&times;</button>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                    id="closeEngshipModalTnCModal">&times;</button>
             </div>
             <div class="modal-body">
                 By completing this application form, I will obey the mentor code of honour and you agree to the goals
@@ -873,16 +882,19 @@
                 <span style="text-align: center; color: white; width: 100%;">
                     <h4>CREATE Academic Project</h4>
                 </span>
-                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeCreateStuvationFormModal">&times;</button>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                    id="closeCreateStuvationFormModal">&times;</button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="createStuvationForm" (ngSubmit)="onCreateStuvationFormSubmit()" enctype="multipart/form-data">
+                <form [formGroup]="createStuvationForm" (ngSubmit)="onCreateStuvationFormSubmit()"
+                    enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="projectType">Project Type:</label>
                             <select type="text" class="form-control" formControlName="projectType">
 
-                                <option *ngFor="let stuvationtype of stuvationtypeconfig; let i = index;" [value]="stuvationtype.typeId">{{stuvationtype.stuvationTypeValue
+                                <option *ngFor="let stuvationtype of stuvationtypeconfig; let i = index;"
+                                    [value]="stuvationtype.typeId">{{stuvationtype.stuvationTypeValue
                                     | uppercase}}</option>
                             </select>
                         </div>
@@ -900,20 +912,24 @@
                     </div>
                     <div class="form-group">
                         <label for="abstract">Abstract:</label>
-                        <textarea class="form-control" formControlName="abstract" placeholder="1000 words" maxlength="1000"></textarea>
+                        <textarea class="form-control" formControlName="abstract" placeholder="1000 words"
+                            maxlength="1000"></textarea>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="technology">Engineering Technology:</label>
-                            <select type="text" class="form-control" formControlName="technology" (change)="updateSubTechList(createStuvationForm.value.technology)">
-                                <option *ngFor="let technology of technologyconfig; let i = index;" [value]="technology.technologyid">{{technology.technologyname}}</option>
+                            <select type="text" class="form-control" formControlName="technology"
+                                (change)="updateSubTechList(createStuvationForm.value.technology)">
+                                <option *ngFor="let technology of technologyconfig; let i = index;"
+                                    [value]="technology.technologyid">{{technology.technologyname}}</option>
                             </select>
                         </div>
                         <div *ngIf="subtechnologylist?.length!=0" class="form-group col-6">
                             <label for="subtechnology">Sub-Engineering Technology:</label>
                             <select type="text" class="form-control" formControlName="subtechnology">
-                                <option *ngFor="let subtechnology of subtechnologylist; let i = index; " [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
+                                <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
+                                    [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
                             </select>
                         </div>
                     </div>
@@ -928,7 +944,8 @@
                             <input type="radio" name="prototypeAvailable" formControlName="prototypeAvailable" selected
                                 value="Y">&nbsp;
                             Yes&nbsp;&nbsp;
-                            <input type="radio" name="prototypeAvailable" formControlName="prototypeAvailable" value="N">&nbsp;
+                            <input type="radio" name="prototypeAvailable" formControlName="prototypeAvailable"
+                                value="N">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6" *ngIf="createStuvationForm.value.prototypeAvailable=='Y'">
@@ -948,11 +965,11 @@
                             <br />
                             <label for="lookingProfessorGuidance">Looking Guidance from academic professors :</label>
                             &nbsp;&nbsp;
-                            <input type="radio" name="lookingProfessorGuidance" formControlName="lookingProfessorGuidance"
-                                selected value="Y">&nbsp;
+                            <input type="radio" name="lookingProfessorGuidance"
+                                formControlName="lookingProfessorGuidance" selected value="Y">&nbsp;
                             Yes&nbsp;&nbsp;
-                            <input type="radio" name="lookingProfessorGuidance" formControlName="lookingProfessorGuidance"
-                                value="N">&nbsp;
+                            <input type="radio" name="lookingProfessorGuidance"
+                                formControlName="lookingProfessorGuidance" value="N">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6">
@@ -971,7 +988,8 @@
                             <input type="radio" name="lookingMentorship" formControlName="lookingMentorship" selected
                                 value="Y">&nbsp;
                             Yes&nbsp;&nbsp;
-                            <input type="radio" name="lookingMentorship" formControlName="lookingMentorship" value="N">&nbsp;
+                            <input type="radio" name="lookingMentorship" formControlName="lookingMentorship"
+                                value="N">&nbsp;
                             No
                         </div>
 
@@ -1000,7 +1018,8 @@
 
                             <label for="lastDateOfJoining">Last Date of joining :</label>
                             &nbsp;&nbsp;
-                            <input type="date" class="form-control" formControlName="lastDateOfJoining" min='{{this.minDateString}}'>
+                            <input type="date" class="form-control" formControlName="lastDateOfJoining"
+                                min='{{this.minDateString}}'>
                         </div>
                     </div>
                     <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
@@ -1012,7 +1031,8 @@
                             <input type="radio" name="lookingSponsorship" formControlName="lookingSponsorship" selected
                                 value="Y">&nbsp;
                             Yes&nbsp;&nbsp;
-                            <input type="radio" name="lookingSponsorship" formControlName="lookingSponsorship" value="N">&nbsp;
+                            <input type="radio" name="lookingSponsorship" formControlName="lookingSponsorship"
+                                value="N">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6">
@@ -1023,7 +1043,8 @@
                         </div>
                     </div>
                     <div style="width: 100%; text-align: center; align-items: center">
-                        <button type="submit" class="btn btn-primary" [disabled]="!createStuvationForm.valid || createStuvationForm.value.title=='' || createStuvationForm.value.abstract==''">Create
+                        <button type="submit" class="btn btn-primary"
+                            [disabled]="!createStuvationForm.valid || createStuvationForm.value.title=='' || createStuvationForm.value.abstract==''">Create
                         </button>
                     </div>
                 </form>
@@ -1046,23 +1067,24 @@
                 <span style="text-align: center; color: white; width: 100%;">
                     <h4>CREATE A TECH CONNECT</h4>
                 </span>
-                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeCreateTechTeachModal">&times;</button>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                    id="closeCreateTechTeachModal">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
 
                     <span style="text-align: center; width: 100%;">
                         <label style="font-weight: bold;">Select Connect Type:&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                        <input type="radio" name="techConnectSelector" [(ngModel)]="techConnectSelector" (click)="openMe()"
-                            selected value="1">&nbsp;
+                        <input type="radio" name="techConnectSelector" [(ngModel)]="techConnectSelector"
+                            (click)="openMe()" selected value="1">&nbsp;
                         Tech Teach&nbsp;&nbsp;
-                        <input type="radio" name="techConnectSelector" [(ngModel)]="techConnectSelector" (click)="openMe()"
-                            value="2">&nbsp;
+                        <input type="radio" name="techConnectSelector" [(ngModel)]="techConnectSelector"
+                            (click)="openMe()" value="2">&nbsp;
                         Tech Talk
                     </span>
                 </div>
-                <form *ngIf="techConnectSelector=='1'" [formGroup]="createTechTeachForm" (ngSubmit)="onCreateTechTeachFormSubmit()"
-                    enctype="multipart/form-data">
+                <form *ngIf="techConnectSelector=='1'" [formGroup]="createTechTeachForm"
+                    (ngSubmit)="onCreateTechTeachFormSubmit()" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="topic">Topic:</label>
                         <input type="text" class="form-control" formControlName="topic">
@@ -1070,7 +1092,8 @@
                     <div class="form-group">
                         <label for="topic">Tech Teach Type:</label>
                         <select type="text" class="form-control" formControlName="techteachtype">
-                            <option *ngFor="let type of techTeachTypeConfig; let i = index;" [value]="type.typeId">{{type.techTeachTypeValue}}</option>
+                            <option *ngFor="let type of techTeachTypeConfig; let i = index;" [value]="type.typeId">
+                                {{type.techTeachTypeValue}}</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -1083,14 +1106,17 @@
                     </div>
                     <div class="form-group">
                         <label for="technology">Technology:</label>
-                        <select type="text" class="form-control" formControlName="technology" (change)="updateSubTechList(createTechTeachForm.value.technology)">
-                            <option *ngFor="let technology of technologyconfig; let i = index;" [value]="technology.technologyid">{{technology.technologyname}}</option>
+                        <select type="text" class="form-control" formControlName="technology"
+                            (change)="updateSubTechList(createTechTeachForm.value.technology)">
+                            <option *ngFor="let technology of technologyconfig; let i = index;"
+                                [value]="technology.technologyid">{{technology.technologyname}}</option>
                         </select>
                     </div>
                     <div *ngIf="subtechnologylist?.length!=0" class="form-group">
                         <label for="subtechnology">Sub-Technology:</label>
                         <select type="text" class="form-control" formControlName="subtechnology">
-                            <option *ngFor="let subtechnology of subtechnologylist; let i = index; " [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
+                            <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
+                                [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
                         </select>
                     </div>
 
@@ -1127,7 +1153,8 @@
                                 <label>
                                     Event Date:
 
-                                    <input type="date" class="form-control" formControlName="date" min='{{this.minDateString}}'>
+                                    <input type="date" class="form-control" formControlName="date"
+                                        min='{{this.minDateString}}'>
                                 </label>
                                 <!-- <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [minDate]="{year: 2010, month: 1, day: 1}" formControlName="date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" > -->
 
@@ -1249,8 +1276,8 @@
                             Tech Teach</button>
                     </div>
                 </form>
-                <form *ngIf="techConnectSelector=='2'" [formGroup]="createTechTalkForm" (ngSubmit)="onCreateTechTalkFormSubmit()"
-                    enctype="multipart/form-data">
+                <form *ngIf="techConnectSelector=='2'" [formGroup]="createTechTalkForm"
+                    (ngSubmit)="onCreateTechTalkFormSubmit()" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="topic">Topic:</label>
                         <input type="text" class="form-control" formControlName="topic">
@@ -1259,20 +1286,24 @@
                     <div class="form-group">
                         <label for="topic">Tech Talk Type:</label>
                         <select type="text" class="form-control" formControlName="techtalktype">
-                            <option *ngFor="let type of techTalkTypeConfig; let i = index;" [value]="type.typeId">{{type.techTalkTypeValue}}</option>
+                            <option *ngFor="let type of techTalkTypeConfig; let i = index;" [value]="type.typeId">
+                                {{type.techTalkTypeValue}}</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="technology">Technology:</label>
-                        <select type="text" class="form-control" formControlName="technology" (change)="updateSubTechList(createTechTalkForm.value.technology)">
-                            <option *ngFor="let technology of technologyconfig; let i = index;" [value]="technology.technologyid">{{technology.technologyname}}</option>
+                        <select type="text" class="form-control" formControlName="technology"
+                            (change)="updateSubTechList(createTechTalkForm.value.technology)">
+                            <option *ngFor="let technology of technologyconfig; let i = index;"
+                                [value]="technology.technologyid">{{technology.technologyname}}</option>
                         </select>
                     </div>
                     <div *ngIf="subtechnologylist?.length!=0" class="form-group">
                         <label for="subtechnology">Sub-Technology:</label>
                         <select type="text" class="form-control" formControlName="subtechnology">
-                            <option *ngFor="let subtechnology of subtechnologylist; let i = index; " [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
+                            <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
+                                [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
                         </select>
                     </div>
 
@@ -1306,7 +1337,8 @@
                             <div class="form-group col-4">
                                 <label>
                                     Event Date:
-                                    <input type="date" class="form-control" formControlName="date" min='{{this.minDateString}}'>
+                                    <input type="date" class="form-control" formControlName="date"
+                                        min='{{this.minDateString}}'>
                                 </label>
                             </div>
                             <div class="form-group col-4">
@@ -1445,10 +1477,12 @@
                 <span style="text-align: center; color: white; width: 100%;">
                     <h4>CREATE A TECH TALK</h4>
                 </span>
-                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeCreateTechTalkModal">&times;</button>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                    id="closeCreateTechTalkModal">&times;</button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="createTechTalkForm" (ngSubmit)="onCreateTechTalkFormSubmit()" enctype="multipart/form-data">
+                <form [formGroup]="createTechTalkForm" (ngSubmit)="onCreateTechTalkFormSubmit()"
+                    enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="topic">Topic:</label>
                         <input type="text" class="form-control" formControlName="topic">
@@ -1457,20 +1491,24 @@
                     <div class="form-group">
                         <label for="topic">Tech Talk Type:</label>
                         <select type="text" class="form-control" formControlName="techtalktype">
-                            <option *ngFor="let type of techTalkTypeConfig; let i = index;" [value]="type.typeId">{{type.techTalkTypeValue}}</option>
+                            <option *ngFor="let type of techTalkTypeConfig; let i = index;" [value]="type.typeId">
+                                {{type.techTalkTypeValue}}</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="technology">Technology:</label>
-                        <select type="text" class="form-control" formControlName="technology" (change)="updateSubTechList(createTechTalkForm.value.technology)">
-                            <option *ngFor="let technology of technologyconfig; let i = index;" [value]="technology.technologyid">{{technology.technologyname}}</option>
+                        <select type="text" class="form-control" formControlName="technology"
+                            (change)="updateSubTechList(createTechTalkForm.value.technology)">
+                            <option *ngFor="let technology of technologyconfig; let i = index;"
+                                [value]="technology.technologyid">{{technology.technologyname}}</option>
                         </select>
                     </div>
                     <div *ngIf="subtechnologylist?.length!=0" class="form-group">
                         <label for="subtechnology">Sub-Technology:</label>
                         <select type="text" class="form-control" formControlName="subtechnology">
-                            <option *ngFor="let subtechnology of subtechnologylist; let i = index; " [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
+                            <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
+                                [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
                         </select>
                     </div>
 
@@ -1504,7 +1542,8 @@
                             <div class="form-group col-4">
                                 <label>
                                     Event Date:
-                                    <input type="date" class="form-control" formControlName="date" min='{{this.minDateString}}'>
+                                    <input type="date" class="form-control" formControlName="date"
+                                        min='{{this.minDateString}}'>
                                 </label>
                             </div>
                             <div class="form-group col-4">
@@ -1642,13 +1681,15 @@
                 <span style="text-align: center; color: white; width: 100%;">
                     <h4>LOGIN</h4>
                 </span>
-                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeLoginForm">&times;</button>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                    id="closeLoginForm">&times;</button>
             </div>
             <div class="modal-body">
                 <form [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmit()" enctype="multipart/form-data">
 
                     <div class="form-group">
-                        <input type="text" class="form-control" formControlName="username" placeholder="Username or Email">
+                        <input type="text" class="form-control" formControlName="username"
+                            placeholder="Username or Email">
                     </div>
 
                     <div class="form-group">
@@ -1661,7 +1702,8 @@
                         </div> -->
 
                     <div style="width: 100%; text-align: center; align-items: center">
-                        <button style="width: 100%;" type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">LOGIN</button>
+                        <button style="width: 100%;" type="submit" [disabled]="!loginForm.valid"
+                            class="btn btn-primary">LOGIN</button>
                         <br /> OR
                         <br />
 
@@ -1669,11 +1711,22 @@
 
                 </form>
                 <div ngbDropdown class="nav-item dropdown">
-                    <a id="signupDropdown2" style="margin-left: 0;" ngbDropdownToggle class="nav-link dropdown-toggle btn btn-primary"
-                        data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">SIGNUP</a>
+                    <a id="signupDropdown2" style="margin-left: 0;" ngbDropdownToggle
+                        class="nav-link dropdown-toggle btn btn-primary" data-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">SIGNUP</a>
                     <div ngbDropdownMenu style="transform: none !important; top:0px !important; left: 0px !important;">
-                        <a class="dropdown-item" data-toggle="modal" data-target="#studentRegistrationModal" (click)="closeLoginBox()">STUDENT</a>
-                        <a class="dropdown-item" data-toggle="modal" data-target="#engineerRegistrationModal" (click)="closeLoginBox()">ENGINEER</a>
+                        <ul>
+                            <li class="sub-menu-header">
+                                <a class="dropdown-item" data-toggle="modal" data-target="#studentRegistrationModal"
+                                    (click)="closeLoginBox()">STUDENT</a>
+                            </li>
+                            <li class="sub-menu-header">
+                                <a class="dropdown-item" data-toggle="modal" data-target="#engineerRegistrationModal"
+                                    (click)="closeLoginBox()">ENGINEER</a>
+                            </li>
+                        </ul>
+
+
                     </div>
                 </div>
             </div>
@@ -1694,11 +1747,13 @@
                 <span style="text-align: center; color: white; width: 100%;">
                     <h4>LOGIN ALERT</h4>
                 </span>
-                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeLoginForm">&times;</button>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                    id="closeLoginForm">&times;</button>
             </div>
             <div class="modal-body" style="text-align:center; align-content: center;">
                 Kindly Login to access this section.<br />
-                <button class=" btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#loginModal">LOGIN</button>
+                <button class=" btn btn-primary" data-toggle="modal" data-dismiss="modal"
+                    data-target="#loginModal">LOGIN</button>
             </div>
             <!--<div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1717,7 +1772,8 @@
                 <span style="text-align: center; color: white; width: 100%;">
                     <h4>Stuvation Details</h4>
                 </span>
-                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeLoginForm">&times;</button>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                    id="closeLoginForm">&times;</button>
             </div>
             <div class="modal-body" style="text-align:center; align-content: center;">
                 Student + Innovation<br />
@@ -1747,7 +1803,8 @@
                 <span style="text-align: center; color: white; width: 100%;">
                     <h4>TechTeach Details</h4>
                 </span>
-                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeLoginForm">&times;</button>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                    id="closeLoginForm">&times;</button>
             </div>
             <div class="modal-body" style="text-align:center; align-content: center;">
                 * Tech Teach * :<br />
@@ -1783,7 +1840,8 @@
                 <span style="text-align: center; color: white; width: 100%;">
                     <h4>TechTalk Details</h4>
                 </span>
-                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeLoginForm">&times;</button>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                    id="closeLoginForm">&times;</button>
             </div>
             <div class="modal-body" style="text-align:center; align-content: center;">
                 * Tech Talk * : <br />
@@ -1815,7 +1873,8 @@
                 <span style="text-align: center; color: white; width: 100%;">
                     <h4>Academic Project Details</h4>
                 </span>
-                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeLoginForm">&times;</button>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                    id="closeLoginForm">&times;</button>
             </div>
             <div class="modal-body" style="text-align:center; align-content: center;">
                 * Acamedic ProZ * : <br />
@@ -1846,7 +1905,8 @@
                 <span style="text-align: center; color: white; width: 100%;">
                     <h4>ProzectMe Details</h4>
                 </span>
-                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeLoginForm">&times;</button>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                    id="closeLoginForm">&times;</button>
             </div>
             <div class="modal-body" style="text-align:center; align-content: center;">
                 * Prozect me * :<br />
@@ -1878,7 +1938,8 @@
                 <span style="text-align: center; color: white; width: 100%;">
                     <h4>Engship Details</h4>
                 </span>
-                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeLoginForm">&times;</button>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                    id="closeLoginForm">&times;</button>
             </div>
             <div class="modal-body" style="text-align:center; align-content: center;">
                 * Engship * :<br />
@@ -1909,10 +1970,12 @@
                 <span style="text-align: center; color: white; width: 100%;">
                     <h4>Join as Engineer</h4>
                 </span>
-                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeEngineerRegistrationForm">&times;</button>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                    id="closeEngineerRegistrationForm">&times;</button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="engineerRegistrationForm" (ngSubmit)="onEngineerRegistrationFormSubmit()" enctype="multipart/form-data">
+                <form [formGroup]="engineerRegistrationForm" (ngSubmit)="onEngineerRegistrationFormSubmit()"
+                    enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
@@ -2076,7 +2139,8 @@
                                 Conditions</label>
                         </div>
 
-                        <button type="submit" [disabled]="!engineerRegistrationForm.valid || !engineerRegistrationForm.value.agreeTermsAndConditions"
+                        <button type="submit"
+                            [disabled]="!engineerRegistrationForm.valid || !engineerRegistrationForm.value.agreeTermsAndConditions"
                             class="btn btn-primary">Sign Up!</button>
                     </div>
                 </form>
@@ -2099,10 +2163,12 @@
                 <span style="text-align: center; color: white; width: 100%;">
                     <h4>Join as Student</h4>
                 </span>
-                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeStudentRegistrationForm">&times;</button>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                    id="closeStudentRegistrationForm">&times;</button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="studentRegistrationForm" (ngSubmit)="onStudentRegistrationFormSubmit()" enctype="multipart/form-data">
+                <form [formGroup]="studentRegistrationForm" (ngSubmit)="onStudentRegistrationFormSubmit()"
+                    enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
@@ -2235,7 +2301,8 @@
                                 Conditions</label>
                         </div>
 
-                        <button type="submit" [disabled]="!studentRegistrationForm.valid || !studentRegistrationForm.value.agreeTermsAndConditions"
+                        <button type="submit"
+                            [disabled]="!studentRegistrationForm.valid || !studentRegistrationForm.value.agreeTermsAndConditions"
                             class="btn btn-primary">Sign Up!</button>
                     </div>
                 </form>

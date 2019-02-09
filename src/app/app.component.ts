@@ -58,10 +58,9 @@ export class AppComponent {
   isCollapsed = true;
   title = 'app';
   url;
-  sliderValue = 1;
+
   // endpoint: string = "http://localhost/services/";
   endpoint: string = "http://localhost/services/";
-
   // endpoint: string = "http://theengineersfactory.com/assets/services/";
   //endpoint: string="http://localhost/services/"
   userid;
@@ -728,32 +727,9 @@ export class AppComponent {
     this.router.navigate(['/prozectme']);
     this.navbarOpen = false;
   }
-  firstSlide = true;
-  secondSlide = false;
-
-  decreaseSlider() {
-    if (this.sliderValue === 1) {
-      return;
-    }
-    this.sliderValue = this.sliderValue - 1;
-
-    if (this.sliderValue === 1) {
-      this.firstSlide = true;
-      this.secondSlide = false;
-    }
-  }
-  increaseSlider() {
-    if (this.sliderValue === 2) {
-      return;
-    }
-    this.sliderValue = this.sliderValue + 1;
-
-    if (this.sliderValue === 2) {
-      this.firstSlide = false;
-      this.secondSlide = true;
-    }
 
 
-  }
+
+
 
 }

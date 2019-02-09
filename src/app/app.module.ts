@@ -1,5 +1,5 @@
 import { BotDetectCaptchaModule } from 'angular-captcha';
-import { FullCalendarModule } from 'ng-fullcalendar';
+import { FullCalendarModule } from 'ng-fullcalendar';import { FilterPipeModule } from 'ngx-filter-pipe'; 
  
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -75,6 +75,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule, 
     CommonModule,
     FormsModule,
+    FilterPipeModule,
     NgbModalModule.forRoot(),
     NgbModule.forRoot(),
     CalendarModule.forRoot(),
