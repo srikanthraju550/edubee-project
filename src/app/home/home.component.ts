@@ -156,6 +156,8 @@ export class HomeComponent implements OnInit {
   url;
   getHomePageCounterValues;
 
+  // endpoint: string = "http://localhost/services/";
+  // endpoint: string = "http://www.theengineersfactory.com/assets/services/";
   endpoint: string = "http://localhost/services/";
 
   loadMe;
@@ -175,7 +177,7 @@ export class HomeComponent implements OnInit {
     this.viewAllData = [];
     this.loadMe = true;
     //document.getElementById('signupDropdown2').click();document.getElementById('signupDropdown2').click();
-    //this.http.get('../assets/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
+    //this.http.get('http://localhost/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
     this.http.get(this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime()).subscribe(data => {
 
       this.sliderContent = data['0'].sliderContent;
@@ -213,6 +215,7 @@ export class HomeComponent implements OnInit {
 
       this.refresh.next();
 
+
       this.calendarOptions = {
         editable: true,
         eventLimit: false,
@@ -221,6 +224,7 @@ export class HomeComponent implements OnInit {
           center: 'title',
           right: 'month,agendaWeek,agendaDay,listMonth'
         },
+
         events: this.techteachdetails
       };
       this.today = new Date();

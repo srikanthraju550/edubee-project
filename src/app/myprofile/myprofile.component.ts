@@ -43,7 +43,7 @@ export class MyprofileComponent implements OnInit {
   stateconfig: any = [];
   profilePageCounterValues;
   
-  endpoint: string="../assets/services/"
+  endpoint: string="http://localhost/services/"
   constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private fb: FormBuilder) { }
   userDetails:any;
   ngOnInit() {

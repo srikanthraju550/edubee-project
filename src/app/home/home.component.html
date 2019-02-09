@@ -246,17 +246,17 @@
                     &nbsp;
                     <div>
                         <h2>Latest Events</h2>
-                        <div class="custom-ss-event-date-info" *ngFor="let data of calenderDataForCalender">
+                        <div class="custom-ss-event-date-info " *ngFor="let data of calenderDataForCalender">
                             <h3>{{data.technologyname}}</h3>
                             <div class="row">
                                 <div class="col-md-2 col-lg-2">
                                     <div class="custom-ss-event-image"></div>
                                 </div>
-                                <div class="col-md-10 col-lg-10">
-                                    <p><img src="../assets/images/calendar.svg" class="custom-ss-event-date-img">
+                                <div class="col-md-10 col-lg-10 cal-ico">
+                                    <p><img src="../assets/images/calendar.png" class="custom-ss-event-date-img">
                                         {{data.venuedate}}</p>
                                     <p>
-                                        <!-- <img src="../assets/images/pointer.png" class="custom-ss-event-date-img"> -->
+                                        <img src="../assets/images/placeholder.png" class="custom-ss-event-date-img">
                                         {{data.address}},{{data.city}}</p>
                                 </div>
                             </div>

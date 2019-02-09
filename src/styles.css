@@ -106,8 +106,21 @@
 
 }
 /*resCarousel Css End*/
-
-
+.modal .btn.btn-primary{
+    height: 50px;
+    padding: 0 30px;
+    font-size: 17px;
+    margin-top: -2px;
+    border-radius: 44px;
+    color: #ffff;
+    background: rgba(51,9,158,1);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(51,9,158,1)), color-stop(47%, rgba(51,9,158,1)), color-stop(100%, rgba(192,39,230,1)));
+    background: linear-gradient(to right, rgba(51,9,158,1) 0%, rgba(51,9,158,1) 47%, rgba(192,39,230,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33099e', endColorstr='#c027e6', GradientType=1 );
+    box-shadow: 3px 5px 15px 3px rgb(117, 117, 117);
+    border: 0;
+    outline: 0;
+}
 .cal-cell{
 width: 2em !important;
 height: 2em !important;
@@ -207,7 +220,7 @@ height: 2em !important;
     }
 
 
-    .phone[_ngcontent-c0] #menuToggle[_ngcontent-c0] span[_ngcontent-c0] {
+    .phone #menuToggle span {
         display: flex;
         width: 29px !important;
         height: 2px !important;
@@ -223,7 +236,7 @@ height: 2em !important;
        
     }
     
-    .phone[_ngcontent-c0] nav[_ngcontent-c0] {
+    .phone nav {
         background-color: #efeff1 !important;
         height: 48px !important;
         width: 54px !important;
@@ -236,10 +249,10 @@ height: 2em !important;
         }
 
 
-.phone[_ngcontent-c0] #menu[_ngcontent-c0]{
+.phone #menu{
 padding-top: 17px !important;
 }
-.phone[_ngcontent-c0] a[_ngcontent-c0]{
+.phone a{
 color:#540db4 !important;
 cursor: pointer !important;
 }
