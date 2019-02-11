@@ -537,9 +537,15 @@ cursor: pointer;
   background: rgba(0, 0, 0, 0.712);
 }
 .logn_modl .modal-content{
-  top: 15%;
+  top: 5%;
+  left: 25%;
   margin: 0 auto;
-  width: 65%;
+  width: 35%;
+  border-top-left-radius: .4rem;
+  border-top-right-radius: .4rem;
+}
+.logn_modl .modal-body{
+  padding: 25px 30px;
 }
 
 /*********************************************************************************************************************************************************************************
@@ -594,7 +600,12 @@ cursor: pointer;
 
 /************mediaquaries*******/
 @media screen and (min-width: 320px) and (max-width: 567px) {
-
+  .logn_modl .modal-content{
+    top: 2%;
+    left: 0%;
+    margin: 0 auto;
+    width: 90%;
+  }
   .phone {
     display: block;   
     left: 8px;

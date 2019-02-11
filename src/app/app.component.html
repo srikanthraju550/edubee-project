@@ -1973,34 +1973,33 @@
                 <form [formGroup]="engineerRegistrationForm" (ngSubmit)="onEngineerRegistrationFormSubmit()"
                     enctype="multipart/form-data">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-12"><!--col-6-->
                             <div class="form-group">
-                                <label for="firstname">Name:</label>
-                                <input type="text" class="form-control" formControlName="name">
+                                <!-- <label for="firstname">Name:</label> -->
+                                <input type="text" class="form-control" formControlName="name" placeholder="Name" >
                             </div>
 
                             <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="email" email="true" class="form-control" formControlName="email">
+                                <!-- <label for="email">Email:</label> -->
+                                <input type="email" email="true" class="form-control" formControlName="email" placeholder="Email">
                             </div>
                             <div class="form-group">
-                                <label for="contact">Contact Number:</label>
+                                <!-- <label for="contact">Contact Number:</label> -->
                                 <input type="text" class="form-control" formControlName="contact" minlength="10"
-                                    maxlength="10" (keypress)="_keyPress($event)">
+                                    maxlength="10" (keypress)="_keyPress($event)" placeholder="Contact Number">
                             </div>
-                        </div>
-                        <div class="col-6">
+                            
                             <div class="form-group">
-                                <label for="username">Username:</label>
-                                <input type="text" class="form-control" formControlName="username">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password:</label>
-                                <input type="password" class="form-control" formControlName="password">
+                                <!-- <label for="username">Username:</label> -->
+                                <input type="text" class="form-control" formControlName="username" placeholder="Username">
                             </div>
                             <div class="form-group">
-                                <label for="confirmpassword">Confirm Password:</label>
-                                <input type="password" class="form-control" formControlName="confirmpassword">
+                                <!-- <label for="password">Password:</label> -->
+                                <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <!-- <label for="confirmpassword">Confirm Password:</label> -->
+                                <input type="password" class="form-control" formControlName="confirmpassword" placeholder="Confirm Password">
                             </div>
                             <!-- <div class="form-group">
                                 <label for="dob">Date of birth:</label>
@@ -2168,36 +2167,34 @@
                 <form [formGroup]="studentRegistrationForm" (ngSubmit)="onStudentRegistrationFormSubmit()"
                     enctype="multipart/form-data">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label for="firstname">Name:</label>
-                                <input type="text" class="form-control" formControlName="name">
+                                <!-- <label for="firstname">Name:</label> -->
+                                <input type="text" class="form-control" formControlName="name" placeholder="Name">
                             </div>
 
                             <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="email" email="true" class="form-control" formControlName="email">
+                                <!-- <label for="email">Email:</label> -->
+                                <input type="email" email="true" class="form-control" formControlName="email" placeholder="Email">
                             </div>
                             <div class="form-group">
-                                <label for="contact">Contact Number:</label>
+                                <!-- <label for="contact">Contact Number:</label> -->
                                 <input type="text" class="form-control" formControlName="contact" minlength="10"
-                                    maxlength="10" (keypress)="_keyPress($event)">
+                                    maxlength="10" (keypress)="_keyPress($event)" placeholder="Contact Number">
                             </div>
 
 
-                        </div>
-                        <div class="col-6">
                             <div class="form-group">
-                                <label for="username">Username:</label>
-                                <input type="text" class="form-control" formControlName="username">
+                                <!-- <label for="username">Username:</label> -->
+                                <input type="text" class="form-control" formControlName="username" placeholder="Username">
                             </div>
                             <div class="form-group">
-                                <label for="password">Password:</label>
-                                <input type="password" class="form-control" formControlName="password">
+                                <!-- <label for="password">Password:</label> -->
+                                <input type="password" class="form-control" formControlName="password" placeholder="Password"> 
                             </div>
                             <div class="form-group">
-                                <label for="confirmpassword">Confirm Password:</label>
-                                <input type="password" class="form-control" formControlName="confirmpassword">
+                                <!-- <label for="confirmpassword">Confirm Password:</label> -->
+                                <input type="password" class="form-control" formControlName="confirmpassword" placeholder="Confirm Password">
                             </div>
                             <!-- <div class="form-group">
                                     <label for="dob">Date of birth:</label>
