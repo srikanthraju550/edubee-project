@@ -32,7 +32,6 @@ export class TechArticleComponent implements OnInit {
       this.teamDetails = data['1'].teamDetails;
       this.techarticledetails = data['2'].techarticledetails;
       this.homePageContent = data['3'].homePageData;
-      console.log(this.techarticledetails);
     });
   }
   techArticleFilter: any = { articletitle: '', name: '', technologyname: '', subtechname: '', cost: 0 };
