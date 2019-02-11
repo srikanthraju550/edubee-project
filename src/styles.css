@@ -108,7 +108,7 @@
 }
 /*resCarousel Css End*/
 .modal .btn.btn-primary{
-    height: 50px;
+    height: 48px;
     padding: 0 30px;
     font-size: 17px;
     margin-top: -2px;
@@ -119,8 +119,10 @@
     background: linear-gradient(to right, rgba(51,9,158,1) 0%, rgba(51,9,158,1) 47%, rgba(192,39,230,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33099e', endColorstr='#c027e6', GradientType=1 );
     box-shadow: 3px 5px 15px 3px rgb(117, 117, 117);
-    border: 0;
+    border: 1px solid transparent;
     outline: 0;
+    cursor: pointer;
+    opacity: .8;
 }
 .cal-cell{
 width: 2em !important;
