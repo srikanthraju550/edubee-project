@@ -236,8 +236,8 @@ export class AppComponent {
       this.techTalkTypeConfig = data['8'].techtalktypeconfig;
       this.techTeachTypeConfig = data['9'].techteachtypeconfig;
       this.stuvationtypeconfig = data['11'].stuvationtypeconfig;
-      document.getElementById("signupDropdown").click();
-      document.getElementById("signupDropdown").click();
+      // document.getElementById("signupDropdown").click();
+      // document.getElementById("signupDropdown").click();
       this.updateSubTechList(this.createTechArticleForm.value.technology);
     });
   }

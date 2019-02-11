@@ -31,17 +31,11 @@ export class TechBankComponent implements OnInit {
   ngOnInit() : void {
     this.http.get(this.endpoint+'getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
      //this.http.get('http://localhost:8080/edubee/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
-      console.log(data);
       this.sliderContent = data['0'].sliderContent;
       this.teamDetails=data['1'].teamDetails;
       this.homePageContent=data['3'].homePageData;
       this.techtalkdetails=data['4'].techtalkdetails;
       this.techteachdetails=data['5'].techteachdetails;
-      console.log(this.sliderContent);
-      console.log(this.homePageContent);
-      console.log(this.teamDetails);
-      console.log(this.techtalkdetails);
-      console.log(this.techteachdetails);
       this.techteachLength=this.techtalkdetails.length;
       
     });    

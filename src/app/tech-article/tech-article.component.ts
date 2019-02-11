@@ -13,7 +13,7 @@ import { FilterPipe } from 'ngx-filter-pipe';
 export class TechArticleComponent implements OnInit {
   endpoint: string = "http://localhost/services/"
   selectedTecharticle: any;
-  constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService,private filterPipe: FilterPipe) { }
+  constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private filterPipe: FilterPipe) { }
   sliderContent: any = [];
   //homePageDataFromService=[];
   homePageContent: any = [];
@@ -24,7 +24,7 @@ export class TechArticleComponent implements OnInit {
     let url = this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime();
     let userDetails = this.getLoggedInUserObject();
     if (!this.checkLoginStatus())
-      // url += "?userid=" + userDetails['userid'];
+      var params = "?userid=" + userDetails['userid'];
 
     this.http.get(url).subscribe(data => {
       console.log(data);
@@ -35,13 +35,13 @@ export class TechArticleComponent implements OnInit {
       console.log(this.techarticledetails);
     });
   }
-  techArticleFilter : any = { name: '' };;
-  keywordFilter = "";
-  techFilter = "";
-  subTechFilter = "";
+  techArticleFilter: any = { articletitle: '', name: '', technologyname: '', subtechname: '', cost: 0 };
+  keywordFilter: any = { name: '' };
+  techFilter: any = { technologyname: '' };
+  subTechFilter: any = { subtechname: '' };
   articleTypeFilter = "";
-  freeFilter: any = { name: Number };
-  authorFilter = "";
+  freeFilter: any = { cost: Number };
+  authorFilter: any = { name: '' };
 
   articleUpDownCountUpdate(techarticleid, updateType) {
     let userDetails = this.getLoggedInUserObject();
@@ -186,4 +186,62 @@ export class TechArticleComponent implements OnInit {
     this.mainService.logout();
   }
 
+  showKeyword = true;
+  showArticle = false;
+  showTechnology = false;
+  showSubTech = false;
+  showAuthor = false;
+  showCost = false;
+
+  selectKeyword() {
+    this.showKeyword = true;
+    this.showArticle = false;
+    this.showTechnology = false;
+    this.showSubTech = false;
+    this.showAuthor = false;
+    this.showCost = false;
+  }
+
+  selectType() {
+    this.showKeyword = false;
+    this.showArticle = true;
+    this.showTechnology = false;
+    this.showSubTech = false;
+    this.showAuthor = false;
+    this.showCost = false;
+  }
+
+  selectTechnology() {
+    this.showKeyword = false;
+    this.showArticle = false;
+    this.showTechnology = true;
+    this.showSubTech = false;
+    this.showAuthor = false;
+    this.showCost = false;
+  }
+  selectSubTechnology() {
+    this.showKeyword = false;
+    this.showArticle = false;
+    this.showTechnology = false
+    this.showSubTech = true;
+    this.showAuthor = false;
+    this.showCost = false;
+  }
+
+  selectAuthor() {
+    this.showKeyword = false;
+    this.showArticle = false;
+    this.showTechnology = false
+    this.showSubTech = false;
+    this.showAuthor = true;
+    this.showCost = false;
+  }
+  selectFree() {
+    this.showKeyword = false;
+    this.showArticle = false;
+    this.showTechnology = false
+    this.showSubTech = false;
+    this.showAuthor = false;
+    this.showCost = true;
+  }
 }
