@@ -523,6 +523,24 @@ cursor: pointer;
   cursor: pointer;
 }
 
+.logn_modl{
+  height: 100%;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.712);
+  background: url('https://static1.squarespace.com/static/588e767db8a79b901b662c49/t/588ecea21b631b0e7c0302e2/1485754019842/HoW+collage.jpg');
+  width: 100%!important;
+  max-width: 100%!important;
+}
+.bg-blk{
+  height: 100%;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.712);
+}
+.logn_modl .modal-content{
+  top: 15%;
+  margin: 0 auto;
+  width: 65%;
+}
 
 /*********************************************************************************************************************************************************************************
 ************************************************************Responsive Styles*****************************************************************************************/

@@ -60,8 +60,8 @@ export class AppComponent {
   url;
 
   // endpoint: string = "http://localhost/services/";
-  endpoint: string = "http://localhost/services/";
-  // endpoint: string = "http://theengineersfactory.com/assets/services/";
+  // endpoint: string = "http://localhost/services/";
+  endpoint: string = "http://theengineersfactory.com/assets/services/";
   //endpoint: string="http://localhost/services/"
   userid;
   uploader: FileUploader = new FileUploader({ url: this.endpoint + "profilePictureUpload.php", removeAfterUpload: false, autoUpload: false });
@@ -236,8 +236,8 @@ export class AppComponent {
       this.techTalkTypeConfig = data['8'].techtalktypeconfig;
       this.techTeachTypeConfig = data['9'].techteachtypeconfig;
       this.stuvationtypeconfig = data['11'].stuvationtypeconfig;
-      document.getElementById("signupDropdown").click();
-      document.getElementById("signupDropdown").click();
+      // document.getElementById("signupDropdown").click();
+      // document.getElementById("signupDropdown").click();
       this.updateSubTechList(this.createTechArticleForm.value.technology);
     });
   }
