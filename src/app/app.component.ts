@@ -60,8 +60,8 @@ export class AppComponent {
   url;
 
   // endpoint: string = "http://localhost/services/";
-  endpoint: string = "http://localhost/services/";
-  // endpoint: string = "http://theengineersfactory.com/assets/services/";
+  // endpoint: string = "http://localhost/services/";
+  endpoint: string = "http://theengineersfactory.com/assets/services/";
   //endpoint: string="http://localhost/services/"
   userid;
   uploader: FileUploader = new FileUploader({ url: this.endpoint + "profilePictureUpload.php", removeAfterUpload: false, autoUpload: false });
