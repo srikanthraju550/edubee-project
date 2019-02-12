@@ -184,7 +184,7 @@
                     </li>
 
                 </ul>
-                <span style="color: white; font-weight: bold; text-align: center; width: 100%;    top: 100px;
+                <span *ngIf="!checkLoginStatus()" style="color: white; font-weight: bold; text-align: center; width: 100%;    top: 100px;
             position: absolute;left:-10px;">
                     {{getLoggedInUserObject()['name'] | titlecase}}
                 </span>

@@ -59,8 +59,8 @@ export class AppComponent {
   title = 'app';
   url;
 
-  endpoint: string = "http://theengineersfactory.com/assets/services/";
-  //endpoint: string="http://localhost/services/"
+  // endpoint: string = "http://theengineersfactory.com/assets/services/";
+  endpoint: string = "http://localhost/services/"
   userid;
   uploader: FileUploader = new FileUploader({ url: this.endpoint + "profilePictureUpload.php", removeAfterUpload: false, autoUpload: false });
   fileUploaderTechArticle: FileUploader = new FileUploader({ url: this.endpoint + "publicationFileUpload.php", removeAfterUpload: false, autoUpload: false });
@@ -358,7 +358,7 @@ export class AppComponent {
     technology: ['1', Validators.required],
 
     paidArticle: ['Y'],
-    cost: ['',Validators.required],
+    cost: ['', Validators.required],
     publicationlink: [''],
     userDetails: this.fb.group(this.getLoggedInUserObject()),
     articleType: ['Article', Validators.required],
