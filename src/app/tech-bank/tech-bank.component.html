@@ -89,8 +89,8 @@
     <div class="accordion" id="accordionExample" style="margin: 1em; ">
       <div class="card"
         *ngFor="let techteach of techteachdetails | filter:techEventFilter:keywordFilter:false:techFilter:subTechFilter:false:false:'techEventFilter'; let i = index; ">
-        <div class="card-header" id="teachheading{{1}}" data-toggle="collapse" attr.data-target="#teachcollapse{{i}}"
-          aria-expanded="false" attr.aria-controls="teachcollapse{{i}}">
+        <div class="card-header" id="teachheading{{1}}" data-toggle="" attr.data-target="#teachcollapse{{i}}"
+          aria-expanded="" attr.aria-controls="teachcollapse{{i}}">
           <h5 class="mb-0">
             <button *ngIf="i!=0" class="btn btn-link collapsed" type="button">
               Tech Teach
@@ -101,45 +101,38 @@
           </h5>
         </div>
 
-        <div id="teachcollapse{{i}}" [ngClass]="{'show' : i==0}" class="collapse"
+        <div id="teachcollapse{{i}}" [ngClass]="{'show' : i==0}" class=""
           attr.aria-labelledby="teachheading{{i}}" data-parent="#accordionExample">
           <div class="card-body">
             <div class="col-12">
-              <span class="cardSubHeading">Originator</span>
+              <div><b class="crd-lft">Created on</b> <span class="crd-ryt">: {{techteach.createdon}}</span></div>
+              <div><b class="crd-lft">Event on</b> <span class="crd-ryt">: {{techteach.venuedate}}</span></div>
+              <div><b class="crd-lft" style="font-size: 14px;">No.of People Applied</b> <span class="crd-ryt"> : {{techteach.registrationCount}}</span></div>
+              <br/>
+
+              <span class="cardSubHeading crd-hdng">Originator</span>
+              <div><b class="crd-lft">Name</b> <span class="crd-ryt">: {{techteach.originatorname}}</span></div>
+              <div><b class="crd-lft">Contact Number</b> <span class="crd-ryt">: {{techteach.originatorcontactnumber}}</span></div>
+              <div><b class="crd-lft">Email</b>  <span class="crd-ryt" style="font-size: 14px;">: {{techteach.originatoremail}}</span></div>
               <br />
-              <b>Name</b> : {{techteach.originatorname}}
-              <span style="float:right;">
-                <b>Created on</b> : {{techteach.createdon}}</span>
-              <br />
-              <b>Contact Number</b> : {{techteach.originatorcontactnumber}}
-              <span style="float:right;">
-                <b>Event on</b> : {{techteach.venuedate}}</span>
-              <br />
-              <b>Email</b> : {{techteach.originatoremail}}
-              <br />
-              <span style="float:right;">
-                <b>Number of people applied</b> : {{techteach.registrationCount}}</span>
-              <br />
-              <span class="cardSubHeading">Other Details</span>
-              <br />
-              <b>Tech Teach Topic</b> : {{techteach.topic}}
-              <br />
-              <b>Industrial Expert</b> : {{techteach.speakername}}
-              <br />
-              <b>No. of Years Experience</b> : {{techteach.experience}}
-              <ul class="nav nav-pills" style="float: right;">
+             
+              <span class="cardSubHeading crd-hdng">Other Details</span>
+              <div><b class="crd-lft">Tech Teach Topic</b> <span class="crd-ryt">: {{techteach.topic}}</span></div>
+              <div><b class="crd-lft">Industrial Expert</b> <span class="crd-ryt">: {{techteach.speakername}}</span></div>
+              <div><b class="crd-lft" style="font-size: 13px;">No.of Years Experience</b> <span class="crd-ryt">: {{techteach.experience}} Yrs</span></div>             
+              <div><b class="crd-lft">Registration Fee</b> <span class="crd-ryt">: {{techteach.regfee}}Rs Per Person</span></div>
+              <ul class="nav nav-pills crd-btn-dv">
                 <li class="nav-item">
-                  <button class="nav-link btn btn-light" style="background-color: #FE9404; color: white !important;"
+                  <button class="nav-link btn btn-light" style="background-color: #eaeaea;color: #4c4c4c !important;"
                     (click)="viewTechTeachDetails(techteach)" data-toggle="modal" data-target="#detailsModal">View
                     Detail's</button>
                 </li>
                 <li class="nav-item" *ngIf="!checkLoginStatus()">
-                  <button class="nav-link btn btn-light" style="background-color: #B3B3B3; color: black !important;"
+                  <button class="nav-link btn btn-light" style="background-color: #FE9404; color: white !important;"
                     (click)="applyForEventTechTeach(techteach)">Apply for the event</button>
                 </li>
               </ul>
               <br />
-              <b>Registration Fee</b> : {{techteach.regfee}}Rs Per Person
             </div>
           </div>
         </div>

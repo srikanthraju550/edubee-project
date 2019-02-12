@@ -15,9 +15,13 @@
 }
 
 .cardSubHeading{
-    font-size: 1.5rem; 
-    color: #33099e; 
-   
+    font-size: 1.2rem;
+    color: #292929;
+    background: #ffff42;
+    margin: 5px auto;
+    text-align: center;
+    font-weight: 500;
+    padding: 5px 0px;
 }
 
 .createbank{
@@ -92,4 +96,37 @@
         margin: 0.4em;
         font-size: 25px;
     }
+}
+
+/***********newcode******/
+.crd-hdng, .crd-btn-dv{
+    float: left;
+    width: 100%;
+}
+.crd-btn-dv{
+    margin: 15px auto;
+}
+.crd-lft{
+    float: left;
+    width: 40%;
+}
+.crd-ryt {
+    float: right;
+    width: 60%;
+}
+
+.accordion .card {
+    width: 33%;
+    float: left;
+    margin: 18px 2px;
+    border: 1px solid #33099e87!important;
+}
+.accordion .card .col-12 div {
+    float: left;
+    width: 100%;
+    padding: 3px 0px;
+}
+h5 button.btn.btn-link.collapsed {
+    text-decoration: none;
+    cursor: initial;
 }

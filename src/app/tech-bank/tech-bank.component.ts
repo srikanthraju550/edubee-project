@@ -10,7 +10,8 @@ import { FilterPipe } from '../filter.pipe';
   styleUrls: ['./tech-bank.component.css']
 })
 export class TechBankComponent implements OnInit {
-  endpoint: string = "http://localhost/services/"
+  // endpoint: string = "http://localhost/services/";
+  endpoint: string = "http://www.theengineersfactory.com/assets/services/";
   constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService) { }
   sliderContent: any = [];
   //homePageDataFromService=[];
