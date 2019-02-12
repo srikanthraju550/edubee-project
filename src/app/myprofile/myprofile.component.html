@@ -1,85 +1,88 @@
 <div class="row">
   <span style="text-align: center;  width: 100%;">
-    <h1 style="color : #19578A;">Profile</h1>
+    <h1 style="color : #33099e;">Profile</h1>
   </span>
 </div>
 <div class="row" *ngIf="profilePageCounterValues!=undefined">
   <div class="col-sm-2" style="text-align: center">
     <div>
-      <img class="profilepicture" src="../assets/images/profileImages/{{getLoggedInUserObject()['profilepicture']}}" alt="Card image cap">
+      <img class="profilepicture" src="../assets/images/profileImages/{{getLoggedInUserObject()['profilepicture']}}"
+        alt="Card image cap">
     </div>
     <div>
       <b style=" text-transform: capitalize;">{{getLoggedInUserObject()['name']}}</b>
-      <br/>
+      <br />
       <span style="font-size: 0.85rem; text-transform: capitalize;">{{getLoggedInUserObject()['usertype']}}</span>
-      <br/>
-      <span style="font-size: 0.85rem; font-weight: bold; text-transform: capitalize;">{{getLoggedInUserObject()['followerCount']}}
+      <br />
+      <span
+        style="font-size: 0.85rem; font-weight: bold; text-transform: capitalize;">{{getLoggedInUserObject()['followerCount']}}
         followers
       </span>
     </div>
   </div>
   <div class="col-sm-8" style="text-align: center">
     <div class="row" style="text-align: center;">
-        <div class="col-sm-2" style="border: 1px solid blue;">
-            <span style="color:#19578A; font-weight: bold">Stuvation</span>
-            <hr class="hrnew">
-            Mini: {{profilePageCounterValues['@miniProjectCount']}}
-            <br/> Major: {{profilePageCounterValues['@majorProjectCount']}}
-            <br/> Stuvation: {{profilePageCounterValues['@stuvationCount']}}
-          </div>
+      <div class="col-sm-2" style="border: 1px solid blue;">
+        <span style="color:#33099e; font-weight: bold">Stuvation</span>
+        <hr class="hrnew">
+        Mini: {{profilePageCounterValues['@miniProjectCount']}}
+        <br /> Major: {{profilePageCounterValues['@majorProjectCount']}}
+        <br /> Stuvation: {{profilePageCounterValues['@stuvationCount']}}
+      </div>
       <div class="col-sm-3" style="border: 1px solid blue;">
-        <span style="color:#19578A; font-weight: bold">Tech Bank</span>
+        <span style="color:#33099e; font-weight: bold">Tech Bank</span>
         <hr class="hrnew">
         Research Paper: {{profilePageCounterValues['@researchPaperCount']}}
-        <br/> White Paper: {{profilePageCounterValues['@whitePaperCount']}}
-        <br/> Articles: {{profilePageCounterValues['@articleCount']}}
+        <br /> White Paper: {{profilePageCounterValues['@whitePaperCount']}}
+        <br /> Articles: {{profilePageCounterValues['@articleCount']}}
 
       </div>
       <div class="col-sm-3" style="border: 1px solid blue;">
-        <span style="color:#19578A; font-weight: bold">Tech Connect</span>
+        <span style="color:#33099e; font-weight: bold">Tech Connect</span>
         <hr class="hrnew">
         Tech Talk: {{profilePageCounterValues['@techTalkCount']}}
-        <br/> Tech Teach: {{profilePageCounterValues['@techMeetCount']}}
-        <br/> Workshop: {{profilePageCounterValues['@workshopCount']}}
-        <br/> Trainings: {{profilePageCounterValues['@trainingsCount']}}
+        <br /> Tech Teach: {{profilePageCounterValues['@techMeetCount']}}
+        <br /> Workshop: {{profilePageCounterValues['@workshopCount']}}
+        <br /> Trainings: {{profilePageCounterValues['@trainingsCount']}}
       </div>
-      
+
       <div class="col-sm-2" style="border: 1px solid blue;">
-        <span style="color:#19578A; font-weight: bold">Project Me</span>
+        <span style="color:#33099e; font-weight: bold">Project Me</span>
         <hr class="hrnew">
         Projects: {{profilePageCounterValues['@projectsCount']}}
       </div>
       <div class="col-sm-2" style="border: 1px solid blue;">
-        <span style="color:#19578A; font-weight: bold">Engship</span>
+        <span style="color:#33099e; font-weight: bold">Engship</span>
         <hr class="hrnew">
         Internship: {{profilePageCounterValues['@internshipCount']}}
-        <br/> Scholarship: {{profilePageCounterValues['@scholarshipCount']}}
-        <br/> Mentorship: {{profilePageCounterValues['@mentorshipCount']}}
+        <br /> Scholarship: {{profilePageCounterValues['@scholarshipCount']}}
+        <br /> Mentorship: {{profilePageCounterValues['@mentorshipCount']}}
       </div>
     </div>
   </div>
   <div class="col-sm-2" style="text-align: center; ">
-    <div class="circle" style="font-weight: bold;margin-left: 2em;">{{this.profilePageCounterValues['totalScore']}}</div>
-    <br/>
+    <div class="circle" style="font-weight: bold;margin-left: 2em;">{{this.profilePageCounterValues['totalScore']}}
+    </div>
+    <br />
     <div style="margin-left: 2em;" *ngIf="!checkLoginStatus()">
       <h4>Profile Score</h4>
-      <!-- <button type="button" class="btn btn-primary" style="background-color: #19578A; color: white;font-weight: bold;" data-toggle="modal"
+      <!-- <button type="button" class="btn btn-primary" style="background-color: #33099e; color: white;font-weight: bold;" data-toggle="modal"
         data-target="#createTechArticleModal">Edit Profile</button> -->
     </div>
   </div>
 </div>
-<br/>
+<br />
 <div class="row">
-  <span style="text-align: left;  width: 100%; background-color: #19578A;">
+  <span style="text-align: left;  width: 100%; background-color: #33099e;">
     <h3 style="color : white; margin: 0.5em;">BASIC INFORMATION</h3>
   </span>
 </div>
 
-<form *ngIf="userDetails['usertype']=='engineer'" [formGroup]="engineerRegistrationForm" (ngSubmit)="onEngineerRegistrationFormSubmit()"
-  enctype="multipart/form-data">
+<form *ngIf="userDetails['usertype']=='engineer'" [formGroup]="engineerRegistrationForm"
+  (ngSubmit)="onEngineerRegistrationFormSubmit()" enctype="multipart/form-data">
   <div class="row">
     <div class="col-sm-6">
-      <br/>
+      <br />
       <div class="form-group">
         <label for="firstname">Name:</label>
         <input type="text" class="form-control" formControlName="name">
@@ -89,7 +92,7 @@
         <label for="email">Email:</label>
         <input type="email" email="true" class="form-control" formControlName="email">
       </div>
-      <br/>
+      <br />
       <!-- <div class="form-group">
         <label for="college">College:</label>
         <input type="text" class="form-control" formControlName="college">
@@ -108,16 +111,17 @@
       </div> -->
     </div>
     <div class="col-sm-6">
-      <br/>
+      <br />
       <div class="form-group">
         <label for="contact">Contact Number:</label>
-        <input type="text" class="form-control" formControlName="contact" minlength="10" maxlength="10" (keypress)="_keyPress($event)">
+        <input type="text" class="form-control" formControlName="contact" minlength="10" maxlength="10"
+          (keypress)="_keyPress($event)">
       </div>
       <div class="form-group">
         <label for="dob">Date of birth:</label>
         <input type="date" class="form-control" formControlName="dob">
       </div>
-      <br/>
+      <br />
       <!-- <div class="form-group">
         <label for="school">School:</label>
         <input type="text" class="form-control" formControlName="schoolname">
@@ -134,11 +138,11 @@
     </div>
   </div>
   <div class="row">
-    <span style="text-align: left;  width: 100%; background-color: #19578A;">
+    <span style="text-align: left;  width: 100%; background-color: #33099e;">
       <h3 style="color : white; margin: 0.5em;">EXPERIENCE</h3>
     </span>
   </div>
-  <br/>
+  <br />
   <div formArrayName="workExperience">
 
 
@@ -160,64 +164,65 @@
             <label for="companyName">Location:</label>
             <input type="text" class="form-control" formControlName="companyName">
           </div>
-          
+
         </div>
         <div class="row">
           <div class="form-group col-sm-3">
             <label for="companyName">Date From:</label>
             <input type="date" class="form-control" formControlName="companyName">
-            <br/>
+            <br />
 
           </div>
 
           <div class="form-group col-sm-3">
             <label for="companyName">Date To:</label>
             <input type="date" class="form-control" formControlName="companyName">
-            <br/>
+            <br />
 
           </div>
 
           <div class="form-group col-sm-3">
-              <label for="yearsOfExperience">Years of Experience:</label>
-              <input type="text" class="form-control" formControlName="yearsOfExperience">
-  
-            </div>
+            <label for="yearsOfExperience">Years of Experience:</label>
+            <input type="text" class="form-control" formControlName="yearsOfExperience">
+
+          </div>
 
 
 
-          
+
 
         </div>
 
         <div class="row">
-            <div class="form-group col-sm-9">
-                <label for="companyName">Description:</label>
-                <textarea class="form-control" formControlName="companyName"></textarea>
-                <br/>
-    
-              </div>
-              
+          <div class="form-group col-sm-9">
+            <label for="companyName">Description:</label>
+            <textarea class="form-control" formControlName="companyName"></textarea>
+            <br />
+
           </div>
-          <div class="col-sm-3">
-              <label for="yearsOfExperience">&nbsp;</label>
-              <button class="form-control btn-primary" *ngIf="i==workExperience.controls.length-1" (click)="addWorkExperience()">Add
-                More
-              </button>
-            </div>
+
+        </div>
+        <div class="col-sm-3">
+          <label for="yearsOfExperience">&nbsp;</label>
+          <button class="form-control btn-primary" *ngIf="i==workExperience.controls.length-1"
+            (click)="addWorkExperience()">Add
+            More
+          </button>
+        </div>
       </div>
 
     </div>
 
   </div>
-  <br/>
+  <br />
   <div class="row">
-    <span style="text-align: left;  width: 100%; background-color: #19578A;">
+    <span style="text-align: left;  width: 100%; background-color: #33099e;">
       <h3 style="color : white; margin: 0.5em;">STUVATION</h3>
     </span>
   </div>
-  <br/>
-  
-  
+  <br />
+
+
   <div class="row">
     <div class="col-sm-6">
 
@@ -278,15 +283,15 @@
   <div style="width: 100%; text-align: center; align-items: center">
 
 
-    <button type="submit"  class="btn btn-primary">Update</button>
+    <button type="submit" class="btn btn-primary">Update</button>
   </div>
 </form>
 
-<form *ngIf="userDetails['usertype']=='student'" [formGroup]="studentRegistrationForm" (ngSubmit)="onStudentRegistrationFormUpdate()"
-  enctype="multipart/form-data">
+<form *ngIf="userDetails['usertype']=='student'" [formGroup]="studentRegistrationForm"
+  (ngSubmit)="onStudentRegistrationFormUpdate()" enctype="multipart/form-data">
   <div class="row">
     <div class="col-sm-6">
-      <br/>
+      <br />
       <div class="form-group">
         <label for="firstname">Name:</label>
         <input type="text" class="form-control" formControlName="name">
@@ -296,7 +301,7 @@
         <label for="email">Email:</label>
         <input type="email" email="true" class="form-control" formControlName="email">
       </div>
-      <br/>
+      <br />
       <!-- <div class="form-group">
         <label for="college">College:</label>
         <input type="text" class="form-control" formControlName="college">
@@ -315,16 +320,17 @@
       </div> -->
     </div>
     <div class="col-sm-6">
-      <br/>
+      <br />
       <div class="form-group">
         <label for="contact">Contact Number:</label>
-        <input type="text" class="form-control" formControlName="contact" minlength="10" maxlength="10" (keypress)="_keyPress($event)">
+        <input type="text" class="form-control" formControlName="contact" minlength="10" maxlength="10"
+          (keypress)="_keyPress($event)">
       </div>
       <div class="form-group">
         <label for="dob">Date of birth:</label>
         <input type="date" class="form-control" formControlName="dob">
       </div>
-      <br/>
+      <br />
       <!-- <div class="form-group">
         <label for="school">School:</label>
         <input type="text" class="form-control" formControlName="schoolname">
@@ -341,16 +347,16 @@
     </div>
   </div>
 
-  <br/>
+  <br />
   <div class="row">
-    <span style="text-align: left;  width: 100%; background-color: #19578A;">
+    <span style="text-align: left;  width: 100%; background-color: #33099e;">
       <h3 style="color : white; margin: 0.5em;">EDUCATION</h3>
     </span>
   </div>
-  <br/>
+  <br />
   <div class="row">
     <div class="col-sm-6">
-      <br/>
+      <br />
       <!-- <div class="form-group">
           <label for="firstname">Name:</label>
           <input type="text" class="form-control" formControlName="name" disabled>
@@ -367,7 +373,8 @@
       </div>
       <div class="form-group">
         <label for="collegestate">College State:</label>
-        <select type="text" class="form-control" formControlName="collegestate" (change)="updateCityList(studentRegistrationForm.value.collegestate, 'college')">
+        <select type="text" class="form-control" formControlName="collegestate"
+          (change)="updateCityList(studentRegistrationForm.value.collegestate, 'college')">
           <option *ngFor="let state of stateconfig; let i = index;" [value]="state.id">{{state.statename}}</option>
         </select>
       </div>
@@ -384,7 +391,7 @@
       </div>
     </div>
     <div class="col-sm-6">
-      <br/>
+      <br />
       <!-- <div class="form-group">
           <label for="contact">Contact Number:</label>
           <input type="text" class="form-control" formControlName="contact" minlength="10" maxlength="10" (keypress)="_keyPress($event)"
@@ -401,7 +408,8 @@
       </div>
       <div class="form-group">
         <label for="schoolstate">School State:</label>
-        <select type="text" class="form-control" formControlName="schoolstate" (change)="updateCityList(studentRegistrationForm.value.schoolstate, 'school')">
+        <select type="text" class="form-control" formControlName="schoolstate"
+          (change)="updateCityList(studentRegistrationForm.value.schoolstate, 'school')">
           <option *ngFor="let state of stateconfig; let i = index;" [value]="state.id">{{state.statename}}</option>
         </select>
       </div>
@@ -415,15 +423,15 @@
 
     </div>
   </div>
-  <br/>
+  <br />
   <div class="row">
-    <span style="text-align: left;  width: 100%; background-color: #19578A;">
+    <span style="text-align: left;  width: 100%; background-color: #33099e;">
       <h3 style="color : white; margin: 0.5em;">STUVATION</h3>
     </span>
   </div>
-  <br/>
-  
-  
+  <br />
+
+
   <div class="row">
     <div class="col-sm-6">
 

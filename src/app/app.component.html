@@ -317,37 +317,61 @@
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="email">Contact Email:</label>
-                            <input type="email" email="true" class="form-control" formControlName="email">
+                            <input type="text" class="form-control" formControlName="email"
+                                [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email is required</div>
+                            </div>
                         </div>
                         <div class="form-group col-6">
                             <label for="contactnumber">Contact Number:</label>
                             <input type="text" class="form-control" formControlName="contactnumber" minlength="10"
-                                maxlength="10" (keypress)="_keyPress($event)">
+                                maxlength="10" (keypress)="_keyPress($event)"
+                                [ngClass]="{ 'is-invalid': submitted && f.contactnumber.errors }">
+                            <div *ngIf="submitted && f.contactnumber.errors" class="invalid-feedback">
+                                <div *ngIf="f.contactnumber.errors.required">Contact Number is required</div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="title">Title:</label>
-                        <input type="text" class="form-control" formControlName="title">
+                        <input type="text" class="form-control" formControlName="title"
+                            [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+                        <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                            <div *ngIf="f.title.errors.required">Title is required</div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="abstract">Abstract:</label>
-                        <textarea class="form-control" formControlName="abstract" placeholder="1000 words"></textarea>
+                        <textarea class="form-control" formControlName="abstract" placeholder="1000 words"
+                            maxlength="1000" [ngClass]="{ 'is-invalid': submitted && f.abstract.errors }"></textarea>
+                        <div *ngIf="submitted && f.abstract.errors" class="invalid-feedback">
+                            <div *ngIf="f.abstract.errors.required">Abstract is required</div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="technology">Engineering Technology:</label>
                             <select type="text" class="form-control" formControlName="technology"
-                                (change)="updateSubTechList(createTechArticleForm.value.technology)">
+                                (change)="updateSubTechList(createTechArticleForm.value.technology)"
+                                [ngClass]="{ 'is-invalid': submitted && f.technology.errors }">
                                 <option *ngFor="let technology of technologyconfig; let i = index;"
                                     [value]="technology.technologyid">{{technology.technologyname}}</option>
                             </select>
+                            <div *ngIf="submitted && f.technology.errors" class="invalid-feedback">
+                                <div *ngIf="f.technology.errors.required">Technology is required</div>
+                            </div>
                         </div>
                         <div *ngIf="subtechnologylist?.length!=0" class="form-group col-6">
                             <label for="subtechnology">Sub-Engineering Technology:</label>
-                            <select type="text" class="form-control" formControlName="subtechnology">
+                            <select type="text" class="form-control" formControlName="subtechnology"
+                                [ngClass]="{ 'is-invalid': submitted && f.subtechnology.errors }">
                                 <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
                                     [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
                             </select>
+                            <div *ngIf="submitted && f.subtechnology.errors" class="invalid-feedback">
+                                <div *ngIf="f.subtechnology.errors.required">Subtechnology is required</div>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -389,7 +413,11 @@
                         <div class="form-group col-6"
                             *ngIf="createTechArticleForm.value.paidArticle=='Y' && createTechArticleForm.value.articleType=='Article'">
                             <label for="cost">Cost:</label>
-                            <input type="number" class="form-control" formControlName="cost">
+                            <input type="text" class="form-control" formControlName="cost"
+                                [ngClass]="{ 'is-invalid': submitted && f.cost.errors }">
+                            <div *ngIf="submitted && f.cost.errors" class="invalid-feedback">
+                                <div *ngIf="f.cost.errors.required">Cost is required</div>
+                            </div>
                         </div>
                         <div class="form-group col-6"
                             *ngIf="createTechArticleForm.value.publicationSelector=='1'&&((createTechArticleForm.value.paidArticle=='N' && createTechArticleForm.value.articleType=='Article') ||(createTechArticleForm.value.articleType!='Article'))">
@@ -410,9 +438,9 @@
                                 <input type="checkbox" formControlName="agreeTermsAndConditions"> Agree to Terms and
                                 Conditions</label>
                         </div>
-                        <button type="submit" class="btn btn-primary"
-                            [disabled]="!createTechArticleForm.valid || !createTechArticleForm.value.agreeTermsAndConditions">Create
-                            Tech Article</button>
+
+                        <!-- [disabled]="!createTechArticleForm.valid || !createTechArticleForm.value.agreeTermsAndConditions" -->
+                        <button type="submit" class="btn btn-primary">Create Tech Article</button>
                     </div>
                 </form>
             </div>
@@ -1704,7 +1732,7 @@
                     <div style="width: 100%; text-align: center; align-items: center">
                         <button style="width: 100%;" type="submit" [disabled]="!loginForm.valid"
                             class="btn btn-primary">LOGIN</button>
-                       
+
                     </div>
                 </form>
                 <!-- <div ngbDropdown class="nav-item dropdown">
@@ -1724,7 +1752,7 @@
                         </ul>
                     </div>
                 </div> -->
-                
+
             </div>
             <!--<div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1961,47 +1989,52 @@
 
         <!-- Modal content-->
         <div class="bg-blk">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                <span style="text-align: center; color: white; width: 100%;">
-                    <h4>Join as Engineer</h4>
-                </span>
-                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
-                    id="closeEngineerRegistrationForm">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form [formGroup]="engineerRegistrationForm" (ngSubmit)="onEngineerRegistrationFormSubmit()"
-                    enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="col-md-12"><!--col-6-->
-                            <div class="form-group">
-                                <!-- <label for="firstname">Name:</label> -->
-                                <input type="text" class="form-control" formControlName="name" placeholder="Name" >
-                            </div>
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
+                    <span style="text-align: center; color: white; width: 100%;">
+                        <h4>Join as Engineer</h4>
+                    </span>
+                    <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                        id="closeEngineerRegistrationForm">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="engineerRegistrationForm" (ngSubmit)="onEngineerRegistrationFormSubmit()"
+                        enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!--col-6-->
+                                <div class="form-group">
+                                    <!-- <label for="firstname">Name:</label> -->
+                                    <input type="text" class="form-control" formControlName="name" placeholder="Name">
+                                </div>
 
-                            <div class="form-group">
-                                <!-- <label for="email">Email:</label> -->
-                                <input type="email" email="true" class="form-control" formControlName="email" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <!-- <label for="contact">Contact Number:</label> -->
-                                <input type="text" class="form-control" formControlName="contact" minlength="10"
-                                    maxlength="10" (keypress)="_keyPress($event)" placeholder="Contact Number">
-                            </div>
-                            
-                            <div class="form-group">
-                                <!-- <label for="username">Username:</label> -->
-                                <input type="text" class="form-control" formControlName="username" placeholder="Username">
-                            </div>
-                            <div class="form-group">
-                                <!-- <label for="password">Password:</label> -->
-                                <input type="password" class="form-control" formControlName="password" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <!-- <label for="confirmpassword">Confirm Password:</label> -->
-                                <input type="password" class="form-control" formControlName="confirmpassword" placeholder="Confirm Password">
-                            </div>
-                            <!-- <div class="form-group">
+                                <div class="form-group">
+                                    <!-- <label for="email">Email:</label> -->
+                                    <input type="email" email="true" class="form-control" formControlName="email"
+                                        placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label for="contact">Contact Number:</label> -->
+                                    <input type="text" class="form-control" formControlName="contact" minlength="10"
+                                        maxlength="10" (keypress)="_keyPress($event)" placeholder="Contact Number">
+                                </div>
+
+                                <div class="form-group">
+                                    <!-- <label for="username">Username:</label> -->
+                                    <input type="text" class="form-control" formControlName="username"
+                                        placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label for="password">Password:</label> -->
+                                    <input type="password" class="form-control" formControlName="password"
+                                        placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label for="confirmpassword">Confirm Password:</label> -->
+                                    <input type="password" class="form-control" formControlName="confirmpassword"
+                                        placeholder="Confirm Password">
+                                </div>
+                                <!-- <div class="form-group">
                                 <label for="dob">Date of birth:</label>
                                 <input type="date" class="form-control" formControlName="dob">
                             </div>
@@ -2033,9 +2066,9 @@
                                 <label for="collegebranch">College Branch:</label>
                                 <input type="text" class="form-control" formControlName="collegebranch">
                             </div> -->
+                            </div>
                         </div>
-                    </div>
-                    <!-- <span style="color: #176086; text-decoration: underline; ">
+                        <!-- <span style="color: #176086; text-decoration: underline; ">
                         <h3>Project Description</h3>
                     </span>
                     <div class="row">
@@ -2119,33 +2152,33 @@
                         </div>
 
                     </div>-->
-                    <div class="form-group">
-                        <label for="profilePicture">Upload Profile Picture: &nbsp;&nbsp;&nbsp;
-                            <input ng2FileSelect type='file' (change)="readUrl($event)" formControlName="profilePicture"
-                                accept=".jpg" [uploader]="uploader">
-                            <!-- <input ng2FileSelect type="file" accept=".xml" [uploader]="uploader"/> -->
-                            <img [src]="url" style="max-width: 100px; max-height: 100px;">
-                        </label>
-                    </div>
-                    <div style="width: 100%; text-align: center; align-items: center">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" formControlName="agreeTermsAndConditions"> Agree to Terms and
-                                Conditions</label>
+                        <div class="form-group">
+                            <label for="profilePicture">Upload Profile Picture: &nbsp;&nbsp;&nbsp;
+                                <input ng2FileSelect type='file' (change)="readUrl($event)"
+                                    formControlName="profilePicture" accept=".jpg" [uploader]="uploader">
+                                <!-- <input ng2FileSelect type="file" accept=".xml" [uploader]="uploader"/> -->
+                                <img [src]="url" style="max-width: 100px; max-height: 100px;">
+                            </label>
                         </div>
+                        <div style="width: 100%; text-align: center; align-items: center">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" formControlName="agreeTermsAndConditions"> Agree to Terms and
+                                    Conditions</label>
+                            </div>
 
-                        <button type="submit"
-                            [disabled]="!engineerRegistrationForm.valid || !engineerRegistrationForm.value.agreeTermsAndConditions"
-                            class="btn btn-primary">Sign Up!</button>
-                    </div>
-                </form>
-            </div>
-            <!--<div class="modal-footer">
+                            <button type="submit"
+                                [disabled]="!engineerRegistrationForm.valid || !engineerRegistrationForm.value.agreeTermsAndConditions"
+                                class="btn btn-primary">Sign Up!</button>
+                        </div>
+                    </form>
+                </div>
+                <!--<div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>-->
-        </div>
+            </div>
 
-    </div>
+        </div>
     </div>
 </div>
 
@@ -2154,49 +2187,53 @@
     <div class="modal-dialog regform logn_modl">
 
         <div class="bg-blk">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                <span style="text-align: center; color: white; width: 100%;">
-                    <h4>Join as Student</h4>
-                </span>
-                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
-                    id="closeStudentRegistrationForm">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form [formGroup]="studentRegistrationForm" (ngSubmit)="onStudentRegistrationFormSubmit()"
-                    enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <!-- <label for="firstname">Name:</label> -->
-                                <input type="text" class="form-control" formControlName="name" placeholder="Name">
-                            </div>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
+                    <span style="text-align: center; color: white; width: 100%;">
+                        <h4>Join as Student</h4>
+                    </span>
+                    <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                        id="closeStudentRegistrationForm">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="studentRegistrationForm" (ngSubmit)="onStudentRegistrationFormSubmit()"
+                        enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <!-- <label for="firstname">Name:</label> -->
+                                    <input type="text" class="form-control" formControlName="name" placeholder="Name">
+                                </div>
 
-                            <div class="form-group">
-                                <!-- <label for="email">Email:</label> -->
-                                <input type="email" email="true" class="form-control" formControlName="email" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <!-- <label for="contact">Contact Number:</label> -->
-                                <input type="text" class="form-control" formControlName="contact" minlength="10"
-                                    maxlength="10" (keypress)="_keyPress($event)" placeholder="Contact Number">
-                            </div>
+                                <div class="form-group">
+                                    <!-- <label for="email">Email:</label> -->
+                                    <input type="email" email="true" class="form-control" formControlName="email"
+                                        placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label for="contact">Contact Number:</label> -->
+                                    <input type="text" class="form-control" formControlName="contact" minlength="10"
+                                        maxlength="10" (keypress)="_keyPress($event)" placeholder="Contact Number">
+                                </div>
 
 
-                            <div class="form-group">
-                                <!-- <label for="username">Username:</label> -->
-                                <input type="text" class="form-control" formControlName="username" placeholder="Username">
-                            </div>
-                            <div class="form-group">
-                                <!-- <label for="password">Password:</label> -->
-                                <input type="password" class="form-control" formControlName="password" placeholder="Password"> 
-                            </div>
-                            <div class="form-group">
-                                <!-- <label for="confirmpassword">Confirm Password:</label> -->
-                                <input type="password" class="form-control" formControlName="confirmpassword" placeholder="Confirm Password">
-                            </div>
-                            <!-- <div class="form-group">
+                                <div class="form-group">
+                                    <!-- <label for="username">Username:</label> -->
+                                    <input type="text" class="form-control" formControlName="username"
+                                        placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label for="password">Password:</label> -->
+                                    <input type="password" class="form-control" formControlName="password"
+                                        placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label for="confirmpassword">Confirm Password:</label> -->
+                                    <input type="password" class="form-control" formControlName="confirmpassword"
+                                        placeholder="Confirm Password">
+                                </div>
+                                <!-- <div class="form-group">
                                     <label for="dob">Date of birth:</label>
                                     <input type="date" class="form-control" formControlName="dob">
                                 </div>
@@ -2228,9 +2265,9 @@
                                     <label for="collegebranch">College Branch:</label>
                                     <input type="text" class="form-control" formControlName="collegebranch">
                                 </div> -->
+                            </div>
                         </div>
-                    </div>
-                    <!-- <span style="color: #176086; text-decoration: underline; ">
+                        <!-- <span style="color: #176086; text-decoration: underline; ">
                             <h3>Project Description</h3>
                         </span>
                         <div class="row">
@@ -2281,32 +2318,32 @@
                                 </div>
                             </div>
                         </div>-->
-                    <div class="form-group">
-                        <label for="profilePicture">Upload Profile Picture: &nbsp;&nbsp;&nbsp;
-                            <input ng2FileSelect type='file' (change)="readUrl($event)" formControlName="profilePicture"
-                                accept=".jpg" [uploader]="uploader">
-                            <!-- <input ng2FileSelect type="file" accept=".xml" [uploader]="uploader"/> -->
-                            <img [src]="url" style="max-width: 100px; max-height: 100px;">
-                        </label>
-                    </div>
-                    <div style="width: 100%; text-align: center; align-items: center">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" formControlName="agreeTermsAndConditions"> Agree to Terms and
-                                Conditions</label>
+                        <div class="form-group">
+                            <label for="profilePicture">Upload Profile Picture: &nbsp;&nbsp;&nbsp;
+                                <input ng2FileSelect type='file' (change)="readUrl($event)"
+                                    formControlName="profilePicture" accept=".jpg" [uploader]="uploader">
+                                <!-- <input ng2FileSelect type="file" accept=".xml" [uploader]="uploader"/> -->
+                                <img [src]="url" style="max-width: 100px; max-height: 100px;">
+                            </label>
                         </div>
+                        <div style="width: 100%; text-align: center; align-items: center">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" formControlName="agreeTermsAndConditions"> Agree to Terms and
+                                    Conditions</label>
+                            </div>
 
-                        <button type="submit"
-                            [disabled]="!studentRegistrationForm.valid || !studentRegistrationForm.value.agreeTermsAndConditions"
-                            class="btn btn-primary">Sign Up!</button>
-                    </div>
-                </form>
-            </div>
-            <!--<div class="modal-footer">
+                            <button type="submit"
+                                [disabled]="!studentRegistrationForm.valid || !studentRegistrationForm.value.agreeTermsAndConditions"
+                                class="btn btn-primary">Sign Up!</button>
+                        </div>
+                    </form>
+                </div>
+                <!--<div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>-->
+            </div>
         </div>
-    </div>
     </div>
 </div>
 

@@ -59,9 +59,6 @@
     <input type="text" class="form-control filter-input" placeholder="Search with Author.." name="techarticledetails"
       [(ngModel)]="techArticleFilter.cost" *ngIf="showCost" />
 
-
-
-
   </div>
   <div class="col-md-6">
     <div class="row" style="font-size: 1rem;">
@@ -113,7 +110,7 @@
         *ngFor="let techarticle of techarticledetails | filterBy:techArticleFilter ; let i = index; "
         [ngClass]="{'techarticleRow1' : i%2==0 }">
         <div class="card-body">
-          <h5 class="card-title" style="color:#07567F;"><span class="title-name">Author:
+          <h5 class="card-title" style="color:#33099e;"><span class="title-name">Author:
             </span><b>{{techarticle.name}}</b>
             &nbsp;<span style="font-size: 0.85rem;color:red;"> ( {{techarticle.followerCount}} followers )</span>
           </h5>
@@ -149,7 +146,7 @@
               <br />
               <b>Sub-Technology</b> : {{techarticle.subtechname}}
               <br />
-              <b *ngIf="techarticle.articlepaymentindcd=='Y'">Price :
+              <b *ngIf="techarticle.articletype=='Article'">Price :
                 <span style="color:#255B88">{{techarticle.cost}} rs</span>
               </b>
             </div>
@@ -159,26 +156,26 @@
               <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="float:right;">
 
                 <li class="nav-item ">
-                  <button class="nav-link btn btn-light buybutton"
+                  <button class="nav-link btn btn-light buybutton buttonarticle"
                     *ngIf="techarticle.articlepaymentindcd=='Y' && techarticle.articletype=='Article'"
                     data-toggle="modal" data-target="#buynowModal" (click)="buyNowModelClick(techarticle)">Buy
                     Now</button>
                 </li>
 
                 <li class="nav-item">
-                  <button class="nav-link btn btn-light veiwbutton"
+                  <button class="nav-link btn btn-light veiwbutton buttonarticle"
                     *ngIf="techarticle.publicationlink!='' &&  techarticle.articletype =='White Paper' || techarticle.articletype =='Research Paper' "
                     data-toggle="modal" data-target="#buynowModal1"
                     (click)="viewTechTeachDetails(techteach)">View/Download
                     full Article</button>
                 </li>
                 <li class="nav-item">
-                  <button class="nav-link btn btn-light commentbutton" data-toggle="modal" data-target="#commentsModal"
-                    (click)="showTechArticleComments(techarticle)">Comments</button>
+                  <button class="nav-link btn btn-light commentbutton buttonarticle" data-toggle="modal"
+                    data-target="#commentsModal" (click)="showTechArticleComments(techarticle)">Comments</button>
                 </li>
 
                 <li class="nav-item">
-                  <button class="nav-link btn btn-light article-type">{{techarticle.articletype}}</button>
+                  <button class="nav-link btn btn-light article-type buttonarticle">{{techarticle.articletype}}</button>
                 </li>
               </ul>
               <button
@@ -212,7 +209,7 @@
               <!-- Modal content-->
               <div class="modal-content">
 
-                <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+                <div class="modal-header" style="background-color: #33099e; text-align: center; align-items: center;">
                   <span style="text-align: center; color: white; width: 100%;">
                     <h4>Tech Article Details</h4>
                   </span>
@@ -267,7 +264,7 @@
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+      <div class="modal-header" style="background-color: #33099e; text-align: center; align-items: center;">
         <span style="text-align: center; color: white; width: 100%;">
           <h4>Article Comments</h4>
         </span>
@@ -331,7 +328,7 @@
 
     <!-- Modal content-->
     <div class="modal-content" *ngIf="selectedTecharticle!=undefined">
-      <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+      <div class="modal-header" style="background-color: #33099e; text-align: center; align-items: center;">
         <span style="text-align: center; color: white; width: 100%;">
           <h4>Purchase Article</h4>
         </span>

@@ -1,6 +1,6 @@
 @import "~fullcalendar/dist/fullcalendar.min.css";
 .nav-link{
-    color: #19578A !important; 
+    color: #33099e !important; 
     font-weight: bold !important;
     margin-left: 1.25em;
 }
@@ -148,11 +148,11 @@ height: 2em !important;
     }
     .main-menu li:hover a{
       background-color: white!important;
-      color: #19578a !important; 
+      color: #33099e !important; 
       border-radius: 25px;
     }
     .sub-drop li a{
-        border-bottom: 2px solid #19578A;
+        border-bottom: 2px solid #33099e;
     }
     .sub-drop li{
         border-bottom: 0px solid transparent!important;
@@ -165,8 +165,8 @@ height: 2em !important;
     }
     .show-menu{
         background-color: white !important;
-        color: #19578A !important;
-        border:2px solid #19578A;
+        color: #33099e !important;
+        border:2px solid #33099e;
         width: 50px;
         float: right;
     }
@@ -267,7 +267,7 @@ cursor: pointer !important;
 }
 
 .fc-today span{
-     background-color: #19578a !important;
+     background-color: #33099e !important;
     color: white !important;
     font-size: 37px !important;
 }
@@ -284,7 +284,7 @@ cursor: pointer !important;
 
 .fc-widget-header{
     font-size: 25px !important;
-    color: #19578a !important;
+    color: #33099e !important;
 }
 
 .fc-unthemed tbody{
@@ -349,9 +349,19 @@ cursor: pointer !important;
     width: 100px !important;
 }
 .filter-input{
-border: 2px solid #19578a !important;
+border: 2px solid #33099e !important;
 margin-left: 10% !important;
 width: 85%;
+}
+
+.form-group label {
+    display: inline-block;
+    margin-bottom: .5rem;
+    color: #36099f;
+}
+
+.form-group .form-control{
+    border: 1px solid #36099f66;
 }
 
       /***************mediaquaries*********/

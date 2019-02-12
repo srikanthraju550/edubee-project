@@ -37,36 +37,44 @@
 
     <form id="filter">
 
-      <input type="text" class="form-control" name="stuvationdetails" [(ngModel)]="stuvationFilter" style="margin-bottom: 0.5em;" />
+      <input type="text" class="form-control" name="stuvationdetails" [(ngModel)]="stuvationFilter"
+        style="margin-bottom: 0.5em;" />
       <div class="row" style="font-size: 1rem;">
         <div class="col-2">
-          <input type="checkbox" class="techBankEventCheckbox" name="keywordFilter" [(ngModel)]="keywordFilter" value="Keyword">&nbsp;Keyword
+          <input type="checkbox" class="techBankEventCheckbox" name="keywordFilter" [(ngModel)]="keywordFilter"
+            value="Keyword">&nbsp;Keyword
         </div>
         <div class="col-2">
           <input type="checkbox" name="articleTypeFilter" class="techBankEventCheckbox" [(ngModel)]="articleTypeFilter"
             value="Type">&nbsp;Type
         </div>
         <div class="col-2">
-          <input type="checkbox" name="techFilter" class="techBankEventCheckbox" [(ngModel)]="techFilter" value="Technology">&nbsp;Technology
+          <input type="checkbox" name="techFilter" class="techBankEventCheckbox" [(ngModel)]="techFilter"
+            value="Technology">&nbsp;Technology
         </div>
         <div class="col-3">
-          <input type="checkbox" name="subTechFilter" class="techBankEventCheckbox" [(ngModel)]="subTechFilter" value="SubTechnology">&nbsp;Sub-Technology
+          <input type="checkbox" name="subTechFilter" class="techBankEventCheckbox" [(ngModel)]="subTechFilter"
+            value="SubTechnology">&nbsp;Sub-Technology
         </div>
 
       </div>
     </form>
     <br />
     <div style="float:right;" *ngIf="!checkLoginStatus()">
-      <button type="button" class="btn btn-primary" style="height: 30%; background-color: #19578A; color: white;font-weight: bold;"
-        data-toggle="modal" data-target="#createProjectModal">Create Academic Proz</button> &nbsp;&nbsp;
-      <button type="button" class="btn btn-primary" style="height: 30%; background-color: #19578A; color: white;font-weight: bold;"
-        data-toggle="modal" data-target="#createStuvationModal">Create Innovation Proz</button>
+      <button type="button" class="btn btn-primary"
+        style="height: 30%; background-color: #33099e; color: white;font-weight: bold;" data-toggle="modal"
+        data-target="#createProjectModal">Create Academic Proz</button> &nbsp;&nbsp;
+      <button type="button" class="btn btn-primary"
+        style="height: 30%; background-color: #33099e; color: white;font-weight: bold;" data-toggle="modal"
+        data-target="#createStuvationModal">Create Innovation Proz</button>
     </div>
     <div style="float:right;" *ngIf="checkLoginStatus()">
-      <button type="button" class="btn btn-primary" style="height: 30%; background-color: #19578A; color: white;font-weight: bold;"
-        data-toggle="modal" data-target="#loginAlertModal">Create Academic Proz</button> &nbsp;&nbsp;
-      <button type="button" class="btn btn-primary" style="height: 30%; background-color: #19578A; color: white;font-weight: bold;"
-        data-toggle="modal" data-target="#loginAlertModal">Create Innovation Proz</button>
+      <button type="button" class="btn btn-primary"
+        style="height: 30%; background-color: #33099e; color: white;font-weight: bold;" data-toggle="modal"
+        data-target="#loginAlertModal">Create Academic Proz</button> &nbsp;&nbsp;
+      <button type="button" class="btn btn-primary"
+        style="height: 30%; background-color: #33099e; color: white;font-weight: bold;" data-toggle="modal"
+        data-target="#loginAlertModal">Create Innovation Proz</button>
     </div>
 
 
@@ -75,7 +83,8 @@
 
 <div class="row">
   <div class="col-12" style="margin-top: 1em;">
-    <div class="card" style="width: 100%;" *ngFor="let stuvation of stuvationdetails | filter:stuvationFilter:keywordFilter:articleTypeFilter:techFilter:subTechFilter:authorFilter:freeFilter:'stuvationFilter' ; let i = index; "
+    <div class="card" style="width: 100%;"
+      *ngFor="let stuvation of stuvationdetails | filter:stuvationFilter:keywordFilter:articleTypeFilter:techFilter:subTechFilter:authorFilter:freeFilter:'stuvationFilter' ; let i = index; "
       [ngClass]="{'techarticleRow1' : i%2==0 }">
       <div class="card-body">
 
@@ -95,7 +104,8 @@
 
 
 
-        <div class="col-sm-9" style="background-color: #19578A;color: white;padding: 1em;width: fit-content;border-radius: 0em 1em 0em 1em;padding-left: 2em;padding-right:  2em;">
+        <div class="col-sm-9"
+          style="background-color: #33099e;color: white;padding: 1em;width: fit-content;border-radius: 0em 1em 0em 1em;padding-left: 2em;padding-right:  2em;">
           <div *ngIf="stuvation.projectType!='Innovation'">
             <h3>Title : {{stuvation.projectTitle}}</h3>
           </div>
@@ -106,18 +116,27 @@
         </div>
         <br />
         <div class="row">
-            <div style="margin-left:0.5em;">
-              <img class="profilepicture" src="../assets/images/profileImages/{{stuvation.profilepicture}}" alt="Card image cap">
-            </div>
-            <div style="margin-left: 1em;">
-                <b>{{stuvation.originatorname | uppercase}}</b>
-              <br/>
-              <span style="font-size: 0.85rem;">{{stuvation.followerCount}} followers</span>
-              <br/>
-              <button *ngIf="!checkLoginStatus() && stuvation.isFollowed==0 && getLoggedInUserObject()['userid']!=stuvation.userid" class="nav-link btn btn-light" style="background-color: #144E80; margin-left: 0 !important; color: white !important;" (click)="followerUpdate(stuvation.userId,'F');">FOLLOW</button>
-              <button *ngIf="!checkLoginStatus() && stuvation.isFollowed==1 && getLoggedInUserObject()['userid']!=stuvation.userid" class="nav-link btn btn-light" style="background-color: #144E80; margin-left: 0 !important; color: white !important;" (click)="followerUpdate(stuvation.userId,'U');">UNFOLLOW</button>
-            </div>
+          <div style="margin-left:0.5em;">
+            <img class="profilepicture" src="../assets/images/profileImages/{{stuvation.profilepicture}}"
+              alt="Card image cap">
           </div>
+          <div style="margin-left: 1em;">
+            <b>{{stuvation.originatorname | uppercase}}</b>
+            <br />
+            <span style="font-size: 0.85rem;">{{stuvation.followerCount}} followers</span>
+            <br />
+            <button
+              *ngIf="!checkLoginStatus() && stuvation.isFollowed==0 && getLoggedInUserObject()['userid']!=stuvation.userid"
+              class="nav-link btn btn-light"
+              style="background-color: #144E80; margin-left: 0 !important; color: white !important;"
+              (click)="followerUpdate(stuvation.userId,'F');">FOLLOW</button>
+            <button
+              *ngIf="!checkLoginStatus() && stuvation.isFollowed==1 && getLoggedInUserObject()['userid']!=stuvation.userid"
+              class="nav-link btn btn-light"
+              style="background-color: #144E80; margin-left: 0 !important; color: white !important;"
+              (click)="followerUpdate(stuvation.userId,'U');">UNFOLLOW</button>
+          </div>
+        </div>
         <div *ngIf="stuvation.projectType!='Innovation'">
           <b>Abstract</b> : {{stuvation.abstract}}
         </div>
@@ -157,15 +176,19 @@
         <br /> -->
         <div style="float:right;"><b>Created On</b> : {{stuvation.createdon}}</div>
         <br />
-        <button *ngIf="!checkLoginStatus()" class="btn btn-light" style="background-color: green; height: 2.5em; color: white" (click)="stuvationUpDownCountUpdate(stuvation.stuvationid,'UP')">
-            {{stuvation.upCount}}
-            <img src="../assets/images/thumbsUp.png" alt="Card image cap" style="height: 1.5em;">
-          </button>
-          &nbsp;&nbsp;
-          <button *ngIf="!checkLoginStatus()" class="btn btn-light" style="background-color: red;height: 2.5em; color: white;" (click)="stuvationUpDownCountUpdate(stuvation.stuvationid,'DOWN')">
-            {{stuvation.downCount}}
-            <img src="../assets/images/thumbsDown.png" alt="Card image cap" style="height: 1.5em;">
-          </button>
+        <button *ngIf="!checkLoginStatus()" class="btn btn-light"
+          style="background-color: green; height: 2.5em; color: white"
+          (click)="stuvationUpDownCountUpdate(stuvation.stuvationid,'UP')">
+          {{stuvation.upCount}}
+          <img src="../assets/images/thumbsUp.png" alt="Card image cap" style="height: 1.5em;">
+        </button>
+        &nbsp;&nbsp;
+        <button *ngIf="!checkLoginStatus()" class="btn btn-light"
+          style="background-color: red;height: 2.5em; color: white;"
+          (click)="stuvationUpDownCountUpdate(stuvation.stuvationid,'DOWN')">
+          {{stuvation.downCount}}
+          <img src="../assets/images/thumbsDown.png" alt="Card image cap" style="height: 1.5em;">
+        </button>
 
         <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="float: right;">
           <li class="nav-item">
@@ -175,8 +198,9 @@
           </li>
 
           <li class="nav-item">
-            <button class="nav-link btn btn-light" style="background-color: #19578A; color: white !important;"
-              data-toggle="modal" data-target="#showStuvationDiscussionModal" (click)="showStuvationComments(stuvation)">Discussions</button>
+            <button class="nav-link btn btn-light" style="background-color: #33099e; color: white !important;"
+              data-toggle="modal" data-target="#showStuvationDiscussionModal"
+              (click)="showStuvationComments(stuvation)">Discussions</button>
           </li>
         </ul>
 
@@ -207,11 +231,12 @@
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+      <div class="modal-header" style="background-color: #33099e; text-align: center; align-items: center;">
         <span style="text-align: center; color: white; width: 100%;">
           <h4>Discussions</h4>
         </span>
-        <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeCommentsModal">&times;</button>
+        <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+          id="closeCommentsModal">&times;</button>
       </div>
       <div class="modal-body">
         <div class="card" *ngFor="let stuvationcomment of stuvationcomments; let i = index; ">
@@ -219,15 +244,18 @@
             <div class="col-8">
               <div class="row" *ngIf="getLoggedInUserObject()['userid']==stuvationcomment.userid ">
                 <div class="col-3">
-                  <img class="profilepicture" src="assets/images/profileImages/{{getLoggedInUserObject()['profilepicture']}}">
+                  <img class="profilepicture"
+                    src="assets/images/profileImages/{{getLoggedInUserObject()['profilepicture']}}">
                   <br />&nbsp;&nbsp;{{stuvationcomment.name | titlecase}}
                 </div>
                 <div class="col-9 align-self-center">
 
                   <b>Comment</b> :
-                  <span *ngIf="(selectedStuvation.editClicked=='N' ||  selectedStuvation.editClicked=='' || selectedStuvation.editClicked==undefined)">
+                  <span
+                    *ngIf="(selectedStuvation.editClicked=='N' ||  selectedStuvation.editClicked=='' || selectedStuvation.editClicked==undefined)">
                     {{stuvationcomment.comment}}</span>
-                  <textarea style="width: 100%;" *ngIf="getLoggedInUserObject()['userid']==stuvationcomment.userid && selectedStuvation.editClicked=='Y'"
+                  <textarea style="width: 100%;"
+                    *ngIf="getLoggedInUserObject()['userid']==stuvationcomment.userid && selectedStuvation.editClicked=='Y'"
                     [(ngModel)]="stuvationcomment.comment" placeholder="500 Characters" maxlength="500"></textarea>
                 </div>
               </div>
@@ -236,9 +264,11 @@
                 <br />
                 <b>Comment</b> :
 
-                <span *ngIf="(selectedStuvation.editClicked=='N' ||  selectedStuvation.editClicked=='' || selectedStuvation.editClicked==undefined)">
+                <span
+                  *ngIf="(selectedStuvation.editClicked=='N' ||  selectedStuvation.editClicked=='' || selectedStuvation.editClicked==undefined)">
                   {{stuvationcomment.comment}}</span>
-                <textarea style="width: 100%;" *ngIf="getLoggedInUserObject()['userid']==stuvationcomment.userid && selectedStuvation.editClicked=='Y'"
+                <textarea style="width: 100%;"
+                  *ngIf="getLoggedInUserObject()['userid']==stuvationcomment.userid && selectedStuvation.editClicked=='Y'"
                   [(ngModel)]="stuvationcomment.comment" placeholder="500 Characters" maxlength="500"></textarea>
 
               </div>
@@ -249,16 +279,22 @@
               <!-- <span style="font-size: 0.7em;"><b>Comment Date </b>: {{stuvationcomment.createdon}}</span><br /> -->
               <span style="font-size: 0.7em;"><b>Comment Date</b> : {{stuvationcomment.updatedon}}</span>
               <br />
-              <button *ngIf="getLoggedInUserObject()['userid']==stuvationcomment.userid && selectedStuvation.editClicked=='Y'"
-                class="btn btn-light" style="background-color: #07567F;height: 2.5em;color:white" (click)="commentOperation(selectedStuvation.stuvationid, stuvationcomment.id, stuvationcomment.comment, 'U')">
+              <button
+                *ngIf="getLoggedInUserObject()['userid']==stuvationcomment.userid && selectedStuvation.editClicked=='Y'"
+                class="btn btn-light" style="background-color: #33099e;height: 2.5em;color:white"
+                (click)="commentOperation(selectedStuvation.stuvationid, stuvationcomment.id, stuvationcomment.comment, 'U')">
                 Save
               </button>
-              <button *ngIf="getLoggedInUserObject()['userid']==stuvationcomment.userid && (selectedStuvation.editClicked=='N' ||  selectedStuvation.editClicked=='' || selectedStuvation.editClicked==undefined)"
-                class="btn btn-light" style="background-color: #07567F;height: 2.5em;color:white" (click)="selectedStuvation.editClicked='Y'">
+              <button
+                *ngIf="getLoggedInUserObject()['userid']==stuvationcomment.userid && (selectedStuvation.editClicked=='N' ||  selectedStuvation.editClicked=='' || selectedStuvation.editClicked==undefined)"
+                class="btn btn-light" style="background-color: #33099e;height: 2.5em;color:white"
+                (click)="selectedStuvation.editClicked='Y'">
                 Edit
               </button>
-              <button *ngIf="getLoggedInUserObject()['userid']==stuvationcomment.userid && (selectedStuvation.editClicked=='N' ||  selectedStuvation.editClicked=='' || selectedStuvation.editClicked==undefined)"
-                class="btn btn-light" style="background-color: #07567F;height: 2.5em;color:white" (click)="commentOperation(selectedStuvation.stuvationid, stuvationcomment.id, null, 'D')">
+              <button
+                *ngIf="getLoggedInUserObject()['userid']==stuvationcomment.userid && (selectedStuvation.editClicked=='N' ||  selectedStuvation.editClicked=='' || selectedStuvation.editClicked==undefined)"
+                class="btn btn-light" style="background-color: #33099e;height: 2.5em;color:white"
+                (click)="commentOperation(selectedStuvation.stuvationid, stuvationcomment.id, null, 'D')">
                 Delete
               </button>
             </div>
@@ -267,10 +303,12 @@
         <div class="card">
           <div class="card-body row">
             <div class="col-10">
-              <textarea style="width: 100%;" [(ngModel)]="commentToBeAdded" placeholder="500 Characters" maxlength="500"></textarea>
+              <textarea style="width: 100%;" [(ngModel)]="commentToBeAdded" placeholder="500 Characters"
+                maxlength="500"></textarea>
             </div>
             <div class="col-2">
-              <button class="btn btn-light" [disabled]="commentToBeAdded==''" style="background-color: #07567F;height: 2.5em;color:white"
+              <button class="btn btn-light" [disabled]="commentToBeAdded==''"
+                style="background-color: #33099e;height: 2.5em;color:white"
                 (click)="commentOperation(selectedStuvation.stuvationid, null, commentToBeAdded, 'A')">
                 Add Comment
               </button>
@@ -290,11 +328,12 @@
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header" style="background-color: #07567F; text-align: center; align-items: center;">
+      <div class="modal-header" style="background-color: #33099e; text-align: center; align-items: center;">
         <span style="text-align: center; color: white; width: 100%;">
           <h4>Connect & Join as a Team</h4>
         </span>
-        <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal" id="closeJoinTeamPopupModal">&times;</button>
+        <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+          id="closeJoinTeamPopupModal">&times;</button>
       </div>
       <div class="modal-body" *ngIf="selectedStuvation!=undefined" style="
       text-align: center;
@@ -303,36 +342,46 @@
         <input type="radio" [(ngModel)]="joinAsRadio" name="joinAsRadio" selected value="1">&nbsp;
         Join Team&nbsp;&nbsp;
         <input type="radio" [(ngModel)]="joinAsRadio" name="joinAsRadio" value="2">&nbsp; Connect with Creator
-<br/><br/>
+        <br /><br />
         <div *ngIf="joinAsRadio==1">
           <span style="margin-left:-1.5em;">Role : <select [(ngModel)]="joinTeamAsModel" style="width: 12.5em;">
-            <option value="Professional Guide" *ngIf="selectedStuvation.lookingProfessorGuidance=='Y' && selectedStuvation.projectStatus=='ongoing'">Professional
-              Guide</option>
-            <option value="Mentor" *ngIf="selectedStuvation.lookingMentorship=='Y'">Mentor</option>
-            <option value="Student Partner" *ngIf="selectedStuvation.lookingStudentPartner=='Y' && selectedStuvation.projectStatus=='ongoing'">Student
-              Partner</option>
-            <option value="Sponsor" *ngIf="selectedStuvation.lookingSponsorship=='Y' && selectedStuvation.projectStatus=='ongoing'">Sponsor</option>
-          </select>
-        </span>
-          <br/><br/>
-          <textarea [(ngModel)]="joinTeamAsConnectModel" placeholder="Max 1000 words" maxlength="1000" style="width: 15em; height: 15em;">
+              <option value="Professional Guide"
+                *ngIf="selectedStuvation.lookingProfessorGuidance=='Y' && selectedStuvation.projectStatus=='ongoing'">
+                Professional
+                Guide</option>
+              <option value="Mentor" *ngIf="selectedStuvation.lookingMentorship=='Y'">Mentor</option>
+              <option value="Student Partner"
+                *ngIf="selectedStuvation.lookingStudentPartner=='Y' && selectedStuvation.projectStatus=='ongoing'">
+                Student
+                Partner</option>
+              <option value="Sponsor"
+                *ngIf="selectedStuvation.lookingSponsorship=='Y' && selectedStuvation.projectStatus=='ongoing'">Sponsor
+              </option>
+            </select>
+          </span>
+          <br /><br />
+          <textarea [(ngModel)]="joinTeamAsConnectModel" placeholder="Max 1000 words" maxlength="1000"
+            style="width: 15em; height: 15em;">
             </textarea>
           &nbsp;&nbsp;
-          <br/>
-          <button class="btn btn-light" [disabled]="joinTeamAsModel==''" style="background-color: #07567F;height: 2.5em; color: white;"
+          <br />
+          <button class="btn btn-light" [disabled]="joinTeamAsModel==''"
+            style="background-color: #33099e;height: 2.5em; color: white;"
             (click)="joinTeamOperation(selectedStuvation.stuvationid, joinTeamAsModel, joinTeamAsConnectModel)">
             JOIN
           </button>
         </div>
         <div *ngIf="joinAsRadio==2">
-            <textarea [(ngModel)]="stuvationConnectModel" placeholder="Max 1000 words" maxlength="1000" style="width: 25em; height: 25em;">
+          <textarea [(ngModel)]="stuvationConnectModel" placeholder="Max 1000 words" maxlength="1000"
+            style="width: 25em; height: 25em;">
             </textarea>
-            <br/>
-            <button class="btn btn-light" [disabled]="stuvationConnectModel==''" style="background-color: #07567F;height: 2.5em;color: white;"
-              (click)="stuvationConnectOperation(selectedStuvation.stuvationid, stuvationConnectModel)">
-              CONNECT
-            </button>
-          </div>
+          <br />
+          <button class="btn btn-light" [disabled]="stuvationConnectModel==''"
+            style="background-color: #33099e;height: 2.5em;color: white;"
+            (click)="stuvationConnectOperation(selectedStuvation.stuvationid, stuvationConnectModel)">
+            CONNECT
+          </button>
+        </div>
       </div>
 
     </div>
@@ -342,36 +391,36 @@
 <script>
   const st = {};
 
-st.flap = document.querySelector('#flap');
-st.toggle = document.querySelector('.toggle');
+  st.flap = document.querySelector('#flap');
+  st.toggle = document.querySelector('.toggle');
 
-st.choice1 = document.querySelector('#choice1');
-st.choice2 = document.querySelector('#choice2');
+  st.choice1 = document.querySelector('#choice1');
+  st.choice2 = document.querySelector('#choice2');
 
-st.flap.addEventListener('transitionend', () => {
+  st.flap.addEventListener('transitionend', () => {
 
     if (st.choice1.checked) {
-        st.toggle.style.transform = 'rotateY(-15deg)';
-        setTimeout(() => st.toggle.style.transform = '', 400);
+      st.toggle.style.transform = 'rotateY(-15deg)';
+      setTimeout(() => st.toggle.style.transform = '', 400);
     } else {
-        st.toggle.style.transform = 'rotateY(15deg)';
-        setTimeout(() => st.toggle.style.transform = '', 400);
+      st.toggle.style.transform = 'rotateY(15deg)';
+      setTimeout(() => st.toggle.style.transform = '', 400);
     }
 
-})
+  })
 
-st.clickHandler = (e) => {
+  st.clickHandler = (e) => {
 
     if (e.target.tagName === 'LABEL') {
-        setTimeout(() => {
-            st.flap.children[0].textContent = e.target.textContent;
-        }, 250);
+      setTimeout(() => {
+        st.flap.children[0].textContent = e.target.textContent;
+      }, 250);
     }
-}
+  }
 
-document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', () => {
     st.flap.children[0].textContent = st.choice2.nextElementSibling.textContent;
-});
+  });
 
-document.addEventListener('click', (e) => st.clickHandler(e));
-  </script>
+  document.addEventListener('click', (e) => st.clickHandler(e));
+</script>

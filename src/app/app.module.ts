@@ -1,6 +1,5 @@
 import { BotDetectCaptchaModule } from 'angular-captcha';
-import { FullCalendarModule } from 'ng-fullcalendar';import { FilterPipeModule } from 'ngx-filter-pipe'; 
- 
+import { FullCalendarModule } from 'ng-fullcalendar'; import { FilterPipeModule } from 'ngx-filter-pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -72,20 +71,20 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     CommonModule,
     FormsModule,
     FilterPipeModule,
     NgbModalModule.forRoot(),
     NgbModule.forRoot(),
     CalendarModule.forRoot(),
-    RouterModule.forRoot(appRoutes, {useHash: true, enableTracing: true }),
+    RouterModule.forRoot(appRoutes, { useHash: true, enableTracing: true }),
     HttpClientModule,
     FullCalendarModule,
     ReactiveFormsModule,
     HttpModule,
     FileUploadModule
-  //  DemoUtilsModule
+    //  DemoUtilsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

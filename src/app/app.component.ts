@@ -23,7 +23,7 @@ import {
   CalendarEventTimesChangedEvent
 } from 'angular-calendar';
 
-import { Validators, FormBuilder, FormArray, ValidationErrors } from '../../node_modules/@angular/forms';
+import { Validators, FormBuilder, FormArray, ValidationErrors, FormGroup } from '../../node_modules/@angular/forms';
 import { HttpClient } from '../../node_modules/@angular/common/http';
 import { FileUploader } from 'ng2-file-upload';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
@@ -60,8 +60,8 @@ export class AppComponent {
   url;
 
   // endpoint: string = "http://localhost/services/";
-  // endpoint: string = "http://localhost/services/";
-  endpoint: string = "http://theengineersfactory.com/assets/services/";
+  endpoint: string = "http://localhost/services/";
+  // endpoint: string = "http://theengineersfactory.com/assets/services/";
   //endpoint: string="http://localhost/services/"
   userid;
   uploader: FileUploader = new FileUploader({ url: this.endpoint + "profilePictureUpload.php", removeAfterUpload: false, autoUpload: false });
@@ -207,11 +207,8 @@ export class AppComponent {
     console.log(document.getElementById("datefield"));
   }
   minDateString;
-
+  submitted = false;
   ngOnInit(): void {
-
-
-
 
     let today = new Date();
     console.dir(today);
@@ -353,16 +350,17 @@ export class AppComponent {
     }
   }
 
+
   createTechArticleForm = this.fb.group({
     email: ['', Validators.required],
     contactnumber: ['', Validators.required],
     title: ['', Validators.required],
-    abstract: ['', Validators.required],
+    abstract: ['', Validators.required, Validators.minLength(1000)],
     subtechnology: ['1', Validators.required],
     technology: ['1', Validators.required],
 
     paidArticle: ['Y'],
-    cost: [''],
+    cost: ['',Validators.required],
     publicationlink: [''],
     userDetails: this.fb.group(this.getLoggedInUserObject()),
     articleType: ['Article', Validators.required],
@@ -371,7 +369,15 @@ export class AppComponent {
     publicationFileUpload: ['']
   });
 
+  get f() { return this.createTechArticleForm.controls; }
+
   onCreateTechArticleFormSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.createTechArticleForm.invalid) {
+      return;
+    }
     this.createTechArticleForm.value.userDetails = this.getLoggedInUserObject();
     console.warn(this.createTechArticleForm.value);
     this.http.post(this.endpoint + 'createTechArticle.php', this.createTechArticleForm.value, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {

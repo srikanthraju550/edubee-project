@@ -27,7 +27,6 @@ export class TechArticleComponent implements OnInit {
       var params = "?userid=" + userDetails['userid'];
 
     this.http.get(url).subscribe(data => {
-      console.log(data);
       this.sliderContent = data['0'].sliderContent;
       this.teamDetails = data['1'].teamDetails;
       this.techarticledetails = data['2'].techarticledetails;
@@ -52,9 +51,7 @@ export class TechArticleComponent implements OnInit {
 
     this.http.post(this.endpoint + 'articleUpDownCount.php', requestObject, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
       //this.http.post('http://localhost:8080/edubee/articleUpDownCount.php', requestObject,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-      console.log(data);
       let parsedData: JSON = JSON.parse('' + data);
-      console.log(parsedData);
       if (parsedData['articleUpDownCountQuery'] == 'done') {
         this.ngOnInit();
       } else if (parsedData['articleUpDownCountQuery'] == 'failed') {
@@ -72,9 +69,7 @@ export class TechArticleComponent implements OnInit {
 
     this.http.post(this.endpoint + 'getArticleComments.php', requestObject, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
       //this.http.post('http://localhost:8080/edubee/articleUpDownCount.php', requestObject,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-      console.log(data);
       let parsedData: JSON = JSON.parse('' + data);
-      console.log(parsedData);
       this.articlecomments = parsedData['articlecomments'];
 
     });
