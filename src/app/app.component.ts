@@ -249,7 +249,7 @@ export class AppComponent {
 
   createTechTeachForm = this.fb.group({
     topic: ['', Validators.required],
-    abstract: ['', Validators.required],
+    abstract: ['', Validators.required, Validators.minLength(1000)],
     technologyArea: ['', Validators.required],
     technology: ['', Validators.required],
     subtechnology: ['', Validators.required],
@@ -285,7 +285,7 @@ export class AppComponent {
     projectType: ['', Validators.required],
     projectStatus: ['', Validators.required],
     title: [''],
-    abstract: [''],
+    abstract: ['', Validators.required, Validators.minLength(1000)],
     subtechnology: [''],
     technology: [''],
     idea: [''],
