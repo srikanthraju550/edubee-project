@@ -80,7 +80,7 @@
   <div class="row">
     <div class="col-12">
       <div class="accordion" id="accordionExample" style="margin: 1em; ">
-        <div class="card" *ngFor="let techteach of techteachdetails | filter:techEventFilter ; let i = index; ">
+        <div class="card" *ngFor="let techteach of techteachdetails | filterBy:techEventFilter ; let i = index; ">
           <div class="card-header" id="teachheading{{1}}" data-toggle="" attr.data-target="#teachcollapse{{i}}"
             aria-expanded="" attr.aria-controls="teachcollapse{{i}}">
             <h5 class="mb-0">

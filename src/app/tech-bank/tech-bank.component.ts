@@ -27,7 +27,7 @@ export class TechBankComponent implements OnInit {
   keywordFilter = "";
   techFilter = "";
   subTechFilter = "";
-  techEventFilter: any = { articletitle: '', originatorname: '', technologyname: '', subtechname: '', cost: 0 };
+  techEventFilter: any = { originatorname: '', technologyname: '', subtechname: '' };
 
 
   ngOnInit(): void {
