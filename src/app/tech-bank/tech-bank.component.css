@@ -99,7 +99,8 @@
 }
 
 /***********newcode******/
-.crd-hdng, .crd-btn-dv{
+
+.crd-hdng, .crd-btn-dv, .tech-tlk-contnr{
     float: left;
     width: 100%;
 }
@@ -130,3 +131,35 @@ h5 button.btn.btn-link.collapsed {
     text-decoration: none;
     cursor: initial;
 }
+
+/*****************media quaries**************************/
+ @media screen and (min-width: 320px) and (max-width: 567px) {
+    .col-12{
+         padding: 0;
+     }
+    .accordion .card {
+        width: 100%;
+        float: left;
+        margin: 18px 0px;
+    }
+ }
+ 
+ @media screen and (min-width: 360px) and (max-width: 539px) {
+
+ }
+ 
+ @media screen and (min-width: 460px) and (max-width: 767px) {}
+ 
+ @media only screen and (min-width: 540px) and (max-width: 767px) {}
+ 
+ @media only screen and (min-width: 768px) and (max-width: 959px) {}
+ 
+ @media only screen and (min-width: 799px) and (max-width: 960px) {}
+ 
+ @media only screen and (min-width: 960px) and (max-width: 1023px) {}
+ 
+ @media only screen and (min-width: 1024px) and (max-width: 1280px) {}
+ 
+ @media only screen and (min-width: 1280px) and (max-width: 1365px) {}
+ 
+ @media screen and (max-width: 1600px) {}
