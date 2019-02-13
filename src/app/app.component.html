@@ -440,7 +440,10 @@
                         </div>
 
                         <!-- [disabled]="!createTechArticleForm.valid || !createTechArticleForm.value.agreeTermsAndConditions" -->
-                        <button type="submit" class="btn btn-primary">Create Tech Article</button>
+                        <button type="submit" class="btn btn-primary"
+                            [disabled]="!createTechArticleForm.valid || !createTechArticleForm.value.agreeTermsAndConditions"
+                            [ngClass]="{'disable-btn':!createTechArticleForm.valid || !createTechArticleForm.value.agreeTermsAndConditions}">Create
+                            Tech Article</button>
                     </div>
                 </form>
             </div>
@@ -1151,7 +1154,7 @@
 
 
                     <span style="color: #176086; text-decoration: underline; ">
-                        <h3>Venue Details</h3>
+                        <h3 style="color: #176086  !important;">Venue Details</h3>
                     </span>
                     <div formGroupName="venueDetails">
 
@@ -1202,7 +1205,7 @@
                         </div>
                     </div>
                     <span style="color: #176086; text-decoration: underline; ">
-                        <h3>Registration Details</h3>
+                        <h3 style="color: #176086  !important;">Registration Details</h3>
                     </span>
                     <div formGroupName="registrationDetails">
                         <div class="row">
@@ -1248,7 +1251,8 @@
                         </div>
                     </div>
                     <span style="color: #176086; text-decoration: underline; ">
-                        <h3>Industrial Expert Details</h3><span id="addbox" style="cursor:pointer;">&#43;</span>
+                        <h3 style="color: #176086  !important;">Industrial Expert Details</h3><span id="addbox"
+                            style="cursor:pointer;">&#43;</span>
                     </span>
                     <div formGroupName="expertDetails">
                         <div class="row">
@@ -1300,7 +1304,9 @@
 
 
                     <div style="width: 100%; text-align: center; align-items: center">
-                        <button type="submit" class="btn btn-primary" [disabled]="!createTechTeachForm.valid">Create a
+                        <button type="submit" class="btn btn-primary"
+                            [ngClass]="{'disable-btn':!createTechTeachForm.valid}"
+                            [disabled]="!createTechTeachForm.valid">Create a
                             Tech Teach</button>
                     </div>
                 </form>
@@ -1335,8 +1341,8 @@
                         </select>
                     </div>
 
-                    <span style="color: #176086; text-decoration: underline; ">
-                        <h3>Venue Details</h3>
+                    <span style="color: #176086 !important; text-decoration: underline; ">
+                        <h3 style="color: #176086  !important;">Venue Details</h3>
                     </span>
                     <div formGroupName="venueDetails">
 
@@ -1383,8 +1389,8 @@
                             </div>
                         </div>
                     </div>
-                    <span style="color: #176086; text-decoration: underline; ">
-                        <h3>Registration Details</h3>
+                    <span style="color: #176086  !important; text-decoration: underline; ">
+                        <h3 style="color: #176086  !important;">Registration Details</h3>
                     </span>
                     <div formGroupName="registrationDetails">
                         <div class="row">
@@ -1429,8 +1435,8 @@
                                 </div> -->
                         </div>
                     </div>
-                    <span style="color: #176086; text-decoration: underline; ">
-                        <h3>Speaker Details</h3>
+                    <span style="color: #176086  !important; text-decoration: underline; ">
+                        <h3 style="color: #176086  !important;">Speaker Details</h3>
                     </span>
                     <div formGroupName="expertDetails">
                         <div class="row">
@@ -1482,7 +1488,9 @@
 
 
                     <div style="width: 100%; text-align: center; align-items: center">
-                        <button type="submit" class="btn btn-primary" [disabled]="!createTechTalkForm.valid">Create a
+                        <button type="submit" class="btn btn-primary"
+                            [ngClass]="{'disable-btn':!createTechTalkForm.valid}"
+                            [disabled]="!createTechTalkForm.valid">Create a
                             Tech Talk</button>
                     </div>
                 </form>

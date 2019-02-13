@@ -1,5 +1,6 @@
 import { BotDetectCaptchaModule } from 'angular-captcha';
-import { FullCalendarModule } from 'ng-fullcalendar'; import { FilterPipeModule } from 'ngx-filter-pipe';
+import { FullCalendarModule } from 'ng-fullcalendar';
+ import { FilterPipeModule } from 'ngx-filter-pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

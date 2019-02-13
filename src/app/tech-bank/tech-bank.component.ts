@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { MainServiceService } from '../main-service.service';
-import { FilterPipe } from '../filter.pipe';
+import { FilterPipe } from 'ngx-filter-pipe';
 
 @Component({
   selector: 'app-tech-bank',
@@ -12,7 +12,7 @@ import { FilterPipe } from '../filter.pipe';
 export class TechBankComponent implements OnInit {
   endpoint: string = "http://localhost/services/";
   // endpoint: string = "http://www.theengineersfactory.com/assets/services/";
-  constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService) { }
+  constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private filterPipe: FilterPipe) { }
   sliderContent: any = [];
   //homePageDataFromService=[];
   homePageContent: any = [];
@@ -27,7 +27,7 @@ export class TechBankComponent implements OnInit {
   keywordFilter = "";
   techFilter = "";
   subTechFilter = "";
-  techEventFilter: any = { articletitle: '', name: '', technologyname: '', subtechname: '', cost: 0 };
+  techEventFilter: any = { articletitle: '', originatorname: '', technologyname: '', subtechname: '', cost: 0 };
 
 
   ngOnInit(): void {
