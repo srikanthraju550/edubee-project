@@ -603,6 +603,13 @@ cursor: pointer;
 
 /************mediaquaries*******/
 @media screen and (min-width: 320px) and (max-width: 567px) {
+a.close_btn {
+  position: relative;
+  top: 10px;
+}
+a.close_btn .fa{
+  font-size: 1.3em;
+}
   .logn_modl .modal-content{
     top: 2%;
     left: 0%;
@@ -699,9 +706,55 @@ ul.main-menu li{
 
 @media screen and (min-width: 460px) and (max-width: 767px) {}
 
-@media only screen and (min-width: 540px) and (max-width: 767px) {}
+@media only screen and (min-width: 540px) and (max-width: 767px) {
+  .main-menu li a {
+    display: block;
+    min-width: 83px;
+     font-size: 12px;
+}
+.staticNavHeader .nav1 {
+  margin-top: 0.5em;
+  position: relative;
+  left: 10%;
+}
+ul.login-btn {
+    position: absolute;
+    right: 20%;
+}
+.logn_modl .modal-content {
+  top: 5%;
+  left: 0%;
+  margin: 0 auto;
+  width: 65%;
+  border-top-left-radius: .4rem;
+  border-top-right-radius: .4rem;
+}
+}
 
-@media only screen and (min-width: 768px) and (max-width: 959px) {}
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+  .staticNavHeader .nav1 {
+    margin-top: 0.5em;
+    position: relative;
+    left: 5%;
+  }
+  .main-menu li a {
+    display: block;
+    min-width: 83px;
+     font-size: 12px;
+}
+ul.login-btn {
+    position: absolute;
+    right: 20%;
+}
+.logn_modl .modal-content {
+  top: 5%;
+  left: 0%;
+  margin: 0 auto;
+  width: 65%;
+  border-top-left-radius: .4rem;
+  border-top-right-radius: .4rem;
+}
+}
 
 @media only screen and (min-width: 799px) and (max-width: 960px) {}
 

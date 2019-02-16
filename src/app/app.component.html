@@ -13,7 +13,7 @@
             <ul id="menu" class="main-menu">
                 <li><a routerLink="/home" class="main-header">HOME</a></li>
                 <li>
-                    <a href="#" class="main-header">TECH WORLD ￬</a>
+                    <a href="#" class="main-header">TECH WORLD <i class="fa fa-caret-down" style="display: inline;"></i></a>
                     <ul class="hidden sub-drop">
                         <li class="sub-menu-header"><a routerLink="/techbank">TECH BANK</a></li>
                         <li class="sub-menu-header"><a routerLink="/techevent">TECH CONNECT</a></li>
@@ -29,7 +29,7 @@
 
 
                 <li *ngIf="!checkLoginStatus()">
-                    <a href="#" class="main-header">PROFILE ￬</a>
+                    <a href="#" class="main-header">PROFILE <i class="fa fa-caret-down" style="display: inline;"></i></a>
                     <ul class="hidden sub-drop">
                         <li class="sub-menu-header"><a class="dropdown-item" routerLink="/myprofile">MY PROFILE</a></li>
                         <li class="sub-menu-header"><a class="dropdown-item" routerLink="/engshipRequest">Engship
@@ -90,9 +90,9 @@
                         <img class="toggle-menu-icon" src="../assets/images/menu-icon.png">
 
                         <ul id="menu" class="animated slideInLeft" *ngIf="navbarOpen">
-                            <li><a (click)="hidemenu()" class="close_btn">x</a></li>
+                            <li><a (click)="hidemenu()" class="close_btn"><i class="fa fa-times-circle" aria-hidden="true"></i></a></li>
                             <li><a (click)="goHome()">Home</a></li>
-                            <li><a href="#">Tech World ￬</a>
+                            <li><a href="#">Tech World <i class="fa fa-caret-down" style="display: inline;"></i></a>
                                 <ul class="hidden sub-drop">
                                     <li><a (click)="goTechBank()">TECH BANK</a></li>
                                     <li><a (click)="goTechEvent()">TECH CONNECT</a></li>
@@ -106,7 +106,7 @@
                                     style="font-size:13px;" data-toggle="modal" href="#"
                                     data-target="#loginModal">LOGIN</a></li>
                             <li class="showInMobile" *ngIf="checkLoginStatus()"> <a class="main-header"
-                                    style="font-size:13px;" data-toggle="dropdown" href="#" role="button">SIGN UP ￬</a>
+                                    style="font-size:13px;" data-toggle="dropdown" href="#" role="button">SIGN UP <i class="fa fa-caret-down" style="display: inline;"></i></a>
 
                                 <ul class="hidden sign-up-sub">
                                     <li><a class="main-header" style="font-size:13px;" data-toggle="modal"
