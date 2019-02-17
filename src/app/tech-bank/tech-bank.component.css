@@ -142,6 +142,12 @@ h5 button.btn.btn-link.collapsed {
         float: left;
         margin: 18px 0px;
     }
+    .tch-m-hdng{
+        font-size: 22px;
+    }
+    .card-body{
+        padding: 8px 2px;
+    }
  }
  
  @media screen and (min-width: 360px) and (max-width: 539px) {
@@ -150,9 +156,27 @@ h5 button.btn.btn-link.collapsed {
  
  @media screen and (min-width: 460px) and (max-width: 767px) {}
  
- @media only screen and (min-width: 540px) and (max-width: 767px) {}
+ @media only screen and (min-width: 540px) and (max-width: 767px) {
+    .accordion .card {
+        width: 49%;
+        float: left;
+        margin: 18px 1px;
+    }
+    .card-body{
+        padding: 8px 2px;
+    }
+ }
  
- @media only screen and (min-width: 768px) and (max-width: 959px) {}
+ @media only screen and (min-width: 768px) and (max-width: 959px) {
+    .accordion .card {
+        width: 49%;
+        float: left;
+        margin: 10px 3px;
+    }
+    .card-body{
+        padding: 8px 2px;
+    }
+ }
  
  @media only screen and (min-width: 799px) and (max-width: 960px) {}
  

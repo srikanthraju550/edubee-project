@@ -32,15 +32,15 @@
 }
 .commentbutton{
     background-color: black; color: white !important;
-    margin-left: -8% !important;
+    /* margin-left: -8% !important; */
 }
 .veiwbutton{
     background-color: #B3B3B3; color: black !important;
-    margin-left: -8% !important;
+    /* margin-left: -8% !important; */
 }
 .buybutton{
     background-color: #FE9404; color: white !important;
-    margin-left: -8% !important;
+    /* margin-left: -8% !important; */
 }
 .createarticle1{
     max-width : 70% !important;
@@ -110,12 +110,16 @@ cursor: pointer;
 }
 
 .card-articles{
-    border: 1px solid #3e0aa5;
+    /* border: 1px solid #3e0aa5;
     margin-bottom: 15px;
     box-shadow: 5px 9px 13px -4px rgba(0, 0, 0, .3) !important;
-    background-color: #33099e59;
-    /* margin-left: 0%; */
+    background-color: #33099e59;     */
+    border: 1px solid #3e0aa5;
+    margin-bottom: 25px;
+    box-shadow: 5px 9px 13px -6px rgba(0, 0, 0, .3) !important;
+    background-color: #f3f3f3;
 }
+
 @media only screen and (max-width: 768px) {
 .buttonarticle{
     height: 18%;
@@ -123,13 +127,14 @@ cursor: pointer;
     background: -webkit-gradient(left top, right top, color-stop(0%, rgba(51,9,158,1)), color-stop(47%, rgba(51,9,158,1)), color-stop(100%, rgba(192,39,230,1)));
     background: linear-gradient(to right, rgba(51,9,158,1) 0%, rgba(51,9,158,1) 47%, rgba(192,39,230,1) 100%);
  color: white;
-    border: 3px solid darksalmon;
+    border: 2px solid darksalmon;
     border-radius: 15px;
     font-weight: bold;
     font-size: medium;
     float: right;
     font-family: inherit;
     padding: 18px 45px 18px 45px !important;
+    outline: none;
 }
 .createarticle1{
     max-width : 100% !important;
@@ -193,3 +198,49 @@ cursor: pointer;
     margin: 10px 10px 10px 0px;
 }
 }
+
+
+/****************newcode**************/
+.tec_mdl{
+    text-align: center;
+}
+
+
+  /***************mediaquaries*********/
+
+  @media screen and (min-width: 320px) and (max-width: 567px) {
+    .m-row .col-4{
+        width: 50%;
+        max-width: 60%;
+        flex: initial;
+    }
+    .m-row{
+        margin: 20px 30px;
+    }
+
+      .tec_ryt .buttonarticle{
+        padding: 8px 20px 28px 20px !important;
+        margin: 0px 4px!important
+      }
+      .buttonarticle.crt-btn{
+        padding: 14px 40px 32px 40px !important;       
+      }
+  }
+  
+  @media screen and (min-width: 360px) and (max-width: 539px) {}
+  
+  @media screen and (min-width: 460px) and (max-width: 767px) {}
+  
+  @media only screen and (min-width: 540px) and (max-width: 767px) {}
+  
+  @media only screen and (min-width: 768px) and (max-width: 959px) {}
+  
+  @media only screen and (min-width: 799px) and (max-width: 960px) {}
+  
+  @media only screen and (min-width: 960px) and (max-width: 1023px) {}
+  
+  @media only screen and (min-width: 1024px) and (max-width: 1280px) {}
+  
+  @media only screen and (min-width: 1280px) and (max-width: 1365px) {}
+  
+  @media screen and (max-width: 1600px) {}
