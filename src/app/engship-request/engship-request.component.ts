@@ -10,7 +10,7 @@ import { MainServiceService } from '../main-service.service';
 })
 export class EngshipRequestComponent implements OnInit {
 
-  endpoint: string = "http://localhost/services/"
+  endpoint: string = "../assets/services/"
   selectedEngship: any;
   constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService) { }
   sliderContent: any = [];
@@ -22,7 +22,7 @@ export class EngshipRequestComponent implements OnInit {
   engshipMentorRequestdetails: any = [];
   engshipMenteeRequestdetails: any = [];
   ngOnInit(): void {
-    //this.http.get('http://localhost/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
+    //this.http.get('../assets/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
     let url = this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime();
     let userDetails = this.getLoggedInUserObject();
     if (!this.checkLoginStatus())

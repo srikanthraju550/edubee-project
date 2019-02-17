@@ -59,8 +59,8 @@ export class AppComponent {
   title = 'app';
   url;
 
-  endpoint: string = "http://theengineersfactory.com/assets/services/";
-  // endpoint: string = "http://localhost/services/"
+  endpoint: string = "../assets/services/";
+  // endpoint: string = "../assets/services/"
   userid;
   uploader: FileUploader = new FileUploader({ url: this.endpoint + "profilePictureUpload.php", removeAfterUpload: false, autoUpload: false });
   fileUploaderTechArticle: FileUploader = new FileUploader({ url: this.endpoint + "publicationFileUpload.php", removeAfterUpload: false, autoUpload: false });
@@ -209,20 +209,15 @@ export class AppComponent {
   ngOnInit(): void {
 
     let today = new Date();
-    console.dir(today);
     this.minDateString = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-    console.log(this.minDateString);
     //document.getElementById("datefield").setAttribute("min", today.toDateString());
-    console.dir(document.getElementById("datefield"));
     let url = this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime();
     let userDetails = this.getLoggedInUserObject();
-    console.log(this.getLoggedInUserObject());
     if (!this.checkLoginStatus())
       url += "?userid=" + userDetails['userid'];
 
-    //this.http.get('http://localhost/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
+    //this.http.get('../assets/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
     this.http.get(url).subscribe(data => {
-      console.log(data);
       this.sliderContent = data['0'].sliderContent;
       this.teamDetails = data['1'].teamDetails;
       this.homePageContent = data['3'].homePageData;
@@ -238,7 +233,6 @@ export class AppComponent {
   }
   subtechnologylist: any = [];
   updateSubTechList(technologyid) {
-    console.log(technologyid);
     this.subtechnologylist = this.subtechnologyconfig;/* .filter(obj => {
       console.log(obj.technologyid);
       return obj.technologyid === technologyid;
@@ -249,7 +243,7 @@ export class AppComponent {
 
   createTechTeachForm = this.fb.group({
     topic: ['', Validators.required],
-    abstract: ['', Validators.required, Validators.minLength(1000)],
+    abstract: ['', Validators.required],
     technologyArea: ['', Validators.required],
     technology: ['', Validators.required],
     subtechnology: ['', Validators.required],
@@ -285,7 +279,7 @@ export class AppComponent {
     projectType: ['', Validators.required],
     projectStatus: ['', Validators.required],
     title: [''],
-    abstract: ['', Validators.required, Validators.minLength(1000)],
+    abstract: ['', Validators.required],
     subtechnology: [''],
     technology: [''],
     idea: [''],
@@ -353,7 +347,7 @@ export class AppComponent {
     email: ['', Validators.required],
     contactnumber: ['', Validators.required],
     title: ['', Validators.required],
-    abstract: ['', Validators.required, Validators.minLength(1000)],
+    abstract: ['', Validators.required],
     subtechnology: ['1', Validators.required],
     technology: ['1', Validators.required],
 
@@ -370,19 +364,16 @@ export class AppComponent {
   get f() { return this.createTechArticleForm.controls; }
 
   onCreateTechArticleFormSubmit() {
-    this.submitted = true;
+    // this.submitted = true;
 
-    // stop here if form is invalid
-    if (this.createTechArticleForm.invalid) {
-      return;
-    }
+    // // stop here if form is invalid
+    // if (this.createTechArticleForm.invalid) {
+    //   return;
+    // }
     this.createTechArticleForm.value.userDetails = this.getLoggedInUserObject();
-    console.warn(this.createTechArticleForm.value);
     this.http.post(this.endpoint + 'createTechArticle.php', this.createTechArticleForm.value, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
       //this.http.post('http://localhost:8080/edubee/createTechArticle.php', this.createTechArticleForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-      console.log(data);
       let parsedData: JSON = JSON.parse('' + data);
-      console.log(parsedData);
       if (parsedData['techarticledetailsQuery'] == 'done') {
         alert('Tech Article Created');
         document.getElementById("closeCreateTechArticleModal").click();
@@ -481,7 +472,7 @@ export class AppComponent {
   onCreateTechTeachFormSubmit() {
     this.createTechTeachForm.value.userDetails = this.getLoggedInUserObject();
     console.warn(this.createTechTeachForm.value);
-    //this.http.post('http://localhost/services/createTechTeach.php', this.createTechTeachForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
+    //this.http.post('../assets/services/createTechTeach.php', this.createTechTeachForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
     this.http.post(this.endpoint + 'createTechTeach.php', this.createTechTeachForm.value, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
       console.log(data);
       let parsedData: JSON = JSON.parse('' + data);
@@ -690,7 +681,7 @@ export class AppComponent {
       let body = _formData;
       let headers = new Headers();
      
-      this._http.post("http://localhost/services/profilePictureUpload.php", body, {
+      this._http.post("../assets/services/profilePictureUpload.php", body, {
         headers: headers
     })
         .subscribe((data) => this.message = data);

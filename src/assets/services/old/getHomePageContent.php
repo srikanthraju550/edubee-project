@@ -1,5 +1,6 @@
 <?php
 include("connection.php");
+header("Access-Control-Allow-Origin: */*");
 if(isset($_REQUEST['userid'])){
     $followerId = $_REQUEST['userid'];
 }

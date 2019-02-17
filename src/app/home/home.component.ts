@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
   displayEvent: any;
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
 
-  sliderValue=1;
+  sliderValue = 1;
   view: string = 'month';
 
   viewDate: Date = new Date();
@@ -158,8 +158,8 @@ export class HomeComponent implements OnInit {
   url;
   getHomePageCounterValues;
 
-  endpoint: string = "http://www.theengineersfactory.com/assets/services/";
-  // endpoint: string = "http://localhost/services/";
+  endpoint: string = "../assets/services/";
+  // endpoint: string = "../assets/services/";
 
   loadMe;
   calenderData = [];
@@ -178,7 +178,7 @@ export class HomeComponent implements OnInit {
     this.viewAllData = [];
     this.loadMe = true;
     //document.getElementById('signupDropdown2').click();document.getElementById('signupDropdown2').click();
-    //this.http.get('http://localhost/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
+    //this.http.get('../assets/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
     this.http.get(this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime()).subscribe(data => {
 
       this.sliderContent = data['0'].sliderContent;

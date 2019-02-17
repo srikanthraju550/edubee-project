@@ -38,52 +38,52 @@ export class MyprofileComponent implements OnInit {
   techarticledetails: any = [];
   techtalkdetails: any;
   techteachdetails: any;
-  profileInformation:any;
+  profileInformation: any;
   cityconfig: any = [];
   stateconfig: any = [];
   profilePageCounterValues;
-  
-  endpoint: string="http://localhost/services/"
+
+  endpoint: string = "../assets/services/"
   constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private fb: FormBuilder) { }
-  userDetails:any;
+  userDetails: any;
   ngOnInit() {
     this.userDetails = this.getLoggedInUserObject();
-    var url = this.endpoint+'getProfilePageContent.php'+"/random="+new Date().getTime();
-    if(!this.checkLoginStatus())
-        url+="?userid="+this.userDetails['userid'];
-        console.log(url);
+    var url = this.endpoint + 'getProfilePageContent.php' + "/random=" + new Date().getTime();
+    if (!this.checkLoginStatus())
+      url += "?userid=" + this.userDetails['userid'];
+    console.log(url);
     this.http.get(url).subscribe(data => {
       console.log(data);
-      this.profileInformation= data['1'].profileInformation[0];
-      this.stateconfig= data['2'].stateconfig;
-      this.cityconfig= data['3'].cityconfig;
-      this.profilePageCounterValues= data['4'].profilePageCounterValues[0];
+      this.profileInformation = data['1'].profileInformation[0];
+      this.stateconfig = data['2'].stateconfig;
+      this.cityconfig = data['3'].cityconfig;
+      this.profilePageCounterValues = data['4'].profilePageCounterValues[0];
       console.log(this.profileInformation);
       console.log(this.stateconfig);
       console.log(this.profilePageCounterValues);
-      
-      this.profilePageCounterValues['totalScore']=
-      (this.profilePageCounterValues['@researchPaperCount']*20)
-      +(this.profilePageCounterValues['@whitePaperCount']*10)
-      +(this.profilePageCounterValues['@articleCount']*5)
-      +(this.profilePageCounterValues['@techTalkCount']*10)
-      +(this.profilePageCounterValues['@techMeetCount']*10)
-      +(this.profilePageCounterValues['@workshopCount']*20)
-      +(this.profilePageCounterValues['@trainingsCount']*20)
-      +(this.profilePageCounterValues['@miniProjectCount']*20)
-      +(this.profilePageCounterValues['@majorProjectCount']*50)
-      +(this.profilePageCounterValues['@stuvationCount']*100)
-      +(this.profilePageCounterValues['@projectsCount']*20)
-      +(this.profilePageCounterValues['@internshipCount']*20)
-      +(this.profilePageCounterValues['@scholarshipCount']*20)
-      +(this.profilePageCounterValues['@mentorshipCount']*20)
-      ;
-      
+
+      this.profilePageCounterValues['totalScore'] =
+        (this.profilePageCounterValues['@researchPaperCount'] * 20)
+        + (this.profilePageCounterValues['@whitePaperCount'] * 10)
+        + (this.profilePageCounterValues['@articleCount'] * 5)
+        + (this.profilePageCounterValues['@techTalkCount'] * 10)
+        + (this.profilePageCounterValues['@techMeetCount'] * 10)
+        + (this.profilePageCounterValues['@workshopCount'] * 20)
+        + (this.profilePageCounterValues['@trainingsCount'] * 20)
+        + (this.profilePageCounterValues['@miniProjectCount'] * 20)
+        + (this.profilePageCounterValues['@majorProjectCount'] * 50)
+        + (this.profilePageCounterValues['@stuvationCount'] * 100)
+        + (this.profilePageCounterValues['@projectsCount'] * 20)
+        + (this.profilePageCounterValues['@internshipCount'] * 20)
+        + (this.profilePageCounterValues['@scholarshipCount'] * 20)
+        + (this.profilePageCounterValues['@mentorshipCount'] * 20)
+        ;
+
       console.log(this.userDetails);
       console.log(this.getCityName(this.profileInformation.schoolcityid));
-      if(this.userDetails['usertype']=='student'){
+      if (this.userDetails['usertype'] == 'student') {
         this.studentRegistrationForm = this.fb.group({
-          name: [ this.profileInformation.name,Validators.required],
+          name: [this.profileInformation.name, Validators.required],
           email: [this.profileInformation.emailaddress, Validators.required],
           contact: [this.profileInformation.contactnumber, Validators.required],
           dob: [this.profileInformation.dob, Validators.required],
@@ -101,14 +101,14 @@ export class MyprofileComponent implements OnInit {
           technologies: [this.profileInformation.technologylist, Validators.required],
           skills: [this.profileInformation.skillslist, Validators.required],
           userId: [this.userDetails['userid']]
-      
+
         });
         this.updateCityList(this.studentRegistrationForm.value.collegestate, 'college');
         this.updateCityList(this.studentRegistrationForm.value.schoolstate, 'school');
         console.log(this.studentRegistrationForm);
-      }else{
+      } else {
         this.engineerRegistrationForm = this.fb.group({
-          name: [ this.profileInformation.name,Validators.required],
+          name: [this.profileInformation.name, Validators.required],
           email: [this.profileInformation.emailaddress, Validators.required],
           contact: [this.profileInformation.contactnumber, Validators.required],
           dob: [this.profileInformation.dob, Validators.required],
@@ -126,39 +126,39 @@ export class MyprofileComponent implements OnInit {
           technologies: [this.profileInformation.technologylist, Validators.required],
           skills: [this.profileInformation.skillslist, Validators.required],
           userId: [this.userDetails['userid']]
-      
+
         });
         this.updateCityList(this.engineerRegistrationForm.value.collegestate, 'college');
         this.updateCityList(this.engineerRegistrationForm.value.schoolstate, 'school');
         console.log(this.engineerRegistrationForm);
       }
-      
-    });  
+
+    });
   }
 
-  onEngineerRegistrationFormSubmi(){
+  onEngineerRegistrationFormSubmi() {
     console.warn(this.engineerRegistrationForm.value);
     let headers = new Headers({ 'Content-Type': 'multipart/form-data' });
-    
+
     this.http.post(this.endpoint + 'engineerUpdateRegistration.php', this.engineerRegistrationForm.value, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
       //  this.http.post('http://localhost:8080/edubee/engineerRegistration.php', this.engineerRegistrationForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-        console.log(data);
-        let parsedData: JSON = JSON.parse('' + data);
-        console.log(parsedData);
-        if (parsedData['profieUpdationStatus'] == 'successful') {
-          
-          alert('Profile Updated Successfully');
-          
-        } else if (parsedData['profieUpdationStatus'] == 'partiallySuccessful') {
-          alert('Partially Profile Updated');
-        }
-      
+      console.log(data);
+      let parsedData: JSON = JSON.parse('' + data);
+      console.log(parsedData);
+      if (parsedData['profieUpdationStatus'] == 'successful') {
+
+        alert('Profile Updated Successfully');
+
+      } else if (parsedData['profieUpdationStatus'] == 'partiallySuccessful') {
+        alert('Partially Profile Updated');
+      }
+
     });
   }
 
   onStudentRegistrationFormUpdate() {
     console.warn(this.studentRegistrationForm.value);
-    
+
     let headers = new Headers({ 'Content-Type': 'multipart/form-data' });
     this.http.post(this.endpoint + 'studentUpdateRegistration.php', this.studentRegistrationForm.value, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
       //  this.http.post('http://localhost:8080/edubee/studentRegistration.php', this.studentRegistrationForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
@@ -166,13 +166,13 @@ export class MyprofileComponent implements OnInit {
       let parsedData: JSON = JSON.parse('' + data);
       console.log(parsedData);
       if (parsedData['profieUpdationStatus'] == 'successful') {
-        
+
         alert('Profile Updated Successfully');
-        
+
       } else if (parsedData['profieUpdationStatus'] == 'partiallySuccessful') {
         alert('Partially Profile Updated');
       }
-      
+
     });
 
   }
@@ -180,32 +180,32 @@ export class MyprofileComponent implements OnInit {
   schoolcitylist: any = [];
   updateCityList(stateid, listname) {
     console.log(stateid);
-    if(listname=='college')
-    this.collegecitylist = this.cityconfig.filter(obj => {
-      console.log(obj.stateid);
-      return obj.stateid === stateid;
-    })
+    if (listname == 'college')
+      this.collegecitylist = this.cityconfig.filter(obj => {
+        console.log(obj.stateid);
+        return obj.stateid === stateid;
+      })
 
-    if(listname=='school')
-    this.schoolcitylist = this.cityconfig.filter(obj => {
-      console.log(obj.stateid);
-      return obj.stateid === stateid;
-    })
+    if (listname == 'school')
+      this.schoolcitylist = this.cityconfig.filter(obj => {
+        console.log(obj.stateid);
+        return obj.stateid === stateid;
+      })
   }
 
-  getStateName(id){
+  getStateName(id) {
     Array.prototype.forEach.call(this.stateconfig, child => {
-      if(child.id==id){
+      if (child.id == id) {
         console.log(child);
         return child.statename;
       }
-        
+
     });
   }
 
-  getCityName(id){
+  getCityName(id) {
     Array.prototype.forEach.call(this.cityconfig, child => {
-      if(child.id==id){
+      if (child.id == id) {
         console.log(child.cityname);
         return child.cityname;
       }

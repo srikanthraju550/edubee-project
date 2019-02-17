@@ -1,6 +1,6 @@
 import { BotDetectCaptchaModule } from 'angular-captcha';
 import { FullCalendarModule } from 'ng-fullcalendar';
- import { FilterPipeModule } from 'ngx-filter-pipe';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -35,6 +35,8 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { EngshipRequestComponent } from './engship-request/engship-request.component';
 //import { Ng2UploaderModule } from 'ng2-uploader';
 
+import { NumberOnlyDirective, AlphabetsOnly, AlphaNumericOnly } from './number';
+
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -68,7 +70,10 @@ const appRoutes: Routes = [
     CareersComponent,
     FaqsComponent,
     PrivacyPolicyComponent,
-    EngshipRequestComponent
+    EngshipRequestComponent,
+    NumberOnlyDirective,
+    AlphaNumericOnly,
+    AlphabetsOnly
   ],
   imports: [
     BrowserModule,

@@ -317,61 +317,44 @@
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="email">Contact Email:</label>
-                            <input type="text" class="form-control" formControlName="email"
-                                [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
-                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                                <div *ngIf="f.email.errors.required">Email is required</div>
-                            </div>
+                            <input type="text" class="form-control" formControlName="email">
+
                         </div>
                         <div class="form-group col-6">
                             <label for="contactnumber">Contact Number:</label>
                             <input type="text" class="form-control" formControlName="contactnumber" minlength="10"
-                                maxlength="10" (keypress)="_keyPress($event)"
-                                [ngClass]="{ 'is-invalid': submitted && f.contactnumber.errors }">
-                            <div *ngIf="submitted && f.contactnumber.errors" class="invalid-feedback">
-                                <div *ngIf="f.contactnumber.errors.required">Contact Number is required</div>
-                            </div>
+                                maxlength="10" (keypress)="_keyPress($event)">
+
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="title">Title:</label>
-                        <input type="text" class="form-control" formControlName="title"
-                            [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
-                        <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
-                            <div *ngIf="f.title.errors.required">Title is required</div>
-                        </div>
+                        <input type="text" class="form-control" formControlName="title">
+
                     </div>
                     <div class="form-group">
                         <label for="abstract">Abstract:</label>
                         <textarea class="form-control" formControlName="abstract" placeholder="1000 words"
-                            maxlength="1000" [ngClass]="{ 'is-invalid': submitted && f.abstract.errors }"></textarea>
-                        <div *ngIf="submitted && f.abstract.errors" class="invalid-feedback">
-                            <div *ngIf="f.abstract.errors.required">Abstract is required</div>
-                        </div>
+                            minlength="1000" maxlength="1000"></textarea>
+
                     </div>
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="technology">Engineering Technology:</label>
                             <select type="text" class="form-control" formControlName="technology"
-                                (change)="updateSubTechList(createTechArticleForm.value.technology)"
-                                [ngClass]="{ 'is-invalid': submitted && f.technology.errors }">
+                                (change)="updateSubTechList(createTechArticleForm.value.technology)">
                                 <option *ngFor="let technology of technologyconfig; let i = index;"
                                     [value]="technology.technologyid">{{technology.technologyname}}</option>
                             </select>
-                            <div *ngIf="submitted && f.technology.errors" class="invalid-feedback">
-                                <div *ngIf="f.technology.errors.required">Technology is required</div>
-                            </div>
+
                         </div>
                         <div *ngIf="subtechnologylist?.length!=0" class="form-group col-6">
                             <label for="subtechnology">Sub-Engineering Technology:</label>
-                            <select type="text" class="form-control" formControlName="subtechnology"
-                                [ngClass]="{ 'is-invalid': submitted && f.subtechnology.errors }">
+                            <select type="text" class="form-control" formControlName="subtechnology">
                                 <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
                                     [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
                             </select>
-                            <div *ngIf="submitted && f.subtechnology.errors" class="invalid-feedback">
-                                <div *ngIf="f.subtechnology.errors.required">Subtechnology is required</div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="row">
@@ -413,11 +396,8 @@
                         <div class="form-group col-6"
                             *ngIf="createTechArticleForm.value.paidArticle=='Y' && createTechArticleForm.value.articleType=='Article'">
                             <label for="cost">Cost:</label>
-                            <input type="text" class="form-control" formControlName="cost"
-                                [ngClass]="{ 'is-invalid': submitted && f.cost.errors }">
-                            <div *ngIf="submitted && f.cost.errors" class="invalid-feedback">
-                                <div *ngIf="f.cost.errors.required">Cost is required</div>
-                            </div>
+                            <input myNumberOnly type="text" class="form-control" formControlName="cost">
+
                         </div>
                         <div class="form-group col-6"
                             *ngIf="createTechArticleForm.value.publicationSelector=='1'&&((createTechArticleForm.value.paidArticle=='N' && createTechArticleForm.value.articleType=='Article') ||(createTechArticleForm.value.articleType!='Article'))">
@@ -440,9 +420,8 @@
                         </div>
 
                         <!-- [disabled]="!createTechArticleForm.valid || !createTechArticleForm.value.agreeTermsAndConditions" -->
-                        <button type="submit" class="btn btn-primary"
-                            [disabled]="!createTechArticleForm.valid || !createTechArticleForm.value.agreeTermsAndConditions"
-                            [ngClass]="{'disable-btn':!createTechArticleForm.valid || !createTechArticleForm.value.agreeTermsAndConditions}">Create
+                        <button type="submit" class="btn btn-primary" [disabled]="!createTechArticleForm.valid "
+                            [ngClass]="{'disable-btn':!createTechArticleForm.valid }">Create
                             Tech Article</button>
                     </div>
                 </form>
@@ -944,7 +923,7 @@
                     <div class="form-group">
                         <label for="abstract">Abstract:</label>
                         <textarea class="form-control" formControlName="abstract" placeholder="1000 words"
-                            maxlength="1000"></textarea>
+                            maxlength="1000" minlength="1000"></textarea>
                     </div>
 
                     <div class="row">
@@ -1129,7 +1108,8 @@
                     </div>
                     <div class="form-group">
                         <label for="abstract">Abstract:</label>
-                        <textarea class="form-control" formControlName="abstract" placeholder="1000 words" maxlength="1000"></textarea>
+                        <textarea class="form-control" formControlName="abstract" placeholder="1000 words"
+                            maxlength="1000" minlength="1000"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="technologyArea">Technology Area:</label>
@@ -1218,13 +1198,13 @@
                             <div class="form-group col-4">
                                 <label>
                                     Maximum Registration Allowed:
-                                    <input type="text" class="form-control" formControlName="maxregcount">
+                                    <input myNumberOnly type="text" class="form-control" formControlName="maxregcount">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
                                     Registration Fee:
-                                    <input type="text" class="form-control" formControlName="regfee">
+                                    <input myNumberOnly type="text" class="form-control" formControlName="regfee">
                                 </label>
                             </div>
                         </div>
@@ -1238,7 +1218,7 @@
                             <div class="form-group col-4">
                                 <label>
                                     Seat Capacity:
-                                    <input type="text" class="form-control" formControlName="seatcapacity">
+                                    <input myNumberOnly type="text" class="form-control" formControlName="seatcapacity">
                                 </label>
                             </div>
                             <!-- <div class="form-group col-4">
@@ -1403,13 +1383,13 @@
                             <div class="form-group col-4">
                                 <label>
                                     Maximum Registration Allowed:
-                                    <input type="text" class="form-control" formControlName="maxregcount">
+                                    <input myNumberOnly type="text" class="form-control" formControlName="maxregcount">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
                                     Registration Fee:
-                                    <input type="text" class="form-control" formControlName="regfee">
+                                    <input myNumberOnly type="text" class="form-control" formControlName="regfee">
                                 </label>
                             </div>
                         </div>
@@ -1417,13 +1397,14 @@
                             <div class="form-group col-4">
                                 <label>
                                     Eligibility:
-                                    <textarea type="text" class="form-control" formControlName="eligibility"></textarea>
+                                    <textarea myNumberOnly type="text" class="form-control"
+                                        formControlName="eligibility"></textarea>
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
                                     Seat Capacity:
-                                    <input type="text" class="form-control" formControlName="seatcapacity">
+                                    <input myNumberOnly type="text" class="form-control" formControlName="seatcapacity">
                                 </label>
                             </div>
                             <!-- <div class="form-group col-4">
@@ -1478,7 +1459,7 @@
                             <div class="form-group col-4">
                                 <label>
                                     Experience:
-                                    <input type="text" class="form-control" formControlName="experience">
+                                    <input myNumberOnly type="text" class="form-control" formControlName="experience">
                                 </label>
 
                             </div>
@@ -1610,13 +1591,13 @@
                             <div class="form-group col-4">
                                 <label>
                                     Maximum Registration Allowed:
-                                    <input type="text" class="form-control" formControlName="maxregcount">
+                                    <input myNumberOnly type="text" class="form-control" formControlName="maxregcount">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
                                     Registration Fee:
-                                    <input type="text" class="form-control" formControlName="regfee">
+                                    <input myNumberOnly type="text" class="form-control" formControlName="regfee">
                                 </label>
                             </div>
                         </div>
@@ -1624,13 +1605,14 @@
                             <div class="form-group col-4">
                                 <label>
                                     Eligibility:
-                                    <textarea type="text" class="form-control" formControlName="eligibility"></textarea>
+                                    <textarea myNumberOnly type="text" class="form-control"
+                                        formControlName="eligibility"></textarea>
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
                                     Seat Capacity:
-                                    <input type="text" class="form-control" formControlName="seatcapacity">
+                                    <input myNumberOnly type="text" class="form-control" formControlName="seatcapacity">
                                 </label>
                             </div>
                             <!-- <div class="form-group col-4">
@@ -1685,7 +1667,7 @@
                             <div class="form-group col-4">
                                 <label>
                                     Experience:
-                                    <input type="text" class="form-control" formControlName="experience">
+                                    <input myNumberOnly type="text" class="form-control" formControlName="experience">
                                 </label>
 
                             </div>

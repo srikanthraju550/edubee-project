@@ -35,7 +35,7 @@ export class MainServiceService {
   getCommonDataForAll(): any {
 
     let responseData: any;
-    this.http.get('http://www.theengineersfactory.com/assets/services/getHomePageContent.php' + "/random=" + new Date().getTime()).subscribe(data => {
+    this.http.get('../assets/services/getHomePageContent.php' + "/random=" + new Date().getTime()).subscribe(data => {
       //this.http.get('http://localhost:8080/edubee/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
       console.log(data);
       responseData = {

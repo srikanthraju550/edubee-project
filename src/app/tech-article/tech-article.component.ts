@@ -11,8 +11,8 @@ import { FilterPipe } from 'ngx-filter-pipe';
   styleUrls: ['./tech-article.component.css']
 })
 export class TechArticleComponent implements OnInit {
-  // endpoint: string = "http://localhost/services/";
-   endpoint: string = "http://www.theengineersfactory.com/assets/services/";
+  endpoint: string = "../assets/services/";
+  // endpoint: string = "http://www.theengineersfactory.com/assets/services/";
   selectedTecharticle: any;
   constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private filterPipe: FilterPipe) { }
   sliderContent: any = [];
@@ -25,8 +25,7 @@ export class TechArticleComponent implements OnInit {
     let url = this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime();
     let userDetails = this.getLoggedInUserObject();
     if (!this.checkLoginStatus())
-      var params = "?userid=" + userDetails['userid'];
-
+      url += "?userid=" + userDetails['userid'];
     this.http.get(url).subscribe(data => {
       this.sliderContent = data['0'].sliderContent;
       this.teamDetails = data['1'].teamDetails;
