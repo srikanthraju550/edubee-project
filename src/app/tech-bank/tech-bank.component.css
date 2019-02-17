@@ -6,6 +6,7 @@
 .card-header{
     background-color: #33099e;
     color: white;
+    padding: -0.25rem 1.25rem !important;
 }
 
 .btn-link{

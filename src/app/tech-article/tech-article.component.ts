@@ -11,7 +11,7 @@ import { FilterPipe } from 'ngx-filter-pipe';
   styleUrls: ['./tech-article.component.css']
 })
 export class TechArticleComponent implements OnInit {
-  endpoint: string = "../assets/services/";
+  endpoint: string = "http://localhost/services/";
   // endpoint: string = "http://www.theengineersfactory.com/assets/services/";
   selectedTecharticle: any;
   constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private filterPipe: FilterPipe) { }
@@ -21,17 +21,17 @@ export class TechArticleComponent implements OnInit {
   teamDetails: any = [];
   techarticledetails: any = [];
   ngOnInit(): void {
-    //this.http.get('../assets/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
+    //this.http.get('http://localhost/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
     let url = this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime();
     let userDetails = this.getLoggedInUserObject();
     if (!this.checkLoginStatus())
-      url += "?userid=" + userDetails['userid'];
-    this.http.get(url).subscribe(data => {
-      this.sliderContent = data['0'].sliderContent;
-      this.teamDetails = data['1'].teamDetails;
-      this.techarticledetails = data['2'].techarticledetails;
-      this.homePageContent = data['3'].homePageData;
-    });
+      // url += "?userid=" + userDetails['userid'];
+      this.http.get(url).subscribe(data => {
+        this.sliderContent = data['0'].sliderContent;
+        this.teamDetails = data['1'].teamDetails;
+        this.techarticledetails = data['2'].techarticledetails;
+        this.homePageContent = data['3'].homePageData;
+      });
   }
   techArticleFilter: any = { articletitle: '', name: '', technologyname: '', subtechname: '', cost: 0 };
   keywordFilter: any = { name: '' };

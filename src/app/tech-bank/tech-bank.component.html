@@ -86,10 +86,10 @@
             aria-expanded="" attr.aria-controls="teachcollapse{{i}}">
             <h5 class="mb-0">
               <button *ngIf="i!=0" class="btn btn-link collapsed" type="button">
-                Tech Teach
+                Tech Connect
               </button>
               <button *ngIf="i==0" class="btn btn-link" type="button">
-                Tech Teach
+                Tech Connect
               </button>
             </h5>
           </div>
@@ -98,28 +98,44 @@
             data-parent="#accordionExample">
             <div class="card-body ">
               <div class="col-12">
-                <div><b class="crd-lft">Created on</b> <span class="crd-ryt">: {{techteach.createdon}}</span></div>
+
+
+                <div><b class="crd-lft">Type</b> <span class="crd-ryt">: Tech Teach</span></div>
+                <div><b class="crd-lft">Topic</b> <span class="crd-ryt">: {{techteach.topic}}</span></div>
+                <div><b class="crd-lft">Abstract</b> <span class="crd-ryt">: {{techteach.abstract}}</span></div>
+                <div><b class="crd-lft">Technology</b> <span class="crd-ryt">: {{techteach.technologyname}}</span></div>
+                <div><b class="crd-lft">Sub Technology</b> <span class="crd-ryt">: {{techteach.subtechname}}</span>
+                </div>
+                <!-- <div><b class="crd-lft">Created on</b> <span class="crd-ryt">: {{techteach.createdon}}</span></div>
                 <div><b class="crd-lft">Event on</b> <span class="crd-ryt">: {{techteach.venuedate}}</span></div>
                 <div><b class="crd-lft" style="font-size: 14px;">No.of People Applied</b> <span class="crd-ryt"> :
-                    {{techteach.registrationCount}}</span></div>
+                    {{techteach.registrationCount}}</span></div> -->
                 <br />
 
-                <span class="cardSubHeading crd-hdng">Originator</span>
+                <span class="cardSubHeading crd-hdng">Industrial Expert</span>
                 <div><b class="crd-lft">Name</b> <span class="crd-ryt">: {{techteach.originatorname}}</span></div>
-                <div><b class="crd-lft">Contact Number</b> <span class="crd-ryt">:
-                    {{techteach.originatorcontactnumber}}</span></div>
-                <div><b class="crd-lft">Email</b> <span class="crd-ryt" style="font-size: 14px;">:
-                    {{techteach.originatoremail}}</span></div>
+                <div><b class="crd-lft">Company</b> <span class="crd-ryt">:
+                    {{techteach.company}}</span></div>
+                <div><b class="crd-lft">Positionl</b> <span class="crd-ryt" style="font-size: 14px;">:
+                    {{techteach.position}}</span></div>
                 <br />
 
-                <span class="cardSubHeading crd-hdng">Other Details</span>
-                <div><b class="crd-lft">Tech Teach Topic</b> <span class="crd-ryt">: {{techteach.topic}}</span></div>
-                <div><b class="crd-lft">Industrial Expert</b> <span class="crd-ryt">: {{techteach.speakername}}</span>
+                <span class="cardSubHeading crd-hdng">Venue Details</span>
+                <div><b class="crd-lft">Place</b> <span class="crd-ryt">: {{techteach.place}}</span></div>
+                <div><b class="crd-lft">Address</b> <span class="crd-ryt">: {{techteach.address}}</span>
                 </div>
-                <div><b class="crd-lft" style="font-size: 13px;">No.of Years Experience</b> <span class="crd-ryt">:
-                    {{techteach.experience}} Yrs</span></div>
-                <div><b class="crd-lft">Registration Fee</b> <span class="crd-ryt">: {{techteach.regfee}}Rs Per
-                    Person</span></div>
+                <div><b class="crd-lft" style="font-size: 13px;">City</b> <span class="crd-ryt">:
+                    {{techteach.city}}</span></div>
+                <div><b class="crd-lft">Date</b> <span class="crd-ryt">: {{techteach.venuedate}}</span></div>
+
+                <br />
+
+                <span class="cardSubHeading crd-hdng">Registration Details</span>
+
+                <div><b class="crd-lft">No. of Registration</b> <span class="crd-ryt">:
+                    {{techteach.registrationCount}}</span>
+                </div>
+
                 <ul class="nav nav-pills crd-btn-dv">
                   <li class="nav-item">
                     <button class="nav-link btn btn-light" style="background-color: #eaeaea;color: #4c4c4c !important;"
@@ -128,7 +144,7 @@
                   </li>
                   <li class="nav-item" *ngIf="!checkLoginStatus()">
                     <button class="nav-link btn btn-light" style="background-color: #FE9404; color: white !important;"
-                      (click)="applyForEventTechTeach(techteach)">Apply for the event</button>
+                      (click)="applyForEventTechTeach(techteach)">Apply for this event</button>
                   </li>
                 </ul>
                 <br />
@@ -138,66 +154,89 @@
         </div>
 
         <div class="tech-tlk-contnr">
-        <div class="card" *ngFor="let techtalkdata of techtalkdetails | filter:techEventFilter; let i = index; ">
-          <div class="card-header" id="talkheading{{1}}" data-toggle="" attr.data-target="#talkcollapse{{i}}"
-            aria-expanded="false" attr.aria-controls="talkcollapse{{i}}">
-            <h5 class="mb-0">
-              <button *ngIf="i!=0 || (i==0 && techteachdetails?.length!=0)" class="btn btn-link collapsed"
-                type="button">
-                Tech Talk
-              </button>
-              <button *ngIf="i==0 && techteachdetails?.length==0" class="btn btn-link" type="button">
-                Tech Talk
-              </button>
-            </h5>
-          </div>
+          <div class="card" *ngFor="let techtalkdata of techtalkdetails | filter:techEventFilter; let i = index; ">
+            <div class="card-header" id="talkheading{{1}}" data-toggle="" attr.data-target="#talkcollapse{{i}}"
+              aria-expanded="false" attr.aria-controls="talkcollapse{{i}}">
+              <h5 class="mb-0">
+                <button *ngIf="i!=0 || (i==0 && techteachdetails?.length!=0)" class="btn btn-link collapsed"
+                  type="button">
+                  Tech Connect
+                </button>
+                <button *ngIf="i==0 && techteachdetails?.length==0" class="btn btn-link" type="button">
+                  Tech Connect
+                </button>
+              </h5>
+            </div>
 
-          <div id="talkcollapse{{i}}" [ngClass]="{'show' : i==0 && techteachdetails?.length==0}" class=""
-            attr.aria-labelledby="talkheading{{i}}" data-parent="#accordionExample">
-            <div class="card-body">
-              <div class="col-12">
-                  <div><b class="crd-lft">Created on</b> <span class="crd-ryt">: {{techtalkdata.createdon}}</span></div>
+            <div id="talkcollapse{{i}}" [ngClass]="{'show' : i==0 && techteachdetails?.length==0}" class=""
+              attr.aria-labelledby="talkheading{{i}}" data-parent="#accordionExample">
+              <div class="card-body">
+                <div class="col-12">
+
+                  <div><b class="crd-lft">Type</b> <span class="crd-ryt">: Tech Talk</span></div>
+                  <div><b class="crd-lft">Topic</b> <span class="crd-ryt">: {{techtalkdata.techtalktopic}}</span></div>
+                  <div><b class="crd-lft">Abstract</b> <span class="crd-ryt">: {{techtalkdata.abstract}}</span></div>
+                  <div><b class="crd-lft">Technology</b> <span class="crd-ryt">: {{techtalkdata.technologyname}}</span>
+                  </div>
+                  <div><b class="crd-lft">Sub Technology</b> <span class="crd-ryt">: {{techtalkdata.subtechname}}</span>
+                  </div>
+
+                  <!-- <div><b class="crd-lft">Created on</b> <span class="crd-ryt">: {{techtalkdata.createdon}}</span></div>
                   <div><b class="crd-lft">Event on</b> <span class="crd-ryt">: {{techtalkdata.venuedate}}</span></div>
                   <div><b class="crd-lft" style="font-size: 14px;">No.of People Applied</b> <span class="crd-ryt"> :
-                      {{techtalkdata.registrationCount}}</span></div>
+                      {{techtalkdata.registrationCount}}</span></div> -->
                   <br />
-  
-                  <span class="cardSubHeading crd-hdng">Originator</span>
+
+                  <span class="cardSubHeading crd-hdng">Industrial Expert</span>
+
+                  <div><b class="crd-lft">Name</b> <span class="crd-ryt">: {{techtalkdata.originatorname}}</span></div>
+                  <div><b class="crd-lft">Company</b> <span class="crd-ryt">:
+                      {{techtalkdata.company}}</span></div>
+                  <div><b class="crd-lft">Positionl</b> <span class="crd-ryt" style="font-size: 14px;">:
+                      {{techtalkdata.position}}</span></div>
+
+
+
                   <div><b class="crd-lft">Name</b> <span class="crd-ryt">: {{techtalkdata.originatorname}}</span></div>
                   <div><b class="crd-lft">Contact Number</b> <span class="crd-ryt">:
                       {{techtalkdata.originatorcontactnumber}}</span></div>
                   <div><b class="crd-lft">Email</b> <span class="crd-ryt" style="font-size: 14px;">:
                       {{techtalkdata.originatoremail}}</span></div>
-                  <div><b class="crd-lft">Place</b> <span class="crd-ryt">: {{techtalkdata.place}}</span></div>
-                  <div><b class="crd-lft">City</b> <span class="crd-ryt">: {{techtalkdata.city}}</span></div>
-                  <div><b class="crd-lft">Address</b> <span class="crd-ryt">: {{techtalkdata.address}}</span></div>
-                  <div><b class="crd-lft">Venue Date</b> <span class="crd-ryt">: {{techtalkdata.venuedate}}</span></div>
-                  <div><b class="crd-lft">Time</b> <span class="crd-ryt">: {{techtalkdata.fromtime}} TO {{techtalkdata.totime}}</span></div>
-                  <div><b class="crd-lft">Tech Talk Type</b> <span class="crd-ryt">: {{techtalkdata.techtalktype}}</span></div>
+
                   <br />
 
-                <span class="cardSubHeading crd-hdng">Other Details</span>
-                <br />
-                <div><b class="crd-lft" style="font-size: 14px;">Tech Panel Speaker Name</b> <span class="crd-ryt">: {{techtalkdata.speakername}}</span></div>
-                <div><b class="crd-lft">Registration Fee</b> <span class="crd-ryt">: {{techtalkdata.regfee}}Rs Per
-                    Person</span></div>
-                <ul class="nav nav-pills crd-btn-dv" >
-                  <li class="nav-item">
-                    <button class="nav-link btn btn-light" style="background-color: #eaeaea;color: #4c4c4c !important;"
-                      (click)="viewTechTalkDetails(techtalkdata)" data-toggle="modal" data-target="#detailsModal">View
-                      Detail's</button>
-                  </li>
-                  <li class="nav-item" *ngIf="!checkLoginStatus()">
-                    <button class="nav-link btn btn-light" style="background-color: #FE9404; color: white !important;"
-                      (click)="applyForEventTechTalk(techtalkdata)">Apply for the event</button>
-                  </li>
-                </ul>
-               
+                  <span class="cardSubHeading crd-hdng">Venue Details</span>
+                  <br />
+                  <div><b class="crd-lft">Place</b> <span class="crd-ryt">: {{techtalkdata.place}}</span></div>
+                  <div><b class="crd-lft">Address</b> <span class="crd-ryt">: {{techtalkdata.address}}</span></div>
+                  <div><b class="crd-lft">City</b> <span class="crd-ryt">: {{techtalkdata.city}}</span></div>
+                  <div><b class="crd-lft">Venue Date</b> <span class="crd-ryt">: {{techtalkdata.venuedate}}</span></div>
+
+
+
+                  <span class="cardSubHeading crd-hdng">Registration Details</span>
+
+                  <div><b class="crd-lft">No. of Registration</b> <span class="crd-ryt">:
+                      {{techtalkdata.registrationCount}}</span>
+                  </div>
+                  <ul class="nav nav-pills crd-btn-dv">
+                    <li class="nav-item">
+                      <button class="nav-link btn btn-light"
+                        style="background-color: #eaeaea;color: #4c4c4c !important;"
+                        (click)="viewTechTalkDetails(techtalkdata)" data-toggle="modal" data-target="#detailsModal">View
+                        Detail's</button>
+                    </li>
+                    <li class="nav-item" *ngIf="!checkLoginStatus()">
+                      <button class="nav-link btn btn-light" style="background-color: #FE9404; color: white !important;"
+                        (click)="applyForEventTechTalk(techtalkdata)">Apply for the event</button>
+                    </li>
+                  </ul>
+
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
       </div>
     </div>

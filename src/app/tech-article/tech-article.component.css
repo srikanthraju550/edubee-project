@@ -117,7 +117,13 @@ cursor: pointer;
     border: 1px solid #3e0aa5;
     margin-bottom: 25px;
     box-shadow: 5px 9px 13px -6px rgba(0, 0, 0, .3) !important;
-    background-color: #f3f3f3;
+    background-color: #400aa63b;
+}
+
+.art-type{
+    color: red;
+    font-weight: 800;
+    font-size: 19px;
 }
 
 @media only screen and (max-width: 768px) {

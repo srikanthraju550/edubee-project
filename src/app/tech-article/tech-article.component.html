@@ -114,56 +114,58 @@
 
 
 
-          
+
 
           <div class="row">
-              <div class="col-md-6 tec_lft">
-                  <b>Title</b> : {{techarticle.articletitle}}
-                  <br />
-                  <b>Technology</b> : {{techarticle.technologyname}}
-                  <br />
-                  <b>Sub-Technology</b> : {{techarticle.subtechname}}
-                  <br />
-                  <b *ngIf="techarticle.articletype=='Article'">Price :
-                    <span style="color:#255B88">{{techarticle.cost}} rs</span>
-                  </b>
-                  <div>
-                      <span class="abstract-name">Abstract</span> : {{techarticle.abstract}}
-                    </div>
-                </div>
+            <div class="col-md-6 tec_lft">
+              <b>Title</b> : {{techarticle.articletitle}}
+              <br />
+              <b>Technology</b> : {{techarticle.technologyname}}
+              <br />
+              <b>Sub-Technology</b> : {{techarticle.subtechname}}
+              <br />
+              <b *ngIf="techarticle.articletype=='Article'">Price :
+                <span style="color:#255B88">{{techarticle.cost}} rs</span>
+              </b>
+              <div>
+                <span class="abstract-name">Abstract</span> : {{techarticle.abstract}}
+              </div>
+            </div>
 
 
             <div class="col-md-3 tec_mdl">
-                <h5 class="card-title" style="color:#33099e;"><span class="title-name">
-                  </span><b>{{techarticle.name}}</b>
-                  <br/>
-                <span style="font-size: 0.85rem;color:rgb(22, 22, 22);"> ( {{techarticle.followerCount}} followers )</span>
-                </h5>
+              <h6 class="art-type">{{techarticle.articletype}}</h6>
+              <h5 class="card-title" style="color:#33099e;"><span class="title-name">
+                </span><b>{{techarticle.name}}</b>
+                <br />
+                <span style="font-size: 0.85rem;color:rgb(22, 22, 22);"> ( {{techarticle.followerCount}} followers
+                  )</span>
+              </h5>
               <div class="">
                 <img class="profilepicture" *ngIf="techarticle.profilepicture!==''"
                   src="../assets/images/profileImages/{{techarticle.profilepicture}}" alt="Profile Pic">
                 <img class="profilepicture" *ngIf="techarticle.profilepicture==''" src="../assets/images/user-dummy.png"
                   alt="Profile Pic">
-                  <br/>
-                  <div class="lke-dis">
-                <button *ngIf="!checkLoginStatus()" class="btn btn-light"
-                  style="background-color: green; height: 2.5em; color: white;"
-                  (click)="articleUpDownCountUpdate(techarticle.articleid,'UP')">
-                  {{techarticle.upCount}}
-                  <img src="../assets/images/thumbsUp.png" alt="Card image cap" style="height:15px;">
-                </button>
-                &nbsp;&nbsp;
-                <button *ngIf="!checkLoginStatus()" class="btn btn-light"
-                  style="background-color: red;height: 2.5em; color: white;"
-                  (click)="articleUpDownCountUpdate(techarticle.articleid,'DOWN')">
-                  {{techarticle.downCount}}
-                  <img src="../assets/images/thumbsDown.png" alt="Card image cap" style="height: 15px;">
-                </button>
-              </div>
+                <br />
+                <div class="lke-dis">
+                  <button *ngIf="!checkLoginStatus()" class="btn btn-light"
+                    style="background-color: green; height: 2.5em; color: white;"
+                    (click)="articleUpDownCountUpdate(techarticle.articleid,'UP')">
+                    {{techarticle.upCount}}
+                    <img src="../assets/images/thumbsUp.png" alt="Card image cap" style="height:15px;">
+                  </button>
+                  &nbsp;&nbsp;
+                  <button *ngIf="!checkLoginStatus()" class="btn btn-light"
+                    style="background-color: red;height: 2.5em; color: white;"
+                    (click)="articleUpDownCountUpdate(techarticle.articleid,'DOWN')">
+                    {{techarticle.downCount}}
+                    <img src="../assets/images/thumbsDown.png" alt="Card image cap" style="height: 15px;">
+                  </button>
+                </div>
                 <br />
               </div>
             </div>
-            
+
             <div class="col-md-3 tec_ryt">
 
               <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="">
@@ -187,24 +189,28 @@
                     data-target="#commentsModal" (click)="showTechArticleComments(techarticle)">Comments</button>
                 </li>
 
-                <li class="nav-item">
-                  <button class="nav-link btn btn-light article-type buttonarticle">{{techarticle.articletype}}</button>
+                <li class="nav-item" style="margin-left:2%">
+                  <button
+                    *ngIf="!checkLoginStatus() && techarticle.isFollowed==0 && getLoggedInUserObject()['userid']!=techarticle.userid"
+                    class="nav-link btn btn-light buttonarticle"
+                    style=" margin-left: 0 !important; color: white !important;"
+                    (click)="followerUpdate(techarticle.userId,'F');">Follow</button> </li>
+
+                <li class="nav-item" style="margin-left:2%">
+                  <button
+                    *ngIf="!checkLoginStatus() && techarticle.isFollowed==1 && getLoggedInUserObject()['userid']!=techarticle.userid"
+                    class="nav-link btn btn-light buttonarticle"
+                    style=" margin-left: 0 !important; color: white !important;"
+                    (click)="followerUpdate(techarticle.userId,'U');">Unfollow</button>
                 </li>
+
+
               </ul>
-              <button
-                *ngIf="!checkLoginStatus() && techarticle.isFollowed==0 && getLoggedInUserObject()['userid']!=techarticle.userid"
-                class="nav-link btn btn-light"
-                style="background-color: #144E80; margin-left: 0 !important; color: white !important;"
-                (click)="followerUpdate(techarticle.userId,'F');">FOLLOW</button>
-              <button
-                *ngIf="!checkLoginStatus() && techarticle.isFollowed==1 && getLoggedInUserObject()['userid']!=techarticle.userid"
-                class="nav-link btn btn-light"
-                style="background-color: #144E80; margin-left: 0 !important; color: white !important;"
-                (click)="followerUpdate(techarticle.userId,'U');">UNFOLLOW</button>
+
             </div>
 
           </div>
-        
+
 
 
           <br />
