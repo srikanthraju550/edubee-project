@@ -59,8 +59,8 @@ export class AppComponent {
   title = 'app';
   url;
 
-  endpoint: string = "http://www.theengineersfactory.com/assets/services/"
-  // endpoint: string = "http://localhost/services/"
+  endpoint: string = "http://localhost/services/"
+  // endpoint: string = "../assets/services/"
   userid;
   uploader: FileUploader = new FileUploader({ url: this.endpoint + "profilePictureUpload.php", removeAfterUpload: false, autoUpload: false });
   fileUploaderTechArticle: FileUploader = new FileUploader({ url: this.endpoint + "publicationFileUpload.php", removeAfterUpload: false, autoUpload: false });
@@ -200,8 +200,18 @@ export class AppComponent {
   techTalkTypeConfig: any = [];
   techTeachTypeConfig: any = [];
   stuvationtypeconfig: any = [];
-  techConnectSelector;
+  techConnectSelector: string;
+  techConnectSelector1: string;
+  showTechTeach = false;
+  showTechTalk = false;
   openMe(): void {
+    this.showTechTeach = true;
+    this.showTechTalk = false;
+    console.log(document.getElementById("datefield"));
+  }
+  openMe1(): void {
+    this.showTechTeach = false;
+    this.showTechTalk = true;
     console.log(document.getElementById("datefield"));
   }
   minDateString;
@@ -216,7 +226,7 @@ export class AppComponent {
     if (!this.checkLoginStatus())
       url += "?userid=" + userDetails['userid'];
 
-    //this.http.get('http://localhost/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
+    //this.http.get('../assets/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
     this.http.get(url).subscribe(data => {
       this.sliderContent = data['0'].sliderContent;
       this.teamDetails = data['1'].teamDetails;
@@ -472,7 +482,7 @@ export class AppComponent {
   onCreateTechTeachFormSubmit() {
     this.createTechTeachForm.value.userDetails = this.getLoggedInUserObject();
     console.warn(this.createTechTeachForm.value);
-    //this.http.post('http://localhost/services/createTechTeach.php', this.createTechTeachForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
+    //this.http.post('../assets/services/createTechTeach.php', this.createTechTeachForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
     this.http.post(this.endpoint + 'createTechTeach.php', this.createTechTeachForm.value, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
       console.log(data);
       let parsedData: JSON = JSON.parse('' + data);
@@ -681,7 +691,7 @@ export class AppComponent {
       let body = _formData;
       let headers = new Headers();
      
-      this._http.post("http://localhost/services/profilePictureUpload.php", body, {
+      this._http.post("../assets/services/profilePictureUpload.php", body, {
         headers: headers
     })
         .subscribe((data) => this.message = data);
