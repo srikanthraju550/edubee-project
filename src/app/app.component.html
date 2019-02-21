@@ -547,7 +547,7 @@
 
                             <label for="expectedBudget">Expected Budget :</label>
                             &nbsp;&nbsp;
-                            <input type="text" class="form-control" formControlName="expectedBudget">
+                            <input myNumberOnly type="text" class="form-control" formControlName="expectedBudget">
                         </div>
                     </div>
 
@@ -568,7 +568,7 @@
 
                             <label for="teamSize">Team Size :</label>
                             &nbsp;&nbsp;
-                            <input type="text" class="form-control" formControlName="teamSize">
+                            <input myNumberOnly type="text" class="form-control" formControlName="teamSize">
                         </div>
 
                     </div>
@@ -615,6 +615,7 @@
                     </div>
                     <div style="width: 100%; text-align: center; align-items: center">
                         <button type="submit" class="btn btn-primary"
+                            [ngClass]="{'disable-btn':!createStuvationForm.valid || createStuvationForm.value.idea=='' || createStuvationForm.value.ideaDescription==''}"
                             [disabled]="!createStuvationForm.valid || createStuvationForm.value.idea=='' || createStuvationForm.value.ideaDescription==''">Create
                         </button>
                     </div>
@@ -679,7 +680,8 @@
                             </div>
                             <div class="form-group col-6">
                                 <label for="contact">Contact Number:</label>
-                                <input type="text" class="form-control" formControlName="contact" disabled>
+                                <input myNumberOnly type="text" class="form-control" maxlength="10"
+                                    formControlName="contact" disabled>
                             </div>
                         </div>
 
@@ -708,21 +710,22 @@
                         <div class="row" *ngIf="createEngshipForm.value.lookingFor=='Mentor'">
                             <div class="form-group col-6">
                                 <label for="tenthPercent">10th Percentage:</label>
-                                <input type="text" class="form-control" formControlName="tenthPercent">
+                                <input myNumberOnly type="text" class="form-control" formControlName="tenthPercent">
                             </div>
                             <div class="form-group col-6">
                                 <label for="plustwoPercent">12th Percentage:</label>
-                                <input type="text" class="form-control" formControlName="plustwoPercent">
+                                <input myNumberOnly type="text" class="form-control" formControlName="plustwoPercent">
                             </div>
                         </div>
                         <div class="row" *ngIf="createEngshipForm.value.lookingFor=='Mentor'">
                             <div class="form-group col-6">
                                 <label for="graduationPercent">Graduation Percentage:</label>
-                                <input type="text" class="form-control" formControlName="graduationPercent">
+                                <input myNumberOnly type="text" class="form-control"
+                                    formControlName="graduationPercent">
                             </div>
                             <div class="form-group col-6">
                                 <label for="postgradPercent">Post Graduation Percentage:</label>
-                                <input type="text" class="form-control" formControlName="postgradPercent">
+                                <input myNumberOnly type="text" class="form-control" formControlName="postgradPercent">
                             </div>
                         </div>
 
@@ -774,7 +777,7 @@
                             </div>
                             <div class="form-group col-6">
                                 <label for="numberOfHours">Number of hours:</label>
-                                <input type="text" class="form-control" formControlName="numberOfHours">
+                                <input myNumberOnly type="text" class="form-control" formControlName="numberOfHours">
                             </div>
                         </div>
 
@@ -846,7 +849,9 @@
                         </div>
 
                         <div style="width: 100%; text-align: center; align-items: center">
-                            <button type="submit" class="btn btn-primary" [disabled]="!createEngshipForm.valid">Create
+                            <button type="submit" class="btn btn-primary buttonarticle"
+                                [ngClass]="{'disable-btn':!createEngshipForm.valid}"
+                                [disabled]="!createEngshipForm.valid">Create
                             </button>
                         </div>
                     </div>
@@ -1058,8 +1063,10 @@
                     </div>
                     <div style="width: 100%; text-align: center; align-items: center">
                         <button type="submit" class="btn btn-primary"
+                            [ngClass]="{'disable-btn':!createStuvationForm.valid || createStuvationForm.value.title=='' || createStuvationForm.value.abstract==''}"
                             [disabled]="!createStuvationForm.valid || createStuvationForm.value.title=='' || createStuvationForm.value.abstract==''">Create
                         </button>
+
                     </div>
                 </form>
             </div>
@@ -1113,8 +1120,8 @@
                         color: #eaeaea;" *ngIf="showTechTalk"></i> Tech
                                 Talk</p> -->
 
-                                <button (click)="openMe1()" type="button" data-toggle="modal" class="buttonarticle"> Tech
-                                    Talk</button>
+                            <button (click)="openMe1()" type="button" data-toggle="modal" class="buttonarticle"> Tech
+                                Talk</button>
                         </span>
                     </div>
                     <div class="col-md-2">
@@ -1303,7 +1310,7 @@
                             <div class="form-group col-4">
                                 <label>
                                     Experience:
-                                    <input type="text" class="form-control" formControlName="experience">
+                                    <input myNumberOnly type="text" class="form-control" formControlName="experience">
                                 </label>
 
                             </div>

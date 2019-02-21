@@ -8,13 +8,13 @@
     text-align: right;
 }
 .t-ryt{
-    text-align: right;
-    padding-right: 1em;    
-    background-color: #f7f724;
+    display: inline-flex; 
 }
-.stuv_titl{
-    background-color: #f7f724;
+
+.t-ryt h5{
+    color: #33099e;
 }
+
 .tec_ryt li.nav-item {
     display: inline-block;
     margin: 0px 5px;
@@ -53,6 +53,54 @@
     .tec_ryt .nav-pills{
         display: initial;
     }
+
+    .filter-divs
+{
+    margin-top: 80px;
+}
+
+.radio-btns{
+    background: #33099e;
+    width: 20%;
+    padding: 8px;
+    border-radius: 48px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    cursor: pointer;
+    }
+    
+    .fa-check{
+        position: absolute;
+        left: 17px;
+        top: 4px;
+        color: white;
+    }
+
+    .buttonarticle{
+        margin: auto;
+        display: block;
+        padding: 8px;
+        border: none;
+        cursor: pointer;
+        margin-top: 45px;
+        color: white !important;
+        height: 41px;
+            padding: 0 11px;
+            font-size: 66px;
+            font-size: 17px;
+            margin-top: 19px;
+            border-radius: 33px;
+            color: #ffff;
+            background: rgba(51,9,158,1);
+            background: -webkit-gradient(left top, right top, color-stop(0%, rgba(51,9,158,1)), color-stop(47%, rgba(51,9,158,1)), color-stop(100%, rgba(192,39,230,1)));
+            background: linear-gradient(to right, rgba(51,9,158,1) 0%, rgba(51,9,158,1) 47%, rgba(192,39,230,1) 100%);
+        }
+
+        .card{
+            border: 1px solid #3e0aa5;
+    margin-bottom: 25px;
+    box-shadow: 5px 9px 13px -6px rgba(0, 0, 0, .3) !important;
+        }
 /***************mediaquaries*********/
 
 @media screen and (min-width: 320px) and (max-width: 567px) {

@@ -3,21 +3,22 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { MainServiceService } from '../main-service.service';
 
+import { FilterPipe } from 'ngx-filter-pipe';
+
 @Component({
   selector: 'app-stuvation',
   templateUrl: './stuvation.component.html',
   styleUrls: ['./stuvation.component.css']
 })
 export class StuvationComponent implements OnInit {
-<<<<<<< HEAD
-  endpoint: string = "http://www.theengineersfactory.com/assets/services/"
-  // endpoint: string = "http://localhost/services/"
-=======
 
-  endpoint: string = "../assets/services/"
->>>>>>> b85c4f2c5af61a99864eeda34d173d1c366d1b24
+  // endpoint: string = "http://www.theengineersfactory.com/assets/services/"
+  endpoint: string = "http://localhost/services/"
+
+
+  // endpoint: string = "../assets/services/"
   selectedStuvation: any;
-  constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService) { }
+  constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private filterPipe: FilterPipe) { }
   sliderContent: any = [];
   //homePageDataFromService=[];
   homePageContent: any = [];
@@ -29,8 +30,8 @@ export class StuvationComponent implements OnInit {
     let url = this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime();
     let userDetails = this.getLoggedInUserObject();
     if (!this.checkLoginStatus())
-      url += "?userid=" + userDetails['userid'];
-    this.userId = userDetails['userid'];
+      // url += "?userid=" + userDetails['userid'];
+      this.userId = userDetails['userid'];
     this.http.get(url).subscribe(data => {
       console.log(data);
       this.sliderContent = data['0'].sliderContent;
@@ -43,7 +44,9 @@ export class StuvationComponent implements OnInit {
       console.log(this.stuvationdetails);
     });
   }
-  stuvationFilter = "";
+
+  stuvationFilter: any = { projectType: '', projectTitle: '', technologyname: '', subtechname: '' };
+
   keywordFilter = "";
   techFilter = "";
   subTechFilter = "";
@@ -207,5 +210,58 @@ export class StuvationComponent implements OnInit {
 
   logout(): void {
     this.mainService.logout();
+  }
+
+  showKeyword = true;
+  showArticle = false;
+  showTechnology = false;
+  showSubTech = false;
+  showAuthor = false;
+  showCost = false;
+
+  selectKeyword() {
+    this.showKeyword = true;
+    this.showArticle = false;
+    this.showTechnology = false;
+    this.showSubTech = false;
+    this.showAuthor = false;
+    this.showCost = false;
+  }
+
+  selectType() {
+    this.showKeyword = false;
+    this.showArticle = true;
+    this.showTechnology = false;
+    this.showSubTech = false;
+    this.showAuthor = false;
+    this.showCost = false;
+  }
+
+  selectTechnology() {
+    this.showKeyword = false;
+    this.showArticle = false;
+    this.showTechnology = true;
+    this.showSubTech = false;
+    this.showAuthor = false;
+    this.showCost = false;
+  }
+  selectSubTechnology() {
+    this.showKeyword = false;
+    this.showArticle = false;
+    this.showTechnology = false
+    this.showSubTech = true;
+    this.showAuthor = false;
+    this.showCost = false;
+  }
+  joinAsRadio1 = false;
+  joinAsRadio2 = false;
+  joinTeam() {
+    this.joinAsRadio1 = true;
+    this.joinAsRadio2 = false;
+  }
+
+  joinTeam1() {
+    this.joinAsRadio2 = true;
+    this.joinAsRadio1 = false;
   }
 }

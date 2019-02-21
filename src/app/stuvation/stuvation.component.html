@@ -1,230 +1,220 @@
-<br />
-<div class="row" style="z-index: 1;">
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style=" width: 100%;">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-      <div *ngFor="let imageObj of sliderContent; let i = index;" class="carousel-item" [ngClass]="{'active' : i==0 }">
-        <img class="d-block w-100 sliderImageStyle" src="../assets/images/{{imageObj.imagelink}}?auto=yes&bg=666&fg=444"
-          alt="{{imageObj.sliderid}} slide">
-        <!-- <div class="carousel-caption d-none d-md-block">
-          <h5>{{imageObj.imageHeading}}</h5>
-          <p>{{imageObj.imageDescription}}</p>
-        </div> -->
+<div class="row tech-bank-filters" style="background-color: #F4F6F5; height: 4em; ">
+  <div class="col-md-4 col-sm-12 col-xs-12">
+    &nbsp;
+  </div>
+  <div class="col-md-4 col-sm-12 col-xs-12">
+    <h2 class="text-center" style="position: relative;
+    top: 11px;
+    color: #420aa7;">Stuvations</h2>
+  </div>
+  <div class="col-md-4 col-sm-12 col-xs-12" *ngIf="!checkLoginStatus()" style="display:inline-flex">
+    <button type="button" class="btn btn-primary buttonarticle"
+      style="background-color: #33099e; color: white;font-weight: bold;" data-toggle="modal"
+      data-target="#createProjectModal">Create Academic Proz</button> &nbsp;&nbsp;
+    <button type="button" class="btn btn-primary buttonarticle"
+      style="background-color: #33099e; color: white;font-weight: bold;" data-toggle="modal"
+      data-target="#createStuvationModal">Create Innovation Proz</button>
+  </div>
+  <div class="col-md-4 col-sm-12 col-xs-12" *ngIf="checkLoginStatus()" style="display:inline-flex">
+    <button type="button" class="btn btn-primary buttonarticle"
+      style="background-color: #33099e; color: white;font-weight: bold;" data-toggle="modal"
+      data-target="#loginAlertModal">Create Academic Proz</button> &nbsp;&nbsp;
+    <button type="button" class="btn btn-primary buttonarticle"
+      style="background-color: #33099e; color: white;font-weight: bold;" data-toggle="modal"
+      data-target="#loginAlertModal">Create Innovation Proz</button>
+  </div>
+</div>
+
+<div id="techArticleFilterDiv" class="row filter-divs">
+
+  <div class="col-md-6">
+
+    <input type="text" class="form-control filter-input" placeholder="Search with Name.." name="techarticledetails"
+      [(ngModel)]="stuvationFilter.projectTitle" *ngIf="showKeyword" />
+
+
+    <input type="text" class="form-control filter-input" placeholder="Search with Article Title.."
+      name="techarticledetails" [(ngModel)]="stuvationFilter.projectType" *ngIf="showArticle" />
+
+    <input type="text" class="form-control filter-input" placeholder="Search with Technology.."
+      name="techarticledetails" [(ngModel)]="stuvationFilter.technologyname" *ngIf="showTechnology" />
+
+    <input type="text" class="form-control filter-input" placeholder="Search with sub Technology.."
+      name="techarticledetails" [(ngModel)]="stuvationFilter.subtechname" *ngIf="showSubTech" />
+
+
+
+  </div>
+  <div class="col-md-6">
+    <div class="row m-row" style="font-size: 1rem;">
+      <div class="col-4">
+        <p (click)="selectKeyword()"> <span class="radio-btns">&nbsp;</span><span class="white-radio">&nbsp;</span><i
+            class="fa fa-check" *ngIf="showKeyword"></i> Keyword</p>
+        <!-- <input type="checkbox" class="techBankEventCheckbox" name="keywordFilter" [(ngModel)]="keywordFilter"
+          value="Keyword">&nbsp;Keyword -->
+      </div>
+      <div class="col-4">
+
+        <p (click)="selectType()"> <span class="radio-btns">&nbsp;</span><span class="white-radio">&nbsp;</span><i
+            class="fa fa-check" *ngIf="showArticle"></i> Type</p>
+        <!-- <input type="checkbox" name="articleTypeFilter" class="techBankEventCheckbox" [(ngModel)]="articleTypeFilter"
+          value="Type">&nbsp;Type -->
+      </div>
+      <div class=" col-4">
+        <p (click)="selectTechnology()"> <span class="radio-btns">&nbsp;</span><span class="white-radio">&nbsp;</span><i
+            class="fa fa-check" *ngIf="showTechnology"></i>Technology</p>
+        <!-- <input type="checkbox" name="techFilter" class="techBankEventCheckbox" [(ngModel)]="techFilter"
+          value="Technology">&nbsp;Technology -->
+      </div>
+      <div class=" col-4">
+        <p (click)="selectSubTechnology()"> <span class="radio-btns">&nbsp;</span><span
+            class="white-radio">&nbsp;</span><i class="fa fa-check" *ngIf="showSubTech"></i>SubTechnology</p>
+        <!-- <input type="checkbox" name="subTechFilter" class="techBankEventCheckbox" [(ngModel)]="subTechFilter"
+          value="SubTechnology">&nbsp;SubTechnology -->
       </div>
 
+
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-</div>
-<div class="row" style="background-color: #F4F6F5; height: 4em; ">
-  <div class="col-12">
-    <h2 style="margin: 0.4em;">Stuvations</h2>
-  </div>
-</div>
-<div id="techArticleFilterDiv" class="row" style="font-size: 1rem; padding: 1em;">
-  <div class="col-12">
-
-    <form id="filter">
-
-      <input type="text" class="form-control" name="stuvationdetails" [(ngModel)]="stuvationFilter"
-        style="margin-bottom: 0.5em;" />
-      <div class="row" style="font-size: 1rem;">
-        <div class="col-2">
-          <input type="checkbox" class="techBankEventCheckbox" name="keywordFilter" [(ngModel)]="keywordFilter"
-            value="Keyword">&nbsp;Keyword
-        </div>
-        <div class="col-2">
-          <input type="checkbox" name="articleTypeFilter" class="techBankEventCheckbox" [(ngModel)]="articleTypeFilter"
-            value="Type">&nbsp;Type
-        </div>
-        <div class="col-2">
-          <input type="checkbox" name="techFilter" class="techBankEventCheckbox" [(ngModel)]="techFilter"
-            value="Technology">&nbsp;Technology
-        </div>
-        <div class="col-3">
-          <input type="checkbox" name="subTechFilter" class="techBankEventCheckbox" [(ngModel)]="subTechFilter"
-            value="SubTechnology">&nbsp;Sub-Technology
-        </div>
-
-      </div>
-    </form>
-    <br />
-    <div style="float:right;" *ngIf="!checkLoginStatus()">
-      <button type="button" class="btn btn-primary"
-        style="height: 30%; background-color: #33099e; color: white;font-weight: bold;" data-toggle="modal"
-        data-target="#createProjectModal">Create Academic Proz</button> &nbsp;&nbsp;
-      <button type="button" class="btn btn-primary"
-        style="height: 30%; background-color: #33099e; color: white;font-weight: bold;" data-toggle="modal"
-        data-target="#createStuvationModal">Create Innovation Proz</button>
-    </div>
-    <div style="float:right;" *ngIf="checkLoginStatus()">
-      <button type="button" class="btn btn-primary"
-        style="height: 30%; background-color: #33099e; color: white;font-weight: bold;" data-toggle="modal"
-        data-target="#loginAlertModal">Create Academic Proz</button> &nbsp;&nbsp;
-      <button type="button" class="btn btn-primary"
-        style="height: 30%; background-color: #33099e; color: white;font-weight: bold;" data-toggle="modal"
-        data-target="#loginAlertModal">Create Innovation Proz</button>
-    </div>
-
-
   </div>
 </div>
 
-<div class="row">
-  <div class="col-12" style="margin-top: 1em;">
-    <div class="card" style="width: 100%;"
-      *ngFor="let stuvation of stuvationdetails | filter:stuvationFilter:keywordFilter:articleTypeFilter:techFilter:subTechFilter:authorFilter:freeFilter:'stuvationFilter' ; let i = index; "
-      [ngClass]="{'techarticleRow1' : i%2==0 }">
-      <div class="card-body">
 
-        <div class="row">
 
-          <div class="col-md-9 col-sm-9 stuv_titl">
-          <div *ngIf="stuvation.projectType!='Innovation'">
-            <h3>Title : {{stuvation.projectTitle}}</h3>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12" style="margin-top: 1em;">
+      <div class="card" style="width: 100%;"
+        *ngFor="let stuvation of stuvationdetails | filterBy:stuvationFilter ; let i = index; "
+        [ngClass]="{'techarticleRow1' : i%2==0 }">
+        <div class="card-body">
+
+          <div class="row" style="margin-top: -20px;">
+
+            <div class="col-md-12 col-sm-12 stuv_titl">
+              <div *ngIf="stuvation.projectType!='Innovation'">
+                <h3>Title : {{stuvation.projectTitle}}</h3>
+              </div>
+              <div *ngIf="stuvation.projectType=='Innovation'">
+                <h3>Idea : {{stuvation.idea}}</h3>
+              </div>
+            </div>
           </div>
-          <div *ngIf="stuvation.projectType=='Innovation'">
-            <h3>Idea : {{stuvation.idea}}</h3>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-sm-3 t-ryt">
-          <h5>
-            Project Type : {{stuvation.projectType | uppercase}}
-          </h5>
-          <h5 >
-            Project Status :
-            <span style="color: green; font-weight: bold" *ngIf="stuvation.projectStatus=='completed'">{{stuvation.projectStatus
-              | uppercase}}</span>
-            <span style="color: #da9101; font-weight: bold" *ngIf="stuvation.projectStatus=='ongoing'">{{stuvation.projectStatus
-              | uppercase}}</span>
-          </h5>
-        </div>
-
-      
-        </div>
-
-
-        <br />
-
-
-        <div class="row">
-<div class="col-md-5 col-sm-12 tec_lft">
-
-    <div *ngIf="stuvation.projectType!='Innovation'" style="text-align:justify">
-        <b>Abstract</b> : {{stuvation.abstract}}
-      </div>
-      <div *ngIf="stuvation.projectType=='Innovation'">
-        <b>Idea Description</b> : {{stuvation.ideaDescription}}
-      </div>
-      <b>Technology</b> : {{stuvation.technologyname}}
-      <br />
-      <b>Sub-Technology</b> : {{stuvation.subtechname}}
-      <!--  <div *ngIf="stuvation.projectType=='Innovation'">
+          <div class="row">
+            <div class="col-md-5 col-sm-12 tec_lft">
+              <b> Project Type </b> : {{stuvation.projectType}}
+              <br />
+              <b>Project Status</b> : <span style="color: green; font-weight: bold"
+                *ngIf="stuvation.projectStatus=='completed'">{{stuvation.projectStatus
+                }}</span>
+              <span style="color: #da9101; font-weight: bold" *ngIf="stuvation.projectStatus=='ongoing'">{{stuvation.projectStatus
+               }}</span><br />
+              <b>Technology</b> : {{stuvation.technologyname}}
+              <br />
+              <b>Sub-Technology</b> : {{stuvation.subtechname}}
+              <!--  <div *ngIf="stuvation.projectType=='Innovation'">
         <br/>
         <b>Idea</b> : {{stuvation.idea}}
         <br/>
         <b>Idea Description</b> : {{stuvation.ideaDescription}}
         
       </div> -->
-      <br />
-      <div *ngIf="stuvation.projectStatus=='ongoing'">
+              <br />
+              <div *ngIf="stuvation.projectStatus=='ongoing'">
 
-        <b>Prototype Available ?</b> : {{stuvation.prototypeAvailable}}
-        <br />
-        <b>Reference Link</b> : {{stuvation.referenceLink}}
-        <br />
-        <b>Expected Budget</b> : {{stuvation.expectedBudget}}
-        <br />
-        <b>Team Size</b> : {{stuvation.teamSize}}
-        <br />
-        <b>Student Partner Last Date Of Joining</b> : {{stuvation.lastDateOfJoining}}
-        <br />
-      </div>
+                <b>Prototype Available ?</b> : {{stuvation.prototypeAvailable}}
+                <br />
+                <b>Reference Link</b> : {{stuvation.referenceLink}}
+                <br />
+                <b>Expected Budget</b> : {{stuvation.expectedBudget}}
+                <br />
+                <b>Team Size</b> : {{stuvation.teamSize}}<br />
+                <b>Student Partner Last Date Of Joining</b> : {{stuvation.lastDateOfJoining}}
+                <br />
+                <div *ngIf="stuvation.projectType=='Innovation'">
+                  <b>Idea Description</b> : {{stuvation.ideaDescription}}
+                </div>
 
-</div>
-<div class="col-md-3 col-sm-6 tec_mdl">
-  
-          <div >
-            <img class="profilepicture" src="../assets/images/profileImages/{{stuvation.profilepicture}}"
-              alt="Card image cap">
+              </div>
+              <div *ngIf="stuvation.projectType!='Innovation'" style="text-align:justify">
+                <b>Abstract</b> : {{stuvation.abstract}}
+              </div>
+
+            </div>
+            <div class="col-md-3 col-sm-6 tec_mdl">
+
+              <div>
+                <img class="profilepicture" src="../assets/images/profileImages/{{stuvation.profilepicture}}"
+                  alt="Card image cap">
+              </div>
+              <div>
+                <b>{{stuvation.originatorname | uppercase}}</b>
+                <br />
+                <span style="font-size: 0.85rem;">{{stuvation.followerCount}} followers</span>
+                <br />
+
+              </div>
+
+              <button *ngIf="!checkLoginStatus()" class="btn btn-light"
+                style="background-color: green; height: 2.5em; color: white"
+                (click)="stuvationUpDownCountUpdate(stuvation.stuvationid,'UP')">
+                {{stuvation.upCount}}
+                <img src="../assets/images/thumbsUp.png" alt="Card image cap" style="height: 1.5em;">
+              </button>
+              &nbsp;&nbsp;
+              <button *ngIf="!checkLoginStatus()" class="btn btn-light"
+                style="background-color: red;height: 2.5em; color: white;"
+                (click)="stuvationUpDownCountUpdate(stuvation.stuvationid,'DOWN')">
+                {{stuvation.downCount}}
+                <img src="../assets/images/thumbsDown.png" alt="Card image cap" style="height: 1.5em;">
+              </button>
+            </div>
+            <div class="col-md-4 col-sm-12 tec_ryt">
+              <div><b>Created On</b> : {{stuvation.createdon}}</div>
+              <br />
+
+              <ul *ngIf="!checkLoginStatus()" class="nav nav-pills ">
+                <li class="nav-item">
+                  <button
+                    *ngIf="!checkLoginStatus() && stuvation.isFollowed==0 && getLoggedInUserObject()['userid']!=stuvation.userid"
+                    class="nav-link btn btn-light buttonarticle"
+                    (click)="followerUpdate(stuvation.userId,'F');">Follow</button>
+                  <button
+                    *ngIf="!checkLoginStatus() && stuvation.isFollowed==1 && getLoggedInUserObject()['userid']!=stuvation.userid"
+                    class="nav-link btn btn-light buttonarticle"
+                    (click)="followerUpdate(stuvation.userId,'U');">Unfollow</button>
+                </li>
+
+                <li class="nav-item">
+                  <button class="nav-link btn btn-light buttonarticle"
+                    style="background-color: #33099e; color: white !important;" data-toggle="modal"
+                    data-target="#showStuvationDiscussionModal"
+                    (click)="showStuvationComments(stuvation)">Discussions</button>
+                </li>
+                <li class="nav-item">
+                  <button class="nav-link btn btn-light buttonarticle"
+                    style="background-color: #FE9404; color: white !important;" data-toggle="modal"
+                    data-target="#showJoinTeamPopupModal" (click)="showJoinTeamPopup(stuvation)">Connect
+                    &amp; Join as a Team</button>
+                </li>
+              </ul>
+            </div>
+
           </div>
-          <div >
-            <b>{{stuvation.originatorname | uppercase}}</b>
-            <br />
-            <span style="font-size: 0.85rem;">{{stuvation.followerCount}} followers</span>
-            <br />
-            <button
-              *ngIf="!checkLoginStatus() && stuvation.isFollowed==0 && getLoggedInUserObject()['userid']!=stuvation.userid"
-              class="nav-link btn btn-light"
-              style="background-color: #144E80;color: white !important;"
-              (click)="followerUpdate(stuvation.userId,'F');">FOLLOW</button>
-            <button
-              *ngIf="!checkLoginStatus() && stuvation.isFollowed==1 && getLoggedInUserObject()['userid']!=stuvation.userid"
-              class="nav-link btn btn-light"
-              style="background-color: #144E80;color: white !important;"
-              (click)="followerUpdate(stuvation.userId,'U');">UNFOLLOW</button>
-          </div>
-
-          <button *ngIf="!checkLoginStatus()" class="btn btn-light"
-          style="background-color: green; height: 2.5em; color: white"
-          (click)="stuvationUpDownCountUpdate(stuvation.stuvationid,'UP')">
-          {{stuvation.upCount}}
-          <img src="../assets/images/thumbsUp.png" alt="Card image cap" style="height: 1.5em;">
-        </button>
-        &nbsp;&nbsp;
-        <button *ngIf="!checkLoginStatus()" class="btn btn-light"
-          style="background-color: red;height: 2.5em; color: white;"
-          (click)="stuvationUpDownCountUpdate(stuvation.stuvationid,'DOWN')">
-          {{stuvation.downCount}}
-          <img src="../assets/images/thumbsDown.png" alt="Card image cap" style="height: 1.5em;">
-        </button>
-        </div>
-<div class="col-md-4 col-sm-12 tec_ryt">
-    <div ><b>Created On</b> : {{stuvation.createdon}}</div>
-    <br />      
-
-    <ul *ngIf="!checkLoginStatus()" class="nav nav-pills " >
-      <li class="nav-item">
-        <button class="nav-link btn btn-light buttonarticle" style="background-color: #FE9404; color: white !important;"
-          data-toggle="modal" data-target="#showJoinTeamPopupModal" (click)="showJoinTeamPopup(stuvation)">Connect
-          &amp; Join as a Team</button>
-      </li>
-
-      <li class="nav-item">
-        <button class="nav-link btn btn-light buttonarticle" style="background-color: #33099e; color: white !important;"
-          data-toggle="modal" data-target="#showStuvationDiscussionModal"
-          (click)="showStuvationComments(stuvation)">Discussions</button>
-      </li>
-    </ul>
-</div>
-
-      </div>
 
 
-        <!-- <br />
+          <!-- <br />
 
         <button *ngIf="!checkLoginStatus() && stuvation.isFollowed==0 && stuvation.userId!=userId" class=" btn btn-primary"
           style="background-color: #144E80; margin-left: 0 !important; color: white !important;" (click)="followerUpdate(stuvation.userId,'F');">FOLLOW</button>
         <button *ngIf="!checkLoginStatus() && stuvation.isFollowed==1 && stuvation.userId!=userId" class=" btn btn-primary"
           style="background-color: #144E80; margin-left: 0 !important; color: white !important;" (click)="followerUpdate(stuvation.userId,'U');">UNFOLLOW</button>
         <br /> -->
-       
 
 
 
-        <!-- <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="float: right;">
+
+          <!-- <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="float: right;">
           <li class="nav-item">
             <button class="nav-link btn btn-light" style="background-color: #FE9404; color: white !important;" *ngIf="techarticle.articlepaymentindcd=='Y'" data-toggle="modal" data-target="#buynowModal"
             (click)="buyNowModelClick(techarticle)">Buy Now</button>
@@ -237,9 +227,10 @@
               (click)="showTechstuvationcomments(techarticle)">Comments</button>
           </li>
         </ul> -->
+        </div>
       </div>
-    </div>
 
+    </div>
   </div>
 </div>
 <br />
@@ -253,7 +244,7 @@
         <span style="text-align: center; color: white; width: 100%;">
           <h4>Discussions</h4>
         </span>
-        <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+        <button style="float: right; color: white;" type="button" class="close " data-dismiss="modal"
           id="closeCommentsModal">&times;</button>
       </div>
       <div class="modal-body">
@@ -320,13 +311,12 @@
         </div>
         <div class="card">
           <div class="card-body row">
-            <div class="col-10">
+            <div class="col-md-9 col-sm-12">
               <textarea style="width: 100%;" [(ngModel)]="commentToBeAdded" placeholder="500 Characters"
                 maxlength="500"></textarea>
             </div>
-            <div class="col-2">
-              <button class="btn btn-light" [disabled]="commentToBeAdded==''"
-                style="background-color: #33099e;height: 2.5em;color:white"
+            <div class="col-md-3 col-sm-12">
+              <button class="btn btn-light" [disabled]="commentToBeAdded==''" class="buttonarticle"
                 (click)="commentOperation(selectedStuvation.stuvationid, null, commentToBeAdded, 'A')">
                 Add Comment
               </button>
@@ -357,11 +347,19 @@
       text-align: center;
       align-items: center;
   ">
-        <input type="radio" [(ngModel)]="joinAsRadio" name="joinAsRadio" selected value="1">&nbsp;
-        Join Team&nbsp;&nbsp;
-        <input type="radio" [(ngModel)]="joinAsRadio" name="joinAsRadio" value="2">&nbsp; Connect with Creator
+
+        <div class="row" style="display:inline-flex">
+          <button type="button" class="btn btn-primary buttonarticle"
+            style="background-color: #33099e; color: white;font-weight: bold;" (click)="joinTeam()">Join Team</button>
+          &nbsp;&nbsp;
+          <button type="button" class="btn btn-primary buttonarticle"
+            style="background-color: #33099e; color: white;font-weight: bold;" (click)="joinTeam1()">Connect with
+            Creator</button>
+          &nbsp;&nbsp;
+        </div>
+
         <br /><br />
-        <div *ngIf="joinAsRadio==1">
+        <div *ngIf="joinAsRadio1">
           <span style="margin-left:-1.5em;">Role : <select [(ngModel)]="joinTeamAsModel" style="width: 12.5em;">
               <option value="Professional Guide"
                 *ngIf="selectedStuvation.lookingProfessorGuidance=='Y' && selectedStuvation.projectStatus=='ongoing'">
@@ -383,18 +381,18 @@
             </textarea>
           &nbsp;&nbsp;
           <br />
-          <button class="btn btn-light" [disabled]="joinTeamAsModel==''"
+          <button class="btn btn-light buttonarticle" [disabled]="joinTeamAsModel==''"
             style="background-color: #33099e;height: 2.5em; color: white;"
             (click)="joinTeamOperation(selectedStuvation.stuvationid, joinTeamAsModel, joinTeamAsConnectModel)">
             JOIN
           </button>
         </div>
-        <div *ngIf="joinAsRadio==2">
+        <div *ngIf="joinAsRadio2">
           <textarea [(ngModel)]="stuvationConnectModel" placeholder="Max 1000 words" maxlength="1000"
             style="width: 25em; height: 25em;">
             </textarea>
           <br />
-          <button class="btn btn-light" [disabled]="stuvationConnectModel==''"
+          <button class="btn btn-light buttonarticle" [disabled]="stuvationConnectModel==''"
             style="background-color: #33099e;height: 2.5em;color: white;"
             (click)="stuvationConnectOperation(selectedStuvation.stuvationid, stuvationConnectModel)">
             CONNECT
