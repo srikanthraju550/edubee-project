@@ -88,12 +88,22 @@
       [ngClass]="{'techarticleRow1' : i%2==0 }">
       <div class="card-body">
 
-        <div class="col-sm-3" style="float:right; color: black; padding: 1em;">
+        <div class="row">
 
+          <div class="col-md-9 col-sm-9 stuv_titl">
+          <div *ngIf="stuvation.projectType!='Innovation'">
+            <h3>Title : {{stuvation.projectTitle}}</h3>
+          </div>
+          <div *ngIf="stuvation.projectType=='Innovation'">
+            <h3>Idea : {{stuvation.idea}}</h3>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-3 t-ryt">
           <h5>
             Project Type : {{stuvation.projectType | uppercase}}
           </h5>
-          <h5 style="color:black;">
+          <h5 >
             Project Status :
             <span style="color: green; font-weight: bold" *ngIf="stuvation.projectStatus=='completed'">{{stuvation.projectStatus
               | uppercase}}</span>
@@ -102,25 +112,55 @@
           </h5>
         </div>
 
-
-
-        <div class="col-sm-9"
-          style="background-color: #33099e;color: white;padding: 1em;width: fit-content;border-radius: 0em 1em 0em 1em;padding-left: 2em;padding-right:  2em;">
-          <div *ngIf="stuvation.projectType!='Innovation'">
-            <h3>Title : {{stuvation.projectTitle}}</h3>
-          </div>
-          <div *ngIf="stuvation.projectType=='Innovation'">
-            <h3>Idea : {{stuvation.idea}}</h3>
-          </div>
-
+      
         </div>
+
+
         <br />
+
+
         <div class="row">
-          <div style="margin-left:0.5em;">
+<div class="col-md-5 col-sm-12 tec_lft">
+
+    <div *ngIf="stuvation.projectType!='Innovation'" style="text-align:justify">
+        <b>Abstract</b> : {{stuvation.abstract}}
+      </div>
+      <div *ngIf="stuvation.projectType=='Innovation'">
+        <b>Idea Description</b> : {{stuvation.ideaDescription}}
+      </div>
+      <b>Technology</b> : {{stuvation.technologyname}}
+      <br />
+      <b>Sub-Technology</b> : {{stuvation.subtechname}}
+      <!--  <div *ngIf="stuvation.projectType=='Innovation'">
+        <br/>
+        <b>Idea</b> : {{stuvation.idea}}
+        <br/>
+        <b>Idea Description</b> : {{stuvation.ideaDescription}}
+        
+      </div> -->
+      <br />
+      <div *ngIf="stuvation.projectStatus=='ongoing'">
+
+        <b>Prototype Available ?</b> : {{stuvation.prototypeAvailable}}
+        <br />
+        <b>Reference Link</b> : {{stuvation.referenceLink}}
+        <br />
+        <b>Expected Budget</b> : {{stuvation.expectedBudget}}
+        <br />
+        <b>Team Size</b> : {{stuvation.teamSize}}
+        <br />
+        <b>Student Partner Last Date Of Joining</b> : {{stuvation.lastDateOfJoining}}
+        <br />
+      </div>
+
+</div>
+<div class="col-md-3 col-sm-6 tec_mdl">
+  
+          <div >
             <img class="profilepicture" src="../assets/images/profileImages/{{stuvation.profilepicture}}"
               alt="Card image cap">
           </div>
-          <div style="margin-left: 1em;">
+          <div >
             <b>{{stuvation.originatorname | uppercase}}</b>
             <br />
             <span style="font-size: 0.85rem;">{{stuvation.followerCount}} followers</span>
@@ -128,55 +168,16 @@
             <button
               *ngIf="!checkLoginStatus() && stuvation.isFollowed==0 && getLoggedInUserObject()['userid']!=stuvation.userid"
               class="nav-link btn btn-light"
-              style="background-color: #144E80; margin-left: 0 !important; color: white !important;"
+              style="background-color: #144E80;color: white !important;"
               (click)="followerUpdate(stuvation.userId,'F');">FOLLOW</button>
             <button
               *ngIf="!checkLoginStatus() && stuvation.isFollowed==1 && getLoggedInUserObject()['userid']!=stuvation.userid"
               class="nav-link btn btn-light"
-              style="background-color: #144E80; margin-left: 0 !important; color: white !important;"
+              style="background-color: #144E80;color: white !important;"
               (click)="followerUpdate(stuvation.userId,'U');">UNFOLLOW</button>
           </div>
-        </div>
-        <div *ngIf="stuvation.projectType!='Innovation'">
-          <b>Abstract</b> : {{stuvation.abstract}}
-        </div>
-        <div *ngIf="stuvation.projectType=='Innovation'">
-          <b>Idea Description</b> : {{stuvation.ideaDescription}}
-        </div>
-        <br />
-        <b>Technology</b> : {{stuvation.technologyname}}
-        <br />
-        <b>Sub-Technology</b> : {{stuvation.subtechname}}
-        <!--  <div *ngIf="stuvation.projectType=='Innovation'">
-          <br/>
-          <b>Idea</b> : {{stuvation.idea}}
-          <br/>
-          <b>Idea Description</b> : {{stuvation.ideaDescription}}
-          
-        </div> --><br />
-        <div *ngIf="stuvation.projectStatus=='ongoing'">
 
-          <b>Prototype Available ?</b> : {{stuvation.prototypeAvailable}}
-          <br />
-          <b>Reference Link</b> : {{stuvation.referenceLink}}
-          <br />
-          <b>Expected Budget</b> : {{stuvation.expectedBudget}}
-          <br />
-          <b>Team Size</b> : {{stuvation.teamSize}}
-          <br />
-          <b>Student Partner Last Date Of Joining</b> : {{stuvation.lastDateOfJoining}}
-          <br />
-        </div>
-        <!-- <br />
-
-        <button *ngIf="!checkLoginStatus() && stuvation.isFollowed==0 && stuvation.userId!=userId" class=" btn btn-primary"
-          style="background-color: #144E80; margin-left: 0 !important; color: white !important;" (click)="followerUpdate(stuvation.userId,'F');">FOLLOW</button>
-        <button *ngIf="!checkLoginStatus() && stuvation.isFollowed==1 && stuvation.userId!=userId" class=" btn btn-primary"
-          style="background-color: #144E80; margin-left: 0 !important; color: white !important;" (click)="followerUpdate(stuvation.userId,'U');">UNFOLLOW</button>
-        <br /> -->
-        <div style="float:right;"><b>Created On</b> : {{stuvation.createdon}}</div>
-        <br />
-        <button *ngIf="!checkLoginStatus()" class="btn btn-light"
+          <button *ngIf="!checkLoginStatus()" class="btn btn-light"
           style="background-color: green; height: 2.5em; color: white"
           (click)="stuvationUpDownCountUpdate(stuvation.stuvationid,'UP')">
           {{stuvation.upCount}}
@@ -189,20 +190,37 @@
           {{stuvation.downCount}}
           <img src="../assets/images/thumbsDown.png" alt="Card image cap" style="height: 1.5em;">
         </button>
+        </div>
+<div class="col-md-4 col-sm-12 tec_ryt">
+    <div ><b>Created On</b> : {{stuvation.createdon}}</div>
+    <br />      
 
-        <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="float: right;">
-          <li class="nav-item">
-            <button class="nav-link btn btn-light" style="background-color: #FE9404; color: white !important;"
-              data-toggle="modal" data-target="#showJoinTeamPopupModal" (click)="showJoinTeamPopup(stuvation)">Connect
-              & Join as a Team</button>
-          </li>
+    <ul *ngIf="!checkLoginStatus()" class="nav nav-pills " >
+      <li class="nav-item">
+        <button class="nav-link btn btn-light buttonarticle" style="background-color: #FE9404; color: white !important;"
+          data-toggle="modal" data-target="#showJoinTeamPopupModal" (click)="showJoinTeamPopup(stuvation)">Connect
+          &amp; Join as a Team</button>
+      </li>
 
-          <li class="nav-item">
-            <button class="nav-link btn btn-light" style="background-color: #33099e; color: white !important;"
-              data-toggle="modal" data-target="#showStuvationDiscussionModal"
-              (click)="showStuvationComments(stuvation)">Discussions</button>
-          </li>
-        </ul>
+      <li class="nav-item">
+        <button class="nav-link btn btn-light buttonarticle" style="background-color: #33099e; color: white !important;"
+          data-toggle="modal" data-target="#showStuvationDiscussionModal"
+          (click)="showStuvationComments(stuvation)">Discussions</button>
+      </li>
+    </ul>
+</div>
+
+      </div>
+
+
+        <!-- <br />
+
+        <button *ngIf="!checkLoginStatus() && stuvation.isFollowed==0 && stuvation.userId!=userId" class=" btn btn-primary"
+          style="background-color: #144E80; margin-left: 0 !important; color: white !important;" (click)="followerUpdate(stuvation.userId,'F');">FOLLOW</button>
+        <button *ngIf="!checkLoginStatus() && stuvation.isFollowed==1 && stuvation.userId!=userId" class=" btn btn-primary"
+          style="background-color: #144E80; margin-left: 0 !important; color: white !important;" (click)="followerUpdate(stuvation.userId,'U');">UNFOLLOW</button>
+        <br /> -->
+       
 
 
 

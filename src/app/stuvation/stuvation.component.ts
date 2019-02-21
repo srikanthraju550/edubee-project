@@ -9,8 +9,8 @@ import { MainServiceService } from '../main-service.service';
   styleUrls: ['./stuvation.component.css']
 })
 export class StuvationComponent implements OnInit {
-
-  endpoint: string = "http://localhost/services/"
+  endpoint: string = "http://www.theengineersfactory.com/assets/services/"
+  // endpoint: string = "http://localhost/services/"
   selectedStuvation: any;
   constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService) { }
   sliderContent: any = [];
