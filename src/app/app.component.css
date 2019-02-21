@@ -197,6 +197,47 @@ margin-left: 25%;
   overflow: hidden;
 }
 
+.p-radio{
+  color: black !important;
+}
+.radio-btns{
+  background: #33099e;
+  width: 20%;
+  padding: 8px;
+  border-radius: 48px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  cursor: pointer;
+  }
+  
+  .fa-check{
+    position: absolute;
+    left: 191px;
+    top: 3px;
+    color: #eaeaea;
+  }
+
+  .buttonarticle{
+    margin: auto;
+    display: block;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    margin-top: 45px;
+    color: white !important;
+    height: 41px;
+        padding: 0 11px;
+        font-size: 66px;
+        font-size: 17px;
+        margin-top: 2px;
+        border-radius: 33px;
+        color: #ffff;
+        background: rgba(51,9,158,1);
+        background: -webkit-gradient(left top, right top, color-stop(0%, rgba(51,9,158,1)), color-stop(47%, rgba(51,9,158,1)), color-stop(100%, rgba(192,39,230,1)));
+        background: linear-gradient(to right, rgba(51,9,158,1) 0%, rgba(51,9,158,1) 47%, rgba(192,39,230,1) 100%);
+    }
+  
+
 /*Strip the ul of padding and list styling*/
 ul {
   list-style-type:none;

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  endpoint: string = "http://localhost/services/"
+  endpoint: string = "../assets/services/"
   techarticleregistration: any = [];
   techeventsregistration: any = [];
   technologyconfig: any = [];

@@ -24,15 +24,17 @@
   </div>
 </div> -->
 <div class="row tech-bank-filters" style="background-color: #F4F6F5; height: 4em; ">
-  <div class="col-12 text1">
+  <div class="col-md-4">&nbsp;</div>
+  <div class="col-md-4 text1">
     <h2 class="text-center tch-m-hdng">Tech Connect Programmes</h2>
   </div>
-  <button *ngIf="!checkLoginStatus()" type="button" data-toggle="modal" class="buttonarticle"
-    data-target="#createTechConnectModal">Create
-    Tech Connect</button>
+  <div class="col-md-4" style="margin-left: -1%;">
+    <button *ngIf="!checkLoginStatus()" type="button" data-toggle="modal" class="buttonarticle"
+      data-target="#createTechConnectModal" style="margin:auto;display:block;float:initial;margin-top:10px;">Create
+      Tech Connect</button>
+  </div>
 </div>
 
-<br />
 <div id="techBankEventFilterDiv" class="row filter-divs" *ngIf="!checkLoginStatus()">
 
   <div class="col-md-6">
@@ -86,10 +88,10 @@
             aria-expanded="" attr.aria-controls="teachcollapse{{i}}">
             <h5 class="mb-0">
               <button *ngIf="i!=0" class="btn btn-link collapsed" type="button">
-                Tech Connect
+                Tech Teach
               </button>
               <button *ngIf="i==0" class="btn btn-link" type="button">
-                Tech Connect
+                Tech Teach
               </button>
             </h5>
           </div>
@@ -99,8 +101,8 @@
             <div class="card-body ">
               <div class="col-12">
 
-
-                <div><b class="crd-lft">Type</b> <span class="crd-ryt">: Tech Teach</span></div>
+                <span class="cardSubHeading crd-hdng">Tech Connect Details</span>
+                <div><b class="crd-lft">Type</b> <span class="crd-ryt">: {{techteach.techteachtype}}</span></div>
                 <div><b class="crd-lft">Topic</b> <span class="crd-ryt">: {{techteach.topic}}</span></div>
                 <div><b class="crd-lft">Abstract</b> <span class="crd-ryt">: {{techteach.abstract}}</span></div>
                 <div><b class="crd-lft">Technology</b> <span class="crd-ryt">: {{techteach.technologyname}}</span></div>
@@ -138,12 +140,12 @@
 
                 <ul class="nav nav-pills crd-btn-dv">
                   <li class="nav-item">
-                    <button class="nav-link btn btn-light" style="background-color: #eaeaea;color: #4c4c4c !important;"
-                      (click)="viewTechTeachDetails(techteach)" data-toggle="modal" data-target="#detailsModal">View
+                    <button class="nav-link btn btn-light  buttonarticle" (click)="viewTechTeachDetails(techteach)"
+                      data-toggle="modal" data-target="#detailsModal">View
                       Detail's</button>
                   </li>
                   <li class="nav-item" *ngIf="!checkLoginStatus()">
-                    <button class="nav-link btn btn-light" style="background-color: #FE9404; color: white !important;"
+                    <button class="nav-link btn btn-light buttonarticle" style="margin-left: 40%;"
                       (click)="applyForEventTechTeach(techteach)">Apply for this event</button>
                   </li>
                 </ul>
@@ -160,10 +162,10 @@
               <h5 class="mb-0">
                 <button *ngIf="i!=0 || (i==0 && techteachdetails?.length!=0)" class="btn btn-link collapsed"
                   type="button">
-                  Tech Connect
+                  Tech Talk
                 </button>
                 <button *ngIf="i==0 && techteachdetails?.length==0" class="btn btn-link" type="button">
-                  Tech Connect
+                  Tech Talk
                 </button>
               </h5>
             </div>
@@ -172,8 +174,8 @@
               attr.aria-labelledby="talkheading{{i}}" data-parent="#accordionExample">
               <div class="card-body">
                 <div class="col-12">
-
-                  <div><b class="crd-lft">Type</b> <span class="crd-ryt">: Tech Talk</span></div>
+                  <span class="cardSubHeading crd-hdng">Tech Connect Details</span>
+                  <div><b class="crd-lft">Type</b> <span class="crd-ryt">: {{techtalkdata.techtalktype}}</span></div>
                   <div><b class="crd-lft">Topic</b> <span class="crd-ryt">: {{techtalkdata.techtalktopic}}</span></div>
                   <div><b class="crd-lft">Abstract</b> <span class="crd-ryt">: {{techtalkdata.abstract}}</span></div>
                   <div><b class="crd-lft">Technology</b> <span class="crd-ryt">: {{techtalkdata.technologyname}}</span>
@@ -221,13 +223,12 @@
                   </div>
                   <ul class="nav nav-pills crd-btn-dv">
                     <li class="nav-item">
-                      <button class="nav-link btn btn-light"
-                        style="background-color: #eaeaea;color: #4c4c4c !important;"
-                        (click)="viewTechTalkDetails(techtalkdata)" data-toggle="modal" data-target="#detailsModal">View
+                      <button class="nav-link btn btn-light  buttonarticle" (click)="viewTechTalkDetails(techtalkdata)"
+                        data-toggle="modal" data-target="#detailsModal">View
                         Detail's</button>
                     </li>
                     <li class="nav-item" *ngIf="!checkLoginStatus()">
-                      <button class="nav-link btn btn-light" style="background-color: #FE9404; color: white !important;"
+                      <button class="nav-link btn btn-light buttonarticle" style="margin-left: 40%;"
                         (click)="applyForEventTechTalk(techtalkdata)">Apply for the event</button>
                     </li>
                   </ul>
@@ -259,8 +260,19 @@
       <div class="modal-body">
         <div *ngIf="selectedModel=='techTeach'">
           <div class="row">
-            <div class="col-4">
-              <span class="cardSubHeading">Originator</span>
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+              <span>
+                <b>Created on</b> : {{selectedTechTeach.createdon}}</span>
+              &nbsp;&nbsp;&nbsp; <span>
+                <b>Event on</b> : {{selectedTechTeach.venuedate}}</span>
+              &nbsp;&nbsp;&nbsp; <span>
+                <b>Number of people applied</b> : {{selectedTechTeach.registrationCount}}</span>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+              <span class="cardSubHeading crd-hdng">Originator</span>
               <br />
               <b>Name</b> : {{selectedTechTeach.originatorname}}
 
@@ -270,8 +282,8 @@
               <b>Email</b> : {{selectedTechTeach.originatoremail}}
               <br />
             </div>
-            <div class="col-4">
-              <span class="cardSubHeading">Venue Details</span>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+              <span class="cardSubHeading crd-hdng">Venue Details</span>
               <br />
               <b>Place</b> : {{selectedTechTeach.place}}
               <br />
@@ -286,18 +298,11 @@
               <br />
 
             </div>
-            <div class="col-4">
-              <span style="float:right;">
-                <b>Created on</b> : {{selectedTechTeach.createdon}}</span>
-              <span style="float:right;">
-                <b>Event on</b> : {{selectedTechTeach.venuedate}}</span>
-              <span style="float:right;">
-                <b>Number of people applied</b> : {{selectedTechTeach.registrationCount}}</span>
-            </div>
+
           </div>
           <div class="row">
-            <div class="col-4">
-              <span class="cardSubHeading">Other Details</span>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+              <span class="cardSubHeading crd-hdng">Other Details</span>
               <br />
               <b>Tech Teach Type</b> : {{selectedTechTeach.techteachtype}}
               <br />
@@ -315,8 +320,8 @@
               <br />
               <br />
             </div>
-            <div class="col-4">
-              <span class="cardSubHeading">Registration Details</span>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+              <span class="cardSubHeading crd-hdng">Registration Details</span>
               <br />
               <b>Web Address</b> : {{selectedTechTeach.webaddress}}
               <br />
@@ -334,7 +339,7 @@
 
           <ul class="nav nav-pills" style="float: right;" *ngIf="!checkLoginStatus()">
             <li class="nav-item">
-              <button class="nav-link btn btn-light" style="background-color: #B3B3B3; color: black !important;"
+              <button class="nav-link btn btn-light buttonarticle"
                 (click)="applyForEventTechTeach(selectedTechTeach)">Apply for the event</button>
             </li>
           </ul>
@@ -342,8 +347,22 @@
         </div>
         <div *ngIf="selectedModel=='techTalk'">
           <div class="row">
-            <div class="col-4">
-              <span class="cardSubHeading">Originator</span>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <span>
+                <b>Created on</b> : {{selectedTechTalk.createdon}}</span>
+              &nbsp;&nbsp;&nbsp;
+              <span>
+                <b>Event on</b> : {{selectedTechTalk.venuedate}}</span>
+              &nbsp;&nbsp;&nbsp;
+              <span>
+                <b>Number of people applied</b> : {{selectedTechTalk.registrationCount}}</span>
+
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+              <span class="cardSubHeading crd-hdng">Originator</span>
               <br />
               <b>Name</b> : {{selectedTechTalk.originatorname}}
 
@@ -358,8 +377,8 @@
 
               <br />
             </div>
-            <div class="col-4">
-              <span class="cardSubHeading">Venue Details</span>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+              <span class="cardSubHeading crd-hdng">Venue Details</span>
               <br />
               <b>Place</b> : {{selectedTechTalk.place}}
               <br />
@@ -374,21 +393,11 @@
               <br />
 
             </div>
-            <div class="col-4">
-              <span>
-                <b>Created on</b> : {{selectedTechTalk.createdon}}</span>
-              <br />
-              <span>
-                <b>Event on</b> : {{selectedTechTalk.venuedate}}</span>
-              <br />
-              <span>
-                <b>Number of people applied</b> : {{selectedTechTalk.registrationCount}}</span>
-              <br />
-            </div>
+
           </div>
           <div class="row">
-            <div class="col-4">
-              <span class="cardSubHeading">Other Details</span>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+              <span class="cardSubHeading crd-hdng">Other Details</span>
               <br />
               <b>Tech Teach Topic</b> : {{selectedTechTalk.techtalktopic}}
               <br />
@@ -399,8 +408,8 @@
               <b>No. of Years Experience</b> : {{selectedTechTalk.experience}}
               <br />
             </div>
-            <div class="col-4">
-              <span class="cardSubHeading">Registration Details</span>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+              <span class="cardSubHeading crd-hdng">Registration Details</span>
               <br />
               <b>Web Address</b> : {{selectedTechTalk.webaddress}}
               <br />
@@ -417,7 +426,7 @@
           </div>
           <ul class="nav nav-pills" style="float: right;" *ngIf="!checkLoginStatus()">
             <li class="nav-item">
-              <button class="nav-link btn btn-light" style="background-color: #B3B3B3; color: black !important;"
+              <button class="nav-link btn btn-light buttonarticle"
                 (click)="applyForEventTechTalk(selectedTechTalk)">Apply for the event</button>
             </li>
           </ul>

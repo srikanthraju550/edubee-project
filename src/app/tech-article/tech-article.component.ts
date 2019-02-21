@@ -11,8 +11,8 @@ import { FilterPipe } from 'ngx-filter-pipe';
   styleUrls: ['./tech-article.component.css']
 })
 export class TechArticleComponent implements OnInit {
-  // endpoint: string = "http://localhost/services/";
-  endpoint: string = "http://www.theengineersfactory.com/assets/services/";
+  // endpoint: string = "../assets/services/";
+  endpoint: string = "http://localhost/services/";
   selectedTecharticle: any;
   constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private filterPipe: FilterPipe) { }
   sliderContent: any = [];
@@ -21,17 +21,17 @@ export class TechArticleComponent implements OnInit {
   teamDetails: any = [];
   techarticledetails: any = [];
   ngOnInit(): void {
-    //this.http.get('http://localhost/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
+    //this.http.get('../assets/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
     let url = this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime();
     let userDetails = this.getLoggedInUserObject();
     if (!this.checkLoginStatus())
-      // url += "?userid=" + userDetails['userid'];
-      this.http.get(url).subscribe(data => {
-        this.sliderContent = data['0'].sliderContent;
-        this.teamDetails = data['1'].teamDetails;
-        this.techarticledetails = data['2'].techarticledetails;
-        this.homePageContent = data['3'].homePageData;
-      });
+      url += "?userid=" + userDetails['userid'];
+    this.http.get(url).subscribe(data => {
+      this.sliderContent = data['0'].sliderContent;
+      this.teamDetails = data['1'].teamDetails;
+      this.techarticledetails = data['2'].techarticledetails;
+      this.homePageContent = data['3'].homePageData;
+    });
   }
   techArticleFilter: any = { articletitle: '', name: '', technologyname: '', subtechname: '', cost: 0 };
   keywordFilter: any = { name: '' };
@@ -178,6 +178,33 @@ export class TechArticleComponent implements OnInit {
 
   logout(): void {
     this.mainService.logout();
+  }
+  articletype;
+  articletitle;
+  emailaddress;
+  contactnumber;
+  cost;
+  technologyname;
+  subtechname;
+  abstract;
+  showcost = false;
+  viewTechTeachDetails(techTeach): void {
+    for (var i = 0; i < this.techarticledetails.length; i++) {
+      if (techTeach.articleid === this.techarticledetails[i].articleid) {
+        this.articletype = this.techarticledetails[i].articletype;
+        this.articletitle = this.techarticledetails[i].articletitle;
+        this.emailaddress = this.techarticledetails[i].emailaddress;
+        this.contactnumber = this.techarticledetails[i].contactnumber;
+        this.cost = this.techarticledetails[i].cost;
+        this.technologyname = this.techarticledetails[i].technologyname;
+        this.subtechname = this.techarticledetails[i].subtechname;
+        this.abstract = this.techarticledetails[i].abstract;
+        if (this.techarticledetails[i].articletype == 'Article') {
+          this.showcost = true;
+        }
+        return;
+      }
+    }
   }
 
   showKeyword = true;

@@ -24,15 +24,19 @@
   </div>
 </div> -->
 <div class="row tech-bank-filters" style="background-color: #F4F6F5; height: 4em; ">
-  <div class="col-12">
+  <div class="col-md-4 col-sm-12 col-xs-12">
+    &nbsp;
+  </div>
+  <div class="col-md-4 col-sm-12 col-xs-12">
     <h2 class="text-center">All Tech Articles</h2>
   </div>
-  <button *ngIf="!checkLoginStatus()" type="button" class="buttonarticle crt-btn" data-toggle="modal"
-    data-target="#createTechArticleModal">Create Tech
-    Article</button>
-  <br />
-  <br />
+  <div class="col-md-4 col-sm-12 col-xs-12">
+    <button *ngIf="!checkLoginStatus()" type="button" class="buttonarticle crt-btn" data-toggle="modal"
+      data-target="#createTechArticleModal" style="margin:auto;display:block;float:initial;margin-top:10px">Create Tech
+      Article</button>
+  </div>
 </div>
+<br />
 
 
 
@@ -113,48 +117,49 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-6 tec_lft">
+              <h6 class="art-type" style="color:#33099e;">{{techarticle.articletype}}</h6>
+
               <b>Title</b> : {{techarticle.articletitle}}
               <br />
-              <b>Technology</b> : {{techarticle.technologyname}}
-              <br />
+              <b>Technology</b> : {{techarticle.technologyname}} ,
+              &nbsp;&nbsp;
               <b>Sub-Technology</b> : {{techarticle.subtechname}}
               <br />
               <b *ngIf="techarticle.articletype=='Article'">Price :
                 <span style="color:#255B88">{{techarticle.cost}} rs</span>
-              </b>
-              <div>
-                <span class="abstract-name">Abstract</span> : {{techarticle.abstract}}
-              </div>
+              </b><br *ngIf="techarticle.articletype=='Article'" />
+              <b> Abstract </b>: {{techarticle.abstract}}
+
+
             </div>
 
 
             <div class="col-md-3 tec_mdl">
-              <h6 class="art-type">{{techarticle.articletype}}</h6>
-              <h5 class="card-title" style="color:#33099e;"><span class="title-name">
-                </span><b>{{techarticle.name}}</b>
-                <br />
-                <span style="font-size: 0.85rem;color:rgb(22, 22, 22);"> ( {{techarticle.followerCount}} followers
-                  )</span>
-              </h5>
+
+              <img class="profilepicture" *ngIf="techarticle.profilepicture!==''"
+                src="../assets/images/profileImages/{{techarticle.profilepicture}}" alt="Profile Pic">
+              <img class="profilepicture" *ngIf="techarticle.profilepicture==''" src="../assets/images/user-dummy.png"
+                alt="Profile Pic">
+
               <div class="">
-                <img class="profilepicture" *ngIf="techarticle.profilepicture!==''"
-                  src="../assets/images/profileImages/{{techarticle.profilepicture}}" alt="Profile Pic">
-                <img class="profilepicture" *ngIf="techarticle.profilepicture==''" src="../assets/images/user-dummy.png"
-                  alt="Profile Pic">
-                <br />
+                <h5 class="card-title" style="color:#33099e;"><span class="title-name">
+                  </span><b>{{techarticle.name}}</b>
+                  <br />
+                  <span style="font-size: 0.85rem;color:rgb(22, 22, 22);"> ( {{techarticle.followerCount}} followers
+                    )</span>
+                </h5>
                 <div class="lke-dis">
-                  <button *ngIf="!checkLoginStatus()" class="btn btn-light"
-                    style="background-color: green; height: 2.5em; color: white;"
-                    (click)="articleUpDownCountUpdate(techarticle.articleid,'UP')">
+                  <button *ngIf="!checkLoginStatus() && techarticle.upCount!=='0'" class="btn btn-light buttonarticle"
+                    (click)="articleUpDownCountUpdate(techarticle.articleid,'UP')" style="display:inline">
                     {{techarticle.upCount}}
                     <img src="../assets/images/thumbsUp.png" alt="Card image cap" style="height:15px;">
                   </button>
                   &nbsp;&nbsp;
-                  <button *ngIf="!checkLoginStatus()" class="btn btn-light"
-                    style="background-color: red;height: 2.5em; color: white;"
-                    (click)="articleUpDownCountUpdate(techarticle.articleid,'DOWN')">
+                  <button *ngIf="!checkLoginStatus() && techarticle.downCount!=='0'" class="btn btn-light buttonarticle"
+                    (click)="articleUpDownCountUpdate(techarticle.articleid,'DOWN')" style="display:inline">
                     {{techarticle.downCount}}
                     <img src="../assets/images/thumbsDown.png" alt="Card image cap" style="height: 15px;">
+
                   </button>
                 </div>
                 <br />
@@ -163,25 +168,13 @@
 
             <div class="col-md-3 tec_ryt">
 
-              <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="">
+              <ul *ngIf="!checkLoginStatus()" class="nav nav-pills">
 
                 <li class="nav-item ">
                   <button class="nav-link btn btn-light buybutton buttonarticle"
                     *ngIf="techarticle.articlepaymentindcd=='Y' && techarticle.articletype=='Article'"
                     data-toggle="modal" data-target="#buynowModal" (click)="buyNowModelClick(techarticle)">Buy
                     Now</button>
-                </li>
-
-                <li class="nav-item">
-                  <button class="nav-link btn btn-light veiwbutton buttonarticle"
-                    *ngIf="techarticle.publicationlink!='' &&  techarticle.articletype =='White Paper' || techarticle.articletype =='Research Paper' "
-                    data-toggle="modal" data-target="#buynowModal1"
-                    (click)="viewTechTeachDetails(techteach)">View/Download
-                    full Article</button>
-                </li>
-                <li class="nav-item">
-                  <button class="nav-link btn btn-light commentbutton buttonarticle" data-toggle="modal"
-                    data-target="#commentsModal" (click)="showTechArticleComments(techarticle)">Comments</button>
                 </li>
 
                 <li class="nav-item" style="margin-left:2%">
@@ -198,19 +191,21 @@
                     style=" margin-left: 0 !important; color: white !important;"
                     (click)="followerUpdate(techarticle.userId,'U');">Unfollow</button>
                 </li>
-
-
+                <li class="nav-item">
+                  <button class="nav-link btn btn-light commentbutton buttonarticle" data-toggle="modal"
+                    data-target="#commentsModal" (click)="showTechArticleComments(techarticle)">Comments</button>
+                </li>
+                <li class="nav-item">
+                  <button class="nav-link btn btn-light veiwbutton buttonarticle"
+                    *ngIf="techarticle.publicationlink!='' &&  techarticle.articletype =='White Paper' || techarticle.articletype =='Research Paper' "
+                    data-toggle="modal" data-target="#buynowModal1"
+                    (click)="viewTechTeachDetails(techarticle)">View/Download
+                    full Article</button>
+                </li>
               </ul>
-
             </div>
-
           </div>
-
-
-
           <br />
-
-
         </div>
         <div id="buynowModal1" class="modal fade" role="dialog">
           <div class="modal-dialog createarticle1">
@@ -227,42 +222,39 @@
                 </div>
                 <div class="modal-body">
                   <div class="row">
-                    <div class="col-4">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
                       <br />
-                      <b>Contact Email</b> : {{techarticle.emailaddress}}
+                      <b>Article Type</b> : {{articletype}}
                       <br />
-                      <b>Contact Number</b> : {{techarticle.contactnumber}}
+                      <b>Title</b> : {{articletitle}}
                       <br />
-                      <b>Title</b> : {{techarticle.articletitle}}
+                      <b>Email</b> : {{emailaddress}}
+                      <br />
+                      <b>Contact Number</b> : {{contactnumber}}
+
+                      <br />
+                      <span *ngIf="showcost"> <b>Cost</b> : {{cost}}</span>
+
+                    </div>
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                      <br />
+
+                      <b>Engineering Technology</b> : {{technologyname}}
+                      <br />
+                      <b>Sub-Engineering Technology</b> : {{subtechname}}
+                      <br />
+
+                      <b>Abstract</b> : <span style="text-align:justify">{{abstract}}</span>
                       <br />
                     </div>
-                    <div class="col-4">
-                      <br />
-                      <b>Abstract</b> : {{techarticle.abstract}}
-                      <br />
-                      <b>Engineering Technology</b> : {{techarticle.technologyname}}
-                      <br />
-                      <b>Sub-Engineering Technology</b> : {{techarticle.subtechname}}
-                      <br />
-                      <b>Article Type</b> : {{techarticle.articletype}}
-                      <br />
-                    </div>
-                    <div class="col-4">
-                      <br />
-                      <b>If Paid Article</b> :
-                      <br />
-                      <b>Cost</b> : {{techarticle.cost}}
-                      <br />
-                    </div>
+
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
-
     </div>
   </div>
 </div>
@@ -270,7 +262,6 @@
 
 <div id="commentsModal" class="modal fade" role="dialog">
   <div class="modal-dialog createarticle1">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header" style="background-color: #33099e; text-align: center; align-items: center;">
@@ -285,10 +276,9 @@
           <div class="card-body row">
             <div class="col-10">
               <b>Name</b> :
-              <br />{{articlecomment.name}}
+              {{articlecomment.name}}
               <br />
               <b>Comment</b> :
-              <br />
               <span *ngIf="getLoggedInUserObject()['userid']!=articlecomment.userid">
                 {{articlecomment.comment}}</span>
               <textarea style="width: 100%;" *ngIf="getLoggedInUserObject()['userid']==articlecomment.userid"
@@ -311,24 +301,20 @@
         </div>
         <div class="card">
           <div class="card-body row">
-            <div class="col-10">
+            <div class="col--md-10  col-sm-12 col-xs-12">
               <textarea style="width: 100%;" [(ngModel)]="commentToBeAdded" placeholder="500 Characters"
                 maxlength="500"></textarea>
             </div>
-            <div class="col-2">
-              <button class="btn btn-light" [disabled]="commentToBeAdded==''"
-                style="background-color: #9A9A9A;height: 2.5em;"
+            <div class="col-md-2 col-sm-12 col-xs-12">
+              <button class="btn btn-light commentbutton buttonarticle" [disabled]="commentToBeAdded==''"
                 (click)="commentOperation(selectedTecharticle.articleid, null, commentToBeAdded, 'A')">
                 Add Comment
               </button>
             </div>
           </div>
         </div>
-
       </div>
-
     </div>
-
   </div>
 </div>
 

@@ -46,7 +46,7 @@ if (!($res1=mysqli_fetch_row($userCheck))) {
 	 $res2=mysqli_fetch_row(mysqli_query($conn,"select userid from logindetails where emailaddress='$email'"));
 	$userid = $res2[0];
 
-	$confirmEmailUrl="http://localhost/services/assets/services/authorizeEmail.php?authCode=".$authCode."&userId=".$userid;
+	$confirmEmailUrl="../assets/services/assets/services/authorizeEmail.php?authCode=".$authCode."&userId=".$userid;
 	$emailContent = '<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 	<meta name="viewport" content="width=device-width">
@@ -770,7 +770,7 @@ if (!($res1=mysqli_fetch_row($userCheck))) {
 				</tbody>
 			  </table>
 			  <div class="milkyway-header float-center" align="center">
-				<img src="http://localhost/services/assets/images/logo.png"
+				<img src="../assets/services/assets/images/logo.png"
 				  style="-ms-interpolation-mode: bicubic; clear: both; display: block; max-width: 100%; outline: none; text-decoration: none; width: auto">
 			  </div>
 			  <table class="header-spacer-bottom spacer  float-center" align="center" style="border-collapse: collapse; border-spacing: 0; float: none; line-height: 30px; margin: 0 auto; padding: 0; text-align: center; vertical-align: top; width: 100%">

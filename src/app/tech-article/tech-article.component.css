@@ -117,7 +117,7 @@ cursor: pointer;
     border: 1px solid #3e0aa5;
     margin-bottom: 25px;
     box-shadow: 5px 9px 13px -6px rgba(0, 0, 0, .3) !important;
-    background-color: #400aa63b;
+    /* background-color: #400aa63b; */
 }
 
 .art-type{
@@ -139,7 +139,7 @@ cursor: pointer;
     font-size: medium;
     float: right;
     font-family: inherit;
-    padding: 18px 45px 18px 45px !important;
+    padding: 18px 45px 33px 45px !important;
     outline: none;
 }
 .createarticle1{

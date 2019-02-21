@@ -13,7 +13,8 @@
             <ul id="menu" class="main-menu">
                 <li><a routerLink="/home" class="main-header">HOME</a></li>
                 <li>
-                    <a href="#" class="main-header">TECH WORLD <i class="fa fa-caret-down" style="display: inline;"></i></a>
+                    <a href="#" class="main-header">TECH WORLD <i class="fa fa-caret-down"
+                            style="display: inline;"></i></a>
                     <ul class="hidden sub-drop">
                         <li class="sub-menu-header"><a routerLink="/techbank">TECH BANK</a></li>
                         <li class="sub-menu-header"><a routerLink="/techevent">TECH CONNECT</a></li>
@@ -29,7 +30,8 @@
 
 
                 <li *ngIf="!checkLoginStatus()">
-                    <a href="#" class="main-header">PROFILE <i class="fa fa-caret-down" style="display: inline;"></i></a>
+                    <a href="#" class="main-header">PROFILE <i class="fa fa-caret-down"
+                            style="display: inline;"></i></a>
                     <ul class="hidden sub-drop">
                         <li class="sub-menu-header"><a class="dropdown-item" routerLink="/myprofile">MY PROFILE</a></li>
                         <li class="sub-menu-header"><a class="dropdown-item" routerLink="/engshipRequest">Engship
@@ -90,7 +92,8 @@
                         <img class="toggle-menu-icon" src="../assets/images/menu-icon.png">
 
                         <ul id="menu" class="animated slideInLeft" *ngIf="navbarOpen">
-                            <li><a (click)="hidemenu()" class="close_btn"><i class="fa fa-times-circle" aria-hidden="true"></i></a></li>
+                            <li><a (click)="hidemenu()" class="close_btn"><i class="fa fa-times-circle"
+                                        aria-hidden="true"></i></a></li>
                             <li><a (click)="goHome()">Home</a></li>
                             <li><a href="#">Tech World <i class="fa fa-caret-down" style="display: inline;"></i></a>
                                 <ul class="hidden sub-drop">
@@ -106,7 +109,8 @@
                                     style="font-size:13px;" data-toggle="modal" href="#"
                                     data-target="#loginModal">LOGIN</a></li>
                             <li class="showInMobile" *ngIf="checkLoginStatus()"> <a class="main-header"
-                                    style="font-size:13px;" data-toggle="dropdown" href="#" role="button">SIGN UP <i class="fa fa-caret-down" style="display: inline;"></i></a>
+                                    style="font-size:13px;" data-toggle="dropdown" href="#" role="button">SIGN UP <i
+                                        class="fa fa-caret-down" style="display: inline;"></i></a>
 
                                 <ul class="hidden sign-up-sub">
                                     <li><a class="main-header" style="font-size:13px;" data-toggle="modal"
@@ -335,7 +339,7 @@
                     <div class="form-group">
                         <label for="abstract">Abstract:</label>
                         <textarea class="form-control" formControlName="abstract" placeholder="1000 words"
-                            minlength="1000" maxlength="1000"></textarea>
+                            maxlength="1000"></textarea>
 
                     </div>
                     <div class="row">
@@ -923,7 +927,7 @@
                     <div class="form-group">
                         <label for="abstract">Abstract:</label>
                         <textarea class="form-control" formControlName="abstract" placeholder="1000 words"
-                            maxlength="1000" minlength="1000"></textarea>
+                            maxlength="1000"></textarea>
                     </div>
 
                     <div class="row">
@@ -1082,19 +1086,44 @@
             </div>
             <div class="modal-body">
                 <div class="row">
+                    <div class="col-md-2">
+                        &nbsp;
+                    </div>
+                    <div class="col-md-6">
+                        <span style="text-align: center; width: 100%;display: inline-flex">
+                            <label style="font-weight: bold;">Select Connect Type:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <!-- <input type="radio" name="techConnectSelector" [(ngModel)]="techConnectSelector"
+                    (click)="openMe()" selected value="1">&nbsp;
+                Tech Teach&nbsp;&nbsp; -->
 
-                    <span style="text-align: center; width: 100%;">
-                        <label style="font-weight: bold;">Select Connect Type:&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                        <input type="radio" name="techConnectSelector" [(ngModel)]="techConnectSelector"
-                            (click)="openMe()" selected value="1">&nbsp;
-                        Tech Teach&nbsp;&nbsp;
-                        <input type="radio" name="techConnectSelector" [(ngModel)]="techConnectSelector"
-                            (click)="openMe()" value="2">&nbsp;
-                        Tech Talk
-                    </span>
+                            <!-- <p (click)="openMe()" class="p-radio"> <span class="radio-btns">&nbsp;</span><span
+                                    class="white-radio">&nbsp;</span><i class="fa fa-check" *ngIf="showTechTeach"></i>
+                                Tech
+                                Teach</p> -->
+
+                            <!-- <input type="radio" name="techConnectSelector" [(ngModel)]="techConnectSelector"
+                    (click)="openMe()" value="2">&nbsp;
+                Tech Talk -->&nbsp;&nbsp;
+                            <button (click)="openMe()" type="button" data-toggle="modal" class="buttonarticle"> Tech
+                                Teach</button>
+
+                            <!-- <p (click)="openMe1()" class="p-radio"> <span class="radio-btns">&nbsp;</span><span
+                                    class="white-radio">&nbsp;</span><i class="fa fa-check" style=" position: absolute;
+                        left: 308px;    top: 3px;
+                        color: #eaeaea;" *ngIf="showTechTalk"></i> Tech
+                                Talk</p> -->
+
+                                <button (click)="openMe1()" type="button" data-toggle="modal" class="buttonarticle"> Tech
+                                    Talk</button>
+                        </span>
+                    </div>
+                    <div class="col-md-2">
+                        &nbsp;
+                    </div>
+
                 </div>
-                <form *ngIf="techConnectSelector=='1'" [formGroup]="createTechTeachForm"
-                    (ngSubmit)="onCreateTechTeachFormSubmit()" enctype="multipart/form-data">
+                <form *ngIf="showTechTeach" [formGroup]="createTechTeachForm" (ngSubmit)="onCreateTechTeachFormSubmit()"
+                    enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="topic">Topic:</label>
                         <input type="text" class="form-control" formControlName="topic">
@@ -1109,7 +1138,7 @@
                     <div class="form-group">
                         <label for="abstract">Abstract:</label>
                         <textarea class="form-control" formControlName="abstract" placeholder="1000 words"
-                            maxlength="1000" minlength="1000"></textarea>
+                            maxlength="1000"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="technologyArea">Technology Area:</label>
@@ -1290,8 +1319,8 @@
                             Tech Teach</button>
                     </div>
                 </form>
-                <form *ngIf="techConnectSelector=='2'" [formGroup]="createTechTalkForm"
-                    (ngSubmit)="onCreateTechTalkFormSubmit()" enctype="multipart/form-data">
+                <form *ngIf="showTechTalk" [formGroup]="createTechTalkForm" (ngSubmit)="onCreateTechTalkFormSubmit()"
+                    enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="topic">Topic:</label>
                         <input type="text" class="form-control" formControlName="topic">

@@ -9,8 +9,13 @@ import { MainServiceService } from '../main-service.service';
   styleUrls: ['./stuvation.component.css']
 })
 export class StuvationComponent implements OnInit {
+<<<<<<< HEAD
   endpoint: string = "http://www.theengineersfactory.com/assets/services/"
   // endpoint: string = "http://localhost/services/"
+=======
+
+  endpoint: string = "../assets/services/"
+>>>>>>> b85c4f2c5af61a99864eeda34d173d1c366d1b24
   selectedStuvation: any;
   constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService) { }
   sliderContent: any = [];
@@ -20,7 +25,7 @@ export class StuvationComponent implements OnInit {
   stuvationdetails: any = [];
   userId;
   ngOnInit(): void {
-    //this.http.get('http://localhost/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
+    //this.http.get('../assets/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
     let url = this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime();
     let userDetails = this.getLoggedInUserObject();
     if (!this.checkLoginStatus())
