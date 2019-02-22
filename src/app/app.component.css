@@ -591,7 +591,9 @@ cursor: pointer;
 .logn_modl .modal-body{
   padding: 25px 30px;
 }
-
+ .stuv-popup{
+  max-width : 70%;
+}
 /*********************************************************************************************************************************************************************************
 ************************************************************Responsive Styles*****************************************************************************************/
 @media screen and (max-width : 760px){
@@ -644,6 +646,9 @@ cursor: pointer;
 
 /************mediaquaries*******/
 @media screen and (min-width: 320px) and (max-width: 567px) {
+  .stuv-popup{
+    max-width : 100%;
+  }
 a.close_btn {
   position: relative;
   top: 10px;

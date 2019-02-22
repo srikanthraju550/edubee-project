@@ -12,8 +12,8 @@ import { FilterPipe } from 'ngx-filter-pipe';
 })
 export class StuvationComponent implements OnInit {
 
-  // endpoint: string = "http://www.theengineersfactory.com/assets/services/"
-  endpoint: string = "http://localhost/services/"
+  endpoint: string = "http://www.theengineersfactory.com/assets/services/"
+  // endpoint: string = "http://localhost/services/"
 
 
   // endpoint: string = "../assets/services/"
