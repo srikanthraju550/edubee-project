@@ -59,7 +59,7 @@ export class AppComponent {
   title = 'app';
   url;
 
-  endpoint: string = "http://localhost/services/"
+  endpoint: string = "../assets/services/"
   // endpoint: string = "../assets/services/"
   userid;
   uploader: FileUploader = new FileUploader({ url: this.endpoint + "profilePictureUpload.php", removeAfterUpload: false, autoUpload: false });
