@@ -158,7 +158,10 @@ export class HomeComponent implements OnInit {
   url;
   getHomePageCounterValues;
 
+
   endpoint: string = "../assets/services/";
+
+  // endpoint: string = "../assets/services/";
   // endpoint: string = "../assets/services/";
 
   loadMe;

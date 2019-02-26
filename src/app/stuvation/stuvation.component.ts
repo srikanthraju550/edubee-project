@@ -11,8 +11,8 @@ import { FilterPipe } from 'ngx-filter-pipe';
   styleUrls: ['./stuvation.component.css']
 })
 export class StuvationComponent implements OnInit {
-
-  // endpoint: string = "http://www.theengineersfactory.com/assets/services/"
+  // endpoint: string = "../assets/services/"
+  // endpoint: string = "../assets/services/"
   endpoint: string = "../assets/services/"
 
 

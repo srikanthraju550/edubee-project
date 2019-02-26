@@ -81,7 +81,7 @@
 
 
 
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-12" style="margin-top: 1em;">
       <div class="card" style="width: 100%;"
@@ -155,7 +155,24 @@
 
               </div>
 
-              <button *ngIf="!checkLoginStatus()" class="btn btn-light"
+
+              <div class="lke-dis">
+                <button *ngIf="!checkLoginStatus() && stuvation.upCount!=='0'" class="btn btn-light buttonarticle"
+                  (click)="stuvationUpDownCountUpdate(stuvation.stuvationid,'UP')" style="display:inline">
+                  {{stuvation.upCount}}
+                  <img src="../assets/images/thumbsUp.png" alt="Card image cap" style="height:15px;">
+                </button>
+                &nbsp;&nbsp;
+                <button *ngIf="!checkLoginStatus() && stuvation.downCount!=='0'" class="btn btn-light buttonarticle"
+                  (click)="stuvationUpDownCountUpdate(stuvation.stuvationid,'DOWN')" style="display:inline">
+                  {{stuvation.downCount}}
+                  <img src="../assets/images/thumbsDown.png" alt="Card image cap" style="height: 15px;">
+
+                </button>
+              </div>
+
+
+              <!-- <button *ngIf="!checkLoginStatus()" class="btn btn-light"
                 style="background-color: green; height: 2.5em; color: white"
                 (click)="stuvationUpDownCountUpdate(stuvation.stuvationid,'UP')">
                 {{stuvation.upCount}}
@@ -167,7 +184,7 @@
                 (click)="stuvationUpDownCountUpdate(stuvation.stuvationid,'DOWN')">
                 {{stuvation.downCount}}
                 <img src="../assets/images/thumbsDown.png" alt="Card image cap" style="height: 1.5em;">
-              </button>
+              </button> -->
             </div>
             <div class="col-md-4 col-sm-12 tec_ryt">
               <div><b>Created On</b> : {{stuvation.createdon}}</div>
@@ -190,7 +207,7 @@
                     style="background-color: #33099e; color: white !important;" data-toggle="modal"
                     data-target="#showStuvationDiscussionModal"
                     (click)="showStuvationComments(stuvation)">Discussions</button>
-                </li>
+                </li><br/>
                 <li class="nav-item">
                   <button class="nav-link btn btn-light buttonarticle"
                     style="background-color: #FE9404; color: white !important;" data-toggle="modal"
@@ -236,7 +253,7 @@
 <br />
 
 <div id="showStuvationDiscussionModal" class="modal fade" role="dialog">
-  <div class="modal-dialog" style="max-width : 70% !important;">
+  <div class="modal-dialog stuv-popup" style="">
 
     <!-- Modal content-->
     <div class="modal-content">
@@ -332,13 +349,13 @@
 </div>
 
 <div id="showJoinTeamPopupModal" class="modal fade" role="dialog">
-  <div class="modal-dialog" style="max-width : 50% !important;">
+  <div class="modal-dialog stuv-popup" style="">
 
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header" style="background-color: #33099e; text-align: center; align-items: center;">
         <span style="text-align: center; color: white; width: 100%;">
-          <h4>Connect & Join as a Team</h4>
+          <h4>Connect &amp; Join as a Team</h4>
         </span>
         <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
           id="closeJoinTeamPopupModal">&times;</button>
