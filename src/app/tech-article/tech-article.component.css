@@ -81,6 +81,7 @@ height: 41px;
     background: rgba(51,9,158,1);
     background: -webkit-gradient(left top, right top, color-stop(0%, rgba(51,9,158,1)), color-stop(47%, rgba(51,9,158,1)), color-stop(100%, rgba(192,39,230,1)));
     background: linear-gradient(to right, rgba(51,9,158,1) 0%, rgba(51,9,158,1) 47%, rgba(192,39,230,1) 100%);
+    outline: 0px;
 }
 
 .filter-divs
@@ -128,7 +129,6 @@ cursor: pointer;
 
 @media only screen and (max-width: 768px) {
 .buttonarticle{
-    height: 18%;
     background: rgba(51,9,158,1);
     background: -webkit-gradient(left top, right top, color-stop(0%, rgba(51,9,158,1)), color-stop(47%, rgba(51,9,158,1)), color-stop(100%, rgba(192,39,230,1)));
     background: linear-gradient(to right, rgba(51,9,158,1) 0%, rgba(51,9,158,1) 47%, rgba(192,39,230,1) 100%);
@@ -137,9 +137,12 @@ cursor: pointer;
     border-radius: 15px;
     font-weight: bold;
     font-size: medium;
-    float: right;
+    /* float: right; */
     font-family: inherit;
-    padding: 18px 45px 33px 45px !important;
+    /* padding: 18px 45px 33px 45px !important; */
+    line-height: initial;
+    height: auto;
+    padding: 15px!important;
     outline: none;
 }
 .createarticle1{
@@ -200,13 +203,18 @@ cursor: pointer;
     margin: 10px 0px 10px 0px;
 }
 .commentbutton{
-    padding:15px 95px 15px 95px;
-    margin: 10px 10px 10px 0px;
+    margin: 10px auto;
+    line-height: initial;
+    height: auto;
+    padding: 15px!important;
 }
 }
 
 
 /****************newcode**************/
+.cmnts{
+    margin:4px 0px;
+}
 .tec_mdl{
     text-align: center;
 }
@@ -225,11 +233,11 @@ cursor: pointer;
     }
 
       .tec_ryt .buttonarticle{
-        padding: 8px 20px 28px 20px !important;
-        margin: 0px 4px!important
+        /* padding: 8px 20px 28px 20px !important; */
+        margin: 4px 4px!important
       }
       .buttonarticle.crt-btn{
-        padding: 14px 40px 32px 40px !important;       
+        /* padding: 14px 40px 32px 40px !important;        */
       }
   }
   

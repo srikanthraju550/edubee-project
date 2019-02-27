@@ -220,18 +220,17 @@ margin-left: 25%;
   .buttonarticle{
     margin: auto;
     display: block;
-    padding: 8px;
     border: none;
     cursor: pointer;
     margin-top: 45px;
     color: white !important;
     height: 41px;
-        padding: 0 11px;
-        font-size: 66px;
+        padding: 0 15px;
         font-size: 17px;
         margin-top: 2px;
         border-radius: 33px;
         color: #ffff;
+        outline: 0;
         background: rgba(51,9,158,1);
         background: -webkit-gradient(left top, right top, color-stop(0%, rgba(51,9,158,1)), color-stop(47%, rgba(51,9,158,1)), color-stop(100%, rgba(192,39,230,1)));
         background: linear-gradient(to right, rgba(51,9,158,1) 0%, rgba(51,9,158,1) 47%, rgba(192,39,230,1) 100%);
@@ -646,6 +645,9 @@ cursor: pointer;
 
 /************mediaquaries*******/
 @media screen and (min-width: 320px) and (max-width: 567px) {
+  ._modl .buttonarticle{
+    width: 100%;
+  }
   .stuv-popup{
     max-width : 100%;
   }
@@ -778,6 +780,9 @@ ul.login-btn {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 959px) {
+  ._modl .buttonarticle{
+    width: 100%;
+  }
   .staticNavHeader .nav1 {
     margin-top: 0.5em;
     position: relative;

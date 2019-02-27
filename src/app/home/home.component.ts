@@ -159,7 +159,7 @@ export class HomeComponent implements OnInit {
   getHomePageCounterValues;
 
 
-  endpoint: string = "../assets/services/";
+  endpoint: string = "http://www.theengineersfactory.com/assets/services/";
 
   // endpoint: string = "../assets/services/";
   // endpoint: string = "../assets/services/";

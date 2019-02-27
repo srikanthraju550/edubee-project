@@ -13,7 +13,7 @@ export class TechBankComponent implements OnInit {
   // endpoint: string = "../assets/services/";
 
   // endpoint: string = "../assets/services/";
-  endpoint: string = "../assets/services/";
+  endpoint: string = "http://www.theengineersfactory.com/assets/services/";
   constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private filterPipe: FilterPipe) { }
   sliderContent: any = [];
   //homePageDataFromService=[];

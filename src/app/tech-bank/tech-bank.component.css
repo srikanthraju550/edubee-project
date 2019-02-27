@@ -29,7 +29,7 @@
     max-width : 70% !important;
 }
 .text1{
-    margin: 0.4em;
+    margin: 0.4em 0em;
 }
 
 .tech-bank-filters h2{
@@ -45,18 +45,17 @@
 .buttonarticle{
     margin: auto;
     display: block;
-    padding: 8px;
     border: none;
     cursor: pointer;
     margin-top: 45px;
     color: white !important;
-    height: 41px;
-        padding: 0 11px;
-        font-size: 66px;
-        font-size: 17px;
-        margin-top: 19px;
+    height: 42px;
+    padding: 0 20px;
+    font-size: 15px;
+        margin-top: 5px;
         border-radius: 33px;
         color: #ffff;
+        outline: 0;
         background: rgba(51,9,158,1);
         background: -webkit-gradient(left top, right top, color-stop(0%, rgba(51,9,158,1)), color-stop(47%, rgba(51,9,158,1)), color-stop(100%, rgba(192,39,230,1)));
         background: linear-gradient(to right, rgba(51,9,158,1) 0%, rgba(51,9,158,1) 47%, rgba(192,39,230,1) 100%);
@@ -84,8 +83,7 @@
         max-width : 100% !important;
     }
     .text1{
-        margin: 0.4em;
-        font-size: 25px;
+        margin: 0em;        
     }
 }
 
@@ -94,12 +92,36 @@
         max-width : 100% !important;
     }
     .text1{
-        margin: 0.4em;
+        margin: 0.4em 0em;
         font-size: 25px;
     }
 }
 
-/***********newcode******/
+.card-body::-webkit-scrollbar {
+    width: 0.5em;
+}
+ 
+.card-body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+.card-body::-webkit-scrollbar-thumb {
+    background-color: #d8d6d6;
+    outline: 1px solid rgb(242, 242, 243);
+}
+/***********======================newcode=================================******/
+
+
+.card-body.talk-bdy {
+    padding: .6rem;
+    height: 700px;
+    overflow-y: auto;
+}
+.card-body.teach-bdy {
+    padding: .6rem;
+    height: 630px;
+    overflow-y: auto;
+}
 .card-header h5 button{
     font-weight: 500;
 }
@@ -109,6 +131,9 @@
 }
 .crd-btn-dv{
     margin: 15px auto;
+}
+.crd-btn-dv li{
+width: 50%;
 }
 .crd-lft{
     float: left;
@@ -136,8 +161,30 @@ h5 button.btn.btn-link.collapsed {
     cursor: initial;
 }
 
-/*****************media quaries**************************/
+/************##############*****media quaries*****###############*********************/
  @media screen and (min-width: 320px) and (max-width: 567px) {
+    .fltrs{
+        margin: 20px;
+        margin-bottom: 0px;
+    }
+    .fltrs .col-4 {
+        max-width: 49%;
+        flex: initial;
+    }
+    .filter-divs {
+        margin-top: 30px;
+    }
+    .crd-btn-dv li .btn{
+        font-size: 15px;
+        margin-top: 0;
+        position: relative;
+        left: -12px;
+    }
+    .card-body.talk-bdy, .card-body.teach-bdy {
+        height: auto;
+        overflow-y: auto;
+    }
+     
     .col-12{
          /* padding: 0; */
      }
@@ -174,6 +221,15 @@ h5 button.btn.btn-link.collapsed {
  }
  
  @media only screen and (min-width: 768px) and (max-width: 959px) {
+     .fltrs .col-4{
+        max-width: 30%;
+     }
+    .text1 h2{
+        font-size: 1.5em;
+    }
+    .filter-divs{
+        margin-top: 40px;
+    }
     .accordion .card {
         width: 49%;
         display: inline-block;
