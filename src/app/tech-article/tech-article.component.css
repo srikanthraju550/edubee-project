@@ -139,7 +139,7 @@ cursor: pointer;
     font-size: medium;
     float: right;
     font-family: inherit;
-    padding: 18px 45px 33px 45px !important;
+    /* padding: 18px 45px 33px 45px !important; */
     outline: none;
 }
 .createarticle1{
