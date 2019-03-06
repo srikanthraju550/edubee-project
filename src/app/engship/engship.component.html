@@ -1,4 +1,4 @@
-<div class="row" style="z-index: 1;">
+<!-- <div class="row" style="z-index: 1;">
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style=" width: 100%;">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -24,15 +24,16 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-</div>
+</div> -->
+
 <!-- <div class="row" style="background-color: #F4F6F5;  height: 4em; ">
     <div class="col-12">
       <h2 style="margin: 0.4em;">All Engships</h2>
     </div>
   </div> -->
-<div id="techArticleFilterDiv" class="row" style="padding: 1em;">
+<div id="techArticleFilterDiv" class="row engship-top" style="padding: 1em;">
   <div class="col-6">
-    <div style="float:right;" *ngIf="!checkLoginStatus()">
+    <div *ngIf="!checkLoginStatus()">
       <button type="button" class="btn btn-primary"
         style="height: 30%; background-color: #33099e; color: white;font-weight: bold;" data-toggle="modal"
         data-target="#createEngshipModal">Join as Mentor</button>
@@ -57,13 +58,16 @@
           -->
         <div class="col-6">
           <div class="form-group">
+            <label for="tech-filter">Technology :</label>
             <input type="text" class="form-control" name="stuvationdetails" [(ngModel)]="engshipTechnologyMentorFilter"
-              placeholder="Technology Filter" />
+              placeholder="Technology Filter" id="tech-filter" />
           </div>
         </div>
         <div class="col-6">
-          Time Spend Type : <select class="techBankEventCheckbox" name="spendTypeMentorFilter"
-            [(ngModel)]="spendTypeMentorFilter" value="spendTypeMentorFilter">
+          
+          <label for="filter">Time Spend Type : </label>
+          <select class="techBankEventCheckbox form-control" name="spendTypeMentorFilter"
+            [(ngModel)]="spendTypeMentorFilter" value="spendTypeMentorFilter" id="filter">
             <option>Daily</option>
             <option>Weekly</option>
             <option>Monthly</option>
@@ -127,7 +131,7 @@
 
   </div>
   <div class="col-6">
-    <div style="float:right;" *ngIf="!checkLoginStatus()">
+    <div *ngIf="!checkLoginStatus()">
       <button type="button" class="btn btn-primary"
         style="height: 30%; background-color: #33099e; color: white;font-weight: bold;" data-toggle="modal"
         data-target="#createEngshipModal">Join as Mentee</button>
@@ -138,13 +142,16 @@
       <div class="row" style="font-size: 1rem;">
         <div class="col-6">
           <div class="form-group">
+            <label for="tech-filter1">Technology :</label>
             <input type="text" class="form-control" name="stuvationdetails" [(ngModel)]="engshipTechnologyMenteeFilter"
-              placeholder="Technology Filter" />
+              placeholder="Technology Filter" id="tech-filter1"/>
           </div>
         </div>
         <div class="col-6">
-          Time Spend Type : <select class="techBankEventCheckbox" name="spendTypeMenteeFilter"
-            [(ngModel)]="spendTypeMenteeFilter" value="spendTypeFilter">
+          
+          <label for="type-filtr">Time Spend Type : </label>
+          <select class="techBankEventCheckbox form-control" name="spendTypeMenteeFilter"
+            [(ngModel)]="spendTypeMenteeFilter" value="spendTypeFilter" id="type-filtr">
             <option>Daily</option>
             <option>Weekly</option>
             <option>Monthly</option>

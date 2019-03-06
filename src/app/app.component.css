@@ -645,6 +645,11 @@ cursor: pointer;
 
 /************mediaquaries*******/
 @media screen and (min-width: 320px) and (max-width: 567px) {
+  .engship-modl .col-6{
+    width: 100%;
+        max-width: 100%;
+        flex: initial;
+  }
   ._modl .buttonarticle{
     width: 100%;
   }
