@@ -94,6 +94,11 @@
                         <ul id="menu" class="animated slideInLeft" *ngIf="navbarOpen">
                             <li><a (click)="hidemenu()" class="close_btn"><i class="fa fa-times-circle"
                                         aria-hidden="true"></i></a></li>
+                            <li *ngIf="!checkLoginStatus()">
+                                <img class="profilepicture" style="border-radius: 10em;"
+                                    src="assets/images/profileImages/{{getLoggedInUserObject()['profilepicture']}}">
+                                <a>{{getLoggedInUserObject()['name'] | titlecase}}</a>
+                            </li>
                             <li><a (click)="goHome()">Home</a></li>
                             <li><a href="#">Tech World <i class="fa fa-caret-down" style="display: inline;"></i></a>
                                 <ul class="hidden sub-drop">
@@ -1096,7 +1101,7 @@
                     <div class="col-md-2">
                         &nbsp;
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 _modl">
                         <span style="text-align: center; width: 100%;display: inline-flex">
                             <label style="font-weight: bold;">Select Connect Type:&nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <!-- <input type="radio" name="techConnectSelector" [(ngModel)]="techConnectSelector"

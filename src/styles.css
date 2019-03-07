@@ -350,7 +350,7 @@ cursor: pointer !important;
 }
 .filter-input{
 border: 2px solid #33099e !important;
-margin-left: 10% !important;
+margin:0 auto;
 width: 85%;
 }
 

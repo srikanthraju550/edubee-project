@@ -272,9 +272,10 @@
           id="closeCommentsModal">&times;</button>
       </div>
       <div class="modal-body">
-        <div class="card" *ngFor="let articlecomment of articlecomments; let i = index; ">
+        <div class="card cmnts" *ngFor="let articlecomment of articlecomments; let i = index; ">
           <div class="card-body row">
-            <div class="col-md-12">
+
+            <div class="col-md-10 col-sm-12">
               <b>Name</b> :
               {{articlecomment.name}}
               <br />
@@ -284,17 +285,16 @@
               <textarea style="width: 100%;" *ngIf="getLoggedInUserObject()['userid']==articlecomment.userid"
                 [(ngModel)]="articlecomment.comment" placeholder="500 Characters" maxlength="500"></textarea>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <button *ngIf="getLoggedInUserObject()['userid']==articlecomment.userid"
-                class="btn btn-light buttonarticle" style="background-color: #9A9A9A;height: 2.5em;"
+
+            <div class="col-md-2 col-sm-12">
+              <button *ngIf="getLoggedInUserObject()['userid']==articlecomment.userid" class="btn btn-light"
+                style="background-color: #e6e5e5;height: 2.5em;"
                 (click)="commentOperation(selectedTecharticle.articleid, articlecomment.id, articlecomment.comment, 'U')">
                 Edit
               </button>
               <button
                 *ngIf="getLoggedInUserObject()['userid']==articlecomment.userid || getLoggedInUserObject()['userid']==selectedTecharticle.userId"
-                class="btn btn-light buttonarticle" style="background-color: #9A9A9A;height: 2.5em;"
+                class="btn btn-light" style="background-color: #e6e5e5;height: 2.5em;"
                 (click)="commentOperation(selectedTecharticle.articleid, articlecomment.id, null, 'D')">
                 Delete
               </button>

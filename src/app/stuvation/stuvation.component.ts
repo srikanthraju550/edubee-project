@@ -30,8 +30,8 @@ export class StuvationComponent implements OnInit {
     let url = this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime();
     let userDetails = this.getLoggedInUserObject();
     if (!this.checkLoginStatus())
-      // url += "?userid=" + userDetails['userid'];
-      this.userId = userDetails['userid'];
+      url += "?userid=" + userDetails['userid'];
+    this.userId = userDetails['userid'];
     this.http.get(url).subscribe(data => {
       console.log(data);
       this.sliderContent = data['0'].sliderContent;

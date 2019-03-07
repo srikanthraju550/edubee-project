@@ -12,9 +12,8 @@ import { FilterPipe } from 'ngx-filter-pipe';
 })
 export class TechArticleComponent implements OnInit {
   // endpoint: string = "../assets/services/";
+  endpoint: string = "../assets/services/"
 
-  // endpoint: string = "../assets/services/";
-  endpoint: string = "http://localhost/services/"
   selectedTecharticle: any;
   constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private filterPipe: FilterPipe) { }
   sliderContent: any = [];
