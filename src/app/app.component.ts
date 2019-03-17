@@ -28,6 +28,8 @@ import { HttpClient } from '../../node_modules/@angular/common/http';
 import { FileUploader } from 'ng2-file-upload';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { Http, Headers } from '@angular/http';
+// import { MainService } from './main';
 
 const colors: any = {
   red: {
@@ -48,6 +50,7 @@ const colors: any = {
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  // providers: [MainService]
 })
 export class AppComponent {
   navbarOpen = false;
@@ -61,8 +64,8 @@ export class AppComponent {
 
 
   // endpoint: string = "../assets/services/"
-  endpoint: string = "../assets/services/"
-
+  endpoint: string = "http://engfactory.accrosian.com/"
+  strImage;
   userid;
   uploader: FileUploader = new FileUploader({ url: this.endpoint + "profilePictureUpload.php", removeAfterUpload: false, autoUpload: false });
   fileUploaderTechArticle: FileUploader = new FileUploader({ url: this.endpoint + "publicationFileUpload.php", removeAfterUpload: false, autoUpload: false });
@@ -71,12 +74,11 @@ export class AppComponent {
   readUrl(event: any) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
-
       reader.onload = (event: ProgressEvent) => {
-        this.url = (<FileReader>event.target).result;
+        this.strImage = (<FileReader>event.target).result;
+        this.url = this.strImage.split(',')[1];
         console.log(this.url);
       }
-
       reader.readAsDataURL(event.target.files[0]);
     }
   }
@@ -147,7 +149,7 @@ export class AppComponent {
   activeDayIsOpen: boolean = false;
   date: { year: number, month: number };
 
-  constructor(private modal: NgbModal, public router: Router, private http: HttpClient, private mainService: MainServiceService, private fb: FormBuilder, private calendar: NgbCalendar) { }
+  constructor(private modal: NgbModal, public router: Router, private http: Http, private mainService: MainServiceService, private fb: FormBuilder, private calendar: NgbCalendar) { }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -383,7 +385,11 @@ export class AppComponent {
     //   return;
     // }
     this.createTechArticleForm.value.userDetails = this.getLoggedInUserObject();
-    this.http.post(this.endpoint + 'createTechArticle.php', this.createTechArticleForm.value, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
+    const headers = new Headers({
+      'Content-Type': 'multipart/form-data'
+    });
+
+    this.http.post(this.endpoint + 'createTechArticle.php', this.createTechArticleForm.value, { headers: headers }).subscribe(data => {
       //this.http.post('http://localhost:8080/edubee/createTechArticle.php', this.createTechArticleForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
       let parsedData: JSON = JSON.parse('' + data);
       if (parsedData['techarticledetailsQuery'] == 'done') {
@@ -401,7 +407,10 @@ export class AppComponent {
   onCreateStuvationFormSubmit() {
     this.createStuvationForm.value.userDetails = this.getLoggedInUserObject();
     console.warn(this.createStuvationForm.value);
-    this.http.post(this.endpoint + 'createStuvation.php', this.createStuvationForm.value, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
+    const headers = new Headers({
+      'Content-Type': 'multipart/form-data'
+    });
+    this.http.post(this.endpoint + 'createStuvation.php', this.createStuvationForm.value, { headers: headers }).subscribe(data => {
       //this.http.post('http://localhost:8080/edubee/createTechArticle.php', this.createTechArticleForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
       console.log(data);
       let parsedData: JSON = JSON.parse('' + data);
@@ -464,7 +473,10 @@ export class AppComponent {
   onCreateEngshipFormSubmit() {
     this.createEngshipForm.value.userDetails = this.getLoggedInUserObject();
     console.warn(this.createEngshipForm.value);
-    this.http.post(this.endpoint + 'createEngship.php', this.createEngshipForm.value, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
+    const headers = new Headers({
+      'Content-Type': 'multipart/form-data'
+    });
+    this.http.post(this.endpoint + 'createEngship.php', this.createEngshipForm.value, { headers: headers }).subscribe(data => {
       //this.http.post('http://localhost:8080/edubee/createTechArticle.php', this.createTechArticleForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
       console.log(data);
       let parsedData: JSON = JSON.parse('' + data);
@@ -484,8 +496,11 @@ export class AppComponent {
   onCreateTechTeachFormSubmit() {
     this.createTechTeachForm.value.userDetails = this.getLoggedInUserObject();
     console.warn(this.createTechTeachForm.value);
+    const headers = new Headers({
+      'Content-Type': 'multipart/form-data'
+    });
     //this.http.post('../assets/services/createTechTeach.php', this.createTechTeachForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-    this.http.post(this.endpoint + 'createTechTeach.php', this.createTechTeachForm.value, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
+    this.http.post(this.endpoint + 'createTechTeach.php', this.createTechTeachForm.value, { headers: headers }).subscribe(data => {
       console.log(data);
       let parsedData: JSON = JSON.parse('' + data);
       console.log(parsedData);
@@ -506,7 +521,10 @@ export class AppComponent {
   onCreateTechTalkFormSubmit() {
     this.createTechTalkForm.value.userDetails = this.getLoggedInUserObject();
     console.warn(this.createTechTeachForm.value);
-    this.http.post(this.endpoint + 'createTechTalk.php', this.createTechTalkForm.value, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
+    const headers = new Headers({
+      'Content-Type': 'multipart/form-data'
+    });
+    this.http.post(this.endpoint + 'createTechTalk.php', this.createTechTalkForm.value, { headers: headers }).subscribe(data => {
       //this.http.post('http://localhost:8080/edubee/createTechTalk.php', this.createTechTalkForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
       console.log(data);
       let parsedData: JSON = JSON.parse('' + data);
@@ -550,8 +568,11 @@ export class AppComponent {
 
   onLoginFormSubmit() {
     console.warn(this.loginForm.value);
+    const headers = new Headers({
+      'Content-Type': 'application/JSON'
+    });
 
-    this.http.post(this.endpoint + 'login.php', this.loginForm.value, { headers: {}, responseType: 'json' }).subscribe(data => {
+    this.http.post(this.endpoint + 'login.php', this.loginForm.value, { headers: headers }).subscribe(data => {
       //this.http.post('http://localhost:8080/edubee/login.php', this.loginForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
       console.log(data);
       let parsedData: JSON = JSON.parse('' + data);
@@ -572,61 +593,29 @@ export class AppComponent {
   }
 
   studentRegistrationForm = this.fb.group({
+    user_type: ['student'],
+    user_name: ['', Validators.required],
     name: ['', Validators.required],
     email: ['', Validators.required],
-    contact: ['', Validators.required],
-    dob: ['01/01/1994', Validators.required],
-    username: ['', Validators.required],
+    mobile: ['', Validators.required],
     password: ['', Validators.required],
-    confirmpassword: ['', Validators.required],
-    schoolname: ['asd', Validators.required],
-    schoolcity: ['1', Validators.required],
-    schoolstate: ['1', Validators.required],
-    college: ['sv', Validators.required],
-    collegecity: ['1', Validators.required],
-    collegestate: ['1', Validators.required],
-    collegebranch: ['asf', Validators.required],
-    miniprojecttitle: ['asd', Validators.required],
-    miniprojectdescription: ['we', Validators.required],
-    majorprojecttitle: ['q', Validators.required],
-    majorprojectdescription: ['gg', Validators.required],
-    technologies: ['hh', Validators.required],
-    skills: ['tt', Validators.required],
-    profilePicture: ['', Validators.required],
-    agreeTermsAndConditions: [false, Validators.required]
+    con_password: ['', Validators.required],
+    profile_image: [this.url],
+    is_agreed: ['yes']
 
   });
 
   engineerRegistrationForm = this.fb.group({
+    user_type: ['engineer'],
+    user_name: ['', Validators.required],
     name: ['', Validators.required],
     email: ['', Validators.required],
-    contact: ['', Validators.required],
-    dob: ['01/01/1994', Validators.required],
-    username: ['', Validators.required],
+    mobile: ['', Validators.required],
     password: ['', Validators.required],
-    confirmpassword: ['', Validators.required],
-    schoolname: ['asd', Validators.required],
-    schoolcity: ['1', Validators.required],
-    schoolstate: ['1', Validators.required],
-    college: ['sv', Validators.required],
-    collegecity: ['1', Validators.required],
-    collegestate: ['1', Validators.required],
-    collegebranch: ['asf', Validators.required],
-    miniprojecttitle: ['asd', Validators.required],
-    miniprojectdescription: ['we', Validators.required],
-    majorprojecttitle: ['q', Validators.required],
-    majorprojectdescription: ['gg', Validators.required],
-    technologies: ['hh', Validators.required],
-    skills: ['tt', Validators.required],
-    profilePicture: ['', Validators.required],
-    agreeTermsAndConditions: [false, Validators.required],
-    workExperience: this.fb.array([
-      this.fb.group({
-        role: [''],
-        companyName: [''],
-        yearsOfExperience: ['']
-      })
-    ])
+    con_password: ['', Validators.required],
+    profile_image: [this.url],
+    is_agreed: ['yes']
+
   });
 
   get workExperience() {
@@ -642,63 +631,49 @@ export class AppComponent {
   }
 
   onEngineerRegistrationFormSubmit() {
-    console.warn(this.engineerRegistrationForm.value);
-    let headers = new Headers({ 'Content-Type': 'multipart/form-data' });
+    this.engineerRegistrationForm.value.profile_image = this.url;
 
-    this.http.post(this.endpoint + 'engineerRegistration.php', this.engineerRegistrationForm.value, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
-      //  this.http.post('http://localhost:8080/edubee/engineerRegistration.php', this.engineerRegistrationForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-      console.log(data);
-      let parsedData: JSON = JSON.parse('' + data);
-      console.log(parsedData);
-      this.engineerRegistrationForm.reset();
-      if (parsedData['userAlreadyExists'] == 'true') {
-        alert('User Already Exists');
-      } else if (parsedData['profieCreationStatus'] == 'successful') {
-        this.userid = parsedData['userid'];
-        console.log(this.userid);
-        alert('Profile Created Successfully');
-        this.uploader.uploadAll();
-        document.getElementById("closeEngineerRegistrationForm").click();
-      } else if (parsedData['profieCreationStatus'] == 'partiallySuccessful') {
-        alert('Partially Profile Created');
-      }
-
+    const headers = new Headers({
+      'Content-Type': "application/x-www-form-urlencoded",
     });
+    var params = 'user_name=' + this.engineerRegistrationForm.value.user_name +
+      '&name=' + this.engineerRegistrationForm.value.name +
+      '&email=' + this.engineerRegistrationForm.value.email +
+      '&mobile=' + this.engineerRegistrationForm.value.mobile +
+      '&password=' + this.engineerRegistrationForm.value.password +
+      '&con_password=' + this.engineerRegistrationForm.value.con_password +
+      '&profile_image=' + this.engineerRegistrationForm.value.profile_image +
+      '&is_agreed=' + this.engineerRegistrationForm.value.is_agreed
+    this.http.post(this.endpoint + 'user-register', params, { headers: headers }).subscribe(res => {
+      this.engineerRegistrationForm.reset();
+      this.router.navigate(['/']);
+      alert('Profile Created Successfully');
+      // this.uploader.uploadAll();
+      document.getElementById("closeEngineerRegistrationForm").click();
+    })
   }
 
   onStudentRegistrationFormSubmit() {
-    console.warn(this.studentRegistrationForm.value);
-    this.studentRegistrationForm.reset();
-    let headers = new Headers({ 'Content-Type': 'multipart/form-data' });
-    this.http.post(this.endpoint + 'studentRegistration.php', this.studentRegistrationForm.value, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
-      //  this.http.post('http://localhost:8080/edubee/studentRegistration.php', this.studentRegistrationForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-      console.log(data);
-      this.studentRegistrationForm.reset();
-      let parsedData: JSON = JSON.parse('' + data);
-      console.log(parsedData);
-      if (parsedData['userAlreadyExists'] == 'true') {
-        alert('User Already Exists');
-      } else if (parsedData['profieCreationStatus'] == 'successful') {
-        this.userid = parsedData['userid'];
-        console.log(this.userid);
-        alert('Profile Created Successfully');
-        this.uploader.uploadAll();
-        document.getElementById("closeStudentRegistrationForm").click();
-      } else if (parsedData['profieCreationStatus'] == 'partiallySuccessful') {
-        alert('Partially Profile Created');
-      }
-      /*   let _formData = new FormData();
-      _formData.append("Name", this.studentRegistrationForm.value.email);
-      _formData.append("MyFile", this.studentRegistrationForm.value.profilePicture);
-      let body = _formData;
-      let headers = new Headers();
-     
-      this._http.post("../assets/services/profilePictureUpload.php", body, {
-        headers: headers
-    })
-        .subscribe((data) => this.message = data);
-        */
+    this.studentRegistrationForm.value.profile_image = this.url;
+    const headers = new Headers({
+      'Content-Type': "application/x-www-form-urlencoded",
     });
+    var params = 'user_name=' + this.studentRegistrationForm.value.user_name +
+      '&name=' + this.studentRegistrationForm.value.name +
+      '&email=' + this.studentRegistrationForm.value.email +
+      '&mobile=' + this.studentRegistrationForm.value.mobile +
+      '&password=' + this.studentRegistrationForm.value.password +
+      '&con_password=' + this.studentRegistrationForm.value.con_password +
+      '&profile_image=' + this.studentRegistrationForm.value.profile_image +
+      '&is_agreed=' + this.studentRegistrationForm.value.is_agreed
+    this.http.post(this.endpoint + 'user-register', params, { headers: headers }).subscribe(res => {
+      this.studentRegistrationForm.reset();
+      this.router.navigate(['/']);
+      alert('Profile Created Successfully');
+      // this.uploader.uploadAll();
+      document.getElementById("closeStudentRegistrationForm").click();
+    })
+
 
   }
 

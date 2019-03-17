@@ -424,11 +424,11 @@
                     <div style="width: 100%; text-align: center; align-items: center">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" formControlName="agreeTermsAndConditions"> Agree to Terms and
+                                <input type="checkbox" formControlName="is_agreed"> Agree to Terms and
                                 Conditions</label>
                         </div>
 
-                        <!-- [disabled]="!createTechArticleForm.valid || !createTechArticleForm.value.agreeTermsAndConditions" -->
+                        <!-- [disabled]="!createTechArticleForm.valid || !createTechArticleForm.value.is_agreed" -->
                         <button type="submit" class="btn btn-primary" [disabled]="!createTechArticleForm.valid "
                             [ngClass]="{'disable-btn':!createTechArticleForm.valid }">Create
                             Tech Article</button>
@@ -635,7 +635,7 @@
 </div>
 
 <div id="createEngshipModal" class="modal fade engship-modl" role="dialog">
-    <div class="modal-dialog" >
+    <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
@@ -2046,13 +2046,13 @@
                                 </div>
                                 <div class="form-group">
                                     <!-- <label for="contact">Contact Number:</label> -->
-                                    <input type="text" class="form-control" formControlName="contact" minlength="10"
+                                    <input type="text" class="form-control" formControlName="mobile" minlength="10"
                                         maxlength="10" (keypress)="_keyPress($event)" placeholder="Contact Number">
                                 </div>
 
                                 <div class="form-group">
                                     <!-- <label for="username">Username:</label> -->
-                                    <input type="text" class="form-control" formControlName="username"
+                                    <input type="text" class="form-control" formControlName="user_name"
                                         placeholder="Username">
                                 </div>
                                 <div class="form-group">
@@ -2062,7 +2062,7 @@
                                 </div>
                                 <div class="form-group">
                                     <!-- <label for="confirmpassword">Confirm Password:</label> -->
-                                    <input type="password" class="form-control" formControlName="confirmpassword"
+                                    <input type="password" class="form-control" formControlName="con_password"
                                         placeholder="Confirm Password">
                                 </div>
                                 <!-- <div class="form-group">
@@ -2185,21 +2185,28 @@
                     </div>-->
                         <div class="form-group">
                             <label for="profilePicture">Upload Profile Picture: &nbsp;&nbsp;&nbsp;
-                                <input ng2FileSelect type='file' (change)="readUrl($event)"
-                                    formControlName="profilePicture" accept=".jpg" [uploader]="uploader">
-                                <!-- <input ng2FileSelect type="file" accept=".xml" [uploader]="uploader"/> -->
-                                <img [src]="url" style="max-width: 100px; max-height: 100px;">
+
+                                <input class="form-control" type="file" accept="image1/*" (change)="readUrl($event,i)"
+                                    formControlName="profile_image">
+                                <div>
+                                    <img [src]="strImage" alt="" width="100" height="100"
+                                        style="max-width: 100px; max-height: 100px;">
+                                </div>
+
+                                <!-- <input type='file' (change)="readUrl($event)" formControlName="profile_image"
+                                    accept="image1/*" [uploader]="uploader">
+                               <img [src]="strImage" style="max-width: 100px; max-height: 100px;"> -->
                             </label>
                         </div>
                         <div style="width: 100%; text-align: center; align-items: center">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" formControlName="agreeTermsAndConditions"> Agree to Terms and
+                                    <input type="checkbox" formControlName="is_agreed"> Agree to Terms and
                                     Conditions</label>
                             </div>
 
                             <button type="submit"
-                                [disabled]="!engineerRegistrationForm.valid || !engineerRegistrationForm.value.agreeTermsAndConditions"
+                                [disabled]="!engineerRegistrationForm.valid || !engineerRegistrationForm.value.is_agreed"
                                 class="btn btn-primary">Sign Up!</button>
                         </div>
                     </form>
@@ -2244,14 +2251,14 @@
                                 </div>
                                 <div class="form-group">
                                     <!-- <label for="contact">Contact Number:</label> -->
-                                    <input type="text" class="form-control" formControlName="contact" minlength="10"
+                                    <input type="text" class="form-control" formControlName="mobile" minlength="10"
                                         maxlength="10" (keypress)="_keyPress($event)" placeholder="Contact Number">
                                 </div>
 
 
                                 <div class="form-group">
                                     <!-- <label for="username">Username:</label> -->
-                                    <input type="text" class="form-control" formControlName="username"
+                                    <input type="text" class="form-control" formControlName="user_name"
                                         placeholder="Username">
                                 </div>
                                 <div class="form-group">
@@ -2261,7 +2268,7 @@
                                 </div>
                                 <div class="form-group">
                                     <!-- <label for="confirmpassword">Confirm Password:</label> -->
-                                    <input type="password" class="form-control" formControlName="confirmpassword"
+                                    <input type="password" class="form-control" formControlName="con_password"
                                         placeholder="Confirm Password">
                                 </div>
                                 <!-- <div class="form-group">
@@ -2351,21 +2358,25 @@
                         </div>-->
                         <div class="form-group">
                             <label for="profilePicture">Upload Profile Picture: &nbsp;&nbsp;&nbsp;
-                                <input ng2FileSelect type='file' (change)="readUrl($event)"
-                                    formControlName="profilePicture" accept=".jpg" [uploader]="uploader">
-                                <!-- <input ng2FileSelect type="file" accept=".xml" [uploader]="uploader"/> -->
-                                <img [src]="url" style="max-width: 100px; max-height: 100px;">
+                                <input class="form-control" type="file" accept="image1/*" (change)="readUrl($event,i)"
+                                    formControlName="profile_image">
+
+                                <img [src]="strImage" alt="" width="100" height="100"
+                                    style="max-width: 100px; max-height: 100px;">
                             </label>
+
+
+
                         </div>
                         <div style="width: 100%; text-align: center; align-items: center">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" formControlName="agreeTermsAndConditions"> Agree to Terms and
+                                    <input type="checkbox" formControlName="is_agreed"> Agree to Terms and
                                     Conditions</label>
                             </div>
 
                             <button type="submit"
-                                [disabled]="!studentRegistrationForm.valid || !studentRegistrationForm.value.agreeTermsAndConditions"
+                                [disabled]="!studentRegistrationForm.valid || !studentRegistrationForm.value.is_agreed"
                                 class="btn btn-primary">Sign Up!</button>
                         </div>
                     </form>
