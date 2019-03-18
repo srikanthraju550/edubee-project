@@ -181,7 +181,7 @@
                         <a role="button" aria-haspopup="true" aria-expanded="false">
 
                             <img class="profilepicture" style="border-radius: 10em;"
-                                src="assets/images/profileImages/{{getLoggedInUserObject()['profilepicture']}}">
+                                [src]="userImagePath + '/' + getLoggedInUserObject()['image']">
 
                         </a>
                         <!-- <div ngbDropdownMenu
@@ -445,7 +445,7 @@
 
 <!-- Modal -->
 <div id="createStuvationModal" class="modal fade" role="dialog">
-    <div class="modal-dialog stuv-popup" style="">
+    <div class="modal-dialog stuv-popup">
 
         <!-- Modal content-->
         <div class="modal-content">
@@ -1747,7 +1747,7 @@
                 <form [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmit()" enctype="multipart/form-data">
 
                     <div class="form-group">
-                        <input type="text" class="form-control" formControlName="username"
+                        <input type="text" class="form-control" formControlName="email"
                             placeholder="Username or Email">
                     </div>
 
@@ -2065,124 +2065,10 @@
                                     <input type="password" class="form-control" formControlName="con_password"
                                         placeholder="Confirm Password">
                                 </div>
-                                <!-- <div class="form-group">
-                                <label for="dob">Date of birth:</label>
-                                <input type="date" class="form-control" formControlName="dob">
-                            </div>
-                            <div class="form-group">
-                                <label for="school">School:</label>
-                                <input type="text" class="form-control" formControlName="schoolname">
-                            </div>
-                            <div class="form-group">
-                                <label for="schoolcity">School City:</label>
-                                <input type="text" class="form-control" formControlName="schoolcity">
-                            </div>
-                            <div class="form-group">
-                                <label for="schoolstate">School State:</label>
-                                <input type="text" class="form-control" formControlName="schoolstate">
-                            </div>
-                            <div class="form-group">
-                                <label for="college">College:</label>
-                                <input type="text" class="form-control" formControlName="college">
-                            </div>
-                            <div class="form-group">
-                                <label for="collegecity">College City:</label>
-                                <input type="text" class="form-control" formControlName="collegecity">
-                            </div>
-                            <div class="form-group">
-                                <label for="collegestate">College State:</label>
-                                <input type="text" class="form-control" formControlName="collegestate">
-                            </div>
-                            <div class="form-group">
-                                <label for="collegebranch">College Branch:</label>
-                                <input type="text" class="form-control" formControlName="collegebranch">
-                            </div> -->
+
                             </div>
                         </div>
-                        <!-- <span style="color: #176086; text-decoration: underline; ">
-                        <h3>Project Description</h3>
-                    </span>
-                    <div class="row">
-                        <div class="col-6">
 
-                            <span style="color: #176086; text-decoration: underline; ">
-                                <h4>Mini Project</h4>
-                            </span>
-                            <div class="form-group">
-                                <label for="miniprojecttitle">Title:</label>
-                                <input type="text" class="form-control" formControlName="miniprojecttitle">
-                            </div>
-                            <div class="form-group">
-                                <label for="miniprojectdescription">Description:</label>
-                                <input type="text" class="form-control" formControlName="miniprojectdescription">
-                            </div>
-
-
-
-                            <span style="color: #176086; text-decoration: underline; ">
-                                <h4>Technologies(seperated by commas)</h4>
-                            </span>
-                            <div class="form-group">
-                                <label for="technologies">Technologies:</label>
-                                <input type="text" class="form-control" formControlName="technologies">
-                            </div>
-
-                        </div>
-                        <div class="col-6">
-                            <span style="color: #176086; text-decoration: underline; ">
-                                <h4>Major Project</h4>
-                            </span>
-                            <div class="form-group">
-                                <label for="majorprojecttitle">Title:</label>
-                                <input type="text" class="form-control" formControlName="majorprojecttitle">
-                            </div>
-                            <div class="form-group">
-                                <label for="majorprojectdescription">Description:</label>
-                                <input type="text" class="form-control" formControlName="majorprojectdescription">
-                            </div>
-
-                            <span style="color: #176086; text-decoration: underline; ">
-                                <h4>Skills(seperated by commas)</h4>
-                            </span>
-                            <div class="form-group">
-                                <label for="skills">Skills:</label>
-                                <input type="text" class="form-control" formControlName="skills">
-                            </div>
-                        </div>
-                    </div>
-                    <span style="color: #176086; text-decoration: underline; ">
-                        <h4>Work Experience</h4>
-                    </span>
-                    <div formArrayName="workExperience">
-
-
-                        <div *ngFor="let exp of workExperience.controls; let i=index">
-
-                            <div [formGroupName]="i" class="row">
-                                <div class="form-group col-3">
-                                    <label for="role">Role:</label>
-                                    <input type="text" class="form-control" formControlName="role">
-                                </div>
-
-                                <div class="form-group col-3">
-                                    <label for="companyName">Company Name:</label>
-                                    <input type="text" class="form-control" formControlName="companyName">
-                                </div>
-
-                                <div class="form-group col-3">
-                                    <label for="yearsOfExperience">Years of Experience:</label>
-                                    <input type="text" class="form-control" formControlName="yearsOfExperience">
-
-                                </div>
-                                <div class="col-3">
-                                    <label for="yearsOfExperience">&nbsp;</label>
-                                    <button class="form-control btn-primary" *ngIf="i==workExperience.controls.length-1" (click)="addWorkExperience()">Add More</button>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>-->
                         <div class="form-group">
                             <label for="profilePicture">Upload Profile Picture: &nbsp;&nbsp;&nbsp;
 
@@ -2193,9 +2079,6 @@
                                         style="max-width: 100px; max-height: 100px;">
                                 </div>
 
-                                <!-- <input type='file' (change)="readUrl($event)" formControlName="profile_image"
-                                    accept="image1/*" [uploader]="uploader">
-                               <img [src]="strImage" style="max-width: 100px; max-height: 100px;"> -->
                             </label>
                         </div>
                         <div style="width: 100%; text-align: center; align-items: center">
@@ -2204,16 +2087,12 @@
                                     <input type="checkbox" formControlName="is_agreed"> Agree to Terms and
                                     Conditions</label>
                             </div>
-
                             <button type="submit"
                                 [disabled]="!engineerRegistrationForm.valid || !engineerRegistrationForm.value.is_agreed"
                                 class="btn btn-primary">Sign Up!</button>
                         </div>
                     </form>
                 </div>
-                <!--<div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>-->
             </div>
 
         </div>

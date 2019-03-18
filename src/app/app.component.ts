@@ -220,17 +220,18 @@ export class AppComponent {
   }
   minDateString;
   submitted = false;
+  userImagePath
   ngOnInit(): void {
-
     let today = new Date();
+    this.userImagePath = sessionStorage.getItem('userImagePath');
     this.minDateString = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
     //document.getElementById("datefield").setAttribute("min", today.toDateString());
     let url = this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime();
     let userDetails = this.getLoggedInUserObject();
+    console.log(userDetails);
     if (!this.checkLoginStatus())
       url += "?userid=" + userDetails['userid'];
 
-    //this.http.get('../assets/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
     this.http.get(url).subscribe(data => {
       this.sliderContent = data['0'].sliderContent;
       this.teamDetails = data['1'].teamDetails;
@@ -240,8 +241,6 @@ export class AppComponent {
       this.techTalkTypeConfig = data['8'].techtalktypeconfig;
       this.techTeachTypeConfig = data['9'].techteachtypeconfig;
       this.stuvationtypeconfig = data['11'].stuvationtypeconfig;
-      // document.getElementById("signupDropdown").click();
-      // document.getElementById("signupDropdown").click();
       this.updateSubTechList(this.createTechArticleForm.value.technology);
     });
   }
@@ -560,36 +559,31 @@ export class AppComponent {
   }
 
   loginForm = this.fb.group({
-    username: ['', Validators.required],
+    email: ['', Validators.required],
     //email: ['asd1', Validators.required],
     password: ['', Validators.required],
     rememberMe: false
   });
 
   onLoginFormSubmit() {
-    console.warn(this.loginForm.value);
     const headers = new Headers({
-      'Content-Type': 'application/JSON'
+      'Content-Type': 'application/x-www-form-urlencoded'
     });
+    var params = 'email=' + this.loginForm.value.email + '&password=' + this.loginForm.value.password
 
-    this.http.post(this.endpoint + 'login.php', this.loginForm.value, { headers: headers }).subscribe(data => {
-      //this.http.post('http://localhost:8080/edubee/login.php', this.loginForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-      console.log(data);
-      let parsedData: JSON = JSON.parse('' + data);
-      console.log(parsedData);
-      this.loginForm.reset();
-      if (parsedData['loginStatus'] == 'successful') {
-        //alert('Logged In Successfully');
-        sessionStorage.setItem("loggedInUserName", JSON.stringify(parsedData));
-        console.log(sessionStorage.getItem("loggedInUserName"));
+    this.http.post(this.endpoint + 'user-login', params, { headers: headers }).subscribe(response => {
+      if (response.json().status !== false) {
+        alert('Login Successfully');
+        this.loginForm.reset();
+        let parsedData = response.json().data;
+        sessionStorage.setItem("loggedInUserName", JSON.stringify(parsedData[0]));
+        sessionStorage.setItem("userImagePath", response.json().image_path);
         document.getElementById("closeLoginForm").click();
         this.ngOnInit();
-      } else if (parsedData['loginStatus'] == 'failed') {
-        alert('Incorrect Username/Email or Password. Please Try Again !!');
-      } else if (parsedData['loginStatus'] == 'unverified') {
-        alert('Kindly verify your email address in order to proceed !!');
+      } else {
+        alert('Invalid Credentials');
       }
-    });
+    })
   }
 
   studentRegistrationForm = this.fb.group({
