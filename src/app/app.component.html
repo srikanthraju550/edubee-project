@@ -94,6 +94,11 @@
                         <ul id="menu" class="animated slideInLeft" *ngIf="navbarOpen">
                             <li><a (click)="hidemenu()" class="close_btn"><i class="fa fa-times-circle"
                                         aria-hidden="true"></i></a></li>
+                            <li *ngIf="!checkLoginStatus()">
+                                <img class="profilepicture" style="border-radius: 10em;"
+                                    src="assets/images/profileImages/{{getLoggedInUserObject()['profilepicture']}}">
+                                <a>{{getLoggedInUserObject()['name'] | titlecase}}</a>
+                            </li>
                             <li><a (click)="goHome()">Home</a></li>
                             <li><a href="#">Tech World <i class="fa fa-caret-down" style="display: inline;"></i></a>
                                 <ul class="hidden sub-drop">
@@ -419,11 +424,11 @@
                     <div style="width: 100%; text-align: center; align-items: center">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" formControlName="agreeTermsAndConditions"> Agree to Terms and
+                                <input type="checkbox" formControlName="is_agreed"> Agree to Terms and
                                 Conditions</label>
                         </div>
 
-                        <!-- [disabled]="!createTechArticleForm.valid || !createTechArticleForm.value.agreeTermsAndConditions" -->
+                        <!-- [disabled]="!createTechArticleForm.valid || !createTechArticleForm.value.is_agreed" -->
                         <button type="submit" class="btn btn-primary" [disabled]="!createTechArticleForm.valid "
                             [ngClass]="{'disable-btn':!createTechArticleForm.valid }">Create
                             Tech Article</button>
@@ -630,7 +635,7 @@
 </div>
 
 <div id="createEngshipModal" class="modal fade engship-modl" role="dialog">
-    <div class="modal-dialog" >
+    <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
@@ -1742,12 +1747,18 @@
                 <form [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmit()" enctype="multipart/form-data">
 
                     <div class="form-group">
-                        <input type="text" class="form-control" formControlName="username"
-                            placeholder="Username or Email">
+                        <input type="text" class="form-control" formControlName="email"
+                            placeholder="Email">
+                    <div *ngIf="logValid.email.touched && logValid.email.invalid" class="alert alert-danger">
+                        Email is Required
+                    </div>
                     </div>
 
                     <div class="form-group">
                         <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                        <div *ngIf="logValid.password.touched && logValid.password.invalid" class="alert alert-danger">
+                            Password is Required
+                        </div>    
                     </div>
                     <!-- <div class="checkbox">
                             <label>
@@ -2032,171 +2043,83 @@
                                 <div class="form-group">
                                     <!-- <label for="firstname">Name:</label> -->
                                     <input type="text" class="form-control" formControlName="name" placeholder="Name">
+                                    <div *ngIf="engValid.name.touched && engValid.name.invalid" class="alert alert-danger">
+                                        Name is Required
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
                                     <!-- <label for="email">Email:</label> -->
                                     <input type="email" email="true" class="form-control" formControlName="email"
                                         placeholder="Email">
+                                   <div *ngIf="engValid.email.touched && engValid.email.invalid" class="alert alert-danger">
+                                        Email is Required
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <!-- <label for="contact">Contact Number:</label> -->
-                                    <input type="text" class="form-control" formControlName="contact" minlength="10"
+                                    <input type="text" class="form-control" formControlName="mobile" minlength="10"
                                         maxlength="10" (keypress)="_keyPress($event)" placeholder="Contact Number">
+                                 <div *ngIf="engValid.mobile.touched && engValid.mobile.invalid" class="alert alert-danger">
+                                        Contact Number is Required
+                                </div>        
                                 </div>
 
                                 <div class="form-group">
                                     <!-- <label for="username">Username:</label> -->
-                                    <input type="text" class="form-control" formControlName="username"
-                                        placeholder="Username">
+                                    <input type="text" class="form-control" formControlName="user_name"
+                                        placeholder="UserName">
+                                <div *ngIf="engValid.user_name.touched && engValid.user_name.invalid" class="alert alert-danger">
+                                     UserName is Required
+                                </div>        
                                 </div>
                                 <div class="form-group">
                                     <!-- <label for="password">Password:</label> -->
                                     <input type="password" class="form-control" formControlName="password"
                                         placeholder="Password">
+                                 <div *ngIf="engValid.password.touched && engValid.password.invalid" class="alert alert-danger">
+                                      Password is Required
+                                </div>               
                                 </div>
                                 <div class="form-group">
                                     <!-- <label for="confirmpassword">Confirm Password:</label> -->
-                                    <input type="password" class="form-control" formControlName="confirmpassword"
+                                    <input type="password" class="form-control" formControlName="con_password"
                                         placeholder="Confirm Password">
+                                <div *ngIf="engValid.con_password.touched && engValid.con_password.invalid" class="alert alert-danger">
+                                  Confirm Password is Required
+                                </div>        
                                 </div>
-                                <!-- <div class="form-group">
-                                <label for="dob">Date of birth:</label>
-                                <input type="date" class="form-control" formControlName="dob">
-                            </div>
-                            <div class="form-group">
-                                <label for="school">School:</label>
-                                <input type="text" class="form-control" formControlName="schoolname">
-                            </div>
-                            <div class="form-group">
-                                <label for="schoolcity">School City:</label>
-                                <input type="text" class="form-control" formControlName="schoolcity">
-                            </div>
-                            <div class="form-group">
-                                <label for="schoolstate">School State:</label>
-                                <input type="text" class="form-control" formControlName="schoolstate">
-                            </div>
-                            <div class="form-group">
-                                <label for="college">College:</label>
-                                <input type="text" class="form-control" formControlName="college">
-                            </div>
-                            <div class="form-group">
-                                <label for="collegecity">College City:</label>
-                                <input type="text" class="form-control" formControlName="collegecity">
-                            </div>
-                            <div class="form-group">
-                                <label for="collegestate">College State:</label>
-                                <input type="text" class="form-control" formControlName="collegestate">
-                            </div>
-                            <div class="form-group">
-                                <label for="collegebranch">College Branch:</label>
-                                <input type="text" class="form-control" formControlName="collegebranch">
-                            </div> -->
-                            </div>
-                        </div>
-                        <!-- <span style="color: #176086; text-decoration: underline; ">
-                        <h3>Project Description</h3>
-                    </span>
-                    <div class="row">
-                        <div class="col-6">
-
-                            <span style="color: #176086; text-decoration: underline; ">
-                                <h4>Mini Project</h4>
-                            </span>
-                            <div class="form-group">
-                                <label for="miniprojecttitle">Title:</label>
-                                <input type="text" class="form-control" formControlName="miniprojecttitle">
-                            </div>
-                            <div class="form-group">
-                                <label for="miniprojectdescription">Description:</label>
-                                <input type="text" class="form-control" formControlName="miniprojectdescription">
-                            </div>
-
-
-
-                            <span style="color: #176086; text-decoration: underline; ">
-                                <h4>Technologies(seperated by commas)</h4>
-                            </span>
-                            <div class="form-group">
-                                <label for="technologies">Technologies:</label>
-                                <input type="text" class="form-control" formControlName="technologies">
-                            </div>
-
-                        </div>
-                        <div class="col-6">
-                            <span style="color: #176086; text-decoration: underline; ">
-                                <h4>Major Project</h4>
-                            </span>
-                            <div class="form-group">
-                                <label for="majorprojecttitle">Title:</label>
-                                <input type="text" class="form-control" formControlName="majorprojecttitle">
-                            </div>
-                            <div class="form-group">
-                                <label for="majorprojectdescription">Description:</label>
-                                <input type="text" class="form-control" formControlName="majorprojectdescription">
-                            </div>
-
-                            <span style="color: #176086; text-decoration: underline; ">
-                                <h4>Skills(seperated by commas)</h4>
-                            </span>
-                            <div class="form-group">
-                                <label for="skills">Skills:</label>
-                                <input type="text" class="form-control" formControlName="skills">
-                            </div>
-                        </div>
-                    </div>
-                    <span style="color: #176086; text-decoration: underline; ">
-                        <h4>Work Experience</h4>
-                    </span>
-                    <div formArrayName="workExperience">
-
-
-                        <div *ngFor="let exp of workExperience.controls; let i=index">
-
-                            <div [formGroupName]="i" class="row">
-                                <div class="form-group col-3">
-                                    <label for="role">Role:</label>
-                                    <input type="text" class="form-control" formControlName="role">
-                                </div>
-
-                                <div class="form-group col-3">
-                                    <label for="companyName">Company Name:</label>
-                                    <input type="text" class="form-control" formControlName="companyName">
-                                </div>
-
-                                <div class="form-group col-3">
-                                    <label for="yearsOfExperience">Years of Experience:</label>
-                                    <input type="text" class="form-control" formControlName="yearsOfExperience">
-
-                                </div>
-                                <div class="col-3">
-                                    <label for="yearsOfExperience">&nbsp;</label>
-                                    <button class="form-control btn-primary" *ngIf="i==workExperience.controls.length-1" (click)="addWorkExperience()">Add More</button>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>-->
+                                                   
                         <div class="form-group">
                             <label for="profilePicture">Upload Profile Picture: &nbsp;&nbsp;&nbsp;
-                                <input ng2FileSelect type='file' (change)="readUrl($event)"
-                                    formControlName="profilePicture" accept=".jpg" [uploader]="uploader">
-                                <!-- <input ng2FileSelect type="file" accept=".xml" [uploader]="uploader"/> -->
-                                <img [src]="url" style="max-width: 100px; max-height: 100px;">
+
+                                <input class="form-control" type="file" accept="image1/*" (change)="readUrl($event,i)"
+                                    formControlName="profile_image">
+                                <div>
+                                    <img [src]="strImage" alt="" width="100" height="100"
+                                        style="max-width: 100px; max-height: 100px;">
+                                </div>
+
+                                <!-- <input type='file' (change)="readUrl($event)" formControlName="profile_image"
+                                    accept="image1/*" [uploader]="uploader">
+                               <img [src]="strImage" style="max-width: 100px; max-height: 100px;"> -->
                             </label>
                         </div>
                         <div style="width: 100%; text-align: center; align-items: center">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" formControlName="agreeTermsAndConditions"> Agree to Terms and
+                                    <input type="checkbox" formControlName="is_agreed"> Agree to Terms and
                                     Conditions</label>
                             </div>
 
                             <button type="submit"
-                                [disabled]="!engineerRegistrationForm.valid || !engineerRegistrationForm.value.agreeTermsAndConditions"
+                                [disabled]="!engineerRegistrationForm.valid || !engineerRegistrationForm.value.is_agreed"
                                 class="btn btn-primary">Sign Up!</button>
                         </div>
+
+                        
+                    </div>
+                </div>
                     </form>
                 </div>
                 <!--<div class="modal-footer">
@@ -2230,139 +2153,77 @@
                                 <div class="form-group">
                                     <!-- <label for="firstname">Name:</label> -->
                                     <input type="text" class="form-control" formControlName="name" placeholder="Name">
+                                    <div *ngIf="studValid.name.touched && studValid.name.invalid" class="alert alert-danger">
+                                            Name is Required
+                                        </div>      
                                 </div>
 
                                 <div class="form-group">
                                     <!-- <label for="email">Email:</label> -->
                                     <input type="email" email="true" class="form-control" formControlName="email"
                                         placeholder="Email">
+                                        <div *ngIf="studValid.email.touched && studValid.email.invalid" class="alert alert-danger">
+                                                Email is Required
+                                            </div>
                                 </div>
                                 <div class="form-group">
                                     <!-- <label for="contact">Contact Number:</label> -->
-                                    <input type="text" class="form-control" formControlName="contact" minlength="10"
+                                    <input type="text" class="form-control" formControlName="mobile" minlength="10"
                                         maxlength="10" (keypress)="_keyPress($event)" placeholder="Contact Number">
+                                        <div *ngIf="studValid.mobile.touched && studValid.mobile.invalid" class="alert alert-danger">
+                                                Contact Number is Required
+                                        </div>               
                                 </div>
 
 
                                 <div class="form-group">
                                     <!-- <label for="username">Username:</label> -->
-                                    <input type="text" class="form-control" formControlName="username"
+                                    <input type="text" class="form-control" formControlName="user_name"
                                         placeholder="Username">
+                                        <div *ngIf="studValid.user_name.touched && studValid.user_name.invalid" class="alert alert-danger">
+                                                UserName is Required
+                                           </div> 
                                 </div>
                                 <div class="form-group">
                                     <!-- <label for="password">Password:</label> -->
                                     <input type="password" class="form-control" formControlName="password"
                                         placeholder="Password">
+                                        <div *ngIf="studValid.password.touched && studValid.password.invalid" class="alert alert-danger">
+                                                Password is Required
+                                          </div>  
                                 </div>
                                 <div class="form-group">
                                     <!-- <label for="confirmpassword">Confirm Password:</label> -->
-                                    <input type="password" class="form-control" formControlName="confirmpassword"
+                                    <input type="password" class="form-control" formControlName="con_password"
                                         placeholder="Confirm Password">
+                                        <div *ngIf="studValid.con_password.touched && studValid.con_password.invalid" class="alert alert-danger">
+                                                Confirm Password is Required
+                                              </div> 
                                 </div>
-                                <!-- <div class="form-group">
-                                    <label for="dob">Date of birth:</label>
-                                    <input type="date" class="form-control" formControlName="dob">
-                                </div>
-                                <div class="form-group">
-                                    <label for="school">School:</label>
-                                    <input type="text" class="form-control" formControlName="schoolname">
-                                </div>
-                                <div class="form-group">
-                                    <label for="schoolcity">School City:</label>
-                                    <input type="text" class="form-control" formControlName="schoolcity">
-                                </div>
-                                <div class="form-group">
-                                    <label for="schoolstate">School State:</label>
-                                    <input type="text" class="form-control" formControlName="schoolstate">
-                                </div>
-                                <div class="form-group">
-                                    <label for="college">College:</label>
-                                    <input type="text" class="form-control" formControlName="college">
-                                </div>
-                                <div class="form-group">
-                                    <label for="collegecity">College City:</label>
-                                    <input type="text" class="form-control" formControlName="collegecity">
-                                </div>
-                                <div class="form-group">
-                                    <label for="collegestate">College State:</label>
-                                    <input type="text" class="form-control" formControlName="collegestate">
-                                </div>
-                                <div class="form-group">
-                                    <label for="collegebranch">College Branch:</label>
-                                    <input type="text" class="form-control" formControlName="collegebranch">
-                                </div> -->
-                            </div>
-                        </div>
-                        <!-- <span style="color: #176086; text-decoration: underline; ">
-                            <h3>Project Description</h3>
-                        </span>
-                        <div class="row">
-                            <div class="col-6">
-    
-                                <span style="color: #176086; text-decoration: underline; ">
-                                    <h4>Mini Project</h4>
-                                </span>
-                                <div class="form-group">
-                                    <label for="miniprojecttitle">Title:</label>
-                                    <input type="text" class="form-control" formControlName="miniprojecttitle">
-                                </div>
-                                <div class="form-group">
-                                    <label for="miniprojectdescription">Description:</label>
-                                    <input type="text" class="form-control" formControlName="miniprojectdescription">
-                                </div>
-    
-    
-    
-                                <span style="color: #176086; text-decoration: underline; ">
-                                    <h4>Technologies(seperated by commas)</h4>
-                                </span>
-                                <div class="form-group">
-                                    <label for="technologies">Technologies:</label>
-                                    <input type="text" class="form-control" formControlName="technologies">
-                                </div>
-    
-                            </div>
-                            <div class="col-6">
-                                <span style="color: #176086; text-decoration: underline; ">
-                                    <h4>Major Project</h4>
-                                </span>
-                                <div class="form-group">
-                                    <label for="majorprojecttitle">Title:</label>
-                                    <input type="text" class="form-control" formControlName="majorprojecttitle">
-                                </div>
-                                <div class="form-group">
-                                    <label for="majorprojectdescription">Description:</label>
-                                    <input type="text" class="form-control" formControlName="majorprojectdescription">
-                                </div>
-    
-                                <span style="color: #176086; text-decoration: underline; ">
-                                    <h4>Skills(seperated by commas)</h4>
-                                </span>
-                                <div class="form-group">
-                                    <label for="skills">Skills:</label>
-                                    <input type="text" class="form-control" formControlName="skills">
-                                </div>
-                            </div>
-                        </div>-->
+                              
                         <div class="form-group">
                             <label for="profilePicture">Upload Profile Picture: &nbsp;&nbsp;&nbsp;
-                                <input ng2FileSelect type='file' (change)="readUrl($event)"
-                                    formControlName="profilePicture" accept=".jpg" [uploader]="uploader">
-                                <!-- <input ng2FileSelect type="file" accept=".xml" [uploader]="uploader"/> -->
-                                <img [src]="url" style="max-width: 100px; max-height: 100px;">
+                                <input class="form-control" type="file" accept="image1/*" (change)="readUrl($event,i)"
+                                    formControlName="profile_image">
+
+                                <img [src]="strImage" alt="" width="100" height="100"
+                                    style="max-width: 100px; max-height: 100px;">
                             </label>
+
                         </div>
                         <div style="width: 100%; text-align: center; align-items: center">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" formControlName="agreeTermsAndConditions"> Agree to Terms and
+                                    <input type="checkbox" formControlName="is_agreed"> Agree to Terms and
                                     Conditions</label>
                             </div>
 
                             <button type="submit"
-                                [disabled]="!studentRegistrationForm.valid || !studentRegistrationForm.value.agreeTermsAndConditions"
+                                [disabled]="!studentRegistrationForm.valid || !studentRegistrationForm.value.is_agreed"
                                 class="btn btn-primary">Sign Up!</button>
                         </div>
+                    </div>
+                </div>
                     </form>
                 </div>
                 <!--<div class="modal-footer">
