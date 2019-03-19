@@ -64,7 +64,8 @@ export class AppComponent {
 
 
   // endpoint: string = "../assets/services/"
-  endpoint: string = "http://engfactory.accrosian.com/"
+  endpoint: string = "http://engfactory.accrosian.com/";
+  Baseurl= "http://engfactory.accrosian.com/";
   strImage;
   userid;
   uploader: FileUploader = new FileUploader({ url: this.endpoint + "profilePictureUpload.php", removeAfterUpload: false, autoUpload: false });
@@ -356,25 +357,38 @@ export class AppComponent {
 
 
   createTechArticleForm = this.fb.group({
-    email: ['', Validators.required],
-    contactnumber: ['', Validators.required],
-    title: ['', Validators.required],
-    abstract: ['', Validators.required],
-    subtechnology: ['1', Validators.required],
-    technology: ['1', Validators.required],
+    user_id: ['', Validators.required],
+contact_email: ['', Validators.required],
+contact_number: ['', Validators.required],
+title: ['', Validators.required],
+abstract: ['', Validators.required], 
+technology_id: ['', Validators.required], 
+sub_technology_id: ['', Validators.required],
+article_type: ['', Validators.required],
+is_paid: ['', Validators.required],
+cost: ['', Validators.required],
+publication_link: ['', Validators.required],
+publication_file: ['', Validators.required],
+is_agreed: ['', Validators.required]
+    // email: ['', Validators.required],
+    // contactnumber: ['', Validators.required],
+    // title: ['', Validators.required],
+    // abstract: ['', Validators.required],
+    // subtechnology: ['1', Validators.required],
+    // technology: ['1', Validators.required],
 
-    paidArticle: ['Y'],
-    cost: ['', Validators.required],
-    publicationlink: [''],
-    userDetails: this.fb.group(this.getLoggedInUserObject()),
-    articleType: ['Article', Validators.required],
-    agreeTermsAndConditions: [false, Validators.required],
-    publicationSelector: ['1'],
-    publicationFileUpload: ['']
+    // paidArticle: ['Y'],
+    // cost: ['', Validators.required],
+    // publicationlink: [''],
+    // userDetails: this.fb.group(this.getLoggedInUserObject()),
+    // articleType: ['Article', Validators.required],
+    // agreeTermsAndConditions: [false, Validators.required],
+    // publicationSelector: ['1'],
+    // publicationFileUpload: ['']
   });
 
   get f() { return this.createTechArticleForm.controls; }
-
+  parsedData;
   onCreateTechArticleFormSubmit() {
     // this.submitted = true;
 
@@ -384,20 +398,21 @@ export class AppComponent {
     // }
     this.createTechArticleForm.value.userDetails = this.getLoggedInUserObject();
     const headers = new Headers({
-      'Content-Type': 'multipart/form-data'
+      'Content-Type': 'application/json'
     });
 
-    this.http.post(this.endpoint + 'createTechArticle.php', this.createTechArticleForm.value, { headers: headers }).subscribe(data => {
+    this.http.post(this.Baseurl + 'create-tech-article', this.createTechArticleForm.value, { headers: headers }).subscribe(data => {
       //this.http.post('http://localhost:8080/edubee/createTechArticle.php', this.createTechArticleForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
       let parsedData: JSON = JSON.parse('' + data);
-      if (parsedData['techarticledetailsQuery'] == 'done') {
-        alert('Tech Article Created');
-        document.getElementById("closeCreateTechArticleModal").click();
-        location.reload();
-      } else if (parsedData['techarticledetailsQuery'] == 'failed') {
-        alert('Tech Article creation Failed');
+      console.log(this.parsedData.json())
+      // if (parsedData['techarticledetailsQuery'] == 'done') {
+      //   alert('Tech Article Created');
+      //   document.getElementById("closeCreateTechArticleModal").click();
+      //   location.reload();
+      // } else if (parsedData['techarticledetailsQuery'] == 'failed') {
+      //   alert('Tech Article creation Failed');
 
-      }
+      // }
 
     });
   }
@@ -559,12 +574,11 @@ export class AppComponent {
 
   loginForm = this.fb.group({
     email: ['', Validators.required],
-    //email: ['asd1', Validators.required],
     password: ['', Validators.required],
-    rememberMe: false
   });
 
   onLoginFormSubmit() {
+
     const headers = new Headers({
       'Content-Type': 'application/x-www-form-urlencoded'
     });
@@ -611,6 +625,16 @@ export class AppComponent {
 
   });
 
+get logValid(){
+  return this.loginForm.controls;
+}
+get studValid(){
+ return this.studentRegistrationForm.controls;
+}
+
+get engValid(){
+  return this.engineerRegistrationForm.controls;
+}
   get workExperience() {
     return this.engineerRegistrationForm.get('workExperience') as FormArray;
   }

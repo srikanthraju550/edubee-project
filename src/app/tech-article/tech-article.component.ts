@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { MainServiceService } from '../main-service.service';
+import { Http } from '@angular/http';
 // import { FilterPipe } from '../filter.pipe';
-import { FilterPipe } from 'ngx-filter-pipe';
 
 @Component({
   selector: 'app-tech-article',
@@ -12,16 +11,17 @@ import { FilterPipe } from 'ngx-filter-pipe';
 })
 export class TechArticleComponent implements OnInit {
   // endpoint: string = "../assets/services/";
-  endpoint: string = "../assets/services/"
-
+  endpoint: string = "../assets/services/";
+  Baseurl= "http://engfactory.accrosian.com/";
   selectedTecharticle: any;
-  constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private filterPipe: FilterPipe) { }
+  constructor(private http: HttpClient,private httpnew: Http, private mainService: MainServiceService) { }
   sliderContent: any = [];
   //homePageDataFromService=[];
   homePageContent: any = [];
   teamDetails: any = [];
   techarticledetails: any = [];
   ngOnInit(): void {
+
     //this.http.get('../assets/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
     let url = this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime();
     let userDetails = this.getLoggedInUserObject();
@@ -33,7 +33,19 @@ export class TechArticleComponent implements OnInit {
       this.techarticledetails = data['2'].techarticledetails;
       this.homePageContent = data['3'].homePageData;
     });
+
+return this.getArticles() ;
   }
+
+  ResponseData:any =[];
+  getArticles() {   
+    this.httpnew.get(this.Baseurl + 'tech-article-list').subscribe(response=>{
+     this.ResponseData = response.json().data;
+      // console.log(this.ResponseData);
+    });
+  }
+  
+
   techArticleFilter: any = { articletitle: '', name: '', technologyname: '', subtechname: '', cost: 0 };
   keywordFilter: any = { name: '' };
   techFilter: any = { technologyname: '' };
