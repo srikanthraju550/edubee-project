@@ -96,7 +96,7 @@
                                         aria-hidden="true"></i></a></li>
                             <li *ngIf="!checkLoginStatus()">
                                 <img class="profilepicture" style="border-radius: 10em;"
-                                    src="assets/images/profileImages/{{getLoggedInUserObject()['profilepicture']}}">
+                                    [src]="userImagePath + '/' + getLoggedInUserObject()['image']">
                                 <a>{{getLoggedInUserObject()['name'] | titlecase}}</a>
                             </li>
                             <li><a (click)="goHome()">Home</a></li>
@@ -1747,8 +1747,7 @@
                 <form [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmit()" enctype="multipart/form-data">
 
                     <div class="form-group">
-                        <input type="text" class="form-control" formControlName="email"
-                            placeholder="Username or Email">
+                        <input type="text" class="form-control" formControlName="email" placeholder="Username or Email">
                     </div>
 
                     <div class="form-group">
@@ -2072,7 +2071,7 @@
                         <div class="form-group">
                             <label for="profilePicture">Upload Profile Picture: &nbsp;&nbsp;&nbsp;
 
-                                <input class="form-control" type="file" accept="image1/*" (change)="readUrl($event,i)"
+                                <input class="form-control" type="file" accept="image1/*" (change)="readUrl($event)"
                                     formControlName="profile_image">
                                 <div>
                                     <img [src]="strImage" alt="" width="100" height="100"
@@ -2237,7 +2236,7 @@
                         </div>-->
                         <div class="form-group">
                             <label for="profilePicture">Upload Profile Picture: &nbsp;&nbsp;&nbsp;
-                                <input class="form-control" type="file" accept="image1/*" (change)="readUrl($event,i)"
+                                <input class="form-control" type="file" accept="image1/*" (change)="readUrl($event)"
                                     formControlName="profile_image">
 
                                 <img [src]="strImage" alt="" width="100" height="100"

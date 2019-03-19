@@ -88,7 +88,6 @@ export class AppComponent {
   view: string = 'month';
 
   viewDate: Date = new Date();
-
   modalData: {
     action: string;
     event: CalendarEvent;
