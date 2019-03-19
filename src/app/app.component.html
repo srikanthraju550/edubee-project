@@ -181,7 +181,7 @@
                         <a role="button" aria-haspopup="true" aria-expanded="false">
 
                             <img class="profilepicture" style="border-radius: 10em;"
-                                src="assets/images/profileImages/{{getLoggedInUserObject()['profilepicture']}}">
+                                [src]="userImagePath + '/' + getLoggedInUserObject()['image']">
 
                         </a>
                         <!-- <div ngbDropdownMenu
@@ -326,12 +326,12 @@
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="email">Contact Email:</label>
-                            <input type="text" class="form-control" formControlName="email">
+                            <input type="text" class="form-control" formControlName="contact_email">
 
                         </div>
                         <div class="form-group col-6">
                             <label for="contactnumber">Contact Number:</label>
-                            <input type="text" class="form-control" formControlName="contactnumber" minlength="10"
+                            <input type="text" class="form-control" formControlName="contact_number" minlength="10"
                                 maxlength="10" (keypress)="_keyPress($event)">
 
                         </div>
@@ -347,10 +347,10 @@
                             maxlength="1000"></textarea>
 
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="form-group col-6">
                             <label for="technology">Engineering Technology:</label>
-                            <select type="text" class="form-control" formControlName="technology"
+                            <select type="text" class="form-control" formControlName="technology_id"
                                 (change)="updateSubTechList(createTechArticleForm.value.technology)">
                                 <option *ngFor="let technology of technologyconfig; let i = index;"
                                     [value]="technology.technologyid">{{technology.technologyname}}</option>
@@ -359,38 +359,38 @@
                         </div>
                         <div *ngIf="subtechnologylist?.length!=0" class="form-group col-6">
                             <label for="subtechnology">Sub-Engineering Technology:</label>
-                            <select type="text" class="form-control" formControlName="subtechnology">
+                            <select type="text" class="form-control" formControlName="sub_technology_id">
                                 <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
                                     [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
                             </select>
 
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="subtechnology">Article Type:</label>
-                            <select type="text" class="form-control" formControlName="articleType">
+                            <select type="text" class="form-control" formControlName="article_type">
                                 <option>Article</option>
                                 <option>Research Paper</option>
                                 <option>White Paper</option>
                             </select>
                         </div>
 
-                        <div class="form-group col-6" *ngIf="createTechArticleForm.value.articleType=='Article'">
+                        <div class="form-group col-6" >
                             <br />
                             <br />
                             <label for="paidArticle">Is Paid Article :</label>
                             &nbsp;&nbsp;
-                            <input type="radio" name="paidArticle" formControlName="paidArticle" selected
+                            <input type="radio" name="paidArticle" formControlName="is_paid" selected
                                 value="Y">&nbsp;
                             Yes&nbsp;&nbsp;
-                            <input type="radio" name="paidArticle" formControlName="paidArticle" value="N">&nbsp; No
+                            <input type="radio" name="paidArticle" formControlName="is_paid" value="N">&nbsp; No
                         </div>
 
 
                     </div>
                     <div class="row">
-                        <div class="form-group col-6" *ngIf="createTechArticleForm.value.paidArticle=='N'">
+                        <div class="form-group col-6" >
                             <br />
                             <br />
                             <label for="paidArticle">Select Publication Type :</label>
@@ -402,22 +402,19 @@
                                 value="2">&nbsp;
                             File Upload
                         </div>
-                        <div class="form-group col-6"
-                            *ngIf="createTechArticleForm.value.paidArticle=='Y' && createTechArticleForm.value.articleType=='Article'">
-                            <label for="cost">Cost:</label>
+                        <div class="form-group col-6">
+                             <label for="cost">Cost:</label>
                             <input myNumberOnly type="text" class="form-control" formControlName="cost">
 
                         </div>
-                        <div class="form-group col-6"
-                            *ngIf="createTechArticleForm.value.publicationSelector=='1'&&((createTechArticleForm.value.paidArticle=='N' && createTechArticleForm.value.articleType=='Article') ||(createTechArticleForm.value.articleType!='Article'))">
+                        <div class="form-group col-6">
                             <label for="publicationlink">Publication Link:</label>
-                            <input type="text" class="form-control" formControlName="publicationlink">
+                            <input type="text" class="form-control" formControlName="publication_link">
                         </div>
-                        <div class="form-group col-6"
-                            *ngIf="createTechArticleForm.value.publicationSelector=='2'&&((createTechArticleForm.value.paidArticle=='N' && createTechArticleForm.value.articleType=='Article') ||(createTechArticleForm.value.articleType!='Article'))">
-                            <label for="publicationFileUpload">Upload Publication File:</label>
+                        <div class="form-group col-6">
+                              <label for="publicationFileUpload">Upload Publication File:</label>
                             <input ng2FileSelect type='file' class="form-control" (change)="readUrl($event)"
-                                formControlName="publicationFileUpload" accept="*.*"
+                                formControlName="publication_file" accept="*.*"
                                 [uploader]="fileUploaderTechArticle">
                         </div>
                     </div>
@@ -445,7 +442,7 @@
 
 <!-- Modal -->
 <div id="createStuvationModal" class="modal fade" role="dialog">
-    <div class="modal-dialog stuv-popup" style="">
+    <div class="modal-dialog stuv-popup">
 
         <!-- Modal content-->
         <div class="modal-content">
@@ -1747,11 +1744,11 @@
                 <form [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmit()" enctype="multipart/form-data">
 
                     <div class="form-group">
-                        <input type="text" class="form-control" formControlName="email"
-                            placeholder="Email">
+                        <input type="text" class="form-control" formControlName="email" placeholder="Username or Email">
                     <div *ngIf="logValid.email.touched && logValid.email.invalid" class="alert alert-danger">
                         Email is Required
                     </div>
+
                     </div>
 
                     <div class="form-group">
@@ -2072,6 +2069,7 @@
                                 <div *ngIf="engValid.user_name.touched && engValid.user_name.invalid" class="alert alert-danger">
                                      UserName is Required
                                 </div>        
+
                                 </div>
                                 <div class="form-group">
                                     <!-- <label for="password">Password:</label> -->
@@ -2089,7 +2087,10 @@
                                   Confirm Password is Required
                                 </div>        
                                 </div>
-                                                   
+
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label for="profilePicture">Upload Profile Picture: &nbsp;&nbsp;&nbsp;
 
@@ -2100,9 +2101,6 @@
                                         style="max-width: 100px; max-height: 100px;">
                                 </div>
 
-                                <!-- <input type='file' (change)="readUrl($event)" formControlName="profile_image"
-                                    accept="image1/*" [uploader]="uploader">
-                               <img [src]="strImage" style="max-width: 100px; max-height: 100px;"> -->
                             </label>
                         </div>
                         <div style="width: 100%; text-align: center; align-items: center">
@@ -2111,20 +2109,14 @@
                                     <input type="checkbox" formControlName="is_agreed"> Agree to Terms and
                                     Conditions</label>
                             </div>
-
                             <button type="submit"
                                 [disabled]="!engineerRegistrationForm.valid || !engineerRegistrationForm.value.is_agreed"
                                 class="btn btn-primary">Sign Up!</button>
                         </div>
 
-                        
-                    </div>
-                </div>
+                     
                     </form>
                 </div>
-                <!--<div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>-->
             </div>
 
         </div>

@@ -36,7 +36,12 @@
       Article</button>
   </div>
 </div>
-<br />
+
+
+
+
+
+
 
 
 
@@ -106,13 +111,39 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+<div class="container-fluid">
+    <div class="card card-articles" style="width: 100%;" *ngFor="let item of ResponseData; let i = index; "> 
+        <h6 class="art-type" style="color: #3c0aa4;margin: 15px;">{{item.article_type}}</h6>
+      <ul class="list-group" >  
+      <li class="list-group-item"><span>Email :</span>  {{item.contact_email}}</li>
+      <li class="list-group-item"><span>Phone :</span>  {{item.contact_number}}</li>
+      
+      <li class="list-group-item"><span>Abstract :</span>  {{item.abstract}}</li>
+      <li class="list-group-item"><span>Title :</span>  {{item.title}}</li>
+      </ul>
+    </div>
+    </div>
+    
+    
+
+
+
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-12" style="margin-top: 1em;">
       <!-- -->
       <div class="card card-articles" style="width: 100%;"
-        *ngFor="let techarticle of techarticledetails | filterBy:techArticleFilter ; let i = index; "
-        [ngClass]="{'techarticleRow1' : i%2==0 }">
+      *ngFor="let techarticle of techarticledetails | filterBy:techArticleFilter ; let i = index;" [ngClass]="{'techarticleRow1' : i%2==0 }">
+       
+        
 
         <div class="card-body">
           <div class="row">
@@ -274,6 +305,7 @@
       <div class="modal-body">
         <div class="card cmnts" *ngFor="let articlecomment of articlecomments; let i = index; ">
           <div class="card-body row">
+
             <div class="col-md-10 col-sm-12">
               <b>Name</b> :
               {{articlecomment.name}}
@@ -284,6 +316,7 @@
               <textarea style="width: 100%;" *ngIf="getLoggedInUserObject()['userid']==articlecomment.userid"
                 [(ngModel)]="articlecomment.comment" placeholder="500 Characters" maxlength="500"></textarea>
             </div>
+
             <div class="col-md-2 col-sm-12">
               <button *ngIf="getLoggedInUserObject()['userid']==articlecomment.userid" class="btn btn-light"
                 style="background-color: #e6e5e5;height: 2.5em;"
