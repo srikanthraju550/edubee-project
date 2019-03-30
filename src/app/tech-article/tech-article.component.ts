@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MainServiceService } from '../main-service.service';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 // import { FilterPipe } from '../filter.pipe';
 
 @Component({
@@ -12,47 +12,56 @@ import { Http } from '@angular/http';
 export class TechArticleComponent implements OnInit {
   // endpoint: string = "../assets/services/";
   endpoint: string = "../assets/services/";
-  Baseurl= "http://engfactory.accrosian.com/";
+  Baseurl = "http://engfactory.accrosian.com/";
   selectedTecharticle: any;
-  constructor(private http: HttpClient,private httpnew: Http, private mainService: MainServiceService) { }
+  constructor(private http: HttpClient, private httpnew: Http, private mainService: MainServiceService) { }
   sliderContent: any = [];
   //homePageDataFromService=[];
   homePageContent: any = [];
   teamDetails: any = [];
   techarticledetails: any = [];
+  userid: string;
   ngOnInit(): void {
 
-    //this.http.get('../assets/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
-    let url = this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime();
     let userDetails = this.getLoggedInUserObject();
-    if (!this.checkLoginStatus())
-      url += "?userid=" + userDetails['userid'];
-    this.http.get(url).subscribe(data => {
-      this.sliderContent = data['0'].sliderContent;
-      this.teamDetails = data['1'].teamDetails;
-      this.techarticledetails = data['2'].techarticledetails;
-      this.homePageContent = data['3'].homePageData;
-    });
+    if (!this.checkLoginStatus()) {
+      this.userid = userDetails['user_id'].toString();
+    }
+    console.log(this.userid);
+    //this.http.get('../assets/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
+    // let url = this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime();
+    // let userDetails = this.getLoggedInUserObject();
+    // if (!this.checkLoginStatus())
+    //   url += "?userid=" + userDetails['userid'];
+    // this.http.get(url).subscribe(data => {
+    //   this.sliderContent = data['0'].sliderContent;
+    //   this.teamDetails = data['1'].teamDetails;
+    //   this.techarticledetails = data['2'].techarticledetails;
+    //   this.homePageContent = data['3'].homePageData;
+    // });
 
-return this.getArticles() ;
+    this.getArticles();
   }
 
-  ResponseData:any =[];
-  getArticles() {   
-    this.httpnew.get(this.Baseurl + 'tech-article-list').subscribe(response=>{
-     this.ResponseData = response.json().data;
+  ResponseData: any = [];
+  file_path: string;
+  getArticles() {
+    let userDetails = this.getLoggedInUserObject();
+    this.httpnew.get(this.Baseurl + 'tech-article-list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
+      this.ResponseData = response.json().data;
+      this.file_path = response.json().file_path;
       // console.log(this.ResponseData);
     });
   }
-  
 
-  techArticleFilter: any = { articletitle: '', name: '', technologyname: '', subtechname: '', cost: 0 };
-  keywordFilter: any = { name: '' };
-  techFilter: any = { technologyname: '' };
-  subTechFilter: any = { subtechname: '' };
+
+  techArticleFilter: any = { title: '', user_name: '', technology: '', sub_technology: '', cost: 0 };
+  keywordFilter: any = { user_name: '' };
+  techFilter: any = { technology: '' };
+  subTechFilter: any = { sub_technology: '' };
   articleTypeFilter = "";
   freeFilter: any = { cost: Number };
-  authorFilter: any = { name: '' };
+  authorFilter: any = { user_name: '' };
 
   articleUpDownCountUpdate(techarticleid, updateType) {
     let userDetails = this.getLoggedInUserObject();
@@ -74,17 +83,26 @@ return this.getArticles() ;
     });
   }
   articlecomments = [];
+  articleId;
+  comment;
   showTechArticleComments(techarticle) {
-    this.selectedTecharticle = techarticle;
-    let requestObject = {
-      "articleid": techarticle.articleid
-    };
+    this.showInput = false;
+    this.comment = '';
+    this.articleId = techarticle.tech_article_id;
+    this.articlecomments = [];
+    let userDetails = this.getLoggedInUserObject();
+    this.userid = userDetails['name'].toString();
 
-    this.http.post(this.endpoint + 'getArticleComments.php', requestObject, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
-      //this.http.post('http://localhost:8080/edubee/articleUpDownCount.php', requestObject,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-      let parsedData: JSON = JSON.parse('' + data);
-      this.articlecomments = parsedData['articlecomments'];
-
+    this.httpnew.get(this.Baseurl + 'tech-article-comments-list' + '?article_id=' + this.articleId).subscribe(data => {
+      this.articlecomments = data.json().data;
+      for (var i = 0; i < this.articlecomments.length; i++) {
+        if (this.userid === this.articlecomments[i].user_id) {
+          this.articlecomments[i].showEdit = true;
+        } else {
+          this.articlecomments[i].showEdit = false;
+        }
+      }
+      console.log(this.articlecomments);
     });
   }
 
@@ -130,57 +148,103 @@ return this.getArticles() ;
     });
   }
 
-  followerUpdate(userId, operationType) {
+  followerUpdate(articleId, operationType) {
     let userDetails = this.getLoggedInUserObject();
-    console.log(userDetails);
-    let requestObject = {
-      "followerId": userDetails['userid'],
-      "operationType": operationType,
-      "userid": userId
-    };
 
-    this.http.post(this.endpoint + 'addFollower.php', requestObject, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
-      //this.http.post('http://localhost:8080/edubee/articleUpDownCount.php', requestObject,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-      console.log(data);
-      let parsedData: JSON = JSON.parse('' + data);
-      console.log(parsedData);
-      if (parsedData['followerUpdateQuery'] == 'done') {
-        this.ngOnInit();
-      } else if (parsedData['followerUpdateQuery'] == 'failed') {
-        alert('Failed to update');
-      }
-
+    const headers = new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded'
     });
+
+    var params = 'user_id=' + userDetails['user_id'] + '&tech_article_id=' + articleId + '&action=' + operationType
+    this.httpnew.post(this.Baseurl + 'follow-tech-article', params, { headers: headers }).subscribe(res => {
+      if (res.json().status === true) {
+        alert(res.json().message);
+        this.ngOnInit();
+      } else {
+        alert(res.json().message);
+      }
+    })
+  }
+  action: number;
+  liked: boolean;
+  likeArticle(articleId, operationType, user_id) {
+    let userDetails = this.getLoggedInUserObject();
+    if (parseInt(operationType) > 0 && (user_id === userDetails['user_id'])) {
+      this.action = 2;
+    } else if (this.liked === true) {
+      this.action = 2;
+    } else {
+      this.action = 1;
+    }
+    const headers = new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+
+    var params = 'user_id=' + userDetails['user_id'] + '&tech_article_id=' + articleId + '&action=' + this.action
+    this.httpnew.post(this.Baseurl + 'like-tech-article', params, { headers: headers }).subscribe(res => {
+
+      if (this.action === 1) {
+        this.liked = true;
+      } else {
+        this.liked = false;
+      }
+      if (res.json().status === true) {
+        alert(res.json().message);
+        this.ngOnInit();
+      } else {
+        alert(res.json().message);
+      }
+    })
   }
 
   commentToBeAdded = "";
-  commentOperation(techarticleid, commentid, articleComment, operationType) {
+  commentOperation() {
     let userDetails = this.getLoggedInUserObject();
-    let requestObject = {
-      "articleid": techarticleid,
-      "articleComment": articleComment,
-      "userid": userDetails['userid'],
-      "operationType": operationType,
-      "commentid": commentid
-    };
-
-    this.http.post(this.endpoint + 'commentsUpdateDeleteAdd.php', requestObject, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
-      //this.http.post('http://localhost:8080/edubee/articleUpDownCount.php', requestObject,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-      console.log(data);
-      let parsedData: JSON = JSON.parse('' + data);
-      console.log(parsedData);
-      if (parsedData['commentUpdateDeleteAddQuery'] == 'done') {
-        this.showTechArticleComments(this.selectedTecharticle);
-        if (operationType == 'U')
-          alert('Comment updated Successfully');
-        this.commentToBeAdded = "";
-      } else if (parsedData['commentUpdateDeleteAddQuery'] == 'failed') {
-        alert('Failed to update');
-      }
-
+    const headers = new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded'
     });
+    var params = 'user_id=' + userDetails['user_id'] + '&tech_article_id=' + this.articleId + '&comment=' + this.comment
+    this.httpnew.post(this.Baseurl + 'tech-article-comment', params, { headers: headers }).subscribe(res => {
+      if (res.json().status === true) {
+        alert('comment added successfully');
+        document.getElementById("closeCommentsModal").click();
+        this.getArticles();
+      } else {
+        alert(res.json().message);
+      }
+    })
   }
-
+  showInput: boolean;
+  commentsEdit() {
+    this.showInput = true;
+  }
+  commentsEditDelete(data, action) {
+    let userDetails = this.getLoggedInUserObject();
+    const headers = new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+    if (action === 'edit') {
+      var params = 'user_id=' + userDetails['user_id'] + '&comment_id=' + data.comment_id + '&comment=' + data.comment
+      this.httpnew.post(this.Baseurl + 'update-tech-article-comment', params, { headers: headers }).subscribe(res => {
+        if (res.json().status === true) {
+          alert(res.json().message);
+          document.getElementById("closeCommentsModal").click();
+        } else {
+          alert(res.json().message);
+        }
+      })
+    } else if (action === 'delete') {
+      var params = 'user_id=' + userDetails['user_id'] + '&comment_id=' + data.comment_id
+      this.httpnew.post(this.Baseurl + 'delete-tech-article-comment', params, { headers: headers }).subscribe(res => {
+        if (res.json().status === true) {
+          alert(res.json().message);
+          document.getElementById("closeCommentsModal").click();
+        } else {
+          alert(res.json().message);
+        }
+      })
+    }
+  }
   checkLoginStatus(): boolean {
     return this.mainService.checkLoginStatus();
   }
@@ -202,17 +266,17 @@ return this.getArticles() ;
   abstract;
   showcost = false;
   viewTechTeachDetails(techTeach): void {
-    for (var i = 0; i < this.techarticledetails.length; i++) {
-      if (techTeach.articleid === this.techarticledetails[i].articleid) {
-        this.articletype = this.techarticledetails[i].articletype;
-        this.articletitle = this.techarticledetails[i].articletitle;
-        this.emailaddress = this.techarticledetails[i].emailaddress;
-        this.contactnumber = this.techarticledetails[i].contactnumber;
-        this.cost = this.techarticledetails[i].cost;
-        this.technologyname = this.techarticledetails[i].technologyname;
-        this.subtechname = this.techarticledetails[i].subtechname;
-        this.abstract = this.techarticledetails[i].abstract;
-        if (this.techarticledetails[i].articletype == 'Article') {
+    for (var i = 0; i < this.ResponseData.length; i++) {
+      if (techTeach.tech_article_id === this.ResponseData[i].tech_article_id) {
+        this.articletype = this.ResponseData[i].article_type;
+        this.articletitle = this.ResponseData[i].title;
+        this.emailaddress = this.ResponseData[i].contact_email;
+        this.contactnumber = this.ResponseData[i].contact_number;
+        this.cost = this.ResponseData[i].cost;
+        this.technologyname = this.ResponseData[i].technology;
+        this.subtechname = this.ResponseData[i].sub_technology;
+        this.abstract = this.ResponseData[i].abstract;
+        if (this.ResponseData[i].article_type == 'Article') {
           this.showcost = true;
         }
         return;

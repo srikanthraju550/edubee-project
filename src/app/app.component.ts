@@ -65,7 +65,8 @@ export class AppComponent {
 
   // endpoint: string = "../assets/services/"
   endpoint: string = "http://engfactory.accrosian.com/";
-  Baseurl= "http://engfactory.accrosian.com/";
+  Baseurl = "http://engfactory.accrosian.com/";
+  endpoint1: string = "http://theengineersfactory.com/assets/services/";
   strImage;
   userid;
   uploader: FileUploader = new FileUploader({ url: this.endpoint + "profilePictureUpload.php", removeAfterUpload: false, autoUpload: false });
@@ -78,7 +79,6 @@ export class AppComponent {
       reader.onload = (event: ProgressEvent) => {
         this.strImage = (<FileReader>event.target).result;
         this.url = this.strImage.split(',')[1];
-        console.log(this.url);
       }
       reader.readAsDataURL(event.target.files[0]);
     }
@@ -211,26 +211,27 @@ export class AppComponent {
   openMe(): void {
     this.showTechTeach = true;
     this.showTechTalk = false;
-    console.log(document.getElementById("datefield"));
+    this.getTechTypeList();
   }
   openMe1(): void {
     this.showTechTeach = false;
     this.showTechTalk = true;
-    console.log(document.getElementById("datefield"));
+    this.getTechTalkList();
   }
   minDateString;
   submitted = false;
-  userImagePath
+  userImagePath;
+  technologyList = [];
   ngOnInit(): void {
     let today = new Date();
     this.userImagePath = sessionStorage.getItem('userImagePath');
     this.minDateString = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
     //document.getElementById("datefield").setAttribute("min", today.toDateString());
-    let url = this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime();
+    let url = this.endpoint1 + 'getHomePageContent.php' + "/random=" + new Date().getTime();
     let userDetails = this.getLoggedInUserObject();
     console.log(userDetails);
     if (!this.checkLoginStatus())
-      url += "?userid=" + userDetails['userid'];
+      url += "?userid=" + userDetails['user_id'];
 
     this.http.get(url).subscribe(data => {
       this.sliderContent = data['0'].sliderContent;
@@ -241,53 +242,49 @@ export class AppComponent {
       this.techTalkTypeConfig = data['8'].techtalktypeconfig;
       this.techTeachTypeConfig = data['9'].techteachtypeconfig;
       this.stuvationtypeconfig = data['11'].stuvationtypeconfig;
-      this.updateSubTechList(this.createTechArticleForm.value.technology);
+      // this.updateSubTechList(this.createTechArticleForm.value.technology);
     });
+    this.getTechnologyList();
   }
+
+
+  getTechnologyList() {
+    this.http.get(this.endpoint + 'technology-list').subscribe(res => {
+      this.technologyList = res.json().data;
+
+    })
+  }
+
+
+
   subtechnologylist: any = [];
-  updateSubTechList(technologyid) {
-    this.subtechnologylist = this.subtechnologyconfig;/* .filter(obj => {
-      console.log(obj.technologyid);
-      return obj.technologyid === technologyid;
-    }) */
+  techId;
+  subTechId;
+  getSubTechList(technologyid) {
+    this.techId = technologyid;
+    this.http.get(this.endpoint + 'sub-technology-list').subscribe(res => {
+      this.subtechnologylist = res.json().data;
+    })
+
+  }
+  getSubtechId(subtechId) {
+    this.subTechId = subtechId;
+  }
+  techTeachTypeList = [];
+  getTechTypeList() {
+    this.http.get(this.endpoint + 'tech-teach-type').subscribe(res => {
+      this.techTeachTypeList = res.json().data;
+    })
+  }
+
+  techTalkTypeList = [];
+  getTechTalkList() {
+    this.http.get(this.endpoint + 'tech-talk-type').subscribe(res => {
+      this.techTalkTypeList = res.json().data;
+    })
   }
 
 
-
-  createTechTeachForm = this.fb.group({
-    topic: ['', Validators.required],
-    abstract: ['', Validators.required],
-    technologyArea: ['', Validators.required],
-    technology: ['', Validators.required],
-    subtechnology: ['', Validators.required],
-    techteachtype: ['', Validators.required],
-    venueDetails: this.fb.group({
-      place: ['', Validators.required],
-      city: ['', Validators.required],
-      address: ['', Validators.required],
-      date: ['', Validators.required],
-      fromTime: ['', Validators.required],
-      toTime: ['', Validators.required]
-    }),
-    registrationDetails: this.fb.group({
-      webaddress: ['', Validators.required],
-      maxregcount: ['', Validators.required],
-      regfee: ['', Validators.required],
-      eligibility: ['', Validators.required],
-      seatcapacity: ['', Validators.required]
-    }),
-    expertDetails: this.fb.group({
-      name: ['', Validators.required],
-      company: ['', Validators.required],
-      speakerType: ['', Validators.required],
-      worklocation: ['', Validators.required],
-      position: ['', Validators.required],
-      experience: ['', Validators.required]
-    }),
-    userDetails: this.fb.group(this.getLoggedInUserObject()),
-    agreeTnc: [false, Validators.required]
-
-  });
   createStuvationForm = this.fb.group({
     projectType: ['', Validators.required],
     projectStatus: ['', Validators.required],
@@ -356,63 +353,93 @@ export class AppComponent {
   }
 
 
-  createTechArticleForm = this.fb.group({
-    user_id: ['', Validators.required],
-contact_email: ['', Validators.required],
-contact_number: ['', Validators.required],
-title: ['', Validators.required],
-abstract: ['', Validators.required], 
-technology_id: ['', Validators.required], 
-sub_technology_id: ['', Validators.required],
-article_type: ['', Validators.required],
-is_paid: ['', Validators.required],
-cost: ['', Validators.required],
-publication_link: ['', Validators.required],
-publication_file: ['', Validators.required],
-is_agreed: ['', Validators.required]
-    // email: ['', Validators.required],
-    // contactnumber: ['', Validators.required],
-    // title: ['', Validators.required],
-    // abstract: ['', Validators.required],
-    // subtechnology: ['1', Validators.required],
-    // technology: ['1', Validators.required],
 
-    // paidArticle: ['Y'],
-    // cost: ['', Validators.required],
-    // publicationlink: [''],
-    // userDetails: this.fb.group(this.getLoggedInUserObject()),
-    // articleType: ['Article', Validators.required],
-    // agreeTermsAndConditions: [false, Validators.required],
-    // publicationSelector: ['1'],
-    // publicationFileUpload: ['']
+  createTechArticleForm = this.fb.group({
+    contact_email: ['', Validators.required],
+    contact_number: ['', Validators.required],
+    title: ['', Validators.required],
+    abstract: ['', Validators.required],
+    technology_id: ['', Validators.required],
+    sub_technology_id: ['', Validators.required],
+    article_type: ['', Validators.required],
+    is_paid: [''],
+    cost: [''],
+    publicationSelector: ['', Validators.required],
+    publication_link: [''],
+    publication_file: [''],
+    is_agreed: ['', Validators.required]
+
   });
+  showUpload: boolean;
+  showCost: boolean;
+  showLink: boolean;
+  fileType(action) {
+    if (action === 'file') {
+      this.showUpload = true;
+      this.showLink = false;
+    } else if (action === 'publicationLink') {
+      this.showUpload = false;
+      this.showLink = true;
+    }
+  }
+  selectPaid(action) {
+    if (action === 'yes') {
+      this.showCost = true;
+    } else {
+      this.showCost = false;
+    }
+  }
+  showArticle: boolean;
+  articleValue;
+  articleType(value) {
+    this.articleValue = value;
+    if (value === 'Article') {
+      this.showArticle = true;
+    } else {
+      this.showArticle = false;
+    }
+  }
 
   get f() { return this.createTechArticleForm.controls; }
   parsedData;
   onCreateTechArticleFormSubmit() {
-    // this.submitted = true;
+    this.submitted = true;
 
-    // // stop here if form is invalid
-    // if (this.createTechArticleForm.invalid) {
-    //   return;
-    // }
-    this.createTechArticleForm.value.userDetails = this.getLoggedInUserObject();
+    // stop here if form is invalid
+    if (this.createTechArticleForm.invalid) {
+      alert('Required fields Missing');
+      return;
+    }
+
+    let userDetails = this.getLoggedInUserObject();
     const headers = new Headers({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/x-www-form-urlencoded'
     });
 
-    this.http.post(this.Baseurl + 'create-tech-article', this.createTechArticleForm.value, { headers: headers }).subscribe(data => {
-      //this.http.post('http://localhost:8080/edubee/createTechArticle.php', this.createTechArticleForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-      let parsedData: JSON = JSON.parse('' + data);
-      console.log(this.parsedData.json())
-      // if (parsedData['techarticledetailsQuery'] == 'done') {
-      //   alert('Tech Article Created');
-      //   document.getElementById("closeCreateTechArticleModal").click();
-      //   location.reload();
-      // } else if (parsedData['techarticledetailsQuery'] == 'failed') {
-      //   alert('Tech Article creation Failed');
+    var params = 'user_id=' + userDetails['user_id'] +
+      '&contact_email=' + this.createTechArticleForm.value.contact_email
+      + '&contact_number=' + this.createTechArticleForm.value.contact_number +
+      '&title=' + this.createTechArticleForm.value.title +
+      '&abstract=' + this.createTechArticleForm.value.abstract +
+      '&technology_id=' + this.techId +
+      '&sub_technology_id=' + this.subTechId +
+      '&article_type=' + this.articleValue +
+      '&is_paid=' + this.createTechArticleForm.value.is_paid +
+      '&cost=' + this.createTechArticleForm.value.cost +
+      '&publication_link=' + this.createTechArticleForm.value.publication_link +
+      '&publication_file=' + this.url +
+      '&is_agreed=' + this.createTechArticleForm.value.is_agreed
 
-      // }
+    this.http.post(this.Baseurl + 'create-tech-article', params, { headers: headers }).subscribe(data => {
+      if (data.json().status === true) {
+        alert(data.json().message);
+        document.getElementById("closeCreateTechArticleModal").click();
+        this.router.navigate(['/techbank'])
+        location.reload();
+      } else {
+        alert(data.json().message);
+      }
+
 
     });
   }
@@ -506,54 +533,192 @@ is_agreed: ['', Validators.required]
     });
   }
 
+  techTeachTypeId;
+  selectTechTeachType(event) {
+    this.techTeachTypeId = event;
+  }
+
+
+  createTechTeachForm = this.fb.group({
+    topic: ['', Validators.required],
+    abstract: ['', Validators.required],
+    technologyArea: ['', Validators.required],
+    technology: ['', Validators.required],
+    subtechnology: ['', Validators.required],
+    techteachtype: ['', Validators.required],
+    venueDetails: this.fb.group({
+      place: ['', Validators.required],
+      city: ['', Validators.required],
+      address: ['', Validators.required],
+      date: ['', Validators.required],
+      fromTime: ['', Validators.required],
+      toTime: ['', Validators.required]
+    }),
+    registrationDetails: this.fb.group({
+      webaddress: ['', Validators.required],
+      maxregcount: ['', Validators.required],
+      regfee: ['', Validators.required],
+      eligibility: ['', Validators.required],
+      seatcapacity: ['', Validators.required]
+    }),
+    expertDetails: this.fb.group({
+      name: ['', Validators.required],
+      company: ['', Validators.required],
+      speakerType: ['', Validators.required],
+      worklocation: ['', Validators.required],
+      position: ['', Validators.required],
+      experience: ['', Validators.required]
+    }),
+    userDetails: this.fb.group(this.getLoggedInUserObject()),
+    agreeTnc: [false, Validators.required]
+
+  });
   onCreateTechTeachFormSubmit() {
     this.createTechTeachForm.value.userDetails = this.getLoggedInUserObject();
     console.warn(this.createTechTeachForm.value);
+
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.createTechTeachForm.invalid) {
+      alert('Required fields Missing');
+      return;
+    }
+
+    let userDetails = this.getLoggedInUserObject();
     const headers = new Headers({
-      'Content-Type': 'multipart/form-data'
+      'Content-Type': 'application/x-www-form-urlencoded'
     });
-    //this.http.post('../assets/services/createTechTeach.php', this.createTechTeachForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-    this.http.post(this.endpoint + 'createTechTeach.php', this.createTechTeachForm.value, { headers: headers }).subscribe(data => {
-      console.log(data);
-      let parsedData: JSON = JSON.parse('' + data);
-      console.log(parsedData);
-      if (parsedData['techteachdetailsQuery'] == 'done') {
-        alert('Tech Teach Created');
-        this.fileUploaderTechArticle.uploadAll();
+
+    var params = 'tech_teach_id=' + '' +
+      '&user_id=' + userDetails['user_id'] +
+      'tech_teach_type_id=' + this.techTeachTypeId +
+      '&topic=' + this.createTechTeachForm.value.topic +
+      '&abstract=' + this.createTechTeachForm.value.abstract +
+      '&technology_area=' + this.createTechTeachForm.value.technologyArea +
+      '&technology_id=' + this.techId +
+      '&sub_technology_id=' + this.subTechId +
+      '&place=' + this.createTechTeachForm.value.venueDetails.place +
+      '&city=' + this.createTechTeachForm.value.venueDetails.city +
+      '&address=' + this.createTechTeachForm.value.venueDetails.address +
+      '&event_date=' + this.createTechTeachForm.value.venueDetails.date +
+      '&from_time=' + this.createTechTeachForm.value.venueDetails.fromTime +
+      '&to_time=' + this.createTechTeachForm.value.venueDetails.toTime +
+      '&web_address=' + this.createTechTeachForm.value.registrationDetails.webaddress +
+      '&max_reg_allowed=' + this.createTechTeachForm.value.registrationDetails.maxregcount +
+      '&reg_fee=' + this.createTechTeachForm.value.registrationDetails.regfee +
+      '&eligibility=' + this.createTechTeachForm.value.registrationDetails.eligibility +
+      '&seat_capacity=' + this.createTechTeachForm.value.registrationDetails.seatcapacity +
+      '&expert_name=' + this.createTechTeachForm.value.expertDetails.name +
+      '&company=' + this.createTechTeachForm.value.expertDetails.company +
+      '&speaker_type=' + this.createTechTeachForm.value.expertDetails.speakerType +
+      '&working_location=' + this.createTechTeachForm.value.expertDetails.worklocation +
+      '&position=' + this.createTechTeachForm.value.expertDetails.position +
+      '&experience=' + this.createTechTeachForm.value.expertDetails.experience
+
+
+    this.http.post(this.endpoint + 'create-tech-teach', params, { headers: headers }).subscribe(res => {
+      if (res.json().status === true) {
+        alert(res.json().message);
+        this.createTechTeachForm.reset();
         document.getElementById("closeCreateTechTeachModal").click();
         location.reload();
-        this.createTechTeachForm.reset();
-      } else if (parsedData['techteachdetailsQuery'] == 'failed') {
-        alert('Tech Teach creation Failed');
-
+      } else {
+        alert(res.json().message);
       }
-
-    });
+    })
   }
+  selectedTechTalkType;
+  selectTechtalkType(value) {
+    this.selectedTechTalkType = value;
+  }
+
 
   onCreateTechTalkFormSubmit() {
     this.createTechTalkForm.value.userDetails = this.getLoggedInUserObject();
-    console.warn(this.createTechTeachForm.value);
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.createTechTalkForm.invalid) {
+      alert('Required fields Missing');
+      return;
+    }
+
+    let userDetails = this.getLoggedInUserObject();
     const headers = new Headers({
-      'Content-Type': 'multipart/form-data'
+      'Content-Type': 'application/x-www-form-urlencoded'
     });
-    this.http.post(this.endpoint + 'createTechTalk.php', this.createTechTalkForm.value, { headers: headers }).subscribe(data => {
-      //this.http.post('http://localhost:8080/edubee/createTechTalk.php', this.createTechTalkForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-      console.log(data);
-      let parsedData: JSON = JSON.parse('' + data);
-      console.log(parsedData);
-      if (parsedData['techtalkdetailsQuery'] == 'done') {
-        alert('Tech Talk Created');
-        location.reload();
-        document.getElementById("closeCreateTechTalkModal").click();
+
+    var params =
+      'user_id=' + userDetails['user_id'] +
+      '&tech_talk_type_id=' + this.selectedTechTalkType +
+      '&topic=' + this.createTechTalkForm.value.topic +
+      '&abstract=' + this.createTechTalkForm.value.abstract +
+      '&technology_area=' + this.createTechTalkForm.value.technologyArea +
+      '&technology_id=' + this.techId +
+      '&sub_technology_id=' + this.subTechId +
+      '&place=' + this.createTechTalkForm.value.venueDetails.place +
+      '&city=' + this.createTechTalkForm.value.venueDetails.city +
+      '&address=' + this.createTechTalkForm.value.venueDetails.address +
+      '&event_date=' + this.createTechTalkForm.value.venueDetails.date +
+      '&from_time=' + this.createTechTalkForm.value.venueDetails.fromTime +
+      '&to_time=' + this.createTechTalkForm.value.venueDetails.toTime +
+      '&web_address=' + this.createTechTalkForm.value.registrationDetails.webaddress +
+      '&max_reg_allowed=' + this.createTechTalkForm.value.registrationDetails.maxregcount +
+      '&reg_fee=' + this.createTechTalkForm.value.registrationDetails.regfee +
+      '&eligibility=' + this.createTechTalkForm.value.registrationDetails.eligibility +
+      '&seat_capacity=' + this.createTechTalkForm.value.registrationDetails.seatcapacity +
+      '&expert_name=' + this.createTechTalkForm.value.expertDetails.name +
+      '&company=' + this.createTechTalkForm.value.expertDetails.company +
+      '&speaker_type=' + this.createTechTalkForm.value.expertDetails.speakerType +
+      '&working_location=' + this.createTechTalkForm.value.expertDetails.worklocation +
+      '&position=' + this.createTechTalkForm.value.expertDetails.position +
+      '&experience=' + this.createTechTalkForm.value.expertDetails.experience
+
+
+    this.http.post(this.endpoint + 'create-tech-talk', params, { headers: headers }).subscribe(res => {
+      if (res.json().status === true) {
+        alert(res.json().message);
+        document.getElementById("closeCreateTechTeachModal").click();
         this.createTechTalkForm.reset();
-      } else if (parsedData['techtalkdetailsQuery'] == 'failed') {
-        alert('Tech Talk creation Failed');
-
+        // location.reload();
+      } else {
+        alert(res.json().message);
       }
-
-    });
+    })
   }
+
+
+
+
+
+
+
+
+
+
+  // onCreateTechTalkFormSubmit() {
+  //   this.createTechTalkForm.value.userDetails = this.getLoggedInUserObject();
+  //   console.warn(this.createTechTeachForm.value);
+  //   const headers = new Headers({
+  //     'Content-Type': 'multipart/form-data'
+  //   });
+  //   this.http.post(this.endpoint + 'createTechTalk.php', this.createTechTalkForm.value, { headers: headers }).subscribe(data => {
+  //     //this.http.post('http://localhost:8080/edubee/createTechTalk.php', this.createTechTalkForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
+  //     console.log(data);
+  //     let parsedData: JSON = JSON.parse('' + data);
+  //     console.log(parsedData);
+  //     if (parsedData['techtalkdetailsQuery'] == 'done') {
+  //       alert('Tech Talk Created');
+  //       location.reload();
+  //       document.getElementById("closeCreateTechTalkModal").click();
+  //       this.createTechTalkForm.reset();
+  //     } else if (parsedData['techtalkdetailsQuery'] == 'failed') {
+  //       alert('Tech Talk creation Failed');
+
+  //     }
+
+  //   });
+  // }
 
   checkLoginStatus(): boolean {
     return this.mainService.checkLoginStatus();
@@ -591,6 +756,8 @@ is_agreed: ['', Validators.required]
         let parsedData = response.json().data;
         sessionStorage.setItem("loggedInUserName", JSON.stringify(parsedData[0]));
         sessionStorage.setItem("userImagePath", response.json().image_path);
+        sessionStorage.setItem("userId", response.json().user_id);
+        console.log(sessionStorage.userId);
         document.getElementById("closeLoginForm").click();
         this.ngOnInit();
       } else {
@@ -625,16 +792,16 @@ is_agreed: ['', Validators.required]
 
   });
 
-get logValid(){
-  return this.loginForm.controls;
-}
-get studValid(){
- return this.studentRegistrationForm.controls;
-}
+  get logValid() {
+    return this.loginForm.controls;
+  }
+  get studValid() {
+    return this.studentRegistrationForm.controls;
+  }
 
-get engValid(){
-  return this.engineerRegistrationForm.controls;
-}
+  get engValid() {
+    return this.engineerRegistrationForm.controls;
+  }
   get workExperience() {
     return this.engineerRegistrationForm.get('workExperience') as FormArray;
   }
@@ -726,7 +893,6 @@ get engValid(){
     this.router.navigate(['/prozectme']);
     this.navbarOpen = false;
   }
-
 
 
 

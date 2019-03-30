@@ -1,28 +1,3 @@
-<!-- <div class="row" style="z-index: 1;">
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style=" width: 100%;">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-      <div *ngFor="let imageObj of sliderContent; let i = index;" class="carousel-item" [ngClass]="{'active' : i==0 }">
-        <img class="d-block w-100 sliderImageStyle" src="../assets/images/{{imageObj.imagelink}}?auto=yes&bg=666&fg=444"
-          alt="{{imageObj.sliderid}} slide">
-
-      </div>
-
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-</div> -->
 <div class="row tech-bank-filters" style="background-color: #F4F6F5; height: 4em; ">
   <div class="col-md-4 col-sm-12 col-xs-12">
     &nbsp;
@@ -50,20 +25,20 @@
   <div class="col-md-6">
 
     <input type="text" class="form-control filter-input" placeholder="Search with Name.." name="techarticledetails"
-      [(ngModel)]="techArticleFilter.name" *ngIf="showKeyword" />
+      [(ngModel)]="techArticleFilter.user_name" *ngIf="showKeyword" />
 
 
     <input type="text" class="form-control filter-input" placeholder="Search with Article Title.."
-      name="techarticledetails" [(ngModel)]="techArticleFilter.articletitle" *ngIf="showArticle" />
+      name="techarticledetails" [(ngModel)]="techArticleFilter.title" *ngIf="showArticle" />
 
     <input type="text" class="form-control filter-input" placeholder="Search with Technology.."
-      name="techarticledetails" [(ngModel)]="techArticleFilter.technologyname" *ngIf="showTechnology" />
+      name="techarticledetails" [(ngModel)]="techArticleFilter.technology" *ngIf="showTechnology" />
 
     <input type="text" class="form-control filter-input" placeholder="Search with sub Technology.."
-      name="techarticledetails" [(ngModel)]="techArticleFilter.subtechname" *ngIf="showSubTech" />
+      name="techarticledetails" [(ngModel)]="techArticleFilter.sub_technology" *ngIf="showSubTech" />
 
     <input type="text" class="form-control filter-input" placeholder="Search with Author.." name="techarticledetails"
-      [(ngModel)]="techArticleFilter.name" *ngIf="showAuthor" />
+      [(ngModel)]="techArticleFilter.user_name" *ngIf="showAuthor" />
 
     <input type="text" class="form-control filter-input" placeholder="Search with Author.." name="techarticledetails"
       [(ngModel)]="techArticleFilter.cost" *ngIf="showCost" />
@@ -114,51 +89,29 @@
 
 
 
-
-
-
-
-<div class="container-fluid">
-    <div class="card card-articles" style="width: 100%;" *ngFor="let item of ResponseData; let i = index; "> 
-        <h6 class="art-type" style="color: #3c0aa4;margin: 15px;">{{item.article_type}}</h6>
-      <ul class="list-group" >  
-      <li class="list-group-item"><span>Email :</span>  {{item.contact_email}}</li>
-      <li class="list-group-item"><span>Phone :</span>  {{item.contact_number}}</li>
-      
-      <li class="list-group-item"><span>Abstract :</span>  {{item.abstract}}</li>
-      <li class="list-group-item"><span>Title :</span>  {{item.title}}</li>
-      </ul>
-    </div>
-    </div>
-    
-    
-
-
-
-
 <div class="container-fluid">
   <div class="row">
     <div class="col-12" style="margin-top: 1em;">
       <!-- -->
       <div class="card card-articles" style="width: 100%;"
-      *ngFor="let techarticle of techarticledetails | filterBy:techArticleFilter ; let i = index;" [ngClass]="{'techarticleRow1' : i%2==0 }">
-       
-        
+        *ngFor="let techarticle of ResponseData | filterBy:techArticleFilter ; let i = index;"
+        [ngClass]="{'techarticleRow1' : i%2==0 } ">
+
 
         <div class="card-body">
           <div class="row">
             <div class="col-md-6 tec_lft">
-              <h6 class="art-type" style="color:#33099e;">{{techarticle.articletype}}</h6>
+              <h6 class="art-type" style="color:#33099e;">{{techarticle.article_type}}</h6>
 
-              <b>Title</b> : {{techarticle.articletitle}}
+              <b>Title</b> : {{techarticle.title}}
               <br />
-              <b>Technology</b> : {{techarticle.technologyname}} ,
+              <b>Technology</b> : {{techarticle.technology}} ,
               &nbsp;&nbsp;
-              <b>Sub-Technology</b> : {{techarticle.subtechname}}
+              <b>Sub-Technology</b> : {{techarticle.sub_technology}}
               <br />
-              <b *ngIf="techarticle.articletype=='Article'">Price :
+              <b *ngIf="techarticle.article_type=='Article'">Price :
                 <span style="color:#255B88">{{techarticle.cost}} rs</span>
-              </b><br *ngIf="techarticle.articletype=='Article'" />
+              </b><br *ngIf="techarticle.article_type=='Article'" />
               <b> Abstract </b>: {{techarticle.abstract}}
 
 
@@ -167,31 +120,27 @@
 
             <div class="col-md-3 tec_mdl">
 
-              <img class="profilepicture" *ngIf="techarticle.profilepicture!==''"
-                src="../assets/images/profileImages/{{techarticle.profilepicture}}" alt="Profile Pic">
-              <img class="profilepicture" *ngIf="techarticle.profilepicture==''" src="../assets/images/user-dummy.png"
+              <img class="profilepicture" *ngIf="techarticle.profile_image!==''"
+                [src]="file_path + techarticle.profile_image" alt="Profile Pic">
+              <img class="profilepicture" *ngIf="techarticle.profile_image==''" src="../assets/images/user-dummy.png"
                 alt="Profile Pic">
 
               <div class="">
                 <h5 class="card-title" style="color:#33099e;"><span class="title-name">
-                  </span><b>{{techarticle.name}}</b>
+                  </span><b>{{techarticle.user_name}}</b>
                   <br />
-                  <span style="font-size: 0.85rem;color:rgb(22, 22, 22);"> ( {{techarticle.followerCount}} followers
+                  <span style="font-size: 0.85rem;color:rgb(22, 22, 22);"> ( {{techarticle.follow_count}} followers
                     )</span>
                 </h5>
                 <div class="lke-dis">
                   <button *ngIf="!checkLoginStatus() && techarticle.upCount!=='0'" class="btn btn-light buttonarticle"
-                    (click)="articleUpDownCountUpdate(techarticle.articleid,'UP')" style="display:inline">
-                    {{techarticle.upCount}}
+                    (click)="likeArticle(techarticle.tech_article_id,techarticle.like_count,techarticle.user_id)"
+                    style="display:inline">
+                    {{techarticle.like_count}}
                     <img src="../assets/images/thumbsUp.png" alt="Card image cap" style="height:15px;">
                   </button>
                   &nbsp;&nbsp;
-                  <button *ngIf="!checkLoginStatus() && techarticle.downCount!=='0'" class="btn btn-light buttonarticle"
-                    (click)="articleUpDownCountUpdate(techarticle.articleid,'DOWN')" style="display:inline">
-                    {{techarticle.downCount}}
-                    <img src="../assets/images/thumbsDown.png" alt="Card image cap" style="height: 15px;">
 
-                  </button>
                 </div>
                 <br />
               </div>
@@ -203,24 +152,22 @@
 
                 <li class="nav-item ">
                   <button class="nav-link btn btn-light buybutton buttonarticle"
-                    *ngIf="techarticle.articlepaymentindcd=='Y' && techarticle.articletype=='Article'"
-                    data-toggle="modal" data-target="#buynowModal" (click)="buyNowModelClick(techarticle)">Buy
+                    *ngIf="techarticle.cost!='' && techarticle.article_type=='Article'" data-toggle="modal"
+                    data-target="#buynowModal" (click)="buyNowModelClick(techarticle)">Buy
                     Now</button>
                 </li>
 
                 <li class="nav-item" style="margin-left:2%">
-                  <button
-                    *ngIf="!checkLoginStatus() && techarticle.isFollowed==0 && getLoggedInUserObject()['userid']!=techarticle.userid"
+                  <button *ngIf="!checkLoginStatus() && techarticle.is_followed== 'FALSE'"
                     class="nav-link btn btn-light buttonarticle"
                     style=" margin-left: 0 !important; color: white !important;"
-                    (click)="followerUpdate(techarticle.userId,'F');">Follow</button> </li>
+                    (click)="followerUpdate(techarticle.tech_article_id,'1');">Follow</button> </li>
 
                 <li class="nav-item" style="margin-left:2%">
-                  <button
-                    *ngIf="!checkLoginStatus() && techarticle.isFollowed==1 && getLoggedInUserObject()['userid']!=techarticle.userid"
+                  <button *ngIf="!checkLoginStatus() && techarticle.is_followed== 'TRUE'"
                     class="nav-link btn btn-light buttonarticle"
                     style=" margin-left: 0 !important; color: white !important;"
-                    (click)="followerUpdate(techarticle.userId,'U');">Unfollow</button>
+                    (click)="followerUpdate(techarticle.tech_article_id,'2');">Unfollow</button>
                 </li>
                 <li class="nav-item">
                   <button class="nav-link btn btn-light commentbutton buttonarticle" data-toggle="modal"
@@ -228,7 +175,7 @@
                 </li>
                 <li class="nav-item">
                   <button class="nav-link btn btn-light veiwbutton buttonarticle"
-                    *ngIf="techarticle.publicationlink!='' &&  techarticle.articletype =='White Paper' || techarticle.articletype =='Research Paper' "
+                    *ngIf="techarticle.publication_link!='' &&  techarticle.article_type =='white paper' || techarticle.article_type =='Research Paper' "
                     data-toggle="modal" data-target="#buynowModal1"
                     (click)="viewTechTeachDetails(techarticle)">View/Download
                     full Article</button>
@@ -241,7 +188,6 @@
         <div id="buynowModal1" class="modal fade" role="dialog">
           <div class="modal-dialog createarticle1">
             <div class="col-12" style="margin-top: 1em;">
-              <!-- Modal content-->
               <div class="modal-content">
 
                 <div class="modal-header" style="background-color: #33099e; text-align: center; align-items: center;">
@@ -308,25 +254,26 @@
 
             <div class="col-md-10 col-sm-12">
               <b>Name</b> :
-              {{articlecomment.name}}
+              {{articlecomment.user_name}}
               <br />
               <b>Comment</b> :
-              <span *ngIf="getLoggedInUserObject()['userid']!=articlecomment.userid">
+              <span *ngIf="!showEdit">
                 {{articlecomment.comment}}</span>
-              <textarea style="width: 100%;" *ngIf="getLoggedInUserObject()['userid']==articlecomment.userid"
-                [(ngModel)]="articlecomment.comment" placeholder="500 Characters" maxlength="500"></textarea>
+              <textarea style="width: 100%;" *ngIf="showInput" [(ngModel)]="articlecomment.comment" name="comment"
+                placeholder="500 Characters" maxlength="500"></textarea>
             </div>
 
             <div class="col-md-2 col-sm-12">
-              <button *ngIf="getLoggedInUserObject()['userid']==articlecomment.userid" class="btn btn-light"
-                style="background-color: #e6e5e5;height: 2.5em;"
-                (click)="commentOperation(selectedTecharticle.articleid, articlecomment.id, articlecomment.comment, 'U')">
+              <button *ngIf="(userid === articlecomment.user_name) && !showInput" class="btn btn-light"
+                style="background-color: #e6e5e5;height: 2.5em;" (click)="commentsEdit()">
                 Edit
               </button>
-              <button
-                *ngIf="getLoggedInUserObject()['userid']==articlecomment.userid || getLoggedInUserObject()['userid']==selectedTecharticle.userId"
-                class="btn btn-light" style="background-color: #e6e5e5;height: 2.5em;"
-                (click)="commentOperation(selectedTecharticle.articleid, articlecomment.id, null, 'D')">
+              <button *ngIf="(userid === articlecomment.user_name) && showInput" class="btn btn-light"
+                style="background-color: #e6e5e5;height: 2.5em;" (click)="commentsEditDelete(articlecomment,'edit')">
+                Update
+              </button>
+              <button *ngIf="(userid === articlecomment.user_name) && !showInput" class="btn btn-light"
+                style="background-color: #e6e5e5;height: 2.5em;" (click)="commentsEditDelete(articlecomment,'delete')">
                 Delete
               </button>
             </div>
@@ -335,12 +282,12 @@
         <div class="card">
           <div class="card-body row">
             <div class="col--md-10  col-sm-12 col-xs-12">
-              <textarea style="width: 100%;" [(ngModel)]="commentToBeAdded" placeholder="500 Characters"
+              <textarea style="width: 100%;" [(ngModel)]="comment" placeholder="500 Characters"
                 maxlength="500"></textarea>
             </div>
             <div class="col-md-2 col-sm-12 col-xs-12">
-              <button class="btn btn-light commentbutton buttonarticle" [disabled]="commentToBeAdded==''"
-                (click)="commentOperation(selectedTecharticle.articleid, null, commentToBeAdded, 'A')">
+              <button class="btn btn-light commentbutton buttonarticle" [disabled]="comment==''"
+                (click)="commentOperation()">
                 Add Comment
               </button>
             </div>
