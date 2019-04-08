@@ -36,6 +36,7 @@ import { EngshipRequestComponent } from './engship-request/engship-request.compo
 //import { Ng2UploaderModule } from 'ng2-uploader';
 
 import { NumberOnlyDirective, AlphabetsOnly, AlphaNumericOnly } from './number';
+import { StaticdataComponent } from './staticdata/staticdata.component';
 
 
 
@@ -49,7 +50,8 @@ const appRoutes: Routes = [
   { path: 'stuvation', component: StuvationComponent },
   { path: 'engship', component: EngshipComponent },
   { path: 'cityChapter', component: CityChapterComponent },
-  { path: 'engshipRequest', component: EngshipRequestComponent }
+  { path: 'engshipRequest', component: EngshipRequestComponent },
+  { path: 'staticContent/:action', component: StaticdataComponent }
 ];
 
 @NgModule({
@@ -75,7 +77,8 @@ const appRoutes: Routes = [
     EngshipRequestComponent,
     NumberOnlyDirective,
     AlphaNumericOnly,
-    AlphabetsOnly
+    AlphabetsOnly,
+    StaticdataComponent
   ],
   imports: [
     BrowserModule,

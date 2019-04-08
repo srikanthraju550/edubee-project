@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { MainServiceService } from '../main-service.service';
 
 import { FilterPipe } from 'ngx-filter-pipe';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-stuvation',
@@ -18,13 +19,15 @@ export class StuvationComponent implements OnInit {
 
   // endpoint: string = "../assets/services/"
   selectedStuvation: any;
-  constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private filterPipe: FilterPipe) { }
+  constructor(private modal: NgbModal, private http: HttpClient, private httpnew: Http,
+    private mainService: MainServiceService, private filterPipe: FilterPipe) { }
   sliderContent: any = [];
   //homePageDataFromService=[];
   homePageContent: any = [];
   teamDetails: any = [];
   stuvationdetails: any = [];
   userId;
+  Baseurl = "http://engfactory.accrosian.com/";
   ngOnInit(): void {
     //this.http.get('../assets/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
     let url = this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime();
@@ -43,7 +46,20 @@ export class StuvationComponent implements OnInit {
       console.log(this.teamDetails);
       console.log(this.stuvationdetails);
     });
+    this.getstuationData();
   }
+
+  ResponseData = [];
+  getstuationData() {
+    let userDetails = this.getLoggedInUserObject();
+    this.httpnew.get(this.Baseurl + 'stuvation_list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
+      this.ResponseData = response.json().data;
+      console.log(this.ResponseData);
+    });
+  }
+
+
+
 
   stuvationFilter: any = { projectType: '', projectTitle: '', technologyname: '', subtechname: '' };
 

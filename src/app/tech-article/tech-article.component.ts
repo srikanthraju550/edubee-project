@@ -45,11 +45,14 @@ export class TechArticleComponent implements OnInit {
 
   ResponseData: any = [];
   file_path: string;
+  file_path1: string;
   getArticles() {
     let userDetails = this.getLoggedInUserObject();
     this.httpnew.get(this.Baseurl + 'tech-article-list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
       this.ResponseData = response.json().data;
-      this.file_path = response.json().file_path;
+      console.log(this.ResponseData);
+      this.file_path = response.json().image_path;
+      this.file_path1 = response.json().file_path;
       // console.log(this.ResponseData);
     });
   }
@@ -109,41 +112,27 @@ export class TechArticleComponent implements OnInit {
   buyNowModelClick(techarticle) {
     let userDetails = this.getLoggedInUserObject();
     this.selectedTecharticle = techarticle;
-    let requestObject = {
-      "articleid": techarticle.articleid,
-      "userid": userDetails['userid']
-    };
 
-    this.http.post(this.endpoint + 'buynowArticleRegister.php', requestObject, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
-      //this.http.post('http://localhost:8080/edubee/articleUpDownCount.php', requestObject,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-      console.log(data);
-      let parsedData: JSON = JSON.parse('' + data);
-      console.log(parsedData);
-      //this.articlecomments=parsedData['articlecomments'];
-
-    });
   }
   mailContent = "";
-  sendMailToAuthorForPurchase(techarticleid, mailContent) {
+  sendMailToAuthorForPurchase() {
     let userDetails = this.getLoggedInUserObject();
-    let requestObject = {
-      "articleid": techarticleid,
-      "mailContent": mailContent,
-      "userid": userDetails['userid']
-    };
+    let requestObject = 'user_id=' + userDetails['user_id'] + '&tech_article_id=' + this.selectedTecharticle.tech_article_id +
+      '&name=' + this.selectedTecharticle.user_name + '&message=' + this.mailContent
 
-    this.http.post(this.endpoint + 'mailToAuthorForPurchase.php', requestObject, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
-      //this.http.post('http://localhost:8080/edubee/articleUpDownCount.php', requestObject,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-      console.log(data);
-      let parsedData: JSON = JSON.parse('' + data);
-      console.log(parsedData);
-      if (parsedData['mailSent'] == 'done') {
-        alert('Mail sent Successfully. Author will contact you.');
-        this.mailContent = "";
-        document.getElementById("closeBuynowModal").click();
-      } else if (parsedData['mailSent'] == 'failed') {
-        alert('Failed to update');
+    const headers = new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+
+    this.httpnew.post(this.Baseurl + 'buy-tech-article', requestObject, { headers: headers }).subscribe(res => {
+      if (res.json().status === true) {
+        alert(res.json().message);
+        document.getElementById("buynowModal").click();
+        this.ngOnInit();
+      } else {
+        alert(res.json().message);
       }
+      //this.articlecomments=parsedData['articlecomments'];
 
     });
   }

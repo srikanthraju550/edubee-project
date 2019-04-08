@@ -180,9 +180,10 @@
 
 
                   <div><b class="crd-lft">Name</b> <span class="crd-ryt">: {{techtalkdata.user_name}}</span></div>
-                  <div><b class="crd-lft">Contact Number</b> <span class="crd-ryt">:
+                  <div><b class="crd-lft">Contact Number</b> <span class="crd-ryt">: {{techtalkdata.contact_email}}
                     </span></div>
                   <div><b class="crd-lft">Email</b> <span class="crd-ryt" style="font-size: 14px;">:
+                      {{techtalkdata.contact_number}}
                     </span></div>
 
                   <br />
@@ -214,7 +215,7 @@
                       data-toggle="modal" data-target="#detailsModal">View Detail's</button>
                   </li>
                   <li class="nav-item" *ngIf="!checkLoginStatus()">
-                    <button class="nav-link btn btn-light buttonarticle" 
+                    <button class="nav-link btn btn-light buttonarticle"
                       (click)="applyForEventTechTalk(techtalkdata)">Apply for the event</button>
                   </li>
                 </ul>

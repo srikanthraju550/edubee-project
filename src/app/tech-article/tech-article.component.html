@@ -120,7 +120,7 @@
 
             <div class="col-md-3 tec_mdl">
 
-              <img class="profilepicture" *ngIf="techarticle.profile_image!==''"
+              <img class="profilepicture" *ngIf="techarticle.profile_image!=='' || techarticle.profile_image!==null"
                 [src]="file_path + techarticle.profile_image" alt="Profile Pic">
               <img class="profilepicture" *ngIf="techarticle.profile_image==''" src="../assets/images/user-dummy.png"
                 alt="Profile Pic">
@@ -150,9 +150,9 @@
 
               <ul *ngIf="!checkLoginStatus()" class="nav nav-pills">
 
-                <li class="nav-item ">
-                  <button class="nav-link btn btn-light buybutton buttonarticle"
-                    *ngIf="techarticle.cost!='' && techarticle.article_type=='Article'" data-toggle="modal"
+                <li class="nav-item " *ngIf="techarticle.cost!='' && techarticle.article_type=='Article'">
+
+                  <button class="nav-link btn btn-light buybutton buttonarticle" data-toggle="modal"
                     data-target="#buynowModal" (click)="buyNowModelClick(techarticle)">Buy
                     Now</button>
                 </li>
@@ -179,6 +179,13 @@
                     data-toggle="modal" data-target="#buynowModal1"
                     (click)="viewTechTeachDetails(techarticle)">View/Download
                     full Article</button>
+                </li>
+                <li class="nav-item"
+                  *ngIf="techarticle.publication_file!='' && techarticle.publication_file!=null && techarticle.article_type == 'Article'">
+                  <a [href]=" file_path1 + techarticle.publication_file" target="_blank" download>
+                    <button class="nav-link btn btn-light veiwbutton buttonarticle" data-toggle="modal">View/Download
+                      full Article</button>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -311,24 +318,24 @@
           id="closeBuynowModal">&times;</button>
       </div>
       <div class="modal-body">
-        <h2>Kindly provide your contact details for purchase(Mail will be sent to Author)</h2>
-        <!-- <div class="card">
+        <h4>Kindly provide your contact details for purchase(Mail will be sent to Author)</h4>
+        <div class="card">
           <div class="card-body row">
             <div class="col-10">
               <b>Author Name</b> :
-              <br/>{{selectedTecharticle.name}}
-              <br/>
+              <br />{{selectedTecharticle.user_name}}
+              <br />
               <b>Author Email</b> :
-              <br/>{{selectedTecharticle.emailaddress}}
-              <br/>
+              <br />{{selectedTecharticle.contact_email}}
+              <br />
               <b>Author Contact Number</b> :
-              <br/>{{selectedTecharticle.contactnumber}}
-              <br/>
+              <br />{{selectedTecharticle.contact_number}}
+              <br />
 
             </div>
-            
+
           </div>
-        </div> -->
+        </div>
         <div class="card">
           <div class="card-body row">
             <div class="col-10">
@@ -337,8 +344,7 @@
             </div>
             <div class="col-2">
               <button class="btn btn-light" [disabled]="mailContent==''"
-                style="background-color: #9A9A9A;height: 2.5em;"
-                (click)="sendMailToAuthorForPurchase(selectedTecharticle.articleid, mailContent)">
+                style="background-color: #9A9A9A;height: 2.5em;" (click)="sendMailToAuthorForPurchase()">
                 Send Mail
               </button>
             </div>

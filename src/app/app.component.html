@@ -30,12 +30,15 @@
 
 
                 <li *ngIf="!checkLoginStatus()">
-                    <a href="#" class="main-header">PROFILE <i class="fa fa-caret-down"
+                    <a href="#" class="main-header">PROFILE <i class="fa fa-caret-right"
                             style="display: inline;"></i></a>
-                    <ul class="hidden sub-drop">
+                    <ul class="hidden sub-drop" style="position:absolute;margin-left:104px;top:-15px;">
                         <li class="sub-menu-header"><a class="dropdown-item" routerLink="/myprofile">MY PROFILE</a></li>
                         <li class="sub-menu-header"><a class="dropdown-item" routerLink="/engshipRequest">Engship
                                 Requests</a></li>
+                        <li class="sub-menu-header"><a class="dropdown-item" [routerLink]="['/staticContent','myTechBank']">My Tech Bank</a></li>
+                        <li class="sub-menu-header"><a class="dropdown-item" [routerLink]="['/staticContent','myTechConnect']">My Tech Connect</a></li>
+                        <li class="sub-menu-header"><a class="dropdown-item" [routerLink]="['/staticContent','myStuation']">My Stuation</a></li>
                         <li class="sub-menu-header"><a class="dropdown-item" (click)="logout()">LOGOUT</a>
 
                     </ul>
@@ -461,7 +464,7 @@
                     enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-6">
-                            <label for="projectType">Project Type:</label>
+                            <label for="projectType">*Project Type:</label>
                             <select type="text" class="form-control" formControlName="projectType">
                                 <option [value]="5">
                                     Innovation</option>
@@ -469,7 +472,7 @@
 
                         </div>
                         <div class="form-group col-6">
-                            <label for="projectStatus">Project Status:</label>
+                            <label for="projectStatus">*Project Status:</label>
                             <select type="text" class="form-control" formControlName="projectStatus">
                                 <option value="completed">COMPLETED</option>
                                 <option value="ongoing">ONGOING</option>
@@ -481,18 +484,20 @@
 
                     <div class="row">
                         <div class="form-group col-6">
-                            <label for="technology">Engineering Technology:</label>
-                            <select type="text" class="form-control" formControlName="technology"
-                                (change)="updateSubTechList(createStuvationForm.value.technology)">
-                                <option *ngFor="let technology of technologyconfig; let i = index;"
-                                    [value]="technology.technologyid">{{technology.technologyname}}</option>
+                            <label for="technology">*Engineering Technology:</label>
+                            <select type="text" class="form-control" (change)="getSubTechList($event.target.value)"
+                                formControlName="technology_id" name="technology_id">
+                                <option *ngFor="let technology of technologyList; let i = index;"
+                                    [value]="technology.technology_id">{{technology.name}}</option>
                             </select>
+
                         </div>
-                        <div *ngIf="subtechnologylist?.length!=0" class="form-group col-6">
-                            <label for="subtechnology">Sub-Engineering Technology:</label>
-                            <select type="text" class="form-control" formControlName="subtechnology">
+                        <div *ngIf="subtechnologylist?.length!==0" class="form-group col-6">
+                            <label for="subtechnology">*Sub-Engineering Technology:</label>
+                            <select type="text" class="form-control" formControlName="sub_technology_id"
+                                name="sub_technology_id" (change)="getSubtechId($event.target.value)">
                                 <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
-                                    [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
+                                    [value]="subtechnology.sub_tech_id">{{subtechnology.name}}</option>
                             </select>
                         </div>
                     </div>
@@ -500,7 +505,7 @@
                     <h3>Innovation Details</h3>
                     <div class="row">
                         <div class="form-group col-12">
-                            <label for="idea">Idea:</label>
+                            <label for="idea">*Idea:</label>
                             <input type="text" class="form-control" formControlName="idea">
                         </div>
 
@@ -509,7 +514,7 @@
                     <div class="row">
                         <div class="form-group col-12">
 
-                            <label for="ideaDescription">Idea Description:</label>
+                            <label for="ideaDescription">*Idea Description:</label>
                             <textarea class="form-control" formControlName="ideaDescription" maxlength="500"></textarea>
                         </div>
                     </div>
@@ -618,10 +623,10 @@
                             <input type="text" class="form-control" formControlName="noOfSponsors">
                         </div>
                     </div>
+                    <!-- [ngClass]="{'disable-btn':!createStuvationForm.valid || createStuvationForm.value.idea=='' || createStuvationForm.value.ideaDescription==''}"
+                            [disabled]="!createStuvationForm.valid || createStuvationForm.value.idea=='' || createStuvationForm.value.ideaDescription==''" -->
                     <div style="width: 100%; text-align: center; align-items: center">
-                        <button type="submit" class="btn btn-primary"
-                            [ngClass]="{'disable-btn':!createStuvationForm.valid || createStuvationForm.value.idea=='' || createStuvationForm.value.ideaDescription==''}"
-                            [disabled]="!createStuvationForm.valid || createStuvationForm.value.idea=='' || createStuvationForm.value.ideaDescription==''">Create
+                        <button type="submit" class="btn btn-primary">Create
                         </button>
                     </div>
                 </form>
@@ -898,7 +903,7 @@
 </div>
 
 <div id="createProjectModal" class="modal fade" role="dialog">
-    <div class="modal-dialog stuv-popup" style="">
+    <div class="modal-dialog stuv-popup">
 
         <!-- Modal content-->
         <div class="modal-content">
@@ -914,16 +919,17 @@
                     enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-6">
-                            <label for="projectType">Project Type:</label>
-                            <select type="text" class="form-control" formControlName="projectType">
+                            <label for="projectType">*Project Type:</label>
+                            <select type="text" class="form-control" formControlName="projectType"
+                                (change)="selectProjectType($event.target.value)">
 
-                                <option *ngFor="let stuvationtype of stuvationtypeconfig; let i = index;"
-                                    [value]="stuvationtype.typeId">{{stuvationtype.stuvationTypeValue
+                                <option *ngFor="let stuvationtype of projectTypeList; let i = index;"
+                                    [value]="stuvationtype.project_type_id">{{stuvationtype.name
                                     | uppercase}}</option>
                             </select>
                         </div>
                         <div class="form-group col-6">
-                            <label for="projectStatus">Project Status:</label>
+                            <label for="projectStatus">*Project Status:</label>
                             <select type="text" class="form-control" formControlName="projectStatus">
                                 <option value="completed">COMPLETED</option>
                                 <option value="ongoing">ONGOING</option>
@@ -931,29 +937,31 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="title">Title:</label>
+                        <label for="title">*Title:</label>
                         <input type="text" class="form-control" formControlName="title">
                     </div>
                     <div class="form-group">
-                        <label for="abstract">Abstract:</label>
+                        <label for="abstract">*Abstract:</label>
                         <textarea class="form-control" formControlName="abstract" placeholder="1000 words"
                             maxlength="1000"></textarea>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-6">
-                            <label for="technology">Engineering Technology:</label>
-                            <select type="text" class="form-control" formControlName="technology"
-                                (change)="updateSubTechList(createStuvationForm.value.technology)">
-                                <option *ngFor="let technology of technologyconfig; let i = index;"
-                                    [value]="technology.technologyid">{{technology.technologyname}}</option>
+                            <label for="technology">*Engineering Technology:</label>
+                            <select type="text" class="form-control" (change)="getSubTechList($event.target.value)"
+                                formControlName="technology_id" name="technology_id">
+                                <option *ngFor="let technology of technologyList; let i = index;"
+                                    [value]="technology.technology_id">{{technology.name}}</option>
                             </select>
+
                         </div>
-                        <div *ngIf="subtechnologylist?.length!=0" class="form-group col-6">
-                            <label for="subtechnology">Sub-Engineering Technology:</label>
-                            <select type="text" class="form-control" formControlName="subtechnology">
+                        <div *ngIf="subtechnologylist?.length!==0" class="form-group col-6">
+                            <label for="subtechnology">*Sub-Engineering Technology:</label>
+                            <select type="text" class="form-control" formControlName="sub_technology_id"
+                                name="sub_technology_id" (change)="getSubtechId($event.target.value)">
                                 <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
-                                    [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
+                                    [value]="subtechnology.sub_tech_id">{{subtechnology.name}}</option>
                             </select>
                         </div>
                     </div>
@@ -963,7 +971,7 @@
                     <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
                         <div class="form-group col-6">
                             <br />
-                            <label for="prototypeAvailable">Prototype Available :</label>
+                            <label for="prototypeAvailable">*Prototype Available :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="prototypeAvailable" formControlName="prototypeAvailable" selected
                                 value="Y">&nbsp;
@@ -1000,7 +1008,7 @@
 
                             <label for="expectedBudget">Expected Budget :</label>
                             &nbsp;&nbsp;
-                            <input type="text" class="form-control" formControlName="expectedBudget">
+                            <input type="text" myNumberOnly class="form-control" formControlName="expectedBudget">
                         </div>
                     </div>
 
@@ -1021,7 +1029,7 @@
 
                             <label for="teamSize">Team Size :</label>
                             &nbsp;&nbsp;
-                            <input type="text" class="form-control" formControlName="teamSize">
+                            <input myNumberOnly type="text" class="form-control" formControlName="teamSize">
                         </div>
 
                     </div>
@@ -1042,7 +1050,7 @@
 
                             <label for="lastDateOfJoining">Last Date of joining :</label>
                             &nbsp;&nbsp;
-                            <input type="date" class="form-control" formControlName="lastDateOfJoining"
+                            <input myNumberOnly type="date" class="form-control" formControlName="lastDateOfJoining"
                                 min='{{this.minDateString}}'>
                         </div>
                     </div>
@@ -1063,13 +1071,13 @@
 
                             <label for="noOfSponsors">Number of sponsors required :</label>
                             &nbsp;&nbsp;
-                            <input type="text" class="form-control" formControlName="noOfSponsors">
+                            <input myNumberOnly type="text" class="form-control" formControlName="noOfSponsors">
                         </div>
                     </div>
+                    <!-- [ngClass]="{'disable-btn':!createStuvationForm.valid || createStuvationForm.value.title=='' || createStuvationForm.value.abstract==''}"
+                    [disabled]="!createStuvationForm.valid || createStuvationForm.value.title=='' || createStuvationForm.value.abstract==''" -->
                     <div style="width: 100%; text-align: center; align-items: center">
-                        <button type="submit" class="btn btn-primary"
-                            [ngClass]="{'disable-btn':!createStuvationForm.valid || createStuvationForm.value.title=='' || createStuvationForm.value.abstract==''}"
-                            [disabled]="!createStuvationForm.valid || createStuvationForm.value.title=='' || createStuvationForm.value.abstract==''">Create
+                        <button type="submit" class="btn btn-primary">Create
                         </button>
 
                     </div>
@@ -1319,7 +1327,8 @@
 
                     <div class="form-group">
                         <label for="topic">*Tech Talk Type:</label>
-                        <select type="text" class="form-control" formControlName="techtalktype" (change)="selectTechtalkType($event.target.value)">
+                        <select type="text" class="form-control" formControlName="techtalktype"
+                            (change)="selectTechtalkType($event.target.value)">
                             <option *ngFor="let type of techTalkTypeList; let i = index;" [value]="type.type_id">
                                 {{type.name}}</option>
                         </select>
@@ -1526,7 +1535,8 @@
 
                     <div class="form-group">
                         <label for="topic">*Tech Talk Type:</label>
-                        <select type="text" class="form-control" formControlName="techtalktype" (change)="selectTechtalkType($event.target.value)">
+                        <select type="text" class="form-control" formControlName="techtalktype"
+                            (change)="selectTechtalkType($event.target.value)">
                             <option *ngFor="let type of techTalkTypeList; let i = index;" [value]="type.type_id">
                                 {{type.name}}</option>
                         </select>

@@ -222,6 +222,8 @@ export class AppComponent {
   submitted = false;
   userImagePath;
   technologyList = [];
+  projectTypeList = [];
+  projectTypeId;
   ngOnInit(): void {
     let today = new Date();
     this.userImagePath = sessionStorage.getItem('userImagePath');
@@ -234,24 +236,32 @@ export class AppComponent {
       url += "?userid=" + userDetails['user_id'];
 
     this.http.get(url).subscribe(data => {
-      this.sliderContent = data['0'].sliderContent;
-      this.teamDetails = data['1'].teamDetails;
-      this.homePageContent = data['3'].homePageData;
-      this.technologyconfig = data['6'].technologyconfig;
-      this.subtechnologyconfig = data['7'].subtechnologyconfig;
-      this.techTalkTypeConfig = data['8'].techtalktypeconfig;
-      this.techTeachTypeConfig = data['9'].techteachtypeconfig;
-      this.stuvationtypeconfig = data['11'].stuvationtypeconfig;
+      // this.sliderContent = data['0'].sliderContent;
+      // this.teamDetails = data['1'].teamDetails;
+      // this.homePageContent = data['3'].homePageData;
+      // this.technologyconfig = data['6'].technologyconfig;
+      // this.subtechnologyconfig = data['7'].subtechnologyconfig;
+      // this.techTalkTypeConfig = data['8'].techtalktypeconfig;
+      // this.techTeachTypeConfig = data['9'].techteachtypeconfig;
+      // this.stuvationtypeconfig = data['11'].stuvationtypeconfig;
       // this.updateSubTechList(this.createTechArticleForm.value.technology);
     });
     this.getTechnologyList();
+    this.getProjecttype();
+  }
+  getProjecttype() {
+    this.http.get(this.endpoint + 'project-type').subscribe(res => {
+      this.projectTypeList = res.json().data;
+    })
   }
 
+  selectProjectType(value) {
+    this.projectTypeId = value;
+  }
 
   getTechnologyList() {
     this.http.get(this.endpoint + 'technology-list').subscribe(res => {
       this.technologyList = res.json().data;
-
     })
   }
 
@@ -289,9 +299,9 @@ export class AppComponent {
     projectType: ['', Validators.required],
     projectStatus: ['', Validators.required],
     title: [''],
-    abstract: ['', Validators.required],
-    subtechnology: [''],
-    technology: [''],
+    abstract: [''],
+    sub_technology_id: ['', Validators.required],
+    technology_id: ['', Validators.required],
     idea: [''],
     ideaDescription: [''],
     prototypeAvailable: ['Y'],
@@ -301,7 +311,6 @@ export class AppComponent {
     lookingMentorship: ['Y'],
     lookingStudentPartner: ['Y'],
     lookingSponsorship: ['Y'],
-    userDetails: this.fb.group(this.getLoggedInUserObject()),
 
     teamSize: [''],
     lastDateOfJoining: ['1'],
@@ -445,26 +454,73 @@ export class AppComponent {
   }
 
   onCreateStuvationFormSubmit() {
-    this.createStuvationForm.value.userDetails = this.getLoggedInUserObject();
-    console.warn(this.createStuvationForm.value);
+
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.createStuvationForm.invalid) {
+      alert('Required fields Missing');
+      return;
+    }
+
+    let userDetails = this.getLoggedInUserObject();
     const headers = new Headers({
-      'Content-Type': 'multipart/form-data'
+      'Content-Type': 'application/x-www-form-urlencoded'
     });
-    this.http.post(this.endpoint + 'createStuvation.php', this.createStuvationForm.value, { headers: headers }).subscribe(data => {
-      //this.http.post('http://localhost:8080/edubee/createTechArticle.php', this.createTechArticleForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-      console.log(data);
-      let parsedData: JSON = JSON.parse('' + data);
-      console.log(parsedData);
-      if (parsedData['stuvationdetailsquery'] == 'done') {
-        alert('Stuvation has been sent for Admin Approval. After confirmation it will be reflected.');
-        document.getElementById("closeCreateStuvationFormModal").click();
-        location.reload();
-      } else if (parsedData['stuvationdetailsquery'] == 'failed') {
-        alert('Stuvation creation Failed');
 
-      }
 
-    });
+    var params = 'user_id=' + userDetails['user_id'] +
+      '&project_type_id=' + this.projectTypeId
+    '&project_status=' + this.createStuvationForm.value.projectStatus +
+      '&title=' + this.createStuvationForm.value.title +
+      '&technology_id=' + this.techId +
+      '&sub_technology_id=' + this.subTechId +
+      '&abstract=' + this.createStuvationForm.value.abstract +
+      '&idea=' + this.createStuvationForm.value.idea +
+      '&idea_desc=' + this.createStuvationForm.value.ideaDescription +
+      '&is_looking_for_mentorship=' + this.createStuvationForm.value.lookingMentorship +
+
+
+      this.http.post(this.Baseurl + 'create-stuvation', params, { headers: headers }).subscribe(data => {
+        if (data.json().status === true) {
+          alert(data.json().message);
+          document.getElementById("createProjectModal").click();
+          document.getElementById("createStuvationModal").click();
+          this.router.navigate(['/techbank'])
+          location.reload();
+        } else {
+          alert(data.json().message);
+        }
+
+
+      });
+
+
+
+
+
+
+
+    // this.createStuvationForm.value.userDetails = this.getLoggedInUserObject();
+    // console.warn(this.createStuvationForm.value);
+    // const headers = new Headers({
+    //   'Content-Type': 'multipart/form-data'
+    // });
+    // this.http.post(this.endpoint + 'createStuvation.php', this.createStuvationForm.value, { headers: headers }).subscribe(data => {
+    //   //this.http.post('http://localhost:8080/edubee/createTechArticle.php', this.createTechArticleForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
+    //   console.log(data);
+    //   let parsedData: JSON = JSON.parse('' + data);
+    //   console.log(parsedData);
+    //   if (parsedData['stuvationdetailsquery'] == 'done') {
+    //     alert('Stuvation has been sent for Admin Approval. After confirmation it will be reflected.');
+    //     document.getElementById("closeCreateStuvationFormModal").click();
+    //     location.reload();
+    //   } else if (parsedData['stuvationdetailsquery'] == 'failed') {
+    //     alert('Stuvation creation Failed');
+
+    //   }
+
+    // });
   }
 
 
