@@ -69,15 +69,13 @@
                 </li>
 
                 <li class="nav-item" style="margin-left:2%">
-                  <!-- <button *ngIf="!checkLoginStatus() && techarticle.is_followed== 'FALSE'" -->
-                      <button 
+                  <button *ngIf="!checkLoginStatus() && techarticle.is_followed== 'FALSE'"                    
                     class="nav-link btn btn-light buttonarticle"
                     style=" margin-left: 0 !important; color: white !important;"
                     (click)="followerUpdate(techarticle.tech_article_id,'1');">Follow</button> </li>
 
                 <li class="nav-item" style="margin-left:2%">
-                  <!-- <button *ngIf="!checkLoginStatus() && techarticle.is_followed== 'TRUE'" -->
-                      <button 
+                  <button *ngIf="!checkLoginStatus() && techarticle.is_followed== 'TRUE'"                    
                     class="nav-link btn btn-light buttonarticle"
                     style=" margin-left: 0 !important; color: white !important;"
                     (click)="followerUpdate(techarticle.tech_article_id,'2');">Unfollow</button>
@@ -286,4 +284,53 @@
 
 </div>
 </div>
+</div>
+
+
+
+<div id="buynowModal1" class="modal fade" role="dialog">
+  <div class="modal-dialog createarticle1">
+    <div class="col-12" style="margin-top: 1em;">
+      <div class="modal-content">
+
+        <div class="modal-header" style="background-color: #33099e; text-align: center; align-items: center;">
+          <span style="text-align: center; color: white; width: 100%;">
+            <h4>Tech Article Details</h4>
+          </span>
+          <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+            id="closeDetailsModal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-4 col-sm-12 col-xs-12">
+              <br />
+              <b>Article Type</b> : {{articletype}}
+              <br />
+              <b>Title</b> : {{articletitle}}
+              <br />
+              <b>Email</b> : {{emailaddress}}
+              <br />
+              <b>Contact Number</b> : {{contactnumber}}
+
+              <br />
+              <span *ngIf="showcost"> <b>Cost</b> : {{cost}}</span>
+
+            </div>
+            <div class="col-md-8 col-sm-12 col-xs-12">
+              <br />
+
+              <b>Engineering Technology</b> : {{technologyname}}
+              <br />
+              <b>Sub-Engineering Technology</b> : {{subtechname}}
+              <br />
+
+              <b>Abstract</b> : <span style="text-align:justify">{{abstract}}</span>
+              <br />
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

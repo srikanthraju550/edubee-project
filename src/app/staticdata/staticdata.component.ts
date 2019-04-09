@@ -113,5 +113,36 @@ export class StaticdataComponent implements OnInit {
     });
   }
 
+  checkLoginStatus(): boolean {
+    return this.mainService.checkLoginStatus();
+  }
+  articletype;
+  articletitle;
+  emailaddress;
+  contactnumber;
+  cost;
+  technologyname;
+  subtechname;
+  abstract;
+  showcost = false;
+  viewTechTeachDetails(techTeach): void {
+    for (var i = 0; i < this.getMyTechBankDataList.length; i++) {
+      if (techTeach.tech_article_id === this.getMyTechBankDataList[i].tech_article_id) {
+        this.articletype = this.getMyTechBankDataList[i].article_type;
+        this.articletitle = this.getMyTechBankDataList[i].title;
+        this.emailaddress = this.getMyTechBankDataList[i].contact_email;
+        this.contactnumber = this.getMyTechBankDataList[i].contact_number;
+        this.cost = this.getMyTechBankDataList[i].cost;
+        this.technologyname = this.getMyTechBankDataList[i].technology;
+        this.subtechname = this.getMyTechBankDataList[i].sub_technology;
+        this.abstract = this.getMyTechBankDataList[i].abstract;
+        if (this.getMyTechBankDataList[i].article_type == 'Article') {
+          this.showcost = true;
+        }
+        return;
+      }
+    }
+  }
+
 
 }
