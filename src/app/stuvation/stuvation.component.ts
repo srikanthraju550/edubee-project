@@ -52,7 +52,7 @@ export class StuvationComponent implements OnInit {
   ResponseData = [];
   getstuationData() {
     let userDetails = this.getLoggedInUserObject();
-    this.httpnew.get(this.Baseurl + 'stuvation_list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
+    this.httpnew.get(this.Baseurl + 'stuvation-list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
       this.ResponseData = response.json().data;
       console.log(this.ResponseData);
     });
@@ -61,7 +61,7 @@ export class StuvationComponent implements OnInit {
 
 
 
-  stuvationFilter: any = { projectType: '', projectTitle: '', technologyname: '', subtechname: '' };
+  stuvationFilter: any = { title: '', technology: '', sub_technology: '' };
 
   keywordFilter = "";
   techFilter = "";

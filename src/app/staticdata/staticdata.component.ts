@@ -7,8 +7,8 @@ import { MainServiceService } from '../main-service.service';
   selector: 'app-staticdata',
   templateUrl: './staticdata.component.html',
   styleUrls: ['./staticdata.component.css',
-              '../tech-article/tech-article.component.css',
-              '../tech-bank/tech-bank.component.css']
+    '../tech-article/tech-article.component.css',
+    '../tech-bank/tech-bank.component.css']
 })
 export class StaticdataComponent implements OnInit {
   file_path: string;
@@ -21,14 +21,13 @@ export class StaticdataComponent implements OnInit {
   showTechconnect: boolean;
   showstuation: boolean;
   getMyTechBankDataList = [];
-  getMyTechConnctData=[];
-  getMyTechTalktData=[];
-  StuvResponseData=[];
-  getMyStuvData=[];
+  getMyTechConnctData = [];
+  getMyTechTalktData = [];
+  StuvResponseData = [];
+  getMyStuvData = [];
   constructor(private route: ActivatedRoute, private http: Http, private mainService: MainServiceService) {
     this.route.params.subscribe((params: Params) => {
       this.action = params['action'];
-<<<<<<< HEAD
       if (this.action == 'myTechBank') {
         this.getMyTechBankData();
         this.showTechbank = true;
@@ -49,34 +48,9 @@ export class StaticdataComponent implements OnInit {
 
   }
 
-  ngOnInit() {
 
-=======
-  
-
-    if (this.action == 'myTechBank') {
-      this.getMyTechBankData();
-      this.showTechbank = true;
-      this.showTechconnect = false;
-      this.showstuation = false;
-    } else if (this.action == 'myTechConnect') {
-      this.getMyTechConnectData();
-      this.getMyTechtalkData();
-      this.showTechbank = false;
-      this.showTechconnect = true;
-      this.showstuation = false;
-    } else if (this.action == 'myStuation') {
-      this.getMyStuation();
-      this.showTechbank = false;
-      this.showTechconnect = false;
-      this.showstuation = true;
-    }
-  });
-  }
 
   ngOnInit() {
-  
->>>>>>> 727563fe3ba05dc7558c19546ffbbbf3ae6d6eda
   }
 
 
@@ -85,7 +59,7 @@ export class StaticdataComponent implements OnInit {
   }
 
   getMyTechBankData() {
-    this.getMyTechBankDataList=[];
+    this.getMyTechBankDataList = [];
     let userDetails = this.getLoggedInUserObject();
     this.http.get(this.Baseurl + 'tech-article-list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
       this.ResponseData = response.json().data;
@@ -99,7 +73,7 @@ export class StaticdataComponent implements OnInit {
     });
   }
   getMyTechConnectData() {
-    this.getMyTechConnctData=[];
+    this.getMyTechConnctData = [];
     let userDetails = this.getLoggedInUserObject();
     this.http.get(this.Baseurl + 'tech-teach-list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
       this.TechResponseData = response.json().data;
@@ -112,7 +86,7 @@ export class StaticdataComponent implements OnInit {
     });
   }
   getMyTechtalkData() {
-    this.getMyTechTalktData= [];
+    this.getMyTechTalktData = [];
     let userDetails = this.getLoggedInUserObject();
     this.http.get(this.Baseurl + 'tech-talk-list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
       this.TechtlkResponseData = response.json().data;
@@ -125,9 +99,9 @@ export class StaticdataComponent implements OnInit {
     });
   }
   getMyStuation() {
-    this.getMyStuvData= [];
+    this.getMyStuvData = [];
     let userDetails = this.getLoggedInUserObject();
-    this.http.get(this.Baseurl + 'stuvation_list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
+    this.http.get(this.Baseurl + 'stuvation-list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
       this.StuvResponseData = response.json().data;
       for (var i = 0; i < this.StuvResponseData.length; i++) {
         if (this.StuvResponseData[i].user_id === userDetails['user_id']) {
