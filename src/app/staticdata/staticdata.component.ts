@@ -19,20 +19,28 @@ export class StaticdataComponent implements OnInit {
   constructor(private route: ActivatedRoute, private http: Http, private mainService: MainServiceService) {
     this.route.params.subscribe((params: Params) => {
       this.action = params['action'];
+      if (this.action == 'myTechBank') {
+        this.getMyTechBankData();
+        this.showTechbank = true;
+        this.showTechconnect = false;
+        this.showstuation = false;
+      } else if (this.action == 'myTechConnect') {
+        this.getMyTechConnectData();
+        this.showTechbank = false;
+        this.showTechconnect = true;
+        this.showstuation = false;
+      } else if (this.action == 'myStuation') {
+        this.getMyStuation();
+        this.showTechbank = false;
+        this.showTechconnect = false;
+        this.showstuation = true;
+      }
     });
+
   }
 
   ngOnInit() {
-    if (this.action == 'myTechBank') {
-      this.getMyTechBankData();
-      this.showTechbank = true;
-    } else if (this.action == 'myTechConnect') {
-      this.getMyTechConnectData();
-      this.showTechconnect = true;
-    } else if (this.action == 'myStuation') {
-      this.getMyStuation();
-      this.showstuation = true;
-    }
+
   }
 
 
