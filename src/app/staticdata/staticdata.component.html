@@ -1,3 +1,295 @@
+<<<<<<< HEAD
 <p *ngIf="showTechbank">
   staticdata works!
 </p>
+=======
+
+  <div class="container-fluid">
+   <div class="row">
+     <div class="col-12" style="margin-top: 1em;">
+
+    <div *ngIf="showTechbank">
+      <div class="card card-articles" *ngFor="let techarticle of getMyTechBankDataList| filterBy:techArticleFilter ; let i = index;" 
+        [ngClass]="{'techarticleRow1' : i%2==0 } ">
+
+      <div class="card-body">
+          <div class="row">
+            <div class="col-md-6 tec_lft">
+              <h6 class="art-type" style="color:#33099e;">{{techarticle.article_type}}</h6>
+
+              <b>Title</b> : {{techarticle.title}}
+              <br />
+              <b>Technology</b> : {{techarticle.technology}} ,
+              &nbsp;&nbsp;
+              <b>Sub-Technology</b> : {{techarticle.sub_technology}}
+              <br />
+              <b *ngIf="techarticle.article_type=='Article'">Price :
+                <span style="color:#255B88">{{techarticle.cost}} rs</span>
+              </b><br *ngIf="techarticle.article_type=='Article'" />
+              <b> Abstract </b>: {{techarticle.abstract}}
+
+
+            </div>
+
+
+            <div class="col-md-3 tec_mdl">
+
+              <!-- <img class="profilepicture" *ngIf="techarticle.profile_image!=='' || techarticle.profile_image!==null" -->
+              <img class="profilepicture"
+                [src]="file_path + techarticle.profile_image" alt="Profile Pic">
+              <!-- <img class="profilepicture" *ngIf="techarticle.profile_image==''" src="../assets/images/user-dummy.png"
+                alt="Profile Pic"> -->
+
+              <div class="">
+                <h5 class="card-title" style="color:#33099e;"><span class="title-name">
+                  </span><b>{{techarticle.user_name}}</b>
+                  <br />
+                  <span style="font-size: 0.85rem;color:rgb(22, 22, 22);"> ( {{techarticle.follow_count}} followers
+                    )</span>
+                </h5>
+                <div class="lke-dis">
+                  <!-- <button *ngIf="!checkLoginStatus() && techarticle.upCount!=='0'" class="btn btn-light buttonarticle"
+                    (click)="likeArticle(techarticle.tech_article_id,techarticle.like_count,techarticle.user_id)"
+                    style="display:inline">
+                    {{techarticle.like_count}}
+                    <img src="../assets/images/thumbsUp.png" alt="Card image cap" style="height:15px;">
+                  </button> -->
+                  &nbsp;&nbsp;
+
+                </div>
+                <br />
+              </div>
+            </div>
+
+            <div class="col-md-3 tec_ryt">
+
+              <!-- <ul *ngIf="!checkLoginStatus()" class="nav nav-pills"> -->
+                  <ul  class="nav nav-pills">
+
+                <li class="nav-item " *ngIf="techarticle.cost!='' && techarticle.article_type=='Article'">
+
+                  <button class="nav-link btn btn-light buybutton buttonarticle" data-toggle="modal"
+                    data-target="#buynowModal" (click)="buyNowModelClick(techarticle)">Buy
+                    Now</button>
+                </li>
+
+                <li class="nav-item" style="margin-left:2%">
+                  <!-- <button *ngIf="!checkLoginStatus() && techarticle.is_followed== 'FALSE'" -->
+                      <button 
+                    class="nav-link btn btn-light buttonarticle"
+                    style=" margin-left: 0 !important; color: white !important;"
+                    (click)="followerUpdate(techarticle.tech_article_id,'1');">Follow</button> </li>
+
+                <li class="nav-item" style="margin-left:2%">
+                  <!-- <button *ngIf="!checkLoginStatus() && techarticle.is_followed== 'TRUE'" -->
+                      <button 
+                    class="nav-link btn btn-light buttonarticle"
+                    style=" margin-left: 0 !important; color: white !important;"
+                    (click)="followerUpdate(techarticle.tech_article_id,'2');">Unfollow</button>
+                </li>
+                <li class="nav-item">
+                  <button class="nav-link btn btn-light commentbutton buttonarticle" data-toggle="modal"
+                    data-target="#commentsModal" (click)="showTechArticleComments(techarticle)">Comments</button>
+                </li>
+                <li class="nav-item">
+                  <button class="nav-link btn btn-light veiwbutton buttonarticle"
+                    *ngIf="techarticle.publication_link!='' &&  techarticle.article_type =='white paper' || techarticle.article_type =='Research Paper' "
+                    data-toggle="modal" data-target="#buynowModal1"
+                    (click)="viewTechTeachDetails(techarticle)">View/Download
+                    full Article</button>
+                </li>
+                <li class="nav-item"
+                  *ngIf="techarticle.publication_file!='' && techarticle.publication_file!=null && techarticle.article_type == 'Article'">
+                  <a [href]=" file_path1 + techarticle.publication_file" target="_blank" download>
+                    <button class="nav-link btn btn-light veiwbutton buttonarticle" data-toggle="modal">View/Download
+                      full Article</button>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <br />
+        </div>
+        
+  </div><!--loop end-->
+</div><!--showTechbank end-->
+
+
+<div *ngIf="showTechconnect">
+<div class="accordion" id="accordionExample" style="margin: 0em; ">
+<div class="card" *ngFor="let techteach of getMyTechConnctData | filterBy:techEventFilter ; let i = index; ">
+  <div class="card-header" id="teachheading{{1}}" data-toggle="" attr.data-target="#teachcollapse{{i}}"
+    aria-expanded="" attr.aria-controls="teachcollapse{{i}}">
+    <h5 class="mb-0">
+      <button *ngIf="i!=0" class="btn btn-link collapsed" type="button">
+        Tech Teach
+      </button>
+      <button *ngIf="i==0" class="btn btn-link" type="button">
+        Tech Teach
+      </button>
+    </h5>
+  </div>
+
+  <div id="teachcollapse{{i}}" [ngClass]="{'show' : i==0}" class="" attr.aria-labelledby="teachheading{{i}}"
+    data-parent="#accordionExample">
+    <div class="card-body teach-bdy">
+      <div class="col-12">
+
+        <span class="cardSubHeading crd-hdng">Tech Connect Details</span>
+        <div><b class="crd-lft">Type</b> <span class="crd-ryt">: {{techteach.tech_teach_type}}</span></div>
+        <div><b class="crd-lft">Topic</b> <span class="crd-ryt">: {{techteach.topic}}</span></div>
+        <div><b class="crd-lft">Abstract</b> <span class="crd-ryt">: {{techteach.abstract}}</span></div>
+        <div><b class="crd-lft">Technology</b> <span class="crd-ryt">: {{techteach.technology}}</span></div>
+        <div><b class="crd-lft">Sub Technology</b> <span class="crd-ryt">: {{techteach.sub_technology}}</span>
+        </div>
+        <!-- <div><b class="crd-lft">Created on</b> <span class="crd-ryt">: {{techteach.createdon}}</span></div>
+        <div><b class="crd-lft">Event on</b> <span class="crd-ryt">: {{techteach.venuedate}}</span></div>
+        <div><b class="crd-lft" style="font-size: 14px;">No.of People Applied</b> <span class="crd-ryt"> :
+            {{techteach.registrationCount}}</span></div> -->
+        <br />
+
+        <span class="cardSubHeading crd-hdng">Industrial Expert</span>
+        <div><b class="crd-lft">Name</b> <span class="crd-ryt">: {{techteach.user_name}}</span></div>
+        <div><b class="crd-lft">Company</b> <span class="crd-ryt">:
+            {{techteach.company}}</span></div>
+        <div><b class="crd-lft">Positionl</b> <span class="crd-ryt" style="font-size: 14px;">:
+            {{techteach.position}}</span></div>
+        <br />
+
+        <span class="cardSubHeading crd-hdng">Venue Details</span>
+        <div><b class="crd-lft">Place</b> <span class="crd-ryt">: {{techteach.place}}</span></div>
+        <div><b class="crd-lft">Address</b> <span class="crd-ryt">: {{techteach.address}}</span>
+        </div>
+        <div><b class="crd-lft" style="font-size: 13px;">City</b> <span class="crd-ryt">:
+            {{techteach.city}}</span></div>
+        <div><b class="crd-lft">Date</b> <span class="crd-ryt">: {{techteach.event_date}}</span></div>
+
+        <br />
+
+        <span class="cardSubHeading crd-hdng">Registration Details</span>
+
+        <div><b class="crd-lft">No. of Registration</b> <span class="crd-ryt">:
+            {{techteach.seat_capacity}}</span>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="crd-footr">
+      <ul class="nav nav-pills crd-btn-dv">
+        <li class="nav-item">
+          <button class="nav-link btn btn-light  buttonarticle" (click)="viewTechTeachDetails(techteach)"
+            data-toggle="modal" data-target="#detailsModal">View
+            Detail's</button>
+        </li>
+        <!-- <li class="nav-item" *ngIf="!checkLoginStatus()"> -->
+            <li class="nav-item" >
+          <button class="nav-link btn btn-light buttonarticle" style=""
+            (click)="applyForEventTechTalk(techteach)">Apply for this event</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </div><!--tech teach end-->
+
+  <div class="tech-tlk-contnr">
+      <div class="card" *ngFor="let techtalkdata of getMyTechTalktData | filter:techEventFilter; let i = index; ">
+        <div class="card-header" id="talkheading{{1}}" data-toggle="" attr.data-target="#talkcollapse{{i}}"
+          aria-expanded="false" attr.aria-controls="talkcollapse{{i}}">
+          <h5 class="mb-0">
+            <button *ngIf="i!=0 || (i==0 && techteachdetails?.length!=0)" class="btn btn-link collapsed"
+              type="button">
+              Tech Talk
+            </button>
+            <button *ngIf="i==0 && techteachdetails?.length==0" class="btn btn-link" type="button">
+              Tech Talk
+            </button>
+          </h5>
+        </div>
+
+        <div id="talkcollapse{{i}}" [ngClass]="{'show' : i==0 && techteachdetails?.length==0}" class=""
+          attr.aria-labelledby="talkheading{{i}}" data-parent="#accordionExample">
+          <div class="card-body talk-bdy">
+            <div class="col-12">
+              <span class="cardSubHeading crd-hdng">Tech Connect Details</span>
+              <div><b class="crd-lft">Type</b> <span class="crd-ryt">: {{techtalkdata.tech_talk_type}}</span></div>
+              <div><b class="crd-lft">Topic</b> <span class="crd-ryt">: {{techtalkdata.topic}}</span></div>
+              <div><b class="crd-lft">Abstract</b> <span class="crd-ryt">: {{techtalkdata.abstract}}</span></div>
+              <div><b class="crd-lft">Technology</b> <span class="crd-ryt">: {{techtalkdata.technology}}</span>
+              </div>
+              <div><b class="crd-lft">Sub Technology</b> <span class="crd-ryt">:
+                  {{techtalkdata.sub_technology}}</span>
+              </div>
+
+              <!-- <div><b class="crd-lft">Created on</b> <span class="crd-ryt">: {{techtalkdata.createdon}}</span></div>
+              <div><b class="crd-lft">Event on</b> <span class="crd-ryt">: {{techtalkdata.venuedate}}</span></div>
+              <div><b class="crd-lft" style="font-size: 14px;">No.of People Applied</b> <span class="crd-ryt"> :
+                  {{techtalkdata.registrationCount}}</span></div> -->
+              <br />
+
+              <span class="cardSubHeading crd-hdng">Industrial Expert</span>
+
+              <div><b class="crd-lft">Name</b> <span class="crd-ryt">: {{techtalkdata.user_name}}</span></div>
+              <div><b class="crd-lft">Company</b> <span class="crd-ryt">:
+                  {{techtalkdata.company}}</span></div>
+              <div><b class="crd-lft">Positionl</b> <span class="crd-ryt" style="font-size: 14px;">:
+                  {{techtalkdata.position}}</span></div>
+
+
+
+              <div><b class="crd-lft">Name</b> <span class="crd-ryt">: {{techtalkdata.user_name}}</span></div>
+              <div><b class="crd-lft">Contact Number</b> <span class="crd-ryt">: {{techtalkdata.contact_email}}
+                </span></div>
+              <div><b class="crd-lft">Email</b> <span class="crd-ryt" style="font-size: 14px;">:
+                  {{techtalkdata.contact_number}}
+                </span></div>
+
+              <br />
+
+              <span class="cardSubHeading crd-hdng">Venue Details</span>
+              <br />
+              <div><b class="crd-lft">Place</b> <span class="crd-ryt">: {{techtalkdata.place}}</span></div>
+              <div><b class="crd-lft">Address</b> <span class="crd-ryt">: {{techtalkdata.address}}</span></div>
+              <div><b class="crd-lft">City</b> <span class="crd-ryt">: {{techtalkdata.city}}</span></div>
+              <div><b class="crd-lft">Venue Date</b> <span class="crd-ryt">: {{techtalkdata.event_date}}</span>
+              </div>
+
+
+
+              <span class="cardSubHeading crd-hdng">Registration Details</span>
+
+              <div><b class="crd-lft">No. of Registration</b> <span class="crd-ryt">:
+                  {{techtalkdata.seat_capacity}}</span>
+              </div>
+
+
+            </div>
+          </div>
+
+          <div class="crd-footr">
+            <ul class="nav nav-pills crd-btn-dv">
+              <li class="nav-item">
+                <button class="nav-link btn btn-light  buttonarticle" (click)="viewTechTalkDetails(techtalkdata)"
+                  data-toggle="modal" data-target="#detailsModal">View Detail's</button>
+              </li>
+              <!-- <li class="nav-item" *ngIf="!checkLoginStatus()"> -->
+                  <li class="nav-item" >
+                <button class="nav-link btn btn-light buttonarticle"
+                  (click)="applyForEventTechTalk(techtalkdata)">Apply for the event</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+</div>
+</div>
+
+
+</div>
+</div>
+</div>
+>>>>>>> 727563fe3ba05dc7558c19546ffbbbf3ae6d6eda
