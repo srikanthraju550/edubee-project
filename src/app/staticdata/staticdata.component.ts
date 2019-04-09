@@ -28,6 +28,7 @@ export class StaticdataComponent implements OnInit {
   constructor(private route: ActivatedRoute, private http: Http, private mainService: MainServiceService) {
     this.route.params.subscribe((params: Params) => {
       this.action = params['action'];
+
   
 
     if (this.action == 'myTechBank') {
@@ -51,7 +52,6 @@ export class StaticdataComponent implements OnInit {
   }
 
   ngOnInit() {
-  
   }
 
 
