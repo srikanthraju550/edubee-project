@@ -15,7 +15,7 @@ export class TechBankComponent implements OnInit {
 
   // endpoint: string = "../assets/services/";
   endpoint: string = "../assets/services/";
-  Baseurl = "http://engfactory.accrosian.com/";
+  Baseurl = "http://theengineersfactory.com/dashboard/";
   constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private filterPipe: FilterPipe, private httpnew: Http) { }
   sliderContent: any = [];
   //homePageDataFromService=[];
@@ -165,6 +165,7 @@ export class TechBankComponent implements OnInit {
     this.showSubTech = false;
     this.showAuthor = false;
     this.showCost = false;
+    this.getTechnologyList();
   }
   selectSubTechnology() {
     this.showKeyword = false;
@@ -173,6 +174,7 @@ export class TechBankComponent implements OnInit {
     this.showSubTech = true;
     this.showAuthor = false;
     this.showCost = false;
+    this.getSubTechList();
   }
 
   selectAuthor() {
@@ -192,5 +194,19 @@ export class TechBankComponent implements OnInit {
     this.showCost = true;
   }
 
+  subtechnologylist: any = [];
+  technologyList = [];
+
+  getSubTechList() {
+    this.httpnew.get(this.Baseurl + 'sub-technology-list').subscribe(res => {
+      this.subtechnologylist = res.json().data;
+    })
+  }
+
+  getTechnologyList() {
+    this.httpnew.get(this.Baseurl + 'technology-list').subscribe(res => {
+      this.technologyList = res.json().data;
+    })
+  }
 
 }

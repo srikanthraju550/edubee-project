@@ -8,12 +8,13 @@ import { MainServiceService } from '../main-service.service';
   templateUrl: './staticdata.component.html',
   styleUrls: ['./staticdata.component.css',
     '../tech-article/tech-article.component.css',
-    '../tech-bank/tech-bank.component.css']
+    '../tech-bank/tech-bank.component.css',
+    '../stuvation/stuvation.component.css']
 })
 export class StaticdataComponent implements OnInit {
   file_path: string;
   action;
-  Baseurl = "http://engfactory.accrosian.com/";
+  Baseurl = "http://theengineersfactory.com/dashboard/";
   ResponseData = [];
   TechResponseData = [];
   TechtlkResponseData = [];
@@ -235,11 +236,27 @@ export class StaticdataComponent implements OnInit {
     this.selectedTechTalk = techTalk;
   }
 
+  stuvationcomments = [];
+  selectedStuvation;
+  stuationId;
+  showstuvationComments(stuation) {
+    this.showInput = false;
+    this.comment = '';
+    this.stuationId = stuation.stuation_id;
+    this.stuvationcomments = [];
+    let userDetails = this.getLoggedInUserObject();
+    this.userid = userDetails['name'].toString();
 
-
-
-
-
-
+    this.http.get(this.Baseurl + 'stuvation-comments-list' + '?stuvation_id=' + this.stuationId).subscribe(data => {
+      this.stuvationcomments = data.json().data;
+      for (var i = 0; i < this.stuvationcomments.length; i++) {
+        if (this.userid === this.stuvationcomments[i].user_id) {
+          this.stuvationcomments[i].showEdit = true;
+        } else {
+          this.stuvationcomments[i].showEdit = false;
+        }
+      }
+    });
+  }
 
 }

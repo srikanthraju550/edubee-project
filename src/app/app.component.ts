@@ -64,8 +64,8 @@ export class AppComponent {
 
 
   // endpoint: string = "../assets/services/"
-  endpoint: string = "http://engfactory.accrosian.com/";
-  Baseurl = "http://engfactory.accrosian.com/";
+  endpoint: string = "http://theengineersfactory.com/dashboard/";
+  Baseurl = "http://theengineersfactory.com/dashboard/";
   endpoint1: string = "http://theengineersfactory.com/assets/services/";
   strImage;
   userid;
@@ -83,6 +83,13 @@ export class AppComponent {
       reader.readAsDataURL(event.target.files[0]);
     }
   }
+
+  openRegistrationFprm() {
+    this.engineerRegistrationForm.reset();
+    this.studentRegistrationForm.reset();
+    this.strImage = '';
+  }
+
 
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
 
@@ -470,8 +477,8 @@ export class AppComponent {
 
 
     var params = 'user_id=' + userDetails['user_id'] +
-      '&project_type_id=' + this.projectTypeId
-    '&project_status=' + this.createStuvationForm.value.projectStatus +
+      '&project_type_id=' + this.projectTypeId +
+      '&project_status=' + this.createStuvationForm.value.projectStatus +
       '&title=' + this.createStuvationForm.value.title +
       '&technology_id=' + this.techId +
       '&sub_technology_id=' + this.subTechId +
@@ -479,21 +486,33 @@ export class AppComponent {
       '&idea=' + this.createStuvationForm.value.idea +
       '&idea_desc=' + this.createStuvationForm.value.ideaDescription +
       '&is_looking_for_mentorship=' + this.createStuvationForm.value.lookingMentorship +
+      '&prototype_available=' + this.createStuvationForm.value.prototypeAvailable +
+      '&ref_link=' + this.createStuvationForm.value.referenceLink +
+      '&exp_budget=' + this.createStuvationForm.value.expectedBudget +
+      '&team_size=' + this.createStuvationForm.value.teamSize +
+      '&is_looking_for_student_partner=' + this.createStuvationForm.value.lookingStudentPartner +
+      '&last_date_of_joining=' + this.createStuvationForm.value.lastDateOfJoining +
+      '&is_looking_for_sponsership=' + this.createStuvationForm.value.lookingSponsorship +
+      '&no_of_sponsers_required=' + this.createStuvationForm.value.noOfSponsors +
+      '&file=' + this.url +
+      '&is_looking_for_guidance=' + this.createStuvationForm.value.lookingProfessorGuidance +
+      '&is_looking_for_mentorship=' + this.createStuvationForm.value.lookingMentorship
 
 
-      this.http.post(this.Baseurl + 'create-stuvation', params, { headers: headers }).subscribe(data => {
-        if (data.json().status === true) {
-          alert(data.json().message);
-          document.getElementById("createProjectModal").click();
-          document.getElementById("createStuvationModal").click();
-          this.router.navigate(['/techbank'])
-          location.reload();
-        } else {
-          alert(data.json().message);
-        }
+
+    this.http.post(this.Baseurl + 'create-stuvation', params, { headers: headers }).subscribe(data => {
+      if (data.json().status === true) {
+        alert(data.json().message);
+        document.getElementById("createProjectModal").click();
+        document.getElementById("createStuvationModal").click();
+        this.router.navigate(['/stuvation'])
+        // location.reload();
+      } else {
+        alert(data.json().message);
+      }
 
 
-      });
+    });
 
 
 
@@ -886,6 +905,7 @@ export class AppComponent {
       '&is_agreed=' + this.engineerRegistrationForm.value.is_agreed
     this.http.post(this.endpoint + 'user-register', params, { headers: headers }).subscribe(res => {
       this.engineerRegistrationForm.reset();
+      this.strImage = '';
       this.router.navigate(['/']);
       alert('Profile Created Successfully');
       // this.uploader.uploadAll();
@@ -908,6 +928,7 @@ export class AppComponent {
       '&is_agreed=' + this.studentRegistrationForm.value.is_agreed
     this.http.post(this.endpoint + 'user-register', params, { headers: headers }).subscribe(res => {
       this.studentRegistrationForm.reset();
+      this.strImage = '';
       this.router.navigate(['/']);
       alert('Profile Created Successfully');
       // this.uploader.uploadAll();

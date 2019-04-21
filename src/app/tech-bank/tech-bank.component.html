@@ -17,15 +17,16 @@
     <input type="text" class="form-control filter-input" placeholder="Search with Name.." name="techarticledetails"
       [(ngModel)]="techEventFilter.user_name" *ngIf="showKeyword" />
 
+    <select type="text" class="form-control filter-input" *ngIf="showTechnology"
+      [(ngModel)]="techEventFilter.technology" name="technology_id">
+      <option *ngFor="let technology of technologyList; let i = index;">
+        {{technology.name}}</option>
+    </select>
 
-    <input type="text" class="form-control filter-input" placeholder="Search with Technology.."
-      name="techarticledetails" [(ngMode l)]="techEventFilter.technology" *ngIf="showTechnology" />
-
-    <input type="text" class="form-control filter-input" placeholder="Search with sub Technology.."
-      name="techarticledetails" [(ngModel)]="techEventFilter.sub_technology" *ngIf="showSubTech" />
-
-
-
+    <select type="text" class="form-control filter-input" *ngIf="showSubTech"
+      [(ngModel)]="techEventFilter.sub_technology">
+      <option *ngFor="let subtechnology of subtechnologylist; let i = index; ">{{subtechnology.name}}</option>
+    </select>
   </div>
   <div class="col-md-7 fltrs">
     <div class="row" style="font-size: 1rem;">

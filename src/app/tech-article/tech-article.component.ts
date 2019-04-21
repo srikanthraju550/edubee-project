@@ -12,7 +12,7 @@ import { Http, Headers } from '@angular/http';
 export class TechArticleComponent implements OnInit {
   // endpoint: string = "../assets/services/";
   endpoint: string = "../assets/services/";
-  Baseurl = "http://engfactory.accrosian.com/";
+  Baseurl = "http://theengineersfactory.com/dashboard/";
   selectedTecharticle: any;
   constructor(private http: HttpClient, private httpnew: Http, private mainService: MainServiceService) { }
   sliderContent: any = [];
@@ -21,6 +21,7 @@ export class TechArticleComponent implements OnInit {
   teamDetails: any = [];
   techarticledetails: any = [];
   userid: string;
+  technologyList = [];
   ngOnInit(): void {
 
     let userDetails = this.getLoggedInUserObject();
@@ -28,21 +29,17 @@ export class TechArticleComponent implements OnInit {
       this.userid = userDetails['user_id'].toString();
     }
     console.log(this.userid);
-    //this.http.get('../assets/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
-    // let url = this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime();
-    // let userDetails = this.getLoggedInUserObject();
-    // if (!this.checkLoginStatus())
-    //   url += "?userid=" + userDetails['userid'];
-    // this.http.get(url).subscribe(data => {
-    //   this.sliderContent = data['0'].sliderContent;
-    //   this.teamDetails = data['1'].teamDetails;
-    //   this.techarticledetails = data['2'].techarticledetails;
-    //   this.homePageContent = data['3'].homePageData;
-    // });
+
 
     this.getArticles();
+
   }
 
+  getTechnologyList() {
+    this.httpnew.get(this.Baseurl + 'technology-list').subscribe(res => {
+      this.technologyList = res.json().data;
+    })
+  }
   ResponseData: any = [];
   file_path: string;
   file_path1: string;
@@ -305,6 +302,7 @@ export class TechArticleComponent implements OnInit {
     this.showSubTech = false;
     this.showAuthor = false;
     this.showCost = false;
+    this.getTechnologyList();
   }
   selectSubTechnology() {
     this.showKeyword = false;
@@ -313,6 +311,16 @@ export class TechArticleComponent implements OnInit {
     this.showSubTech = true;
     this.showAuthor = false;
     this.showCost = false;
+    this.getSubTechList();
+  }
+
+  subtechnologylist: any = [];
+
+  getSubTechList() {
+    this.httpnew.get(this.Baseurl + 'sub-technology-list').subscribe(res => {
+      this.subtechnologylist = res.json().data;
+    })
+
   }
 
   selectAuthor() {

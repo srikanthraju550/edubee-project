@@ -3,8 +3,10 @@
     <div class="col-12" style="margin-top: 1em;">
       <h2 class="text-center">{{title}}</h2><br />
       <div *ngIf="showTechbank">
-        <div class="card card-articles"
-          *ngFor="let techarticle of getMyTechBankDataList| filterBy:techArticleFilter ; let i = index;"
+        <div class="row">
+          <p class="text-center" *ngIf="getMyTechBankDataList.length==0">No Data Available</p>
+        </div>
+        <div class="card card-articles" *ngFor="let techarticle of getMyTechBankDataList"
           [ngClass]="{'techarticleRow1' : i%2==0 } ">
 
           <div class="card-body">
@@ -95,7 +97,10 @@
 
       <div *ngIf="showTechconnect">
         <div class="accordion" id="accordionExample" style="margin: 0em; ">
-          <div class="card" *ngFor="let techteach of getMyTechConnctData | filterBy:techEventFilter ; let i = index; ">
+          <div class="row">
+            <p class="text-center" *ngIf="getMyTechConnctData.length==0">No Data Available</p>
+          </div>
+          <div class="card" *ngFor="let techteach of getMyTechConnctData">
             <div class="card-header" id="teachheading{{1}}" data-toggle="" attr.data-target="#teachcollapse{{i}}"
               aria-expanded="" attr.aria-controls="teachcollapse{{i}}">
               <h5 class="mb-0">
@@ -264,7 +269,157 @@
         </div>
       </div>
 
+      <div *ngIf="showstuation" class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <p class="text-center" *ngIf="getMyStuvData.length==0">No Data Available</p>
+          </div>
+          <div class="col-12" style="margin-top: 1em;">
+            <div class="card" style="width: 100%;" *ngFor="let stuvation of getMyStuvData">
+              <div class="card-body">
 
+                <div class="row" style="margin-top: -20px;">
+
+                  <div class="col-md-12 col-sm-12 stuv_titl">
+                    <div *ngIf="stuvation.project_type!='Innovation'">
+                      <h3>Title : {{stuvation.title}}</h3>
+                    </div>
+                    <div *ngIf="stuvation.project_type=='Innovation'">
+                      <h3>Idea : {{stuvation.idea}}</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-5 col-sm-12 tec_lft">
+                    <b> Project Type </b> : {{stuvation.project_type}}
+                    <br />
+                    <b>Project Status</b> : <span style="color: green; font-weight: bold"
+                      *ngIf="stuvation.project_status=='completed'">{{stuvation.project_status}}</span>
+                    <span style="color: #da9101; font-weight: bold" *ngIf="stuvation.project_status=='ongoing'">{{stuvation.project_status
+                     }}</span><br />
+                    <b>Technology</b> : {{stuvation?.technology}}
+                    <br />
+                    <b>Sub-Technology</b> : {{stuvation?.sub_technology}}
+                    <div *ngIf="stuvation.project_type=='Innovation'">
+                      <br />
+                      <b>Idea</b> : {{stuvation?.idea}}
+                      <br />
+                      <b>Idea Description</b> : {{stuvation?.ideaDescription}}
+
+                    </div>
+                    <br />
+                    <div *ngIf="stuvation.project_status=='ongoing'">
+
+                      <b>Prototype Available ?</b> : {{stuation?.prototype_available}}
+                      <br />
+                      <b>Reference Link</b> : {{stuation?.ref_link}}
+                      <br />
+                      <b>Expected Budget</b> : {{stuation?.exp_budget}}
+                      <br />
+                      <b>Team Size</b> : {{stuation?.team_size}}<br />
+                      <b>Student Partner Last Date Of Joining</b> :
+                      <br />
+                      <div *ngIf="stuvation.project_type=='Innovation'">
+                        <b>Idea Description</b> : {{stuvation?.idea_desc}}
+                      </div>
+
+                    </div>
+                    <div style="text-align:justify">
+                      <!-- *ngIf="stuvation.project_type!='Innovation'" -->
+                      <b>Abstract</b> : {{stuvation?.abstract}}
+                    </div>
+
+                  </div>
+                  <div class="col-md-3 col-sm-6 tec_mdl">
+
+                    <div>
+                      <img class="profilepicture" [src]="image_path + stuvation.profile_image" alt="Card image cap">
+                    </div>
+                    <div>
+                      <b>{{stuvation.user_name | uppercase}}</b>
+                      <br />
+                      <span style="font-size: 0.85rem;">{{stuvation.follow_count}} followers</span>
+                      <br />
+
+                    </div>
+
+                    <div class="lke-dis">
+                      <button *ngIf="!checkLoginStatus()" class="btn btn-light buttonarticle"
+                        (click)="likeStuation(stuvation.stuvation_id,stuvation.like_count,stuvation.user_id)"
+                        style="display:inline">
+                        {{stuvation.like_count}}
+                        <img src="../assets/images/thumbsUp.png" alt="Card image cap" style="height:15px;">
+                      </button>
+                      &nbsp;&nbsp;
+
+                    </div>
+
+
+                  </div>
+
+                  <div class="col-md-3 tec_ryt">
+
+                    <ul *ngIf="!checkLoginStatus()" class="nav nav-pills">
+
+                      <li class="nav-item">
+                        <button class="nav-link btn btn-light commentbutton buttonarticle" data-toggle="modal"
+                          data-target="#showStuvationDiscussionModal"
+                          (click)="showstuvationComments(stuvation)">Discussions</button>
+                      </li>
+
+                      <li class="nav-item" *ngIf="stuvation.project_status=='ongoing'">
+                        <button class="nav-link btn btn-light commentbutton buttonarticle" data-toggle="modal"
+                          data-target="#showJoinTeamPopupModal" (click)="showJoinTeamPopup(stuvation)">Connect
+                          &amp; Join as a Team</button>
+                      </li>
+
+
+                    </ul>
+                  </div>
+
+
+
+                </div>
+
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div id="showStuvationDiscussionModal" class="modal fade" role="dialog">
+  <div class="modal-dialog stuv-popup">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #33099e; text-align: center; align-items: center;">
+        <span style="text-align: center; color: white; width: 100%;">
+          <h4>Article Comments</h4>
+        </span>
+        <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+          id="closeCommentsModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="card cmnts" *ngFor="let articlecomment of stuvationcomments; let i = index; ">
+          <div class="card-body row">
+
+            <div class="col-md-10 col-sm-12">
+              <b>Name</b> :
+              {{articlecomment.user_name}}
+              <br />
+              <b>Comment</b> :
+              <span *ngIf="!showEdit">
+                {{articlecomment.comment}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

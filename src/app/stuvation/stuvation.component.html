@@ -34,15 +34,24 @@
 
 
     <!-- <input type="text" class="form-control filter-input" placeholder="Search with Article Title.."
-      name="techarticledetails" [(ngModel)]="stuvationFilter.projectType" *ngIf="showArticle" /> -->
+      name="techarticledetails" [(ngModel)]="stuvationFilter.project_type" *ngIf="showArticle" /> -->
 
-    <input type="text" class="form-control filter-input" placeholder="Search with Technology.."
+    <!-- <input type="text" class="form-control filter-input" placeholder="Search with Technology.."
       name="techarticledetails" [(ngModel)]="stuvationFilter.technology" *ngIf="showTechnology" />
 
     <input type="text" class="form-control filter-input" placeholder="Search with sub Technology.."
-      name="techarticledetails" [(ngModel)]="stuvationFilter.sub_technology" *ngIf="showSubTech" />
+      name="techarticledetails" [(ngModel)]="stuvationFilter.sub_technology" *ngIf="showSubTech" /> -->
 
+    <select type="text" class="form-control filter-input" *ngIf="showTechnology"
+      [(ngModel)]="stuvationFilter.technology" name="technology_id">
+      <option *ngFor="let technology of technologyList; let i = index;">
+        {{technology.name}}</option>
+    </select>
 
+    <select type="text" class="form-control filter-input" *ngIf="showSubTech"
+      [(ngModel)]="stuvationFilter.sub_technology">
+      <option *ngFor="let subtechnology of subtechnologylist; let i = index; ">{{subtechnology.name}}</option>
+    </select>
 
   </div>
   <div class="col-md-6">
@@ -90,99 +99,117 @@
           <div class="row" style="margin-top: -20px;">
 
             <div class="col-md-12 col-sm-12 stuv_titl">
-              <!-- <div *ngIf="stuvation.projectType!='Innovation'">
+              <div *ngIf="stuvation.project_type!='Innovation'">
                 <h3>Title : {{stuvation.title}}</h3>
-              </div> -->
-              <!-- <div *ngIf="stuvation.projectType=='Innovation'">
+              </div>
+              <div *ngIf="stuvation.project_type=='Innovation'">
                 <h3>Idea : {{stuvation.idea}}</h3>
-              </div> -->
+              </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-5 col-sm-12 tec_lft">
-              <!-- <b> Project Type </b> : {{stuvation.projectType}} -->
+              <b> Project Type </b> : {{stuvation.project_type}}
               <br />
-              <!-- <b>Project Status</b> : <span style="color: green; font-weight: bold"
+              <b>Project Status</b> : <span style="color: green; font-weight: bold"
                 *ngIf="stuvation.project_status=='completed'">{{stuvation.project_status}}</span>
               <span style="color: #da9101; font-weight: bold" *ngIf="stuvation.project_status=='ongoing'">{{stuvation.project_status
-               }}</span><br /> -->
-              <b>Technology</b> : {{stuvation.technology}}
+               }}</span><br />
+              <b>Technology</b> : {{stuvation?.technology}}
               <br />
-              <b>Sub-Technology</b> : {{stuvation.sub_technology}}
-              <!--  <div *ngIf="stuvation.projectType=='Innovation'">
-        <br/>
-        <b>Idea</b> : {{stuvation.idea}}
-        <br/>
-        <b>Idea Description</b> : {{stuvation.ideaDescription}}
-        
-      </div> -->
-              <br />
-              <div *ngIf="stuvation.project_status=='Ongiong'">
-
-                <b>Prototype Available ?</b> :
+              <b>Sub-Technology</b> : {{stuvation?.sub_technology}}
+              <div *ngIf="stuvation.project_type=='Innovation'">
                 <br />
-                <b>Reference Link</b> :
+                <b>Idea</b> : {{stuvation?.idea}}
                 <br />
-                <b>Expected Budget</b> :
-                <br />
-                <b>Team Size</b> : <br />
-                <b>Student Partner Last Date Of Joining</b> :
-                <br />
-                <!-- <div *ngIf="stuvation.projectType=='Innovation'">
-                  <b>Idea Description</b> : {{stuvation.idea_desc}}
-                </div> -->
+                <b>Idea Description</b> : {{stuvation?.ideaDescription}}
 
               </div>
-              <!-- <div *ngIf="stuvation.projectType!='Innovation'" style="text-align:justify">
-                <b>Abstract</b> : {{stuvation.abstract}}
-              </div> -->
+              <br />
+              <div *ngIf="stuvation.project_status=='ongoing'">
+
+                <b>Prototype Available ?</b> : {{stuation?.prototype_available}}
+                <br />
+                <b>Reference Link</b> : {{stuation?.ref_link}}
+                <br />
+                <b>Expected Budget</b> : {{stuation?.exp_budget}}
+                <br />
+                <b>Team Size</b> : {{stuation?.team_size}}<br />
+                <b>Student Partner Last Date Of Joining</b> :
+                <br />
+                <div *ngIf="stuvation.project_type=='Innovation'">
+                  <b>Idea Description</b> : {{stuvation?.idea_desc}}
+                </div>
+
+              </div>
+              <div style="text-align:justify">
+                <!-- *ngIf="stuvation.project_type!='Innovation'" -->
+                <b>Abstract</b> : {{stuvation?.abstract}}
+              </div>
 
             </div>
             <div class="col-md-3 col-sm-6 tec_mdl">
 
               <div>
-                <!-- <img class="profilepicture" src="../assets/images/profileImages/{{stuvation.profilepicture}}"
-                  alt="Card image cap"> -->
+                <img class="profilepicture" [src]="image_path + stuvation.profile_image" alt="Card image cap">
               </div>
               <div>
-                <!-- <b>{{stuvation.originatorname | uppercase}}</b> -->
+                <b>{{stuvation.user_name | uppercase}}</b>
                 <br />
-                <!-- <span style="font-size: 0.85rem;">{{stuvation.followerCount}} followers</span> -->
+                <span style="font-size: 0.85rem;">{{stuvation.follow_count}} followers</span>
                 <br />
 
               </div>
 
-
-              <!-- <div class="lke-dis">
-                <button *ngIf="!checkLoginStatus() && stuvation.upCount!=='0'" class="btn btn-light buttonarticle"
-                  (click)="stuvationUpDownCountUpdate(stuvation.stuvationid,'UP')" style="display:inline">
-                  {{stuvation.upCount}}
+              <div class="lke-dis">
+                <button *ngIf="!checkLoginStatus()" class="btn btn-light buttonarticle"
+                  (click)="likeStuation(stuvation.stuvation_id,stuvation.like_count,stuvation.user_id)"
+                  style="display:inline">
+                  {{stuvation.like_count}}
                   <img src="../assets/images/thumbsUp.png" alt="Card image cap" style="height:15px;">
                 </button>
                 &nbsp;&nbsp;
-                <button *ngIf="!checkLoginStatus() && stuvation.downCount!=='0'" class="btn btn-light buttonarticle"
-                  (click)="stuvationUpDownCountUpdate(stuvation.stuvationid,'DOWN')" style="display:inline">
-                  {{stuvation.downCount}}
-                  <img src="../assets/images/thumbsDown.png" alt="Card image cap" style="height: 15px;">
 
-                </button>
-              </div> -->
+              </div>
 
 
-              <!-- <button *ngIf="!checkLoginStatus()" class="btn btn-light"
-                style="background-color: green; height: 2.5em; color: white"
-                (click)="stuvationUpDownCountUpdate(stuvation.stuvationid,'UP')">
-                {{stuvation.upCount}}
-                <img src="../assets/images/thumbsUp.png" alt="Card image cap" style="height: 1.5em;">
-              </button>
-              &nbsp;&nbsp;
-              <button *ngIf="!checkLoginStatus()" class="btn btn-light"
-                style="background-color: red;height: 2.5em; color: white;"
-                (click)="stuvationUpDownCountUpdate(stuvation.stuvationid,'DOWN')">
-                {{stuvation.downCount}}
-                <img src="../assets/images/thumbsDown.png" alt="Card image cap" style="height: 1.5em;">
-              </button> -->
             </div>
+
+            <div class="col-md-3 tec_ryt">
+
+              <ul *ngIf="!checkLoginStatus()" class="nav nav-pills">
+
+
+
+                <li class="nav-item" style="margin-left:2%">
+                  <button *ngIf="!checkLoginStatus() && stuvation.is_followed== 'FALSE'"
+                    class="nav-link btn btn-light buttonarticle"
+                    style=" margin-left: 0 !important; color: white !important;"
+                    (click)="followerUpdate(stuvation.stuvation_id,'1');">Follow</button> </li>
+
+                <li class="nav-item" style="margin-left:2%">
+                  <button *ngIf="!checkLoginStatus() && stuvation.is_followed== 'TRUE'"
+                    class="nav-link btn btn-light buttonarticle"
+                    style=" margin-left: 0 !important; color: white !important;"
+                    (click)="followerUpdate(stuvation.stuation_id,'2');">Unfollow</button>
+                </li>
+                <li class="nav-item">
+                  <button class="nav-link btn btn-light commentbutton buttonarticle" data-toggle="modal"
+                    data-target="#showStuvationDiscussionModal"
+                    (click)="showstuvationComments(stuvation)">Discussions</button>
+                </li>
+
+                <li class="nav-item" *ngIf="stuvation.project_status=='ongoing'">
+                  <button class="nav-link btn btn-light commentbutton buttonarticle" data-toggle="modal"
+                    data-target="#showJoinTeamPopupModal" (click)="showJoinTeamPopup(stuvation)">Connect
+                    &amp; Join as a Team</button>
+                </li>
+
+
+              </ul>
+            </div>
+
+
             <!-- <div class="col-md-4 col-sm-12 tec_ryt">
               <div><b>Created On</b> : {{stuvation.createdon}}</div>
               <br />
@@ -250,9 +277,70 @@
 <br />
 
 <div id="showStuvationDiscussionModal" class="modal fade" role="dialog">
+  <div class="modal-dialog stuv-popup">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #33099e; text-align: center; align-items: center;">
+        <span style="text-align: center; color: white; width: 100%;">
+          <h4>Article Comments</h4>
+        </span>
+        <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+          id="closeCommentsModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="card cmnts" *ngFor="let articlecomment of stuvationcomments; let i = index; ">
+          <div class="card-body row">
+
+            <div class="col-md-10 col-sm-12">
+              <b>Name</b> :
+              {{articlecomment.user_name}}
+              <br />
+              <b>Comment</b> :
+              <span *ngIf="!showEdit">
+                {{articlecomment.comment}}</span>
+              <textarea style="width: 100%;" *ngIf="showInput" [(ngModel)]="articlecomment.comment" name="comment"
+                placeholder="500 Characters" maxlength="500"></textarea>
+            </div>
+
+            <div class="col-md-2 col-sm-12">
+              <button *ngIf="(userid === articlecomment.user_name) && !showInput" class="btn btn-light"
+                style="background-color: #e6e5e5;height: 2.5em;" (click)="commentsEdit()">
+                Edit
+              </button>
+              <button *ngIf="(userid === articlecomment.user_name) && showInput" class="btn btn-light"
+                style="background-color: #e6e5e5;height: 2.5em;" (click)="commentsEditDelete(articlecomment,'edit')">
+                Update
+              </button>
+              <button *ngIf="(userid === articlecomment.user_name) && !showInput" class="btn btn-light"
+                style="background-color: #e6e5e5;height: 2.5em;" (click)="commentsEditDelete(articlecomment,'delete')">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body row">
+            <div class="col--md-10  col-sm-12 col-xs-12">
+              <textarea style="width: 100%;" [(ngModel)]="comment" placeholder="500 Characters"
+                maxlength="500"></textarea>
+            </div>
+            <div class="col-md-2 col-sm-12 col-xs-12">
+              <button class="btn btn-light commentbutton buttonarticle" [disabled]="comment==''"
+                (click)="commentOperation()">
+                Add Comment
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div id="showStuvationDiscussionModal" class="modal fade" role="dialog">
   <div class="modal-dialog stuv-popup" style="">
 
-    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header" style="background-color: #33099e; text-align: center; align-items: center;">
         <span style="text-align: center; color: white; width: 100%;">
@@ -269,7 +357,7 @@
                 <div class="col-3">
                   <img class="profilepicture"
                     src="assets/images/profileImages/{{getLoggedInUserObject()['profilepicture']}}">
-                  <br />&nbsp;&nbsp;{{stuvationcomment.name | titlecase}}
+                  <br />&nbsp;&nbsp;{{stuvationcomment.user_name | titlecase}}
                 </div>
                 <div class="col-9 align-self-center">
 
@@ -283,7 +371,7 @@
                 </div>
               </div>
               <div *ngIf="getLoggedInUserObject()['userid']!=stuvationcomment.userid "><b>Name</b> :
-                &nbsp;&nbsp;{{stuvationcomment.name}}
+                &nbsp;&nbsp;{{stuvationcomment.user_name}}
                 <br />
                 <b>Comment</b> :
 
@@ -299,7 +387,6 @@
 
             </div>
             <div class="col-4" style="color:black">
-              <!-- <span style="font-size: 0.7em;"><b>Comment Date </b>: {{stuvationcomment.createdon}}</span><br /> -->
               <span style="font-size: 0.7em;"><b>Comment Date</b> : {{stuvationcomment.updatedon}}</span>
               <br />
               <button
@@ -317,7 +404,7 @@
               <button
                 *ngIf="getLoggedInUserObject()['userid']==stuvationcomment.userid && (selectedStuvation.editClicked=='N' ||  selectedStuvation.editClicked=='' || selectedStuvation.editClicked==undefined)"
                 class="btn btn-light" style="background-color: #33099e;height: 2.5em;color:white"
-                (click)="commentOperation(selectedStuvation.stuvationid, stuvationcomment.id, null, 'D')">
+                (click)="commentOperation(selectedStuvation.stuvation_id, stuvationcomment.id, null, 'D')">
                 Delete
               </button>
             </div>
@@ -331,7 +418,7 @@
             </div>
             <div class="col-md-3 col-sm-12">
               <button class="btn btn-light" [disabled]="commentToBeAdded==''" class="buttonarticle"
-                (click)="commentOperation(selectedStuvation.stuvationid, null, commentToBeAdded, 'A')">
+                (click)="commentOperation(selectedStuvation.stuvation_id, null, commentToBeAdded, 'A')">
                 Add Comment
               </button>
             </div>
@@ -343,7 +430,7 @@
     </div>
 
   </div>
-</div>
+</div> -->
 
 <div id="showJoinTeamPopupModal" class="modal fade" role="dialog">
   <div class="modal-dialog stuv-popup" style="">
@@ -376,16 +463,17 @@
         <div *ngIf="joinAsRadio1">
           <span style="margin-left:-1.5em;">Role : <select [(ngModel)]="joinTeamAsModel" style="width: 12.5em;">
               <option value="Professional Guide"
-                *ngIf="selectedStuvation.lookingProfessorGuidance=='Y' && selectedStuvation.projectStatus=='ongoing'">
+                *ngIf="selectedStuvation.is_looking_for_guidance=='Yes' && selectedStuvation.project_status=='ongoing'">
                 Professional
                 Guide</option>
-              <option value="Mentor" *ngIf="selectedStuvation.lookingMentorship=='Y'">Mentor</option>
+              <option value="Mentor" *ngIf="selectedStuvation.is_looking_for_mentorship=='Y'">Mentor</option>
               <option value="Student Partner"
-                *ngIf="selectedStuvation.lookingStudentPartner=='Y' && selectedStuvation.projectStatus=='ongoing'">
+                *ngIf="selectedStuvation.is_looking_for_student_partner=='Yes' && selectedStuvation.project_status=='ongoing'">
                 Student
                 Partner</option>
               <option value="Sponsor"
-                *ngIf="selectedStuvation.lookingSponsorship=='Y' && selectedStuvation.projectStatus=='ongoing'">Sponsor
+                *ngIf="selectedStuvation.is_looking_for_sponsership=='Yes' && selectedStuvation.project_status=='ongoing'">
+                Sponsor
               </option>
             </select>
           </span>
@@ -397,7 +485,7 @@
           <br />
           <button class="btn btn-light buttonarticle" [disabled]="joinTeamAsModel==''"
             style="background-color: #33099e;height: 2.5em; color: white;"
-            (click)="joinTeamOperation(selectedStuvation.stuvationid, joinTeamAsModel, joinTeamAsConnectModel)">
+            (click)="joinTeamOperation(selectedStuvation.stuvation_id, joinTeamAsModel, joinTeamAsConnectModel)">
             JOIN
           </button>
         </div>
@@ -408,7 +496,7 @@
           <br />
           <button class="btn btn-light buttonarticle" [disabled]="stuvationConnectModel==''"
             style="background-color: #33099e;height: 2.5em;color: white;"
-            (click)="stuvationConnectOperation(selectedStuvation.stuvationid, stuvationConnectModel)">
+            (click)="joinTeamOperation(selectedStuvation.stuvation_id,'', stuvationConnectModel)">
             CONNECT
           </button>
         </div>

@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { MainServiceService } from '../main-service.service';
 
 import { FilterPipe } from 'ngx-filter-pipe';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 
 @Component({
   selector: 'app-stuvation',
@@ -27,7 +27,7 @@ export class StuvationComponent implements OnInit {
   teamDetails: any = [];
   stuvationdetails: any = [];
   userId;
-  Baseurl = "http://engfactory.accrosian.com/";
+  Baseurl = "http://theengineersfactory.com/dashboard/";
   ngOnInit(): void {
     //this.http.get('../assets/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
     let url = this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime();
@@ -50,16 +50,139 @@ export class StuvationComponent implements OnInit {
   }
 
   ResponseData = [];
+  image_path;
   getstuationData() {
     let userDetails = this.getLoggedInUserObject();
     this.httpnew.get(this.Baseurl + 'stuvation-list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
       this.ResponseData = response.json().data;
+      this.image_path = response.json().image_path;
       console.log(this.ResponseData);
     });
   }
 
+  action: number;
+  liked: boolean;
+  likeStuation(stuationId, operationType, user_id) {
+    let userDetails = this.getLoggedInUserObject();
+    if (parseInt(operationType) > 0 && (user_id === userDetails['user_id'])) {
+      this.action = 2;
+    } else if (this.liked === true) {
+      this.action = 2;
+    } else {
+      this.action = 1;
+    }
+    const headers = new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+
+    var params = 'user_id=' + userDetails['user_id'] + '&stuvation_id=' + stuationId + '&action=' + this.action
+    this.httpnew.post(this.Baseurl + 'like-stuvation', params, { headers: headers }).subscribe(res => {
+
+      if (this.action === 1) {
+        this.liked = true;
+      } else {
+        this.liked = false;
+      }
+      if (res.json().status === true) {
+        alert(res.json().message);
+        this.ngOnInit();
+      } else {
+        alert(res.json().message);
+      }
+    })
+  }
+
+  followerUpdate(stuationId, operationType) {
+    let userDetails = this.getLoggedInUserObject();
+
+    const headers = new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+
+    var params = 'user_id=' + userDetails['user_id'] + '&stuvation_id=' + stuationId + '&action=' + operationType
+    this.httpnew.post(this.Baseurl + 'follow-stuvation', params, { headers: headers }).subscribe(res => {
+      if (res.json().status === true) {
+        alert(res.json().message);
+        this.ngOnInit();
+      } else {
+        alert(res.json().message);
+      }
+    })
+  }
 
 
+  stuationId;
+  comment;
+  showInput: boolean;
+  userid;
+  showstuvationComments(stuation) {
+    this.showInput = false;
+    this.comment = '';
+    this.stuationId = stuation.stuation_id;
+    this.stuvationcomments = [];
+    let userDetails = this.getLoggedInUserObject();
+    this.userid = userDetails['name'].toString();
+
+    this.httpnew.get(this.Baseurl + 'stuvation-comments-list' + '?stuvation_id=' + this.stuationId).subscribe(data => {
+      this.stuvationcomments = data.json().data;
+      for (var i = 0; i < this.stuvationcomments.length; i++) {
+        if (this.userid === this.stuvationcomments[i].user_id) {
+          this.stuvationcomments[i].showEdit = true;
+        } else {
+          this.stuvationcomments[i].showEdit = false;
+        }
+      }
+      console.log(this.stuvationcomments);
+    });
+  }
+
+  commentsEdit() {
+    this.showInput = true;
+  }
+  commentToBeAdded = "";
+  commentOperation() {
+    let userDetails = this.getLoggedInUserObject();
+    const headers = new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+    var params = 'user_id=' + userDetails['user_id'] + '&stuvation_id=' + this.stuationId + '&comment=' + this.comment
+    this.httpnew.post(this.Baseurl + 'stuvation-comment', params, { headers: headers }).subscribe(res => {
+      if (res.json().status === true) {
+        alert('comment added successfully');
+        document.getElementById("closeCommentsModal").click();
+        this.getstuationData();
+      } else {
+        alert(res.json().message);
+      }
+    })
+  }
+  commentsEditDelete(data, action) {
+    let userDetails = this.getLoggedInUserObject();
+    const headers = new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+    if (action === 'edit') {
+      var params = 'user_id=' + userDetails['user_id'] + '&comment_id=' + data.comment_id + '&comment=' + data.comment
+      this.httpnew.post(this.Baseurl + 'update-stuvation-comment', params, { headers: headers }).subscribe(res => {
+        if (res.json().status === true) {
+          alert(res.json().message);
+          document.getElementById("closeCommentsModal").click();
+        } else {
+          alert(res.json().message);
+        }
+      })
+    } else if (action === 'delete') {
+      var params = 'user_id=' + userDetails['user_id'] + '&comment_id=' + data.comment_id
+      this.httpnew.post(this.Baseurl + 'delete-stuvation-comment', params, { headers: headers }).subscribe(res => {
+        if (res.json().status === true) {
+          alert(res.json().message);
+          document.getElementById("closeCommentsModal").click();
+        } else {
+          alert(res.json().message);
+        }
+      })
+    }
+  }
 
   stuvationFilter: any = { title: '', technology: '', sub_technology: '' };
 
@@ -69,8 +192,13 @@ export class StuvationComponent implements OnInit {
   articleTypeFilter = "";
   freeFilter = "";
   authorFilter = "";
+  stuvationConnectModel;
+  joinTeamAsConnectModel;
   showJoinTeamPopup(stuvation) {
     this.selectedStuvation = stuvation;
+    this.stuvationConnectModel = '';
+    this.joinTeamAsConnectModel = '';
+
     console.log(this.selectedStuvation);
   }
 
@@ -96,102 +224,56 @@ export class StuvationComponent implements OnInit {
     });
   }
 
-  followerUpdate(userId, operationType) {
-    let userDetails = this.getLoggedInUserObject();
-    console.log(userDetails);
-    let requestObject = {
-      "followerId": userDetails['userid'],
-      "operationType": operationType,
-      "userid": userId
-    };
 
-    this.http.post(this.endpoint + 'addFollower.php', requestObject, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
-      //this.http.post('http://localhost:8080/edubee/articleUpDownCount.php', requestObject,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-      console.log(data);
-      let parsedData: JSON = JSON.parse('' + data);
-      console.log(parsedData);
-      if (parsedData['followerUpdateQuery'] == 'done') {
-        this.ngOnInit();
-      } else if (parsedData['followerUpdateQuery'] == 'failed') {
-        alert('Failed to update');
-      }
-
-    });
-  }
 
   stuvationcomments = [];
-  showStuvationComments(stuvation) {
-    console.log(stuvation);
-    this.selectedStuvation = stuvation;
-    let requestObject = {
-      "stuvationid": stuvation.stuvationid
-    };
-    console.log(requestObject);
-
-    this.http.post(this.endpoint + 'getStuvationComments.php', requestObject, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
-      //this.http.post('http://localhost:8080/edubee/articleUpDownCount.php', requestObject,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-      console.log(data);
-      let parsedData: JSON = JSON.parse('' + data);
-      console.log(parsedData);
-      this.stuvationcomments = parsedData['stuvationcomments'];
-
-    });
-  }
 
   joinTeamOperation(projectid, rolename, comment): void {
-    let userDetails = this.getLoggedInUserObject();
-    //console.log(userDetails['userid']);
-    let registrationObject: any = {
-      "projectid": projectid,
-      "rolename": rolename,
-      "registereduserid": userDetails['userid'],
-      "comment": comment
-    };
-    this.http.post(this.endpoint + 'joinTeamOperation.php', registrationObject, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
-      //this.http.post('http://localhost:8080/edubee/applyForTechEvents.php', registrationObject,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-      console.log(data);
-      let parsedData: JSON = JSON.parse('' + data);
-      console.log(parsedData);
-      if (parsedData['techEventRegistrationQuery'] == 'done') {
-        alert('Joined Successfully');
-        this.ngOnInit();
-      } else if (parsedData['techEventRegistrationQuery'] == 'failed') {
-        alert('Failed to Join');
-      } else if (parsedData['alreadyRegistered'] == 'true') {
-        alert('Already Joined');
-      }
 
+    let userDetails = this.getLoggedInUserObject();
+    const headers = new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded'
     });
+    var params = 'user_id=' + userDetails['user_id'] + '&stuvation_id=' + projectid + '&role=' + rolename + '&description=' + comment
+    this.httpnew.post(this.Baseurl + 'join-team', params, { headers: headers }).subscribe(res => {
+      if (res.json().status === true) {
+        alert(res.json().message);
+        document.getElementById("closeJoinTeamPopupModal").click();
+        this.getstuationData();
+      } else {
+        alert(res.json().message);
+      }
+    })
   }
 
-  commentToBeAdded = "";
-  commentOperation(stuvationid, commentid, stuvationcomment, operationType) {
-    let userDetails = this.getLoggedInUserObject();
-    let requestObject = {
-      "stuvationid": stuvationid,
-      "stuvationcomment": stuvationcomment,
-      "userid": userDetails['userid'],
-      "operationType": operationType,
-      "commentid": commentid
-    };
+  // commentToBeAdded = "";
+  // commentOperation(stuvationid, commentid, stuvationcomment, operationType) {
+  //   let userDetails = this.getLoggedInUserObject();
+  //   let requestObject = {
+  //     "stuvationid": stuvationid,
+  //     "stuvationcomment": stuvationcomment,
+  //     "userid": userDetails['userid'],
+  //     "operationType": operationType,
+  //     "commentid": commentid
+  //   };
 
-    this.http.post(this.endpoint + 'stuvationcommentsUpdateDeleteAdd.php', requestObject, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
-      //this.http.post('http://localhost:8080/edubee/articleUpDownCount.php', requestObject,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-      console.log(data);
-      let parsedData: JSON = JSON.parse('' + data);
-      console.log(parsedData);
-      if (parsedData['commentUpdateDeleteAddQuery'] == 'done') {
-        this.showStuvationComments(this.selectedStuvation);
-        if (operationType == 'U')
-          alert('Comment updated Successfully');
-        this.commentToBeAdded = "";
-        this.selectedStuvation.editClicked = 'N';
-      } else if (parsedData['commentUpdateDeleteAddQuery'] == 'failed') {
-        alert('Failed to update');
-      }
+  //   this.http.post(this.endpoint + 'stuvationcommentsUpdateDeleteAdd.php', requestObject, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
+  //     //this.http.post('http://localhost:8080/edubee/articleUpDownCount.php', requestObject,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
+  //     console.log(data);
+  //     let parsedData: JSON = JSON.parse('' + data);
+  //     console.log(parsedData);
+  //     if (parsedData['commentUpdateDeleteAddQuery'] == 'done') {
+  //       this.showStuvationComments(this.selectedStuvation);
+  //       if (operationType == 'U')
+  //         alert('Comment updated Successfully');
+  //       this.commentToBeAdded = "";
+  //       this.selectedStuvation.editClicked = 'N';
+  //     } else if (parsedData['commentUpdateDeleteAddQuery'] == 'failed') {
+  //       alert('Failed to update');
+  //     }
 
-    });
-  }
+  //   });
+  // }
 
   stuvationConnectOperation(projectid, comment): void {
     let userDetails = this.getLoggedInUserObject();
@@ -260,6 +342,7 @@ export class StuvationComponent implements OnInit {
     this.showSubTech = false;
     this.showAuthor = false;
     this.showCost = false;
+    this.getTechnologyList();
   }
   selectSubTechnology() {
     this.showKeyword = false;
@@ -268,6 +351,7 @@ export class StuvationComponent implements OnInit {
     this.showSubTech = true;
     this.showAuthor = false;
     this.showCost = false;
+    this.getSubTechList();
   }
   joinAsRadio1 = false;
   joinAsRadio2 = false;
@@ -280,4 +364,20 @@ export class StuvationComponent implements OnInit {
     this.joinAsRadio2 = true;
     this.joinAsRadio1 = false;
   }
+
+  subtechnologylist: any = [];
+  technologyList = [];
+
+  getSubTechList() {
+    this.httpnew.get(this.Baseurl + 'sub-technology-list').subscribe(res => {
+      this.subtechnologylist = res.json().data;
+    })
+  }
+
+  getTechnologyList() {
+    this.httpnew.get(this.Baseurl + 'technology-list').subscribe(res => {
+      this.technologyList = res.json().data;
+    })
+  }
+
 }

@@ -36,9 +36,12 @@
                         <li class="sub-menu-header"><a class="dropdown-item" routerLink="/myprofile">MY PROFILE</a></li>
                         <li class="sub-menu-header"><a class="dropdown-item" routerLink="/engshipRequest">Engship
                                 Requests</a></li>
-                        <li class="sub-menu-header"><a class="dropdown-item" [routerLink]="['/staticContent','myTechBank']">My Tech Bank</a></li>
-                        <li class="sub-menu-header"><a class="dropdown-item" [routerLink]="['/staticContent','myTechConnect']">My Tech Connect</a></li>
-                        <li class="sub-menu-header"><a class="dropdown-item" [routerLink]="['/staticContent','myStuation']">My Stuation</a></li>
+                        <li class="sub-menu-header"><a class="dropdown-item"
+                                [routerLink]="['/staticContent','myTechBank']">My Tech Bank</a></li>
+                        <li class="sub-menu-header"><a class="dropdown-item"
+                                [routerLink]="['/staticContent','myTechConnect']">My Tech Connect</a></li>
+                        <li class="sub-menu-header"><a class="dropdown-item"
+                                [routerLink]="['/staticContent','myStuation']">My Stuation</a></li>
                         <li class="sub-menu-header"><a class="dropdown-item" (click)="logout()">LOGOUT</a>
 
                     </ul>
@@ -122,9 +125,11 @@
 
                                 <ul class="hidden sign-up-sub">
                                     <li><a class="main-header" style="font-size:13px;" data-toggle="modal"
-                                            data-target="#studentRegistrationModal" href="#">STUDENT</a></li>
+                                            data-target="#studentRegistrationModal" href
+                                            (click)="openRegistrationFprm()">STUDENT</a></li>
                                     <li> <a class="main-header" style="font-size:13px;" data-toggle="modal"
-                                            data-target="#engineerRegistrationModal" href="#">ENGINEER</a></li>
+                                            data-target="#engineerRegistrationModal" href
+                                            (click)="openRegistrationFprm()">ENGINEER</a></li>
                                 </ul>
                             </li>
                             <li *ngIf="!checkLoginStatus()">
@@ -170,9 +175,12 @@
 
                         <ul class="hidden sign-up-sub">
                             <li><a class="main-header" style="font-size:13px;" data-toggle="modal"
-                                    data-target="#studentRegistrationModal" href="#">STUDENT</a></li>
+                                    data-target="#studentRegistrationModal" href
+                                    (click)="openRegistrationFprm()">STUDENT</a>
+                            </li>
                             <li> <a class="main-header" style="font-size:13px;" data-toggle="modal"
-                                    data-target="#engineerRegistrationModal" href="#">ENGINEER</a></li>
+                                    data-target="#engineerRegistrationModal" href
+                                    (click)="openRegistrationFprm()">ENGINEER</a></li>
                         </ul>
 
                     </li>
@@ -535,8 +543,11 @@
                             <label for="referenceLink">Reference Link :</label>
                             &nbsp;&nbsp;
                             <input type="text" class="form-control" formControlName="referenceLink">
-                            <input ng2FileSelect type='file' (change)="readUrl($event)" formControlName="referenceLink"
-                                accept=".*" [uploader]="uploader">
+                            <!-- <input ng2FileSelect type='file' (change)="readUrl($event)" formControlName="referenceLink"
+                                accept=".*" [uploader]="uploader"> -->
+
+                            <input class="form-control" type="file" accept="image1/*" (change)="readUrl($event)"
+                                formControlName="referenceLink">
                         </div>
                     </div>
 
@@ -985,8 +996,8 @@
                             <label for="referenceLink">Reference Link :</label>
                             &nbsp;&nbsp;
                             <input type="text" class="form-control" formControlName="referenceLink">
-                            <input ng2FileSelect type='file' (change)="readUrl($event)" formControlName="referenceLink"
-                                accept=".*" [uploader]="uploader">
+                            <input class="form-control" type="file" accept="image1/*" (change)="readUrl($event)"
+                                formControlName="referenceLink">
 
                         </div>
                     </div>

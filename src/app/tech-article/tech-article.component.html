@@ -31,12 +31,18 @@
     <input type="text" class="form-control filter-input" placeholder="Search with Article Title.."
       name="techarticledetails" [(ngModel)]="techArticleFilter.title" *ngIf="showArticle" />
 
-    <input type="text" class="form-control filter-input" placeholder="Search with Technology.."
-      name="techarticledetails" [(ngModel)]="techArticleFilter.technology" *ngIf="showTechnology" />
+    
+    <select type="text" class="form-control filter-input" *ngIf="showTechnology"
+      [(ngModel)]="techArticleFilter.technology" name="technology_id">
+      <option *ngFor="let technology of technologyList; let i = index;">
+        {{technology.name}}</option>
+    </select>
 
-    <input type="text" class="form-control filter-input" placeholder="Search with sub Technology.."
-      name="techarticledetails" [(ngModel)]="techArticleFilter.sub_technology" *ngIf="showSubTech" />
-
+    <select type="text" class="form-control filter-input" *ngIf="showSubTech"
+      [(ngModel)]="techArticleFilter.sub_technology">
+      <option *ngFor="let subtechnology of subtechnologylist; let i = index; ">{{subtechnology.name}}</option>
+    </select>
+   
     <input type="text" class="form-control filter-input" placeholder="Search with Author.." name="techarticledetails"
       [(ngModel)]="techArticleFilter.user_name" *ngIf="showAuthor" />
 
@@ -133,7 +139,7 @@
                     )</span>
                 </h5>
                 <div class="lke-dis">
-                  <button *ngIf="!checkLoginStatus() && techarticle.upCount!=='0'" class="btn btn-light buttonarticle"
+                  <button *ngIf="!checkLoginStatus() " class="btn btn-light buttonarticle"
                     (click)="likeArticle(techarticle.tech_article_id,techarticle.like_count,techarticle.user_id)"
                     style="display:inline">
                     {{techarticle.like_count}}
