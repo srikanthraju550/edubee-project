@@ -149,7 +149,7 @@
 
         </div>
 
-        <div class="col-sm-2" style="margin-top: 2%; margin-bottom: 1%;">
+        <div class="col-sm-2" style="margin-top: 3%; margin-bottom: 1%;">
             <div class="row">
                 <!-- <ul *ngIf="checkLoginStatus()" class="nav nav-pills" style="float: right;margin-top: 16px;">
 
@@ -169,11 +169,12 @@
                             data-toggle="modal" href="#" data-target="#loginModal"><i class="fa fa-sign-in"></i>&nbsp;
                             LOGIN</a></li>
                     <li *ngIf="checkLoginStatus()"> <a class="main-header" style="font-size:13px;text-align: center;"
-                            data-toggle="dropdown" href="#" role="button">&nbsp;<i class="fa fa-user-plus"></i>&nbsp;
+                            data-toggle="modal" data-target="#studentRegistrationModal" href="#" role="button">&nbsp;<i
+                                class="fa fa-user-plus"></i>&nbsp;
                             SIGN
                             UP</a>
 
-                        <ul class="hidden sign-up-sub">
+                        <!-- <ul class="hidden sign-up-sub">
                             <li><a class="main-header" style="font-size:13px;" data-toggle="modal"
                                     data-target="#studentRegistrationModal" href
                                     (click)="openRegistrationFprm()">STUDENT</a>
@@ -181,14 +182,18 @@
                             <li> <a class="main-header" style="font-size:13px;" data-toggle="modal"
                                     data-target="#engineerRegistrationModal" href
                                     (click)="openRegistrationFprm()">ENGINEER</a></li>
-                        </ul>
+                        </ul> -->
 
                     </li>
                 </ul>
                 <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="float: right; margin-left: 25%;">
 
                     <li class="nav-item">
-
+                        <span *ngIf="!checkLoginStatus()" style="color: white; font-weight: bold; text-align: center; width: 100%; top: 12px;
+                        position: absolute;
+                        left: -60px;">
+                            {{getLoggedInUserObject()['name'] | titlecase}}
+                        </span>
                         <a role="button" aria-haspopup="true" aria-expanded="false">
 
                             <img class="profilepicture" style="border-radius: 10em;"
@@ -204,10 +209,7 @@
                     </li>
 
                 </ul>
-                <span *ngIf="!checkLoginStatus()" style="color: white; font-weight: bold; text-align: center; width: 100%;    top: 100px;
-            position: absolute;left:-10px;">
-                    {{getLoggedInUserObject()['name'] | titlecase}}
-                </span>
+
             </div>
         </div>
 
@@ -2021,12 +2023,132 @@
     </div>
 </div>
 
+
+
 <!-- Modal -->
-<div id="engineerRegistrationModal" class="modal fade" role="dialog">
+<div id="studentRegistrationModal" class="modal fade" role="dialog">
     <div class="modal-dialog regform logn_modl">
 
+        <div class="bg-blk" *ngIf="showStudentForm">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
+                    <span style="text-align: center; color: white; width: 100%;">
+                        <h4>Join as Student</h4>
+                    </span>
+                    <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                        id="closeStudentRegistrationForm">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div style="display:inline-flex">
+                        <p (click)="openStudentForm()" style="color:black !important;position:relative"> <span
+                                class="radio-btns">&nbsp;</span><span class="white-radio">&nbsp;</span><i
+                                class="fa fa-check" *ngIf="showStudentForm"></i>STUDENT
+                        </p> &nbsp;&nbsp;
+                        <!-- <a class="main-header" style="font-size:13px;" data-toggle="modal"
+                        (click)="openStudentForm()">STUDENT</a> -->
+                        <p (click)="openEngForm()" style="color:black !important;position:relative"> <span
+                                class="radio-btns">&nbsp;</span><span class="white-radio">&nbsp;</span><i
+                                class="fa fa-check" *ngIf="showgEnForm"></i>ENGINEER
+                        </p>
+                    </div>
+                    <!-- <a class="main-header" style="font-size:13px;" data-toggle="modal"
+                        (click)="openEngForm()">ENGINEER</a> -->
+
+                    <form [formGroup]="studentRegistrationForm" (ngSubmit)="onStudentRegistrationFormSubmit()"
+                        enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <!-- <label for="firstname">Name:</label> -->
+                                    <input type="text" class="form-control" formControlName="name" placeholder="Name">
+                                    <div *ngIf="studValid.name.touched && studValid.name.invalid"
+                                        class="alert alert-danger">
+                                        Name is Required
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <!-- <label for="email">Email:</label> -->
+                                    <input type="email" email="true" class="form-control" formControlName="email"
+                                        placeholder="Email">
+                                    <div *ngIf="studValid.email.touched && studValid.email.invalid"
+                                        class="alert alert-danger">
+                                        Email is Required
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label for="contact">Contact Number:</label> -->
+                                    <input type="text" class="form-control" formControlName="mobile" minlength="10"
+                                        maxlength="10" (keypress)="_keyPress($event)" placeholder="Contact Number">
+                                    <div *ngIf="studValid.mobile.touched && studValid.mobile.invalid"
+                                        class="alert alert-danger">
+                                        Contact Number is Required
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <!-- <label for="username">Username:</label> -->
+                                    <input type="text" class="form-control" formControlName="user_name"
+                                        placeholder="Username">
+                                    <div *ngIf="studValid.user_name.touched && studValid.user_name.invalid"
+                                        class="alert alert-danger">
+                                        UserName is Required
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label for="password">Password:</label> -->
+                                    <input type="password" class="form-control" formControlName="password"
+                                        placeholder="Password">
+                                    <div *ngIf="studValid.password.touched && studValid.password.invalid"
+                                        class="alert alert-danger">
+                                        Password is Required
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label for="confirmpassword">Confirm Password:</label> -->
+                                    <input type="password" class="form-control" formControlName="con_password"
+                                        placeholder="Confirm Password">
+                                    <div *ngIf="studValid.con_password.touched && studValid.con_password.invalid"
+                                        class="alert alert-danger">
+                                        Confirm Password is Required
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="profilePicture">Upload Profile Picture: &nbsp;&nbsp;&nbsp;
+                                        <input class="form-control" type="file" accept="image1/*"
+                                            (change)="readUrl($event)" formControlName="profile_image">
+
+                                        <img [src]="strImage" alt="" width="100" height="100"
+                                            style="max-width: 100px; max-height: 100px;">
+                                    </label>
+
+                                </div>
+                                <div style="width: 100%; text-align: center; align-items: center">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" formControlName="is_agreed"> Agree to Terms and
+                                            Conditions</label>
+                                    </div>
+
+                                    <button type="submit"
+                                        [disabled]="!studentRegistrationForm.valid || !studentRegistrationForm.value.is_agreed"
+                                        class="btn btn-primary">Sign Up!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--<div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>-->
+            </div>
+        </div>
+
         <!-- Modal content-->
-        <div class="bg-blk">
+        <div class="bg-blk" *ngIf="showgEnForm">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
                     <span style="text-align: center; color: white; width: 100%;">
@@ -2036,6 +2158,18 @@
                         id="closeEngineerRegistrationForm">&times;</button>
                 </div>
                 <div class="modal-body">
+                    <div style="display:inline-flex;">
+                        <p (click)="openStudentForm()" style="color:black !important;position:relative"> <span
+                                class="radio-btns">&nbsp;</span><span class="white-radio">&nbsp;</span><i
+                                class="fa fa-check" *ngIf="showStudentForm"></i>STUDENT
+                        </p>&nbsp;&nbsp;
+                        <!-- <a class="main-header" style="font-size:13px;" data-toggle="modal"
+                        (click)="openStudentForm()">STUDENT</a> -->
+                        <p (click)="openEngForm()" style="color:black !important;position:relative"> <span
+                                class="radio-btns">&nbsp;</span><span class="white-radio">&nbsp;</span><i
+                                class="fa fa-check fa-check1" *ngIf="showgEnForm"></i>ENGINEER
+                        </p>
+                    </div>
                     <form [formGroup]="engineerRegistrationForm" (ngSubmit)="onEngineerRegistrationFormSubmit()"
                         enctype="multipart/form-data">
                         <div class="row">
@@ -2129,115 +2263,6 @@
                 </div>
             </div>
 
-        </div>
-    </div>
-</div>
-
-<!-- Modal -->
-<div id="studentRegistrationModal" class="modal fade" role="dialog">
-    <div class="modal-dialog regform logn_modl">
-
-        <div class="bg-blk">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                    <span style="text-align: center; color: white; width: 100%;">
-                        <h4>Join as Student</h4>
-                    </span>
-                    <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
-                        id="closeStudentRegistrationForm">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <form [formGroup]="studentRegistrationForm" (ngSubmit)="onStudentRegistrationFormSubmit()"
-                        enctype="multipart/form-data">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <!-- <label for="firstname">Name:</label> -->
-                                    <input type="text" class="form-control" formControlName="name" placeholder="Name">
-                                    <div *ngIf="studValid.name.touched && studValid.name.invalid"
-                                        class="alert alert-danger">
-                                        Name is Required
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <!-- <label for="email">Email:</label> -->
-                                    <input type="email" email="true" class="form-control" formControlName="email"
-                                        placeholder="Email">
-                                    <div *ngIf="studValid.email.touched && studValid.email.invalid"
-                                        class="alert alert-danger">
-                                        Email is Required
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <!-- <label for="contact">Contact Number:</label> -->
-                                    <input type="text" class="form-control" formControlName="mobile" minlength="10"
-                                        maxlength="10" (keypress)="_keyPress($event)" placeholder="Contact Number">
-                                    <div *ngIf="studValid.mobile.touched && studValid.mobile.invalid"
-                                        class="alert alert-danger">
-                                        Contact Number is Required
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group">
-                                    <!-- <label for="username">Username:</label> -->
-                                    <input type="text" class="form-control" formControlName="user_name"
-                                        placeholder="Username">
-                                    <div *ngIf="studValid.user_name.touched && studValid.user_name.invalid"
-                                        class="alert alert-danger">
-                                        UserName is Required
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <!-- <label for="password">Password:</label> -->
-                                    <input type="password" class="form-control" formControlName="password"
-                                        placeholder="Password">
-                                    <div *ngIf="studValid.password.touched && studValid.password.invalid"
-                                        class="alert alert-danger">
-                                        Password is Required
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <!-- <label for="confirmpassword">Confirm Password:</label> -->
-                                    <input type="password" class="form-control" formControlName="con_password"
-                                        placeholder="Confirm Password">
-                                    <div *ngIf="studValid.con_password.touched && studValid.con_password.invalid"
-                                        class="alert alert-danger">
-                                        Confirm Password is Required
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="profilePicture">Upload Profile Picture: &nbsp;&nbsp;&nbsp;
-                                        <input class="form-control" type="file" accept="image1/*"
-                                            (change)="readUrl($event)" formControlName="profile_image">
-
-                                        <img [src]="strImage" alt="" width="100" height="100"
-                                            style="max-width: 100px; max-height: 100px;">
-                                    </label>
-
-                                </div>
-                                <div style="width: 100%; text-align: center; align-items: center">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" formControlName="is_agreed"> Agree to Terms and
-                                            Conditions</label>
-                                    </div>
-
-                                    <button type="submit"
-                                        [disabled]="!studentRegistrationForm.valid || !studentRegistrationForm.value.is_agreed"
-                                        class="btn btn-primary">Sign Up!</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <!--<div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>-->
-            </div>
         </div>
     </div>
 </div>

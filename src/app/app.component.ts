@@ -826,7 +826,7 @@ export class AppComponent {
 
     this.http.post(this.endpoint + 'user-login', params, { headers: headers }).subscribe(response => {
       if (response.json().status !== false) {
-        alert('Login Successfully');
+
         this.loginForm.reset();
         let parsedData = response.json().data;
         sessionStorage.setItem("loggedInUserName", JSON.stringify(parsedData[0]));
@@ -970,8 +970,15 @@ export class AppComponent {
     this.router.navigate(['/prozectme']);
     this.navbarOpen = false;
   }
-
-
-
+  showStudentForm: boolean;
+  showgEnForm = true;
+  openStudentForm() {
+    this.showStudentForm = true;
+    this.showgEnForm = false;
+  }
+  openEngForm() {
+    this.showgEnForm = true;
+    this.showStudentForm = false;
+  }
 
 }

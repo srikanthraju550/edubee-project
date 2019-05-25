@@ -6,13 +6,12 @@
     <div class="container-fluid" *ngIf="firstSlide">
         <div class="row ">
             <div class="img-lft col-md-6 col-sm-12 animated fadeInLeft">
-                <img src="assets/images/tef-stuvation.png" />
+                <img [src]="image_path + sliderContent[0]?.image" />
             </div>
             <div class="col-md-5 col-sm-12 animated fadeInRight">
                 <div class="content-ryt">
-                    <h4 class="custom-ss-content"> Execute &amp; Express</h4>
-                    <p> Your innovation or Academic project We connect experts, student partners , Academisions
-                        &amp; sponsers</p>
+                    <h4 class="custom-ss-content"> {{sliderContent[0]?.title}}</h4>
+                    <p> {{sliderContent[0]?.description}}</p>
                     <h3 class="custom-s-content"> <span>" </span>IT'S NOT ABOUT IDEAS.<br> ITS ABOUT MAKING
                         IDEAS
                         HAPPEN</h3>
@@ -26,15 +25,12 @@
     <div class="container-fluid" *ngIf="secondSlide">
         <div class="row ">
             <div class="img-lft col-md-6 col-sm-12 animated fadeInLeft">
-                <img src="assets/images/slide2.png" />
+                <img [src]="image_path + sliderContent[1]?.image" />
             </div>
             <div class="col-md-5 col-sm-12 animated fadeInRight">
                 <div class="content-ryt">
-                    <p> An initative plateform launched by The Engineers Factory through which students
-                        can get help from co-students, Academicians ,Industrial Experts &amp;
-                        sponsers to execute yourbrilliant innovative thoughts and
-                        academics projucts thus creating a path from being a student to the
-                        next Aryabhata.</p>
+                    <h4 class="custom-ss-content"> {{sliderContent[1]?.title}}</h4>
+                    <p> {{sliderContent[1]?.description}}</p>
                     <h3 class="custom-s-content"> <span>" </span>IT'S NOT ABOUT IDEAS.<br> ITS ABOUT MAKING
                         IDEAS
                         HAPPEN</h3>
@@ -59,25 +55,11 @@
         </div>
         <div class="row">
             <div class="col-md-3 col-sm-12 col-lg-3">
-                <ul>
-                    <li (click)="showData('Tech Teach')" [ngClass]="{'activeTech':showTechTeach}">
-                        Tech Teach
+                <ul *ngFor="let data of quickRegData">
+                    <li (click)="showData(data.title)" [ngClass]="{'activeTech':showTechTeach}">
+                        {{data.title}}
                     </li>
-                    <li (click)="showData('Tech Talk')" [ngClass]="{'activeTech':showTechTalk}">
-                        Tech Talk
-                    </li>
-                    <li (click)="showData('Academic Proz')" [ngClass]="{'activeTech':showAcadamicProz}">
-                        Academic Proz
-                    </li>
-                    <li (click)="showData('Stuvation')" [ngClass]="{'activeTech':showStuation}">
-                        Stuvation
-                    </li>
-                    <li (click)="showData('Eng-Ship')" [ngClass]="{'activeTech':showEngship}">
-                        Eng-Ship
-                    </li>
-                    <li (click)="showData('Prozect Me')" [ngClass]="{'activeTech':showProzMe}">
-                        Prozect Me
-                    </li>
+
 
                 </ul>
             </div>
@@ -92,80 +74,15 @@
                     <div class="col-md-6 col-sm-6">
                         <img src="../assets/images/slide-img.png">
                     </div>
-                    <div class="col-md-6 col-sm-6" *ngIf="showTechTeach">
-                        <p>A Platform to register Tech Activities where student can connect with industrial Experts
-                            <br />
-                            <br />
-                            Are you freelance Trainer <br />
-                            or <br />
-                            Industrial Expert want to share your knowledge <br />
-                            or <br />
-                            Startup Organization want to register your Workshops <br />
-                            or <br />
-                            Student want to register your Tech festivals <br />
+                    <div class="col-md-6 col-sm-6 animated fadeInRight" *ngIf="showTechTeach">
+                        <p>{{filterquickRegData?.description}}<br />
                         </p>
                         <button class="custom-ss-quick-register-block-button" data-toggle="modal"
-                            data-target="#studentRegistrationModal"> Register Here </button>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6" *ngIf="showTechTalk">
-                        <p> Want to connect with experts &amp; Talk on Technology !! <br />
-                            <br />
-                            A Platform to interchange your views on technology <br />
-
-                        </p>
-                        <button class="custom-ss-quick-register-block-button" data-toggle="modal"
-                            data-target="#studentRegistrationModal">Register &amp; Connect &amp; Talk
-                        </button>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6" *ngIf="showAcadamicProz">
-                        <p>
-                            An initiative platform to express &amp; excute your brilliant idea with help of co-students
-                            ,
-                            Academicians
-                            , Industrial Experts &amp; Sponsors support <br />
-                            <br />
-                            register your academic project or Innovation
-                        </p>
-                        <button class="custom-ss-quick-register-block-button" data-toggle="modal"
-                            data-target="#studentRegistrationModal"> Register &amp; Execute</button>
+                            data-target="#studentRegistrationModal">
+                            {{filterquickRegData?.button_name}} </button>
                     </div>
 
 
-                    <div class="col-md-6 col-sm-6" *ngIf="showStuation">
-                        <p>
-                            An initiative platform to express &amp; excute your brilliant idea with help of co-students
-                            ,
-                            Academicians
-                            , Industrial Experts &amp; Sponsors support<br />
-
-                            register your academic project or Innovation
-                        </p>
-                        <button class="custom-ss-quick-register-block-button" data-toggle="modal"
-                            data-target="#studentRegistrationModal"> Register &amp; Execute</button>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6" *ngIf="showProzMe">
-                        <p> Platform to start work from university !! <br />
-                            <br />
-                            No need to wait until completion of academics !! <br />
-                            <br />
-                            You had enough potential !! Lets start work !!
-                        </p>
-                        <button class="custom-ss-quick-register-block-button"> Apply &amp; Work</button>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6" *ngIf="showEngship">
-                        <p> Are you looking for guidance , encouragement &amp; support from trusted experience
-                            professional
-                            ?<br />
-                            <br />
-                            A Platform to connect Mentor &amp; Mentee
-                        </p>
-                        <button class="custom-ss-quick-register-block-button" data-toggle="modal"
-                            data-target="#studentRegistrationModal"> Register &amp; Connect</button>
-                    </div>
 
 
                 </div>
@@ -173,15 +90,10 @@
         </div>
     </div>
 </div>
-
-
-
-
-
 <div class="row" style="text-align: center; margin: 2em;">
 
     <div class="col-md-12">
-        <h1 class="custom-ss-student-thoughts-heading text-center">OUR <span>EVENTS</span></h1>
+        <h1 class="custom-ss-student-thoughts-heading text-center">TECH CONNECT <span>EVENTS</span></h1>
     </div>
     <!-- 
     <div class="col-sm-12" style="color: #33099e;">
@@ -192,7 +104,7 @@
         </span>
     </div> -->
 </div>
-<!-- <div class="row" style="background-color: #F4F6F5;" *ngIf="getHomePageCounterValues!=undefined" *ngIf="false"> -->
+<!-- <div class="row" style="background-color: #F4F6F5;" *ngIf="!=undefined" *ngIf="false"> -->
 <div class="row" style="background-color: #F4F6F5;">
 
 
@@ -242,7 +154,7 @@
         </div> -->
         <br>
         <!-- remove comments -->
-        <!-- <div class="container-fluid calender">
+        <div class="container-fluid calender">
             <div class="row">
                 <div class="col-md-2 custom-ss-our-events-block">
                     <ul class="custom-ss-our-event-menu-block" id="mydiv">
@@ -250,14 +162,14 @@
                             <a>
                                 <h4>Tech Teach</h4>
                                 <img src="../assets/images/events-tech-talk.png">
-                                <p>{{getHomePageCounterValues['@techTalkCount']}} Events</p>
+                                <p>{{techteachdetails.length}} Events</p>
                             </a>
                         </li>
                         <li (click)="showTechTalkCal()" [ngClass]="{'active':selCal=='tech talk'}">
                             <a>
                                 <h4>Tech Talk</h4>
                                 <img src="../assets/images/tech-teach-events.png">
-                                <p>{{getHomePageCounterValues['@techMeetCount']}} Events</p>
+                                <p>{{techtalkdetails.length}} Events</p>
                             </a>
                         </li>
                         <li (click)="showAllEventsCal()" [ngClass]="{'active':selCal=='all events'}">
@@ -275,113 +187,82 @@
                     <div>
                         <h2>Latest Events</h2>
                         <div class="custom-ss-event-date-info " *ngFor="let data of calenderDataForCalender">
-                            <h3>{{data.technologyname}}</h3>
+                            <h3>{{data.technology}}</h3>
                             <div class="row">
                                 <div class="col-md-2 col-lg-2">
                                     <div class="custom-ss-event-image"></div>
                                 </div>
                                 <div class="col-md-10 col-lg-10 cal-ico">
                                     <p><img src="../assets/images/calendar.png" class="custom-ss-event-date-img">
-                                        {{data.venuedate}}</p>
+                                        {{data.venue_date}}</p>
                                     <p>
                                         <img src="../assets/images/placeholder.png" class="custom-ss-event-date-img">
                                         {{data.address}},{{data.city}}</p>
                                 </div>
                             </div>
-                            <div class="btn custom-ss-event-btn">Register Now</div>
+                            <div class="btn custom-ss-event-btn" data-toggle="modal"
+                                data-target="#studentRegistrationModal">Register Now</div>
                         </div>
 
                     </div>
                 </div>
                 <div class="col-md-7 col-lg-7 calender-div">
-                    <img class="calender-img" src="../assets/images/calendar-background.png"><span
-                        class="cal-date">{{todayDaate}}</span>
-                    <ng-fullcalendar #ucCalendar [options]="calendarOptions"></ng-fullcalendar>
-                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="calender-img" src="../assets/images/calendar-background.png"><span
+                                class="cal-date">{{todayDaate}}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <h3 style="position: relative;
+                            top: 29px;
+                            font-size: 33px;
+                            left: 20%;color:#191970">{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="btn-group" style="position: relative;
+                                    top: 36px;
+                                    left: 28%;">
+                                <div class="btn btn-primary" mwlCalendarPreviousView [view]="view"
+                                    [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+                                    Previous
+                                </div>
+                                <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+                                    Today
+                                </div>
+                                <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+                                    (viewDateChange)="activeDayIsOpen = false">
+                                    Next
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <ng-fullcalendar #ucCalendar [options]="calendarOptions"></ng-fullcalendar> -->
+                    <mwl-calendar-month-view style="position: relative;
+                    top: 83px;" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+                        [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+                        (eventClicked)="handleEvent('Clicked', $event.event)"
+                        (eventTimesChanged)="eventTimesChanged($event)">
+                    </mwl-calendar-month-view>
+
                 </div>
 
             </div>
-        </div> -->
+        </div>
 
 
     </div>
 
 
 </div>
-<div class="row about-section"
-    style=" background: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(25, 87, 138, 1) 45%, rgba( 25, 87, 138, 1) 100%), url(./assets/images/aboutbanner.png);">
-    <div class="col-10" style="margin-left: 8%;color: white;text-align: justify;">
 
-        <h1 class="text-center about-us-head">ABOUT <strong>US</strong></h1>
-        <div class="row">
-            <div class="col-md-8 col-sm-12">
-                <span>
-
-                    <h4> Who We Are</h4>
-                </span>
-                <p> The Engineers Factory is a socio-tech startup which objects to reform the Engineering Education
-                    System,
-                    formed
-                    by team of IIT Alumni and Industrial Experts with mission of bridge the gap between industry and
-                    academia.</p>
-                <br /><br />
-                <span>
-                    <h4> Why Choose Us</h4>
-                </span>
-                <p>
-                    When there is a need for every gadget or application updating according to the contemporary trend,
-                    then
-                    why &amp;
-                    how the academic curriculum almost remains the same.
-                    Helping students imbibe practical knowledge, making them mindful of the trends being set in the
-                    industry and
-                    Building a better nation where academia works in synergy with industry.</p>
-                <div *ngIf="viewMoreClicked">
-                    <br />
-                    <h4> How </h4>
-                    <p>
-                        Get the experts insight, think like a professional, know the latest industry trends and
-                        interact
-                        directly
-                        with the professionals through The Engineers Factory innovations Tech Bank, Stuvations, Tech
-                        Connect
-                        ,Engship and many more.</p>
-                    <br /><br />
-                    <h4> Our Mission </h4>
-                    <p>Bridge the gap between industry and academia</p>
-                    <br /><br />
-                    <h4> Our Vision </h4>
-
-                    Make In India @ Made by Indians
-                </div>
-                <button class="float-right custom-ss-viewmore-btn" (click)="viewMoreClickChange()">
-                    <span *ngIf="!viewMoreClicked">View More</span>
-                    <span *ngIf="viewMoreClicked">View Less</span>
-                </button>
-            </div>
-            <div class="col-md-4 col-sm-12">
-                <img class="about-png" src="../assets/images/aboutengg.png" alt="advertisement">
-            </div>
-
-        </div>
-
-        <div class="col-lg-12">
-            <!-- <button class="btn aboutbutton btn-success" (click)="viewMoreClickChange()"> -->
-
-            <!-- </button> -->
-
-        </div>
-
-
-    </div>
-</div>
 
 
 
 
 
 <!-- rmeove commebts -->
-<!-- <div class="custom-ss-student-thoughts-block">
+<div class="custom-ss-student-thoughts-block">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -405,20 +286,20 @@
                                 <span>
                                     <img src="assets/images/quote.png">
                                 </span>
-                                {{userInfo.comments}}
+                                {{userInfo.comment}}
                             </p>
                             <div class="row">
                                 <div class="col-sm-3 col-md-3 col-lg-2"></div>
                                 <div class="col-sm-3 col-md-3 col-lg-4">
                                     <img class="profilepicture" style="border-radius: 10em;"
-                                        src="../assets/images/{{userInfo.profileimage}}">
+                                        [src]="mage_path + userInfo.profile_image">
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-6 ">
                                     <br />
                                     <div class="student1 custom-ss-testimoni-details">
                                         <h4>&nbsp;{{userInfo.name}}</h4>
                                     </div>
-                                 
+
                                 </div>
                             </div>
                         </div>
@@ -437,7 +318,7 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 
 
 
@@ -491,10 +372,10 @@
 </div>-->
 
 <!-- remove comments -->
-<!-- 
+
 <div class="counter-map">
     <div class="container">
-        <div class="row" *ngIf="getHomePageCounterValues!=undefined">
+        <div class="row">
 
 
             <div class="col-sm-12" style="padding-left: 0;padding-right: 0; ">
@@ -505,7 +386,7 @@
                                 style="color : black !important;  height: 150px; width: 150px;box-shadow: 1px 5px 21px #33099e; ">
                                 <div class="overlay setsize2 " style="height: 120px;">
                                     <p class="whiteBoldText counter-count" style="color : black !important;">
-                                        {{getHomePageCounterValues['@studentCount']}}</p>
+                                        {{counter?.student_count}}</p>
                                     <span class="counter-underline">&nbsp;</span>
                                 </div>
                             </div>
@@ -518,7 +399,7 @@
                                 style="color : black !important; height: 150px; width: 150px;box-shadow: 1px 5px 21px #33099e;">
                                 <div class="overlay setsize2  " style="height: 120px;">
                                     <p class=" whiteBoldText counter-count" style="color : black !important;">
-                                        {{getHomePageCounterValues['@engineerCount']}}</p>
+                                        {{counter?.engineer_count}}</p>
                                     <span class="counter-underline">&nbsp;</span>
                                 </div>
                             </div>
@@ -531,7 +412,7 @@
                                 style="color : black !important; height: 150px; width: 150px;box-shadow: 1px 5px 21px #33099e;">
                                 <div class="overlay setsize2 " style="height: 120px;">
                                     <p class="whiteBoldText counter-count" style="color : black !important;">
-                                        {{getHomePageCounterValues['@stuvationCount']}}</p>
+                                        {{counter?.stuvation_count}}</p>
                                     <span class="counter-underline">&nbsp;</span>
                                 </div>
                             </div>
@@ -549,7 +430,7 @@
                                 style="color : black !important;  height: 150px; width: 150px; box-shadow: 1px 5px 21px #33099e;">
                                 <div class="overlay setsize2 " style="height: 120px;">
                                     <p class="whiteBoldText counter-count" style="color : black !important;">
-                                        {{getHomePageCounterValues['@techMeetCount']}}</p>
+                                        {{counter?.tech_teach_count}}</p>
                                     <span class="counter-underline">&nbsp;</span>
                                 </div>
                             </div>
@@ -562,7 +443,7 @@
                                 style="color : black !important; height: 150px; width: 150px;box-shadow: 1px 5px 21px #33099e;">
                                 <div class="overlay setsize2  " style="height: 120px;">
                                     <p class=" whiteBoldText counter-count" style="color : black !important;">
-                                        {{getHomePageCounterValues['@techTalkCount']}}</p>
+                                        {{counter?.tech_talk_count}}</p>
                                     <span class="counter-underline">&nbsp;</span>
                                 </div>
                             </div>
@@ -575,7 +456,7 @@
                                 style="color : black !important; height: 150px; width: 150px;box-shadow: 1px 5px 21px #33099e;">
                                 <div class="overlay setsize2 " style="height: 120px;">
                                     <p class="whiteBoldText counter-count" style="color : black !important;">
-                                        {{getHomePageCounterValues['@stuvationCount']}}</p>
+                                        {{counter?.student_count}}</p>
                                     <span class="counter-underline">&nbsp;</span>
                                 </div>
                             </div>
@@ -591,7 +472,7 @@
         </div>
 
     </div>
-</div> -->
+</div>
 
 <div class="container">
     <div class="row">
@@ -599,6 +480,58 @@
             <button type="button" class="mb-5 mt-5 custom-ss-download-broucher-btn"><i class="fa fa-download"></i>
                 &nbsp;Download Broucher</button>
         </div>
+    </div>
+</div>
+
+<div class="row about-section"
+    style=" background: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(25, 87, 138, 1) 45%, rgba( 25, 87, 138, 1) 100%), url(./assets/images/aboutbanner.png);">
+    <div class="col-10" style="margin-left: 8%;color: white;text-align: justify;">
+
+        <h1 class="text-center about-us-head">ABOUT <strong>US</strong></h1>
+        <div class="row">
+            <div class="col-md-8 col-sm-12">
+                <span>
+
+                    <h4> Who We Are</h4>
+                </span>
+                <p> {{aboutData?.who_we_are}}</p>
+                <br /><br />
+                <span>
+                    <h4> Why Choose Us</h4>
+                </span>
+                <p>{{aboutData?.why_choose_us}}
+                </p>
+                <div *ngIf="viewMoreClicked">
+                    <br />
+                    <h4> How </h4>
+                    <p>
+                        {{aboutData?.how}}</p>
+                    <br /><br />
+                    <h4> Our Mission </h4>
+                    <p>{{aboutData?.our_mission}}</p>
+                    <br /><br />
+                    <h4> Our Vision </h4>
+                    {{aboutData?.our_vission}}
+                </div>
+                <button class="float-right custom-ss-viewmore-btn" (click)="viewMoreClickChange()">
+                    <span *ngIf="!viewMoreClicked">View More</span>
+                    <span *ngIf="viewMoreClicked">View Less</span>
+                </button>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <img class="about-png" src="../assets/images/aboutengg.png" alt="advertisement">
+            </div>
+
+        </div>
+
+        <div class="col-lg-12">
+            <!-- <button class="btn aboutbutton btn-success" (click)="viewMoreClickChange()"> -->
+
+            <!-- </button> -->
+
+        </div>
+
+
     </div>
 </div>
 
@@ -615,21 +548,21 @@
 
             <div class="progress-radial progress-45 setsize">
                 <div class="overlay setsize">
-                    <p class="whiteBoldText">{{getHomePageCounterValues['@techTalkCount']}}</p>
+                    <p class="whiteBoldText">{{techTalkCount}}</p>
                 </div>
             </div>
             <p class="whiteBoldText lineHeightAdjustor">Tech Talk</p>
 
             <div class="progress-radial progress-80 setsize">
                 <div class="overlay setsize">
-                    <p class="whiteBoldText">{{getHomePageCounterValues['@techMeetCount']}}</p>
+                    <p class="whiteBoldText">{{techMeetCount}}</p>
                 </div>
             </div>
             <p class="whiteBoldText lineHeightAdjustor">Tech Teach</p>
 
             <div class="progress-radial progress-80 setsize">
                 <div class="overlay setsize">
-                    <p class="whiteBoldText">{{getHomePageCounterValues['@projectMeCount']}}</p>
+                    <p class="whiteBoldText">{{projectMeCount}}</p>
                 </div>
             </div>
             <p class="whiteBoldText lineHeightAdjustor">Prozect Me</p>

@@ -3,6 +3,8 @@ import { NgbModal } from '../../../node_modules/@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '../../../node_modules/@angular/common/http';
 import { MainServiceService } from '../main-service.service';
 import { Validators, FormBuilder, FormArray, FormControl } from '../../../node_modules/@angular/forms';
+import { HttpModule, Http, Response, Headers, RequestOptions } from '@angular/http';
+
 
 @Component({
   selector: 'app-myprofile',
@@ -43,9 +45,11 @@ export class MyprofileComponent implements OnInit {
   stateconfig: any = [];
   profilePageCounterValues;
 
-  endpoint: string = "../assets/services/"
-  constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private fb: FormBuilder) { }
+  endpoint: string = "../assets/services/";
+  url: string = "http://theengineersfactory.com/dashboard/";
+  constructor(private httpnew: Http, private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private fb: FormBuilder) { }
   userDetails: any;
+  userImagePath;
   ngOnInit() {
     this.userDetails = this.getLoggedInUserObject();
     var url = this.endpoint + 'getProfilePageContent.php' + "/random=" + new Date().getTime();
@@ -133,6 +137,14 @@ export class MyprofileComponent implements OnInit {
         console.log(this.engineerRegistrationForm);
       }
 
+    });
+    this.userImagePath = sessionStorage.getItem('userImagePath');
+    this.getUserData();
+  }
+  userData = [];
+  getUserData() {
+    this.httpnew.get(this.url + 'user-profile' + '?user_id=' + this.userDetails['user_id']).subscribe(data => {
+      this.userData = data.json();
     });
   }
 

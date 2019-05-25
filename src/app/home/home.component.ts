@@ -98,7 +98,14 @@ export class HomeComponent implements OnInit {
 
   activeDayIsOpen: boolean = false;
   message: Response;
-
+  techTitle = 'Tech Teach';
+  showTechTeach = true;
+  showTechTalk = false;
+  showAcadamicProz = false;
+  showStuation = false;
+  showProzMe = false;
+  showEngship = false;
+  filterquickRegData: any;
 
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -150,15 +157,16 @@ export class HomeComponent implements OnInit {
     this.refresh.next();
   }
 
-  constructor(private modal: NgbModal, private http: HttpClient, private fb: FormBuilder, private _http: Http, private mainService: MainServiceService) { }
+  constructor(private modal: NgbModal, private http: Http, private fb: FormBuilder, private _http: Http, private mainService: MainServiceService) { }
   sliderContent: any = [];
   //homePageDataFromService=[];
   homePageContent: any = [];
   teamDetails: any = [];
   url;
   getHomePageCounterValues;
+  quickRegData = [];
 
-  endpoint: string = "http://theengineersfactory.com/assets/services/";
+  endpoint: string = "http://theengineersfactory.com/dashboard/";
 
 
   // endpoint: string = "../assets/services/";
@@ -175,51 +183,41 @@ export class HomeComponent implements OnInit {
   selCal = 'tech teach';
   calenderDataForCalender = [];
   viewAllData = [];
+  image_path;
+  aboutData;
+  date;
+  dataDate;
   ngOnInit(): void {
 
     //dummy  code ends
     this.viewAllData = [];
     this.loadMe = true;
-    //document.getElementById('signupDropdown2').click();document.getElementById('signupDropdown2').click();
-    //this.http.get('../assets/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
-    this.http.get(this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime()).subscribe(data => {
+    this.http.get(this.endpoint + 'home_page_content').subscribe(data => {
 
-      this.sliderContent = data['0'].sliderContent;
-      this.teamDetails = data['1'].teamDetails;
-      this.homePageContent = data['3'].homePageData;
-      this.getHomePageCounterValues = data['12'].getHomePageCounterValues[0];
-      this.techtalkdetails = data['4'].techtalkdetails;
-      this.techteachdetails = data['5'].techteachdetails;
-
-      for (let techTalk of this.techtalkdetails) {
+      this.sliderContent = data.json().banners_data;
+      this.image_path = data.json().image_path;
+      this.quickRegData = data.json().quick_registration;
+      this.filterquickRegData = this.quickRegData[0];
+      this.teamDetails = data.json().student_thoughts;
+      // this.homePageContent = data['3'].homePageData;
+      // this.getHomePageCounterValues = data['12'].getHomePageCounterValues[0];
+      this.techtalkdetails = data.json().tech_talk_details;
+      this.techteachdetails = data.json().tech_teach_details;
+      this.aboutData = data.json().about_us[0];
+      console.log(this.aboutData);
+      for (var i = 0; i < this.techteachdetails.length; i++) {
         var eventObject = {
-          start: new Date(techTalk.venuedate),
-          end: new Date(techTalk.venuedate),
-          title: 'Tech Talk Topic : ' + techTalk.techtalktopic,
-          color: colors.lightblue
-        };
-        // console.log(eventObject);
-        this.events.push(eventObject);
-        this.viewAllData.push(techTalk);
-      }
-
-      for (let techTeach of this.techteachdetails) {
-        var eventObject = {
-          start: new Date(techTeach.venuedate),
-          end: new Date(techTeach.venuedate),
-          title: 'Tech Teach Topic : ' + techTeach.topic,
+          // start: subDays(startOfDay(new Date(this.techteachdetails[i].start_date)), 1),
+          // end: addDays(new Date(this.techteachdetails[i].end_date), 1),
+          start: new Date(this.techteachdetails[i].start_date),
+          end: new Date(this.techteachdetails[i].end_date),
+          title: 'Tech Teach Topic : ' + this.techteachdetails[i].topic,
           color: colors.blue
         };
         this.events.push(eventObject);
-        this.viewAllData.push(techTeach);
       }
 
-
-      // console.log(this.getHomePageCounterValues);
-
       this.refresh.next();
-
-
       this.calendarOptions = {
         editable: true,
         eventLimit: false,
@@ -233,83 +231,114 @@ export class HomeComponent implements OnInit {
       };
       this.today = new Date();
       this.todayDaate = this.today.getDate();
-      this.calenderDataForCalender = this.techtalkdetails;
 
-      this.allEventsCount = this.events.length;
+      // this.calenderDataForCalender = this.techtalkdetails;
 
+      this.date = new Date();
+      for (var i = 0; i < this.techteachdetails.length; i++) {
+        this.dataDate = new Date(this.techteachdetails[i].venue_date);
+        if (this.date.getMonth() + 1 === this.dataDate.getMonth() + 1) {
+          this.calenderDataForCalender.push(this.techteachdetails[i]);
+        }
+      }
+      console.log(this.date.getMonth())
+      this.allEventsCount = this.techteachdetails.length + this.techtalkdetails.length;
     });
-
-
-
-
+    this.counterValues();
+  }
+  counter;
+  counterValues() {
+    this.http.get(this.endpoint + 'counters').subscribe(data => {
+      this.counter = data.json();
+    });
   }
 
   showTechTalkCal() {
+    this.events = [];
     this.selCal = 'tech talk';
-    this.calenderDataForCalender = this.techtalkdetails;
-
+    this.calenderDataForCalender = [];
+    for (var i = 0; i < this.techtalkdetails.length; i++) {
+      this.dataDate = new Date(this.techtalkdetails[i].venue_date);
+      if (this.date.getMonth() + 1 === this.dataDate.getMonth() + 1) {
+        this.calenderDataForCalender.push(this.techtalkdetails[i]);
+      }
+    }
     for (let techTalk of this.techtalkdetails) {
       var eventObject = {
-        start: new Date(techTalk.venuedate),
-        end: new Date(techTalk.venuedate),
-        title: 'Tech Talk Topic : ' + techTalk.techtalktopic,
+        start: new Date(techTalk.start_date),
+        end: new Date(techTalk.end_date),
+        title: 'Tech Talk Topic : ' + techTalk.topic,
         color: colors.lightblue
       };
       // console.log(eventObject);
       this.events.push(eventObject);
     }
 
-    this.calendarOptions = {
-      editable: true,
-      eventLimit: false,
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay,listMonth'
-      },
-      events: this.events
-    };
+
   }
 
   showTechTeachCal() {
+    this.events = [];
     this.selCal = 'tech teach';
     console.log(this.techteachdetails);
-    this.calenderDataForCalender = this.techteachdetails;
+    this.calenderDataForCalender = [];
+    for (var i = 0; i < this.techteachdetails.length; i++) {
+      this.dataDate = new Date(this.techteachdetails[i].venue_date);
+      if (this.date.getMonth() + 1 === this.dataDate.getMonth() + 1) {
+        this.calenderDataForCalender.push(this.techteachdetails[i]);
+      }
+    }
     for (let techTeach of this.techteachdetails) {
       var eventObject = {
-        start: new Date(techTeach.venuedate),
-        end: new Date(techTeach.venuedate),
+        start: new Date(techTeach.start_date),
+        end: new Date(techTeach.end_date),
         title: 'Tech Teach Topic : ' + techTeach.topic,
         color: colors.blue
       };
       this.events.push(eventObject);
     }
-    this.calendarOptions = {
-      editable: true,
-      eventLimit: false,
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay,listMonth'
-      },
-      events: this.events
-    };
-  }
 
+  }
+  allEvents = [];
   showAllEventsCal() {
+    this.events = [];
     this.selCal = 'all events';
-    this.calenderDataForCalender = this.viewAllData;
-    console.log(this.calenderDataForCalender);
-    this.calendarOptions = {
-      editable: true,
-      eventLimit: false,
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay,listMonth'
-      },
-      events: this.events
-    };
+    this.allEvents = [];
+    for(var i=0;i<this.techteachdetails.length;i++){
+      this.allEvents.push(this.techteachdetails[i]);
+    }
+    for(var j=0;j<this.techtalkdetails.length;j++){
+      this.allEvents.push(this.techtalkdetails[j]);
+    }
+    this.calenderDataForCalender = [];
+    for (var i = 0; i < this.allEvents.length; i++) {
+      this.dataDate = new Date(this.allEvents[i].venue_date);
+      if (this.date.getMonth() + 1 === this.dataDate.getMonth() + 1) {
+        this.calenderDataForCalender.push(this.allEvents[i]);
+      }
+    }
+
+
+    for (let techTalk of this.techtalkdetails) {
+      var eventObject = {
+        start: new Date(techTalk.start_date),
+        end: new Date(techTalk.end_date),
+        title: 'Tech Talk Topic : ' + techTalk.topic,
+        color: colors.lightblue
+      };
+      // console.log(eventObject);
+      this.events.push(eventObject);
+    }
+
+    for (let techTeach of this.techteachdetails) {
+      var eventObject = {
+        start: new Date(techTeach.start_date),
+        end: new Date(techTeach.end_date),
+        title: 'Tech Teach Topic : ' + techTeach.topic,
+        color: colors.blue
+      };
+      this.events.push(eventObject);
+    }
   }
 
 
@@ -348,59 +377,16 @@ export class HomeComponent implements OnInit {
   logout(): void {
     this.mainService.logout();
   }
-  techTitle = 'Tech Teach';
-  showTechTeach = true;
-  showTechTalk = false;
-  showAcadamicProz = false;
-  showStuation = false;
-  showProzMe = false;
-  showEngship = false;
+
 
   showData(action) {
     this.techTitle = action;
-    if (action === 'Tech Teach') {
-      this.showTechTeach = true;
-      this.showTechTalk = false;
-      this.showAcadamicProz = false;
-      this.showStuation = false;
-      this.showProzMe = false;
-      this.showEngship = false;
-    } else if (action === 'Tech Talk') {
-      this.showTechTeach = false;
-      this.showTechTalk = true;
-      this.showAcadamicProz = false;
-      this.showStuation = false;
-      this.showProzMe = false;
-      this.showEngship = false;
-    } else if (action === 'Academic Proz') {
-      this.showTechTeach = false;
-      this.showTechTalk = false;
-      this.showAcadamicProz = true;
-      this.showStuation = false;
-      this.showProzMe = false;
-      this.showEngship = false;
-    } else if (action === 'Stuvation') {
-      this.showTechTeach = false;
-      this.showTechTalk = false;
-      this.showAcadamicProz = false;
-      this.showStuation = true;
-      this.showProzMe = false;
-      this.showEngship = false;
-    } else if (action === 'Eng-Ship') {
-      this.showTechTeach = false;
-      this.showTechTalk = false;
-      this.showAcadamicProz = false;
-      this.showStuation = false;
-      this.showProzMe = false;
-      this.showEngship = true;
-    } else if (action === 'Prozect Me') {
-      this.showTechTeach = false;
-      this.showTechTalk = false;
-      this.showAcadamicProz = false;
-      this.showStuation = false;
-      this.showProzMe = true;
-      this.showEngship = false;
+    for (var i = 0; i < this.quickRegData.length; i++) {
+      if (this.techTitle === this.quickRegData[i].title) {
+        this.filterquickRegData = this.quickRegData[i];
+      }
     }
+
   }
 
 

@@ -6,18 +6,18 @@
 <div class="row" *ngIf="profilePageCounterValues!=undefined">
   <div class="col-sm-2" style="text-align: center">
     <div>
-      <img class="profilepicture" src="../assets/images/profileImages/{{getLoggedInUserObject()['profilepicture']}}"
+      <img class="profilepicture" [src]="userImagePath + '/' + getLoggedInUserObject()['image']"
         alt="Card image cap">
     </div>
     <div>
-      <b style=" text-transform: capitalize;">{{getLoggedInUserObject()['name']}}</b>
+      <b style=" text-transform: capitalize;">{{getLoggedInUserObject()['name'] | titlecase}}</b>
       <br />
       <span style="font-size: 0.85rem; text-transform: capitalize;">{{getLoggedInUserObject()['usertype']}}</span>
       <br />
-      <span
+      <!-- <span
         style="font-size: 0.85rem; font-weight: bold; text-transform: capitalize;">{{getLoggedInUserObject()['followerCount']}}
         followers
-      </span>
+      </span> -->
     </div>
   </div>
   <div class="col-sm-8" style="text-align: center">

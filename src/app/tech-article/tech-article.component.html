@@ -31,7 +31,7 @@
     <input type="text" class="form-control filter-input" placeholder="Search with Article Title.."
       name="techarticledetails" [(ngModel)]="techArticleFilter.title" *ngIf="showArticle" />
 
-    
+
     <select type="text" class="form-control filter-input" *ngIf="showTechnology"
       [(ngModel)]="techArticleFilter.technology" name="technology_id">
       <option *ngFor="let technology of technologyList; let i = index;">
@@ -42,7 +42,7 @@
       [(ngModel)]="techArticleFilter.sub_technology">
       <option *ngFor="let subtechnology of subtechnologylist; let i = index; ">{{subtechnology.name}}</option>
     </select>
-   
+
     <input type="text" class="form-control filter-input" placeholder="Search with Author.." name="techarticledetails"
       [(ngModel)]="techArticleFilter.user_name" *ngIf="showAuthor" />
 
@@ -164,7 +164,8 @@
                 </li>
 
                 <li class="nav-item" style="margin-left:2%">
-                  <button *ngIf="!checkLoginStatus() && techarticle.is_followed== 'FALSE'"
+                  <button
+                    *ngIf="!checkLoginStatus() && techarticle.is_followed== 'FALSE' && userid != techarticle.user_id"
                     class="nav-link btn btn-light buttonarticle"
                     style=" margin-left: 0 !important; color: white !important;"
                     (click)="followerUpdate(techarticle.tech_article_id,'1');">Follow</button> </li>
@@ -181,14 +182,21 @@
                 </li>
                 <li class="nav-item">
                   <button class="nav-link btn btn-light veiwbutton buttonarticle"
-                    *ngIf="techarticle.publication_link!='' &&  techarticle.article_type =='white paper' || techarticle.article_type =='Research Paper' "
+                    *ngIf="techarticle.publication_link =='' && (techarticle.publication_file==null  || techarticle.publication_file == '')"
                     data-toggle="modal" data-target="#buynowModal1"
                     (click)="viewTechTeachDetails(techarticle)">View/Download
                     full Article</button>
                 </li>
                 <li class="nav-item"
-                  *ngIf="techarticle.publication_file!='' && techarticle.publication_file!=null && techarticle.article_type == 'Article'">
-                  <a [href]=" file_path1 + techarticle.publication_file" target="_blank" download>
+                  *ngIf="(techarticle.publication_file!='' || techarticle.publication_file!=null ) && techarticle.publication_link ==''">
+                  <a [href]="file_path1 + techarticle.publication_file" target="_blank" download>
+                    <button class="nav-link btn btn-light veiwbutton buttonarticle" data-toggle="modal">View/Download
+                      full Article</button>
+                  </a>
+                </li>
+                <li class="nav-item"
+                  *ngIf="(techarticle.publication_file=='' || techarticle.publication_file==null ) && techarticle.publication_link !=''">
+                  <a [href]="techarticle.publication_link" target="_blank">
                     <button class="nav-link btn btn-light veiwbutton buttonarticle" data-toggle="modal">View/Download
                       full Article</button>
                   </a>
