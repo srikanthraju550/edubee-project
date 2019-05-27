@@ -269,7 +269,10 @@ export class AppComponent {
   getTechnologyList() {
     this.http.get(this.endpoint + 'technology-list').subscribe(res => {
       this.technologyList = res.json().data;
-    })
+    });
+    this.http.get(this.endpoint + 'sub-technology-list').subscribe(res => {
+      this.subtechnologylist = res.json().data;
+    });
   }
 
 
@@ -279,9 +282,7 @@ export class AppComponent {
   subTechId;
   getSubTechList(technologyid) {
     this.techId = technologyid;
-    this.http.get(this.endpoint + 'sub-technology-list').subscribe(res => {
-      this.subtechnologylist = res.json().data;
-    })
+
 
   }
   getSubtechId(subtechId) {

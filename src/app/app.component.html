@@ -365,15 +365,17 @@
                             <label for="technology">*Engineering Technology:</label>
                             <select type="text" class="form-control" (change)="getSubTechList($event.target.value)"
                                 formControlName="technology_id" name="technology_id">
+                                <option>Select Technology</option>
                                 <option *ngFor="let technology of technologyList; let i = index;"
                                     [value]="technology.technology_id">{{technology.name}}</option>
                             </select>
 
                         </div>
-                        <div *ngIf="subtechnologylist?.length!==0" class="form-group col-6">
+                        <div class="form-group col-6">
                             <label for="subtechnology">*Sub-Engineering Technology:</label>
                             <select type="text" class="form-control" formControlName="sub_technology_id"
                                 name="sub_technology_id" (change)="getSubtechId($event.target.value)">
+                                <option>Select Subtechnology</option>
                                 <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
                                     [value]="subtechnology.sub_tech_id">{{subtechnology.name}}</option>
                             </select>
@@ -497,15 +499,17 @@
                             <label for="technology">*Engineering Technology:</label>
                             <select type="text" class="form-control" (change)="getSubTechList($event.target.value)"
                                 formControlName="technology_id" name="technology_id">
+                                <option>Select Technology</option>
                                 <option *ngFor="let technology of technologyList; let i = index;"
                                     [value]="technology.technology_id">{{technology.name}}</option>
                             </select>
 
                         </div>
-                        <div *ngIf="subtechnologylist?.length!==0" class="form-group col-6">
+                        <div class="form-group col-6">
                             <label for="subtechnology">*Sub-Engineering Technology:</label>
                             <select type="text" class="form-control" formControlName="sub_technology_id"
                                 name="sub_technology_id" (change)="getSubtechId($event.target.value)">
+                                <option>Select Subtechnology</option>
                                 <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
                                     [value]="subtechnology.sub_tech_id">{{subtechnology.name}}</option>
                             </select>
@@ -776,6 +780,7 @@
                                 <label for="technology">Engineering Technology:</label>
                                 <select type="text" class="form-control" formControlName="technology"
                                     (change)="updateSubTechList(createStuvationForm.value.technology)">
+                                    <option>Select Technology</option>
                                     <option *ngFor="let technology of technologyconfig; let i = index;"
                                         [value]="technology.technologyid">{{technology.technologyname}}</option>
                                 </select>
@@ -783,6 +788,7 @@
                             <div *ngIf="subtechnologylist?.length!=0" class="form-group col-6">
                                 <label for="subtechnology">Sub-Engineering Technology:</label>
                                 <select type="text" class="form-control" formControlName="subtechnology">
+                                    <option>Select Subtechnology</option>
                                     <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
                                         [value]="subtechnology.subtechid">{{subtechnology.subtechname}}</option>
                                 </select>
@@ -964,15 +970,17 @@
                             <label for="technology">*Engineering Technology:</label>
                             <select type="text" class="form-control" (change)="getSubTechList($event.target.value)"
                                 formControlName="technology_id" name="technology_id">
+                                <option>Select Technology</option>
                                 <option *ngFor="let technology of technologyList; let i = index;"
                                     [value]="technology.technology_id">{{technology.name}}</option>
                             </select>
 
                         </div>
-                        <div *ngIf="subtechnologylist?.length!==0" class="form-group col-6">
+                        <div class="form-group col-6">
                             <label for="subtechnology">*Sub-Engineering Technology:</label>
                             <select type="text" class="form-control" formControlName="sub_technology_id"
                                 name="sub_technology_id" (change)="getSubtechId($event.target.value)">
+                                <option>Select Subtechnology</option>
                                 <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
                                     [value]="subtechnology.sub_tech_id">{{subtechnology.name}}</option>
                             </select>
