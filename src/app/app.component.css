@@ -192,6 +192,15 @@ margin-left: 25%;
 }
 
 /***********newcode***************/
+#loginModal .alert, #studentRegistrationModal .alert{
+  background: transparent;
+  border: none;
+  padding: 0px;
+  color: #dc3545;
+}
+input.form-control.ng-invalid.ng-touched {
+  border-color: #f32136;
+}
 .full-w{
   padding: 0!important;
   overflow: hidden;
