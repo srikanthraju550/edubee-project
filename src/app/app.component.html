@@ -12,19 +12,26 @@
             <input type="checkbox" class="nav-in" id="show-menu" role="button"> -->
             <ul id="menu" class="main-menu">
                 <li><a routerLink="/home" class="main-header">HOME</a></li>
-                <li>
+                <!-- <li>
                     <a href="#" class="main-header">TECH WORLD <i class="fa fa-caret-down"
                             style="display: inline;"></i></a>
                     <ul class="hidden sub-drop">
                         <li class="sub-menu-header"><a routerLink="/techbank">TECH BANK</a></li>
                         <li class="sub-menu-header"><a routerLink="/techevent">TECH CONNECT</a></li>
                     </ul>
-                </li>
+                </li> -->
                 <li>
                     <a routerLink="/stuvation" class="main-header">STUVATION</a>
 
                 </li>
-                <li><a routerLink="/engship" class="main-header">ENG SHIP</a></li>
+                <li>
+                    <a routerLink="/techbank" class="main-header">TECH BANK</a>
+
+                </li>
+                <li>
+                    <a routerLink="/techevent" class="main-header">TECH CONNECT</a>
+
+                </li>
                 <li><a routerLink="/prozectme" class="main-header">PROZECT ME</a></li>
                 <li><a href="#" class="main-header">BUSINESS</a></li>
 
@@ -189,9 +196,14 @@
                 <ul *ngIf="!checkLoginStatus()" class="nav nav-pills" style="float: right; margin-left: 25%;">
 
                     <li class="nav-item">
-                        <span *ngIf="!checkLoginStatus()" style="color: white; font-weight: bold; text-align: center; width: 100%; top: 12px;
+                        <span *ngIf="!checkLoginStatus()" style="    color: white;
+                        font-weight: bold;
+                        text-align: center;
+                        width: 100%;
+                        top: 12px;
                         position: absolute;
-                        left: -60px;">
+                        left: -60px;
+                        font-size: 14px;">
                             {{getLoggedInUserObject()['name'] | titlecase}}
                         </span>
                         <a role="button" aria-haspopup="true" aria-expanded="false">
