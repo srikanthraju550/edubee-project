@@ -68,8 +68,6 @@
                     <div class="custom-ss-quick-register-block-shape"></div><span
                         class="custom-ss-quick-register-block-heading">{{techTitle}}</span>
                 </h2>
-
-
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <img src="../assets/images/slide-img.png">
@@ -77,14 +75,18 @@
                     <div class="col-md-6 col-sm-6 animated fadeInRight" *ngIf="showTechTeach">
                         <p>{{filterquickRegData?.description}}<br />
                         </p>
-                        <button class="custom-ss-quick-register-block-button" data-toggle="modal"
-                            data-target="#studentRegistrationModal">
+                        <button *ngIf="techTitle=='Academic Proz'" class="custom-ss-quick-register-block-button"
+                            data-toggle="modal" data-target="#createProjectModal">
                             {{filterquickRegData?.button_name}} </button>
+                        <button *ngIf="techTitle =='Stuvation' " class="custom-ss-quick-register-block-button"
+                            data-toggle="modal" data-target="#createStuvationModal">
+                            {{filterquickRegData?.button_name}} </button>
+                        <button *ngIf="techTitle=='Tech Teach' || techTitle=='Tech Talk'"
+                            class="custom-ss-quick-register-block-button" data-toggle="modal"
+                            data-target="#createTechConnectModal">
+                            {{filterquickRegData?.button_name}} </button>
+
                     </div>
-
-
-
-
                 </div>
             </div>
         </div>
