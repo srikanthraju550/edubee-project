@@ -573,20 +573,7 @@ h1.custom-heading{
   height: auto;
   overflow: hidden;
 }
-  .custom-ss-download-broucher-btn {
-    background-image: linear-gradient(to right, #3a0aa3, #7a11ce);
-    color: #fff;
-    /* border: 1px solid #3a0aa3; */
-    -webkit-box-shadow: 0px 7px 18px -6px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 7px 18px -6px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 7px 18px -6px rgba(0, 0, 0, 0.75);
-    padding: 15px;
-    cursor: pointer;
-    margin: auto;
-    display: block;
-    border: 0;
-    outline: 0;
-}
+  
 
 .about-us-head{
   color: black  !important;
@@ -683,8 +670,8 @@ img.custom-ss-student-thoughts-block-img {
  .custom-ss-events-info {
   background: #191970;
   float: left;
-  height: 733px;
-  overflow-y: auto;
+  height: 830px;
+  overflow: auto;
 }
 .custom-ss-events-info::-webkit-scrollbar {
   width: 0.3em;
@@ -733,6 +720,7 @@ outline: 1px solid slategrey;
 
 .custom-ss-our-event-menu-block li{
   cursor: pointer;
+  height: 295px;
 }
 .calender-img{
 position: absolute;
@@ -758,6 +746,7 @@ position: absolute;
   box-shadow: 0 0px 10px #C3C3C3;
   background-color: white;
   border-radius: 10px;
+  height: 830px;
 }
 
  .custom-ss-event-btn {

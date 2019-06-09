@@ -131,7 +131,9 @@ export class HomeComponent implements OnInit {
     event.end = newEnd;
     //this.handleEvent('Dropped or resized', event);
     this.refresh.next();
+
   }
+
 
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
@@ -231,7 +233,6 @@ export class HomeComponent implements OnInit {
       };
       this.today = new Date();
       this.todayDaate = this.today.getDate();
-
       // this.calenderDataForCalender = this.techtalkdetails;
 
       this.date = new Date();
@@ -241,11 +242,34 @@ export class HomeComponent implements OnInit {
           this.calenderDataForCalender.push(this.techteachdetails[i]);
         }
       }
-      console.log(this.date.getMonth())
       this.allEventsCount = this.techteachdetails.length + this.techtalkdetails.length;
     });
     this.counterValues();
   }
+
+
+  previousMnth(date) {
+    this.calenderDataForCalender = [];
+    this.date = new Date(date);
+    for (var i = 0; i < this.techteachdetails.length; i++) {
+      this.dataDate = new Date(this.techteachdetails[i].venue_date);
+      if (this.date.getMonth() + 1 === this.dataDate.getMonth() + 1) {
+        this.calenderDataForCalender.push(this.techteachdetails[i]);
+      }
+    }
+  }
+
+  nextMnth(date) {
+    this.calenderDataForCalender = [];
+    this.date = new Date(date);
+    for (var i = 0; i < this.techteachdetails.length; i++) {
+      this.dataDate = new Date(this.techteachdetails[i].venue_date);
+      if (this.date.getMonth() + 1 === this.dataDate.getMonth() + 1) {
+        this.calenderDataForCalender.push(this.techteachdetails[i]);
+      }
+    }
+  }
+
   counter;
   counterValues() {
     this.http.get(this.endpoint + 'counters').subscribe(data => {
@@ -304,10 +328,10 @@ export class HomeComponent implements OnInit {
     this.events = [];
     this.selCal = 'all events';
     this.allEvents = [];
-    for(var i=0;i<this.techteachdetails.length;i++){
+    for (var i = 0; i < this.techteachdetails.length; i++) {
       this.allEvents.push(this.techteachdetails[i]);
     }
-    for(var j=0;j<this.techtalkdetails.length;j++){
+    for (var j = 0; j < this.techtalkdetails.length; j++) {
       this.allEvents.push(this.techtalkdetails[j]);
     }
     this.calenderDataForCalender = [];

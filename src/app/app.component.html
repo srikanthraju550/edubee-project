@@ -260,7 +260,9 @@
                     <li>Contact Us</li>
                     <li>Careers</li>
                     <li>FAQ's</li>
-                    <li>Privacy Policy</li>
+                    <li>Privacy Policy</li><br />
+                    <li><button type="button" class="custom-ss-download-broucher-btn"><i class="fa fa-download"></i>
+                            &nbsp;Download Broucher</button></li>
                 </ul>
             </div>
         </div>
@@ -1127,20 +1129,19 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         &nbsp;
                     </div>
                     <div class="col-md-6 _modl">
                         <span style="text-align: center; width: 100%;display: inline-flex">
-                            <label style="font-weight: bold;">Select Connect Type:&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            &nbsp;&nbsp;
+
                             <button (click)="openMe()" type="button" data-toggle="modal" class="buttonarticle"> Tech
                                 Teach</button>
                             <button (click)="openMe1()" type="button" data-toggle="modal" class="buttonarticle"> Tech
                                 Talk</button>
                         </span>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         &nbsp;
                     </div>
 
@@ -1164,10 +1165,10 @@
                         <textarea class="form-control" formControlName="abstract" placeholder="1000 words"
                             maxlength="1000"></textarea>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="technologyArea">*Technology Area:</label>
                         <input type="text" class="form-control" formControlName="technologyArea">
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="technology">*Technology:</label>
                         <select type="text" class="form-control" formControlName="technology"
@@ -1177,7 +1178,7 @@
                         </select>
                     </div>
                     <div *ngIf="subtechnologylist?.length!=0" class="form-group">
-                        <label for="subtechnology">*Sub-Technology:</label>
+                        <label for="subtechnology">Sub-Technology:</label>
                         <select type="text" class="form-control" formControlName="subtechnology"
                             (change)="getSubtechId($event.target.value)">
                             <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
@@ -1188,7 +1189,7 @@
 
 
                     <span style="color: #176086; text-decoration: underline; ">
-                        <h3 style="color: #176086  !important;">*Venue Details</h3>
+                        <h3 style="color: #176086  !important;font-size:20px">*Venue Details</h3>
                     </span>
                     <div formGroupName="venueDetails">
 
@@ -1238,8 +1239,8 @@
                             </div>
                         </div>
                     </div>
-                    <span style="color: #176086; text-decoration: underline; ">
-                        <h3 style="color: #176086  !important;">Registration Details</h3>
+                    <span style="color: #176086; text-decoration: underline;">
+                        <h3 style="color: #176086  !important;font-size:20px">Registration Details</h3>
                     </span>
                     <div formGroupName="registrationDetails">
                         <div class="row">
@@ -1285,8 +1286,8 @@
                         </div>
                     </div>
                     <span style="color: #176086; text-decoration: underline; ">
-                        <h3 style="color: #176086  !important;">Industrial Expert Details</h3><span id="addbox"
-                            style="cursor:pointer;">&#43;</span>
+                        <h3 style="color: #176086  !important;font-size:20px">Industrial Expert Details</h3><span
+                            id="addbox" style="cursor:pointer;">&#43;</span>
                     </span>
                     <div formGroupName="expertDetails">
                         <div class="row">
@@ -1373,7 +1374,7 @@
                     </div>
 
                     <span style="color: #176086 !important; text-decoration: underline; ">
-                        <h3 style="color: #176086  !important;">Venue Details</h3>
+                        <h3 style="color: #176086  !important;font-size:20px">Venue Details</h3>
                     </span>
                     <div formGroupName="venueDetails">
 
@@ -1421,7 +1422,7 @@
                         </div>
                     </div>
                     <span style="color: #176086  !important; text-decoration: underline; ">
-                        <h3 style="color: #176086  !important;">Registration Details</h3>
+                        <h3 style="color: #176086  !important;font-size:20px">Registration Details</h3>
                     </span>
                     <div formGroupName="registrationDetails">
                         <div class="row">
@@ -1468,7 +1469,7 @@
                         </div>
                     </div>
                     <span style="color: #176086  !important; text-decoration: underline; ">
-                        <h3 style="color: #176086  !important;">Speaker Details</h3>
+                        <h3 style="color: #176086  !important;font-size:20px">Speaker Details</h3>
                     </span>
                     <div formGroupName="expertDetails">
                         <div class="row">
