@@ -352,54 +352,7 @@
                     enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-6">
-                            <label for="email">*Contact Email:</label>
-                            <input type="text" class="form-control" formControlName="contact_email">
-
-                        </div>
-                        <div class="form-group col-6">
-                            <label for="contactnumber">*Contact Number:</label>
-                            <input type="text" class="form-control" formControlName="contact_number" minlength="10"
-                                maxlength="10" (keypress)="_keyPress($event)">
-
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="title">*Title:</label>
-                        <input type="text" class="form-control" formControlName="title">
-
-                    </div>
-                    <div class="form-group">
-                        <label for="abstract">*Abstract:</label>
-                        <textarea class="form-control" formControlName="abstract" placeholder="1000 words"
-                            maxlength="1000"></textarea>
-
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-6">
-                            <label for="technology">*Engineering Technology:</label>
-                            <select type="text" class="form-control" (change)="getSubTechList($event.target.value)"
-                                formControlName="technology_id" name="technology_id">
-                                <option>Select Technology</option>
-                                <option *ngFor="let technology of technologyList; let i = index;"
-                                    [value]="technology.technology_id">{{technology.name}}</option>
-                            </select>
-
-                        </div>
-                        <div class="form-group col-6">
-                            <label for="subtechnology">*Sub-Engineering Technology:</label>
-                            <select type="text" class="form-control" formControlName="sub_technology_id"
-                                name="sub_technology_id" (change)="getSubtechId($event.target.value)">
-                                <option>Select Subtechnology</option>
-                                <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
-                                    [value]="subtechnology.sub_tech_id">{{subtechnology.name}}</option>
-                            </select>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="form-group col-6">
-                            <label for="subtechnology">*Article Type:</label>
+                            <label for="subtechnology"><span class="red">*</span> Article Type:</label>
                             <select type="text" class="form-control" formControlName="article_type"
                                 (change)="articleType($event.target.value)">
                                 <option value="Article">Article</option>
@@ -411,7 +364,7 @@
                         <div class="form-group col-6" *ngIf="showArticle">
                             <br />
                             <br />
-                            <label for="paidArticle">*Is Paid Article :</label>
+                            <label for="paidArticle"> Is Paid Article :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="paidArticle" formControlName="is_paid" selected value="Y"
                                 (click)="selectPaid('yes')" name="is_paid">&nbsp;
@@ -424,9 +377,57 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-6">
+                            <label for="email"><span class="red">*</span> Contact Email:</label>
+                            <input type="text" class="form-control" formControlName="contact_email">
+
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="contactnumber"><span class="red">*</span> Contact Number:</label>
+                            <input type="text" class="form-control" formControlName="contact_number" minlength="10"
+                                maxlength="10" (keypress)="_keyPress($event)">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title"><span class="red">*</span> Title:</label>
+                        <input type="text" class="form-control" formControlName="title">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="abstract"><span class="red">*</span> Abstract:</label>
+                        <textarea class="form-control" formControlName="abstract" placeholder="1000 words"
+                            maxlength="1000"></textarea>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="technology"><span class="red">*</span> Engineering Technology:</label>
+                            <select type="text" class="form-control" (change)="getSubTechList($event.target.value)"
+                                formControlName="technology_id" name="technology_id">
+                                <option>Select Technology</option>
+                                <option *ngFor="let technology of technologyList; let i = index;"
+                                    [value]="technology.technology_id">{{technology.name}}</option>
+                            </select>
+
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="subtechnology"> Sub-Engineering Technology:</label>
+                            <select type="text" class="form-control" formControlName="sub_technology_id"
+                                name="sub_technology_id" (change)="getSubtechId($event.target.value)">
+                                <option>Select Subtechnology</option>
+                                <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
+                                    [value]="subtechnology.sub_tech_id">{{subtechnology.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="form-group col-6">
                             <br />
                             <br />
-                            <label for="paidArticle">*Select Publication Type :</label>
+                            <label for="paidArticle"><span class="red">*</span> Select Publication Type :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="publicationSelector" formControlName="publicationSelector"
                                 selected value="1" (click)="fileType('publicationLink')">&nbsp;
@@ -436,16 +437,17 @@
                             File Upload
                         </div>
                         <div class="form-group col-6" *ngIf="showCost">
-                            <label for="cost">*Cost:</label>
+                            <label for="cost"><span class="red">*</span> Cost:</label>
                             <input myNumberOnly type="text" class="form-control" formControlName="cost">
 
                         </div>
                         <div class="form-group col-6" *ngIf="showLink">
-                            <label for="publicationlink">*Publication Link:</label>
+                            <label for="publicationlink"><span class="red">*</span> Publication Link:</label>
                             <input type="text" class="form-control" formControlName="publication_link">
                         </div>
                         <div class="form-group col-6" *ngIf="showUpload">
-                            <label for="publicationFileUpload">*Upload Publication File:</label>
+                            <label for="publicationFileUpload"><span class="red">*</span> Upload Publication
+                                File:</label>
                             <input class="form-control" type="file" accept="image1/*" (change)="readUrl($event)"
                                 formControlName="publication_file">
                         </div>
@@ -453,7 +455,8 @@
                     <div style="width: 100%; text-align: center; align-items: center">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" formControlName="is_agreed">* Agree to Terms and
+                                <input type="checkbox" formControlName="is_agreed"><span class="red">*</span> Agree to
+                                Terms and
                                 Conditions</label>
                         </div>
                         <!-- [disabled]="!createTechArticleForm.valid "
@@ -490,7 +493,7 @@
                     enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-6">
-                            <label for="projectType">*Project Type:</label>
+                            <label for="projectType"><span class="red">*</span> Project Type:</label>
                             <select type="text" class="form-control" formControlName="projectType">
                                 <option [value]="5">
                                     Innovation</option>
@@ -498,7 +501,7 @@
 
                         </div>
                         <div class="form-group col-6">
-                            <label for="projectStatus">*Project Status:</label>
+                            <label for="projectStatus"><span class="red">*</span> Project Status:</label>
                             <select type="text" class="form-control" formControlName="projectStatus">
                                 <option value="completed">COMPLETED</option>
                                 <option value="ongoing">ONGOING</option>
@@ -510,7 +513,7 @@
 
                     <div class="row">
                         <div class="form-group col-6">
-                            <label for="technology">*Engineering Technology:</label>
+                            <label for="technology"><span class="red">*</span> Engineering Technology:</label>
                             <select type="text" class="form-control" (change)="getSubTechList($event.target.value)"
                                 formControlName="technology_id" name="technology_id">
                                 <option>Select Technology</option>
@@ -520,7 +523,7 @@
 
                         </div>
                         <div class="form-group col-6">
-                            <label for="subtechnology">*Sub-Engineering Technology:</label>
+                            <label for="subtechnology"><span class="red">*</span> Sub-Engineering Technology:</label>
                             <select type="text" class="form-control" formControlName="sub_technology_id"
                                 name="sub_technology_id" (change)="getSubtechId($event.target.value)">
                                 <option>Select Subtechnology</option>
@@ -533,7 +536,7 @@
                     <h3>Innovation Details</h3>
                     <div class="row">
                         <div class="form-group col-12">
-                            <label for="idea">*Idea:</label>
+                            <label for="idea"><span class="red">*</span> Idea:</label>
                             <input type="text" class="form-control" formControlName="idea">
                         </div>
 
@@ -542,7 +545,7 @@
                     <div class="row">
                         <div class="form-group col-12">
 
-                            <label for="ideaDescription">*Idea Description:</label>
+                            <label for="ideaDescription"><span class="red">*</span> Idea Description:</label>
                             <textarea class="form-control" formControlName="ideaDescription" maxlength="500"></textarea>
                         </div>
                     </div>
@@ -952,7 +955,7 @@
                     enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-6">
-                            <label for="projectType">*Project Type:</label>
+                            <label for="projectType"><span class="red">*</span> Project Type:</label>
                             <select type="text" class="form-control" formControlName="projectType"
                                 (change)="selectProjectType($event.target.value)">
 
@@ -962,7 +965,7 @@
                             </select>
                         </div>
                         <div class="form-group col-6">
-                            <label for="projectStatus">*Project Status:</label>
+                            <label for="projectStatus"><span class="red">*</span> Project Status:</label>
                             <select type="text" class="form-control" formControlName="projectStatus">
                                 <option value="completed">COMPLETED</option>
                                 <option value="ongoing">ONGOING</option>
@@ -970,18 +973,18 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="title">*Title:</label>
+                        <label for="title"><span class="red">*</span> Title:</label>
                         <input type="text" class="form-control" formControlName="title">
                     </div>
                     <div class="form-group">
-                        <label for="abstract">*Abstract:</label>
+                        <label for="abstract"><span class="red">*</span> Abstract:</label>
                         <textarea class="form-control" formControlName="abstract" placeholder="1000 words"
                             maxlength="1000"></textarea>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-6">
-                            <label for="technology">*Engineering Technology:</label>
+                            <label for="technology"><span class="red">*</span> Engineering Technology:</label>
                             <select type="text" class="form-control" (change)="getSubTechList($event.target.value)"
                                 formControlName="technology_id" name="technology_id">
                                 <option>Select Technology</option>
@@ -991,7 +994,7 @@
 
                         </div>
                         <div class="form-group col-6">
-                            <label for="subtechnology">*Sub-Engineering Technology:</label>
+                            <label for="subtechnology"><span class="red">*</span> Sub-Engineering Technology:</label>
                             <select type="text" class="form-control" formControlName="sub_technology_id"
                                 name="sub_technology_id" (change)="getSubtechId($event.target.value)">
                                 <option>Select Subtechnology</option>
@@ -1006,7 +1009,7 @@
                     <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
                         <div class="form-group col-6">
                             <br />
-                            <label for="prototypeAvailable">*Prototype Available :</label>
+                            <label for="prototypeAvailable"><span class="red">*</span> Prototype Available :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="prototypeAvailable" formControlName="prototypeAvailable" selected
                                 value="Y">&nbsp;
@@ -1161,11 +1164,11 @@
                 <form *ngIf="showTechTeach" [formGroup]="createTechTeachForm" (ngSubmit)="onCreateTechTeachFormSubmit()"
                     enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="topic">*Topic:</label>
+                        <label for="topic"><span class="red">*</span> Topic:</label>
                         <input type="text" class="form-control" formControlName="topic">
                     </div>
                     <div class="form-group">
-                        <label for="topic">*Tech Teach Type:</label>
+                        <label for="topic"><span class="red">* </span> Tech Teach Type:</label>
                         <select type="text" class="form-control" formControlName="techteachtype"
                             (change)="selectTechTeachType($event.target.value)">
                             <option *ngFor="let type of techTeachTypeList; let i = index;" [value]="type.type_id">
@@ -1173,16 +1176,16 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="abstract">*Abstract:</label>
+                        <label for="abstract"><span class="red">*</span> Abstract:</label>
                         <textarea class="form-control" formControlName="abstract" placeholder="1000 words"
                             maxlength="1000"></textarea>
                     </div>
                     <!-- <div class="form-group">
-                        <label for="technologyArea">*Technology Area:</label>
+                        <label for="technologyArea"><span class="red">*</span> Technology Area:</label>
                         <input type="text" class="form-control" formControlName="technologyArea">
                     </div> -->
                     <div class="form-group">
-                        <label for="technology">*Technology:</label>
+                        <label for="technology"><span class="red">*</span> Technology:</label>
                         <select type="text" class="form-control" formControlName="technology"
                             (change)="getSubTechList($event.target.value)">
                             <option *ngFor="let technology of technologyList; let i = index;"
@@ -1201,7 +1204,8 @@
 
 
                     <span style="color: #176086; text-decoration: underline; ">
-                        <h3 style="color: #176086  !important;font-size:20px">*Venue Details</h3>
+                        <h3 style="color: #176086  !important;font-size:20px"><span class="red">*</span> Venue Details
+                        </h3>
                     </span>
                     <div formGroupName="venueDetails">
 
@@ -1355,12 +1359,12 @@
                 <form *ngIf="showTechTalk" [formGroup]="createTechTalkForm" (ngSubmit)="onCreateTechTalkFormSubmit()"
                     enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="topic">Topic:</label>
+                        <label for="topic"><span class="red">*</span> Topic:</label>
                         <input type="text" class="form-control" formControlName="topic">
                     </div>
 
                     <div class="form-group">
-                        <label for="topic">*Tech Talk Type:</label>
+                        <label for="topic"><span class="red">*</span> Tech Talk Type:</label>
                         <select type="text" class="form-control" formControlName="techtalktype"
                             (change)="selectTechtalkType($event.target.value)">
                             <option *ngFor="let type of techTalkTypeList; let i = index;" [value]="type.type_id">
@@ -1369,7 +1373,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="technology">*Technology:</label>
+                        <label for="technology"><span class="red">*</span> Technology:</label>
                         <select type="text" class="form-control" formControlName="technology"
                             (change)="getSubTechList($event.target.value)">
                             <option *ngFor="let technology of technologyList; let i = index;"
@@ -1377,7 +1381,7 @@
                         </select>
                     </div>
                     <div *ngIf="subtechnologylist?.length!=0" class="form-group">
-                        <label for="subtechnology">*Sub-Technology:</label>
+                        <label for="subtechnology"> Sub-Technology:</label>
                         <select type="text" class="form-control" formControlName="subtechnology"
                             (change)="getSubtechId($event.target.value)">
                             <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
@@ -1394,19 +1398,19 @@
                         <div class="row">
                             <div class="form-group col-4">
                                 <label>
-                                    *Place:
+                                    <span class="red">*</span> Place:
                                     <input type="text" class="form-control" formControlName="place">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *City:
+                                    <span class="red">*</span> City:
                                     <input type="text" class="form-control" formControlName="city">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *Address:
+                                    <span class="red">*</span> Address:
                                     <input type="text" class="form-control" formControlName="address">
                                 </label>
                             </div>
@@ -1414,20 +1418,20 @@
                         <div class="row">
                             <div class="form-group col-4">
                                 <label>
-                                    *Event Date:
+                                    <span class="red">*</span> Event Date:
                                     <input type="date" class="form-control" formControlName="date"
                                         min='{{this.minDateString}}'>
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *From Time:
+                                    <span class="red">*</span> From Time:
                                     <input type="text" class="form-control" formControlName="fromTime">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *To Time:
+                                    <span class="red">*</span> To Time:
                                     <input type="text" class="form-control" formControlName="toTime">
                                 </label>
                             </div>
@@ -1440,19 +1444,19 @@
                         <div class="row">
                             <div class="form-group col-4">
                                 <label>
-                                    *Web Address:
+                                    <span class="red">*</span> Web Address:
                                     <input type="text" class="form-control" formControlName="webaddress">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *Maximum Registration Allowed:
+                                    <span class="red">*</span> Maximum Registration Allowed:
                                     <input myNumberOnly type="text" class="form-control" formControlName="maxregcount">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *Registration Fee:
+                                    <span class="red">*</span> Registration Fee:
                                     <input myNumberOnly type="text" class="form-control" formControlName="regfee">
                                 </label>
                             </div>
@@ -1460,14 +1464,14 @@
                         <div class="row">
                             <div class="form-group col-4">
                                 <label>
-                                    *Eligibility:
+                                    <span class="red">*</span> Eligibility:
                                     <textarea myNumberOnly type="text" class="form-control"
                                         formControlName="eligibility"></textarea>
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *Seat Capacity:
+                                    <span class="red">*</span> Seat Capacity:
                                     <input myNumberOnly type="text" class="form-control" formControlName="seatcapacity">
                                 </label>
                             </div>
@@ -1487,19 +1491,19 @@
                         <div class="row">
                             <div class="form-group col-4">
                                 <label>
-                                    *Name:
+                                    <span class="red">*</span> Name:
                                     <input type="text" class="form-control" formControlName="name">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *Company:
+                                    <span class="red">*</span> Company:
                                     <input type="text" class="form-control" formControlName="company">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *Speaker Type:
+                                    <span class="red">*</span> Speaker Type:
                                     <select type="text" class="form-control" formControlName="speakerType">
                                         <option>Student</option>
                                         <option>Professional</option>
@@ -1510,19 +1514,19 @@
                         <div class="row">
                             <div class="form-group col-4">
                                 <label>
-                                    *Working Location:
+                                    <span class="red">*</span> Working Location:
                                     <input type="text" class="form-control" formControlName="worklocation">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *Position:
+                                    <span class="red">*</span> Position:
                                     <input type="text" class="form-control" formControlName="position">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *Experience:
+                                    <span class="red">*</span> Experience:
                                     <input myNumberOnly type="text" class="form-control" formControlName="experience">
                                 </label>
 
@@ -1563,12 +1567,12 @@
                 <form [formGroup]="createTechTalkForm" (ngSubmit)="onCreateTechTalkFormSubmit()"
                     enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="topic">*Topic:</label>
+                        <label for="topic"><span class="red">*</span> Topic:</label>
                         <input type="text" class="form-control" formControlName="topic">
                     </div>
 
                     <div class="form-group">
-                        <label for="topic">*Tech Talk Type:</label>
+                        <label for="topic"><span class="red">*</span> Tech Talk Type:</label>
                         <select type="text" class="form-control" formControlName="techtalktype"
                             (change)="selectTechtalkType($event.target.value)">
                             <option *ngFor="let type of techTalkTypeList; let i = index;" [value]="type.type_id">
@@ -1578,7 +1582,7 @@
 
 
                     <div class="form-group">
-                        <label for="technology">*Technology:</label>
+                        <label for="technology"><span class="red">*</span> Technology:</label>
                         <select type="text" class="form-control" formControlName="technology"
                             (change)="getSubTechList($event.target.value)">
                             <option *ngFor="let technology of technologyList; let i = index;"
@@ -1586,7 +1590,7 @@
                         </select>
                     </div>
                     <div *ngIf="subtechnologylist?.length!=0" class="form-group">
-                        <label for="subtechnology">*Sub-Technology:</label>
+                        <label for="subtechnology"> Sub-Technology:</label>
                         <select type="text" class="form-control" formControlName="subtechnology"
                             (change)="getSubtechId($event.target.value)">
                             <option *ngFor="let subtechnology of subtechnologylist; let i = index; "
@@ -1604,19 +1608,19 @@
                         <div class="row">
                             <div class="form-group col-4">
                                 <label>
-                                    *Place:
+                                    <span class="red">*</span> Place:
                                     <input type="text" class="form-control" formControlName="place">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *City:
+                                    <span class="red">*</span> City:
                                     <input type="text" class="form-control" formControlName="city">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *Address:
+                                    <span class="red">*</span> Address:
                                     <input type="text" class="form-control" formControlName="address">
                                 </label>
                             </div>
@@ -1624,20 +1628,20 @@
                         <div class="row">
                             <div class="form-group col-4">
                                 <label>
-                                    *Event Date:
+                                    <span class="red">*</span> Event Date:
                                     <input type="date" class="form-control" formControlName="date"
                                         min='{{this.minDateString}}'>
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *From Time:
+                                    <span class="red">*</span> From Time:
                                     <input type="text" class="form-control" formControlName="fromTime">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *To Time:
+                                    <span class="red">*</span> To Time:
                                     <input type="text" class="form-control" formControlName="toTime">
                                 </label>
                             </div>
@@ -1650,19 +1654,19 @@
                         <div class="row">
                             <div class="form-group col-4">
                                 <label>
-                                    *Web Address:
+                                    <span class="red">*</span> Web Address:
                                     <input type="text" class="form-control" formControlName="webaddress">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *Maximum Registration Allowed:
+                                    <span class="red">*</span> Maximum Registration Allowed:
                                     <input myNumberOnly type="text" class="form-control" formControlName="maxregcount">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *Registration Fee:
+                                    <span class="red">*</span> Registration Fee:
                                     <input myNumberOnly type="text" class="form-control" formControlName="regfee">
                                 </label>
                             </div>
@@ -1670,14 +1674,14 @@
                         <div class="row">
                             <div class="form-group col-4">
                                 <label>
-                                    *Eligibility:
+                                    <span class="red">*</span> Eligibility:
                                     <textarea myNumberOnly type="text" class="form-control"
                                         formControlName="eligibility"></textarea>
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *Seat Capacity:
+                                    <span class="red">*</span> Seat Capacity:
                                     <input myNumberOnly type="text" class="form-control" formControlName="seatcapacity">
                                 </label>
                             </div>
@@ -1697,19 +1701,19 @@
                         <div class="row">
                             <div class="form-group col-4">
                                 <label>
-                                    *Name:
+                                    <span class="red">*</span> Name:
                                     <input type="text" class="form-control" formControlName="name">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *Company:
+                                    <span class="red">*</span> Company:
                                     <input type="text" class="form-control" formControlName="company">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *Speaker Type:
+                                    <span class="red">*</span> Speaker Type:
                                     <select type="text" class="form-control" formControlName="speakerType">
                                         <option>Student</option>
                                         <option>Professional</option>
@@ -1720,19 +1724,19 @@
                         <div class="row">
                             <div class="form-group col-4">
                                 <label>
-                                    *Working Location:
+                                    <span class="red">*</span> Working Location:
                                     <input type="text" class="form-control" formControlName="worklocation">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *Position:
+                                    <span class="red">*</span> Position:
                                     <input type="text" class="form-control" formControlName="position">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
-                                    *Experience:
+                                    <span class="red">*</span> Experience:
                                     <input myNumberOnly type="text" class="form-control" formControlName="experience">
                                 </label>
 

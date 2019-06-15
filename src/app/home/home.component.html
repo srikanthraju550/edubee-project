@@ -75,13 +75,13 @@
                     <div class="col-md-6 col-sm-6 animated fadeInRight" *ngIf="showTechTeach">
                         <p>{{filterquickRegData?.description}}<br />
                         </p>
-                        <button *ngIf="techTitle=='Academic Proz'" class="custom-ss-quick-register-block-button"
+                        <button *ngIf="techTitle=='Academic Proz'&&!checkLoginStatus()" class="custom-ss-quick-register-block-button"
                             data-toggle="modal" data-target="#createProjectModal">
                             {{filterquickRegData?.button_name}} </button>
-                        <button *ngIf="techTitle =='Stuvation' " class="custom-ss-quick-register-block-button"
+                        <button *ngIf="techTitle =='Stuvation'&&!checkLoginStatus() " class="custom-ss-quick-register-block-button"
                             data-toggle="modal" data-target="#createStuvationModal">
                             {{filterquickRegData?.button_name}} </button>
-                        <button *ngIf="techTitle=='Tech Teach' || techTitle=='Tech Talk'"
+                        <button *ngIf="(techTitle=='Tech Teach' || techTitle=='Tech Talk')&&!checkLoginStatus()"
                             class="custom-ss-quick-register-block-button" data-toggle="modal"
                             data-target="#createTechConnectModal">
                             {{filterquickRegData?.button_name}} </button>

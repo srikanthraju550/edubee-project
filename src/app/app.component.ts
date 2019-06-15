@@ -329,7 +329,7 @@ export class AppComponent {
   createTechTalkForm = this.fb.group({
     topic: ['', Validators.required],
     technology: ['', Validators.required],
-    subtechnology: ['', Validators.required],
+    subtechnology: [''],
     techtalktype: ['', Validators.required],
     venueDetails: this.fb.group({
       place: ['', Validators.required],
@@ -377,7 +377,7 @@ export class AppComponent {
     title: ['', Validators.required],
     abstract: ['', Validators.required],
     technology_id: ['', Validators.required],
-    sub_technology_id: ['', Validators.required],
+    sub_technology_id: [''],
     article_type: ['', Validators.required],
     is_paid: [''],
     cost: [''],
@@ -424,7 +424,7 @@ export class AppComponent {
 
     // stop here if form is invalid
     if (this.createTechArticleForm.invalid) {
-      alert('Required fields Missing');
+      alert('Required fields Missing, Please fill * marks fields, Please fill * marks fields');
       return;
     }
 
@@ -467,7 +467,7 @@ export class AppComponent {
 
     // stop here if form is invalid
     if (this.createStuvationForm.invalid) {
-      alert('Required fields Missing');
+      alert('Required fields Missing, Please fill * marks fields');
       return;
     }
 
@@ -618,9 +618,8 @@ export class AppComponent {
   createTechTeachForm = this.fb.group({
     topic: ['', Validators.required],
     abstract: ['', Validators.required],
-    technologyArea: ['', Validators.required],
     technology: ['', Validators.required],
-    subtechnology: ['', Validators.required],
+    subtechnology: [''],
     techteachtype: ['', Validators.required],
     venueDetails: this.fb.group({
       place: ['', Validators.required],
@@ -645,8 +644,7 @@ export class AppComponent {
       position: ['', Validators.required],
       experience: ['', Validators.required]
     }),
-    userDetails: this.fb.group(this.getLoggedInUserObject()),
-    agreeTnc: [false, Validators.required]
+    userDetails: this.fb.group(this.getLoggedInUserObject())
 
   });
   onCreateTechTeachFormSubmit() {
@@ -657,7 +655,7 @@ export class AppComponent {
 
     // stop here if form is invalid
     if (this.createTechTeachForm.invalid) {
-      alert('Required fields Missing');
+      alert('Required fields Missing, Please fill * marks fields');
       return;
     }
 
@@ -715,7 +713,7 @@ export class AppComponent {
     this.submitted = true;
     // stop here if form is invalid
     if (this.createTechTalkForm.invalid) {
-      alert('Required fields Missing');
+      alert('Required fields Missing, Please fill * marks fields');
       return;
     }
 

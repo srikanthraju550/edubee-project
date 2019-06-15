@@ -144,7 +144,6 @@ export class TechArticleComponent implements OnInit {
     var params = 'user_id=' + userDetails['user_id'] + '&tech_article_id=' + articleId + '&action=' + operationType
     this.httpnew.post(this.Baseurl + 'follow-tech-article', params, { headers: headers }).subscribe(res => {
       if (res.json().status === true) {
-        alert(res.json().message);
         this.ngOnInit();
       } else {
         alert(res.json().message);
@@ -175,7 +174,6 @@ export class TechArticleComponent implements OnInit {
         this.liked = false;
       }
       if (res.json().status === true) {
-        alert(res.json().message);
         this.ngOnInit();
       } else {
         alert(res.json().message);
