@@ -78,6 +78,21 @@
             color: white;
         }
 
+.tech-hdng{
+    color: #f3f3f5;
+    font-size: 22px;
+    font-weight: 600;
+}
+.card{
+        margin-bottom: 20px;
+        box-shadow: 2px 6px 8px #d8d8d8;
+}    
+.tchtlk-card .crd-btn-dv li {
+    width: 100%;
+}    
+.tchtlk-card .buttonarticle{
+    width: 90%;
+}
 @media only screen and (max-width: 768px) {
     .createbank{
         max-width : 100% !important;
@@ -133,7 +148,7 @@
     margin: 15px auto;
 }
 .crd-btn-dv li{
-width: 50%;
+width: 100%;
 }
 .crd-lft{
     float: left;
@@ -159,6 +174,11 @@ width: 50%;
 h5 button.btn.btn-link.collapsed {
     text-decoration: none;
     cursor: initial;
+}
+
+.tchtlk-card .col-md-3>div {
+    float: left;
+    width: 100%;
 }
 
 /************##############*****media quaries*****###############*********************/
@@ -199,6 +219,12 @@ h5 button.btn.btn-link.collapsed {
     }
     .card-body{
         padding: 8px 2px;
+    }
+
+    .tchtlk-card .buttonarticle{
+        width: 90%;
+        left: 0!important;
+        margin-bottom: 8px;
     }
  }
  

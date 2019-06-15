@@ -55,11 +55,156 @@
 </div>
 
 <br />
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12" style="margin-top: 1em;">
+
+      <div class="card card-articles tchtlk-card" style="width: 100%;"
+      *ngFor="let techteach of ResponseData | filterBy:techEventFilter ; let i = index; ">
+    
+        
+      <div class="card-header">
+          <h6 class="tech-hdng">Tech Teach</h6>
+      </div>
+
+        <div class="card-body">
+          <div class="row">
+            
+
+            <div class="col-md-3">
+              <span class="cardSubHeading crd-hdng">Tech Connect Details</span>
+              <div><b class="crd-lft">Type</b> <span class="crd-ryt">: {{techteach.tech_teach_type}}</span></div>
+              <div><b class="crd-lft">Topic</b> <span class="crd-ryt">: {{techteach.topic}}</span></div>
+              <div><b class="crd-lft">Abstract</b> <span class="crd-ryt">: {{techteach.abstract}}</span></div>
+              <div><b class="crd-lft">Technology</b> <span class="crd-ryt">: {{techteach.technology}}</span></div>
+              <div><b class="crd-lft">Sub Technology</b> <span class="crd-ryt">: {{techteach.sub_technology}}</span>
+            </div>
+            </div>
+
+            <div class="col-md-3">
+                <span class="cardSubHeading crd-hdng">Industrial Expert</span>
+                <div><b class="crd-lft">Name</b> <span class="crd-ryt">: {{techteach.user_name}}</span></div>
+                <div><b class="crd-lft">Company</b> <span class="crd-ryt">:
+                    {{techteach.company}}</span></div>
+                <div><b class="crd-lft">Positionl</b> <span class="crd-ryt" style="font-size: 14px;">:
+                    {{techteach.position}}</span></div>
+            </div>
+
+            <div class="col-md-3">
+                <span class="cardSubHeading crd-hdng">Venue Details</span>
+                <div><b class="crd-lft">Place</b> <span class="crd-ryt">: {{techteach.place}}</span></div>
+                <div><b class="crd-lft">Address</b> <span class="crd-ryt">: {{techteach.address}}</span>
+                </div>
+                <div><b class="crd-lft" style="font-size: 13px;">City</b> <span class="crd-ryt">:
+                    {{techteach.city}}</span></div>
+                <div><b class="crd-lft">Date</b> <span class="crd-ryt">: {{techteach.event_date}}</span></div>
+            </div>
+
+            <div class="col-md-3">
+                <span class="cardSubHeading crd-hdng">Registration Details</span>
+
+                <div><b class="crd-lft">No. of Registration</b> <span class="crd-ryt">:
+                    {{techteach.seat_capacity}}</span>
+                </div>
+
+                <ul class="nav nav-pills crd-btn-dv">
+                    <li class="nav-item">
+                      <button class="nav-link btn btn-light buttonarticle" (click)="viewTechTeachDetails(techteach)"
+                        data-toggle="modal" data-target="#detailsModal">View Detail's</button>
+                    </li>
+                    <li class="nav-item" *ngIf="!checkLoginStatus()">
+                      <button class="nav-link btn btn-light buttonarticle" 
+                       (click)="applyForEventTechTalk(techteach)">Apply for this event</button>
+                    </li>
+                  </ul>
+
+            </div>
+
+        </div>
+      </div>
+      </div>
+
+
+      <div class="card card-articles tchtlk-card" style="width: 100%;"
+      *ngFor="let techtalkdata of techtalkdetails | filter:techEventFilter; let i = index; " >
+    
+        
+      <div class="card-header">
+          <h6 class="tech-hdng">Tech Talk</h6>
+      </div>
+
+        <div class="card-body">
+          <div class="row">          
+
+            <div class="col-md-3">
+              <span class="cardSubHeading crd-hdng">Tech Connect Details</span>
+              <div><b class="crd-lft">Type</b> <span class="crd-ryt">: {{techtalkdata.tech_talk_type}}</span></div>
+              <div><b class="crd-lft">Topic</b> <span class="crd-ryt">: {{techtalkdata.topic}}</span></div>
+              <div><b class="crd-lft">Abstract</b> <span class="crd-ryt">: {{techtalkdata.abstract}}</span></div>
+              <div><b class="crd-lft">Technology</b> <span class="crd-ryt">: {{techtalkdata.technology}}</span></div>
+              <div><b class="crd-lft">Sub Technology</b> <span class="crd-ryt">: {{techtalkdata.sub_technology}}</span>
+            </div>
+            </div>
+
+            <div class="col-md-3">
+                <span class="cardSubHeading crd-hdng">Industrial Expert</span>
+                <div><b class="crd-lft">Name</b> <span class="crd-ryt">: {{techtalkdata.user_name}}</span></div>
+                <div><b class="crd-lft">Company</b> <span class="crd-ryt">:
+                    {{techtalkdata.company}}</span></div>
+                <div><b class="crd-lft">Position</b> <span class="crd-ryt" style="font-size: 14px;">:
+                    {{techtalkdata.position}}</span></div>
+                <div><b class="crd-lft">Email</b> <span class="crd-ryt" style="font-size: 14px;">: {{techtalkdata.contact_email}}</span></div>
+                <div><b class="crd-lft">Contact</b> <span class="crd-ryt" style="font-size: 14px;">:{{techtalkdata.contact_number}}</span></div>
+            </div>
+
+            <div class="col-md-3">
+                <span class="cardSubHeading crd-hdng">Venue Details</span>
+                <div><b class="crd-lft">Place</b> <span class="crd-ryt">: {{techtalkdata.place}}</span></div>
+                <div><b class="crd-lft">Address</b> <span class="crd-ryt">: {{techtalkdata.address}}</span>
+                </div>
+                <div><b class="crd-lft">City</b> <span class="crd-ryt">:
+                    {{techtalkdata.city}}</span></div>
+                <div><b class="crd-lft">Date</b> <span class="crd-ryt">: {{techtalkdata.event_date}}</span></div>
+            </div>
+
+            <div class="col-md-3">
+                <span class="cardSubHeading crd-hdng">Registration Details</span>
+
+                <div><b class="crd-lft">No. of Registration</b> <span class="crd-ryt">:
+                    {{techtalkdata.seat_capacity}}</span>
+                </div>
+                <ul class="nav nav-pills crd-btn-dv">
+                    <li class="nav-item">
+                      <button class="nav-link btn btn-light  buttonarticle" (click)="viewTechTalkDetails(techtalkdata)"
+                        data-toggle="modal" data-target="#detailsModal">More Detail's</button>
+                    </li>
+                    <li class="nav-item" *ngIf="!checkLoginStatus()">
+                      <button class="nav-link btn btn-light buttonarticle"
+                        (click)="applyForEventTechTalk(techtalkdata)">Apply for the event</button>
+                    </li>
+                  </ul>
+
+            </div>
+
+        </div>
+      </div>
+      </div>
+
+
+      </div>
+</div>
+
+
+
+
+
+
 <div class="container-fluid" style="padding: 2px;">
   <div class="row">
     <div class="col-12">
       <div class="accordion" id="accordionExample" style="margin: 0em; ">
-        <div class="card" *ngFor="let techteach of ResponseData | filterBy:techEventFilter ; let i = index; ">
+        <!-- <div class="card" *ngFor="let techteach of ResponseData | filterBy:techEventFilter ; let i = index; ">
           <div class="card-header" id="teachheading{{1}}" data-toggle="" attr.data-target="#teachcollapse{{i}}"
             aria-expanded="" attr.aria-controls="teachcollapse{{i}}">
             <h5 class="mb-0">
@@ -84,10 +229,7 @@
                 <div><b class="crd-lft">Technology</b> <span class="crd-ryt">: {{techteach.technology}}</span></div>
                 <div><b class="crd-lft">Sub Technology</b> <span class="crd-ryt">: {{techteach.sub_technology}}</span>
                 </div>
-                <!-- <div><b class="crd-lft">Created on</b> <span class="crd-ryt">: {{techteach.createdon}}</span></div>
-                <div><b class="crd-lft">Event on</b> <span class="crd-ryt">: {{techteach.venuedate}}</span></div>
-                <div><b class="crd-lft" style="font-size: 14px;">No.of People Applied</b> <span class="crd-ryt"> :
-                    {{techteach.registrationCount}}</span></div> -->
+                
                 <br />
 
                 <span class="cardSubHeading crd-hdng">Industrial Expert</span>
@@ -133,9 +275,9 @@
             </div>
 
           </div>
-        </div>
+        </div> -->
 
-        <div class="tech-tlk-contnr">
+        <!-- <div class="tech-tlk-contnr">
           <div class="card" *ngFor="let techtalkdata of techtalkdetails | filter:techEventFilter; let i = index; ">
             <div class="card-header" id="talkheading{{1}}" data-toggle="" attr.data-target="#talkcollapse{{i}}"
               aria-expanded="false" attr.aria-controls="talkcollapse{{i}}">
@@ -164,10 +306,7 @@
                       {{techtalkdata.sub_technology}}</span>
                   </div>
 
-                  <!-- <div><b class="crd-lft">Created on</b> <span class="crd-ryt">: {{techtalkdata.createdon}}</span></div>
-                  <div><b class="crd-lft">Event on</b> <span class="crd-ryt">: {{techtalkdata.venuedate}}</span></div>
-                  <div><b class="crd-lft" style="font-size: 14px;">No.of People Applied</b> <span class="crd-ryt"> :
-                      {{techtalkdata.registrationCount}}</span></div> -->
+                
                   <br />
 
                   <span class="cardSubHeading crd-hdng">Industrial Expert</span>
@@ -223,7 +362,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
       </div>
     </div>
