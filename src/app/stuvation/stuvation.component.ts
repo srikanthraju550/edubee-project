@@ -36,27 +36,24 @@ export class StuvationComponent implements OnInit {
       url += "?userid=" + userDetails['userid'];
     this.userId = userDetails['userid'];
     this.http.get(url).subscribe(data => {
-      console.log(data);
       this.sliderContent = data['0'].sliderContent;
       this.teamDetails = data['1'].teamDetails;
       this.stuvationdetails = data['10'].stuvationdetails;
       this.homePageContent = data['3'].homePageData;
-      console.log(this.sliderContent);
-      console.log(this.homePageContent);
-      console.log(this.teamDetails);
-      console.log(this.stuvationdetails);
+
     });
     this.getstuationData();
   }
 
   ResponseData = [];
   image_path;
+  file_path;
   getstuationData() {
     let userDetails = this.getLoggedInUserObject();
     this.httpnew.get(this.Baseurl + 'stuvation-list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
-      this.ResponseData = response.json().data;
+      this.ResponseData = response.json().data.reverse();
       this.image_path = response.json().image_path;
-      console.log(this.ResponseData);
+      this.file_path = response.json().file_path;
     });
   }
 
@@ -84,7 +81,7 @@ export class StuvationComponent implements OnInit {
         this.liked = false;
       }
       if (res.json().status === true) {
-        alert(res.json().message);
+
         this.ngOnInit();
       } else {
         alert(res.json().message);
@@ -102,7 +99,7 @@ export class StuvationComponent implements OnInit {
     var params = 'user_id=' + userDetails['user_id'] + '&stuvation_id=' + stuationId + '&action=' + operationType
     this.httpnew.post(this.Baseurl + 'follow-stuvation', params, { headers: headers }).subscribe(res => {
       if (res.json().status === true) {
-        alert(res.json().message);
+
         this.ngOnInit();
       } else {
         alert(res.json().message);
@@ -118,7 +115,7 @@ export class StuvationComponent implements OnInit {
   showstuvationComments(stuation) {
     this.showInput = false;
     this.comment = '';
-    this.stuationId = stuation.stuation_id;
+    this.stuationId = stuation.stuvation_id;
     this.stuvationcomments = [];
     let userDetails = this.getLoggedInUserObject();
     this.userid = userDetails['name'].toString();
@@ -184,7 +181,7 @@ export class StuvationComponent implements OnInit {
     }
   }
 
-  stuvationFilter: any = { title: '', technology: '', sub_technology: '' };
+  stuvationFilter: any = { title: '', technology: '', sub_technology: '', project_type: '' };
 
   keywordFilter = "";
   techFilter = "";

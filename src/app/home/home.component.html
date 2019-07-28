@@ -75,11 +75,13 @@
                     <div class="col-md-6 col-sm-6 animated fadeInRight" *ngIf="showTechTeach">
                         <p>{{filterquickRegData?.description}}<br />
                         </p>
-                        <button *ngIf="techTitle=='Academic Proz'&&!checkLoginStatus()" class="custom-ss-quick-register-block-button"
-                            data-toggle="modal" data-target="#createProjectModal">
+                        <button *ngIf="techTitle=='Academic Proz'&&!checkLoginStatus()"
+                            class="custom-ss-quick-register-block-button" data-toggle="modal"
+                            data-target="#createProjectModal">
                             {{filterquickRegData?.button_name}} </button>
-                        <button *ngIf="techTitle =='Stuvation'&&!checkLoginStatus() " class="custom-ss-quick-register-block-button"
-                            data-toggle="modal" data-target="#createStuvationModal">
+                        <button *ngIf="techTitle =='Stuvation'&&!checkLoginStatus() "
+                            class="custom-ss-quick-register-block-button" data-toggle="modal"
+                            data-target="#createStuvationModal">
                             {{filterquickRegData?.button_name}} </button>
                         <button *ngIf="(techTitle=='Tech Teach' || techTitle=='Tech Talk')&&!checkLoginStatus()"
                             class="custom-ss-quick-register-block-button" data-toggle="modal"
@@ -233,7 +235,7 @@
                                     Today
                                 </div>
                                 <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
-                                    (viewDateChange)="activeDayIsOpen = false"  (click)="nextMnth(viewDate)">
+                                    (viewDateChange)="activeDayIsOpen = false" (click)="nextMnth(viewDate)">
                                     Next
                                 </div>
                             </div>
@@ -270,6 +272,10 @@
         <div class="row">
             <div class="col-md-12">
                 <h1 class="custom-ss-student-thoughts-heading text-center">STUDENTS <span>THOUGHTS</span></h1>
+                <button class="buttonarticle" style="    float: right;
+                position: relative;
+                top: -60px" data-toggle="modal" data-target="#addThought" *ngIf="!checkLoginStatus()">Add New
+                    Thought</button>
             </div>
             <div class="col-md-4">
                 <img class="custom-ss-student-thoughts-block-img" src="assets/images/studentthought.png">

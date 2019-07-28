@@ -54,7 +54,7 @@ const colors: any = {
 })
 export class AppComponent {
   navbarOpen = false;
-
+  error: boolean;
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
   }
@@ -236,23 +236,23 @@ export class AppComponent {
     this.userImagePath = sessionStorage.getItem('userImagePath');
     this.minDateString = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
     //document.getElementById("datefield").setAttribute("min", today.toDateString());
-    let url = this.endpoint1 + 'getHomePageContent.php' + "/random=" + new Date().getTime();
+    // let url = this.endpoint1 + 'getHomePageContent.php' + "/random=" + new Date().getTime();
     let userDetails = this.getLoggedInUserObject();
     console.log(userDetails);
-    if (!this.checkLoginStatus())
-      url += "?userid=" + userDetails['user_id'];
+    // if (!this.checkLoginStatus())
+    //   url += "?userid=" + userDetails['user_id'];
 
-    this.http.get(url).subscribe(data => {
-      // this.sliderContent = data['0'].sliderContent;
-      // this.teamDetails = data['1'].teamDetails;
-      // this.homePageContent = data['3'].homePageData;
-      // this.technologyconfig = data['6'].technologyconfig;
-      // this.subtechnologyconfig = data['7'].subtechnologyconfig;
-      // this.techTalkTypeConfig = data['8'].techtalktypeconfig;
-      // this.techTeachTypeConfig = data['9'].techteachtypeconfig;
-      // this.stuvationtypeconfig = data['11'].stuvationtypeconfig;
-      // this.updateSubTechList(this.createTechArticleForm.value.technology);
-    });
+    // this.http.get(url).subscribe(data => {
+    //   // this.sliderContent = data['0'].sliderContent;
+    //   // this.teamDetails = data['1'].teamDetails;
+    //   // this.homePageContent = data['3'].homePageData;
+    //   // this.technologyconfig = data['6'].technologyconfig;
+    //   // this.subtechnologyconfig = data['7'].subtechnologyconfig;
+    //   // this.techTalkTypeConfig = data['8'].techtalktypeconfig;
+    //   // this.techTeachTypeConfig = data['9'].techteachtypeconfig;
+    //   // this.stuvationtypeconfig = data['11'].stuvationtypeconfig;
+    //   // this.updateSubTechList(this.createTechArticleForm.value.technology);
+    // });
     this.getTechnologyList();
     this.getProjecttype();
   }
@@ -306,9 +306,33 @@ export class AppComponent {
   createStuvationForm = this.fb.group({
     projectType: ['', Validators.required],
     projectStatus: ['', Validators.required],
-    title: [''],
-    abstract: [''],
-    sub_technology_id: ['', Validators.required],
+    title: ['', Validators.required],
+    // abstract: ['', Validators.required],
+    sub_technology_id: [''],
+    technology_id: ['', Validators.required],
+    idea: ['', Validators.required],
+    ideaDescription: ['', Validators.required],
+    prototypeAvailable: ['Y'],
+    referenceLink: [''],
+    expectedBudget: [''],
+    lookingProfessorGuidance: ['Y'],
+    lookingMentorship: ['Y'],
+    lookingStudentPartner: ['Y'],
+    lookingSponsorship: ['Y'],
+    teamSize: [''],
+    lastDateOfJoining: ['1'],
+    noOfSponsors: [''],
+    file: ['']
+
+  });
+
+
+  createProjtecStuvationForm = this.fb.group({
+    projectType: ['', Validators.required],
+    projectStatus: ['', Validators.required],
+    title: ['', Validators.required],
+    abstract: ['', Validators.required],
+    sub_technology_id: [''],
     technology_id: ['', Validators.required],
     idea: [''],
     ideaDescription: [''],
@@ -323,6 +347,7 @@ export class AppComponent {
     teamSize: [''],
     lastDateOfJoining: ['1'],
     noOfSponsors: [''],
+    file: ['']
 
   });
 
@@ -444,7 +469,7 @@ export class AppComponent {
       '&is_paid=' + this.createTechArticleForm.value.is_paid +
       '&cost=' + this.createTechArticleForm.value.cost +
       '&publication_link=' + this.createTechArticleForm.value.publication_link +
-      '&publication_file=' + this.url +
+      '&publication_file=' + (this.url === undefined ? '' : this.url) +
       '&is_agreed=' + this.createTechArticleForm.value.is_agreed
 
     this.http.post(this.Baseurl + 'create-tech-article', params, { headers: headers }).subscribe(data => {
@@ -461,62 +486,115 @@ export class AppComponent {
     });
   }
 
-  onCreateStuvationFormSubmit() {
+  onCreateStuvationFormSubmit(action) {
 
     this.submitted = true;
+    if (action === 'stuation') {
 
-    // stop here if form is invalid
-    if (this.createStuvationForm.invalid) {
-      alert('Required fields Missing, Please fill * marks fields');
-      return;
-    }
-
-    let userDetails = this.getLoggedInUserObject();
-    const headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded'
-    });
-
-
-    var params = 'user_id=' + userDetails['user_id'] +
-      '&project_type_id=' + this.projectTypeId +
-      '&project_status=' + this.createStuvationForm.value.projectStatus +
-      '&title=' + this.createStuvationForm.value.title +
-      '&technology_id=' + this.techId +
-      '&sub_technology_id=' + this.subTechId +
-      '&abstract=' + this.createStuvationForm.value.abstract +
-      '&idea=' + this.createStuvationForm.value.idea +
-      '&idea_desc=' + this.createStuvationForm.value.ideaDescription +
-      '&is_looking_for_mentorship=' + this.createStuvationForm.value.lookingMentorship +
-      '&prototype_available=' + this.createStuvationForm.value.prototypeAvailable +
-      '&ref_link=' + this.createStuvationForm.value.referenceLink +
-      '&exp_budget=' + this.createStuvationForm.value.expectedBudget +
-      '&team_size=' + this.createStuvationForm.value.teamSize +
-      '&is_looking_for_student_partner=' + this.createStuvationForm.value.lookingStudentPartner +
-      '&last_date_of_joining=' + this.createStuvationForm.value.lastDateOfJoining +
-      '&is_looking_for_sponsership=' + this.createStuvationForm.value.lookingSponsorship +
-      '&no_of_sponsers_required=' + this.createStuvationForm.value.noOfSponsors +
-      '&file=' + this.url +
-      '&is_looking_for_guidance=' + this.createStuvationForm.value.lookingProfessorGuidance +
-      '&is_looking_for_mentorship=' + this.createStuvationForm.value.lookingMentorship
-
-
-
-    this.http.post(this.Baseurl + 'create-stuvation', params, { headers: headers }).subscribe(data => {
-      if (data.json().status === true) {
-        alert(data.json().message);
-        document.getElementById("createProjectModal").click();
-        document.getElementById("createStuvationModal").click();
-        this.router.navigate(['/stuvation'])
-        // location.reload();
-      } else {
-        alert(data.json().message);
+      if (this.createStuvationForm.invalid) {
+        alert('Required fields Missing, Please fill * marks fields');
+        return;
       }
 
+      let userDetails = this.getLoggedInUserObject();
+      const headers = new Headers({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      });
 
-    });
+
+      var params = 'user_id=' + userDetails['user_id'] +
+        '&project_type_id=' + this.projectTypeId +
+        '&project_status=' + this.createStuvationForm.value.projectStatus +
+        '&title=' + this.createStuvationForm.value.title +
+        '&technology_id=' + this.techId +
+        '&sub_technology_id=' + this.subTechId +
+        '&abstract=' + this.createStuvationForm.value.abstract +
+        '&idea=' + this.createStuvationForm.value.idea +
+        '&idea_desc=' + this.createStuvationForm.value.ideaDescription +
+        '&is_looking_for_mentorship=' + this.createStuvationForm.value.lookingMentorship +
+        '&prototype_available=' + this.createStuvationForm.value.prototypeAvailable +
+        '&ref_link=' + this.createStuvationForm.value.referenceLink +
+        '&exp_budget=' + this.createStuvationForm.value.expectedBudget +
+        '&team_size=' + this.createStuvationForm.value.teamSize +
+        '&is_looking_for_student_partner=' + this.createStuvationForm.value.lookingStudentPartner +
+        '&last_date_of_joining=' + this.createStuvationForm.value.lastDateOfJoining +
+        '&is_looking_for_sponsership=' + this.createStuvationForm.value.lookingSponsorship +
+        '&no_of_sponsers_required=' + this.createStuvationForm.value.noOfSponsors +
+        '&file=' + (this.url === undefined ? '' : this.url) +
+        '&cfile=' + this.createStuvationForm.value.file +
+        '&is_looking_for_guidance=' + this.createStuvationForm.value.lookingProfessorGuidance +
+        '&is_looking_for_mentorship=' + this.createStuvationForm.value.lookingMentorship
 
 
 
+      this.http.post(this.Baseurl + 'create-stuvation', params, { headers: headers }).subscribe(data => {
+        if (data.json().status === true) {
+          alert(data.json().message);
+          document.getElementById("createProjectModal").click();
+          document.getElementById("createStuvationModal").click();
+          this.router.navigate(['/stuvation'])
+          location.reload();
+        } else {
+          alert(data.json().message);
+        }
+      });
+    } else {
+
+      if (this.createProjtecStuvationForm.invalid) {
+        alert('Required fields Missing, Please fill * marks fields');
+        return;
+      }
+
+      let userDetails = this.getLoggedInUserObject();
+      const headers = new Headers({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      });
+
+
+      var params = 'user_id=' + userDetails['user_id'] +
+        '&project_type_id=' + this.projectTypeId +
+        '&project_status=' + this.createProjtecStuvationForm.value.projectStatus +
+        '&title=' + this.createProjtecStuvationForm.value.title +
+        '&technology_id=' + this.techId +
+        '&sub_technology_id=' + this.subTechId +
+        '&abstract=' + this.createProjtecStuvationForm.value.abstract +
+        '&idea=' + this.createProjtecStuvationForm.value.idea +
+        '&idea_desc=' + this.createProjtecStuvationForm.value.ideaDescription +
+        '&is_looking_for_mentorship=' + this.createProjtecStuvationForm.value.lookingMentorship +
+        '&prototype_available=' + this.createProjtecStuvationForm.value.prototypeAvailable +
+        '&ref_link=' + this.createProjtecStuvationForm.value.referenceLink +
+        '&exp_budget=' + this.createProjtecStuvationForm.value.expectedBudget +
+        '&team_size=' + this.createProjtecStuvationForm.value.teamSize +
+        '&is_looking_for_student_partner=' + this.createProjtecStuvationForm.value.lookingStudentPartner +
+        '&last_date_of_joining=' + this.createProjtecStuvationForm.value.lastDateOfJoining +
+        '&is_looking_for_sponsership=' + this.createProjtecStuvationForm.value.lookingSponsorship +
+        '&no_of_sponsers_required=' + this.createProjtecStuvationForm.value.noOfSponsors +
+        '&file=' + (this.url === undefined ? '' : this.url) +
+        '&cfile=' + this.createProjtecStuvationForm.value.file +
+        '&is_looking_for_guidance=' + this.createProjtecStuvationForm.value.lookingProfessorGuidance +
+        '&is_looking_for_mentorship=' + this.createProjtecStuvationForm.value.lookingMentorship
+
+
+
+      this.http.post(this.Baseurl + 'create-stuvation', params, { headers: headers }).subscribe(data => {
+        if (data.json().status === true) {
+          alert(data.json().message);
+          document.getElementById("createProjectModal").click();
+          document.getElementById("createStuvationModal").click();
+          this.router.navigate(['/stuvation'])
+          location.reload();
+        } else {
+          alert(data.json().message);
+        }
+
+
+      });
+
+
+
+
+    }
+    // stop here if form is invalid
 
 
 
@@ -696,7 +774,7 @@ export class AppComponent {
         alert(res.json().message);
         this.createTechTeachForm.reset();
         document.getElementById("closeCreateTechTeachModal").click();
-        location.reload();
+        // location.reload();
       } else {
         alert(res.json().message);
       }
@@ -753,7 +831,7 @@ export class AppComponent {
       if (res.json().status === true) {
         alert(res.json().message);
         document.getElementById("closeCreateTechTeachModal").click();
-        this.createTechTalkForm.reset();
+        // this.createTechTalkForm.reset();
         // location.reload();
       } else {
         alert(res.json().message);
@@ -831,11 +909,11 @@ export class AppComponent {
         sessionStorage.setItem("loggedInUserName", JSON.stringify(parsedData[0]));
         sessionStorage.setItem("userImagePath", response.json().image_path);
         sessionStorage.setItem("userId", response.json().user_id);
-        console.log(sessionStorage.userId);
         document.getElementById("closeLoginForm").click();
         this.ngOnInit();
       } else {
-        alert('Invalid Credentials');
+        alert(response.json().message);
+        this.error = true;
       }
     })
   }
@@ -937,6 +1015,25 @@ export class AppComponent {
 
   }
 
+
+  createThought = this.fb.group({
+    comment: ['']
+  });
+
+  submitThought() {
+    let userDetails = this.getLoggedInUserObject();
+    const headers = new Headers({
+      'Content-Type': "application/x-www-form-urlencoded",
+    });
+    var params = 'comment=' + this.createThought.value.comment + '&user_id=' + userDetails['user_id']
+
+    this.http.post(this.endpoint + 'student-thought', params, { headers: headers }).subscribe(res => {
+      this.createThought.reset();
+      location.reload();
+      this.router.navigate(['/']);
+      document.getElementById("closeCreatethoughtModal").click();
+    })
+  }
   openmenu() {
     this.navbarOpen = true;
   }

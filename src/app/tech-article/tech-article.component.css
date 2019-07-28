@@ -211,7 +211,9 @@ cursor: pointer;
 }
 }
 
-
+.profilepicture{
+    border-radius: 40px;
+}
 /****************newcode**************/
 .cmnts{
     margin:4px 0px;

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MainServiceService } from '../main-service.service';
 import { Http, Headers } from '@angular/http';
+
+import { FilterPipe } from '../filter.pipe';
 // import { FilterPipe } from '../filter.pipe';
 
 @Component({
@@ -22,6 +24,17 @@ export class TechArticleComponent implements OnInit {
   techarticledetails: any = [];
   userid: string;
   technologyList = [];
+  ResponseData: any = [];
+  file_path: string;
+  file_path1: string;
+  techArticleFilte;
+  techArticleFilterr: any = { title: '', user_name: '', technology: '', sub_technology: '', cost: 0, article_type: '' };
+  keywordFilter: any = { user_name: '' };
+  techFilter: any = { technology: '' };
+  subTechFilter: any = { sub_technology: '' };
+  articleTypeFilter = "";
+  freeFilter: any = { cost: Number };
+  authorFilter: any = { user_name: '' };
   ngOnInit(): void {
 
     let userDetails = this.getLoggedInUserObject();
@@ -40,13 +53,11 @@ export class TechArticleComponent implements OnInit {
       this.technologyList = res.json().data;
     })
   }
-  ResponseData: any = [];
-  file_path: string;
-  file_path1: string;
+
   getArticles() {
     let userDetails = this.getLoggedInUserObject();
     this.httpnew.get(this.Baseurl + 'tech-article-list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
-      this.ResponseData = response.json().data;
+      this.ResponseData = response.json().data.reverse();
       console.log(this.ResponseData);
       this.file_path = response.json().image_path;
       this.file_path1 = response.json().file_path;
@@ -55,13 +66,7 @@ export class TechArticleComponent implements OnInit {
   }
 
 
-  techArticleFilter: any = { title: '', user_name: '', technology: '', sub_technology: '', cost: 0 };
-  keywordFilter: any = { user_name: '' };
-  techFilter: any = { technology: '' };
-  subTechFilter: any = { sub_technology: '' };
-  articleTypeFilter = "";
-  freeFilter: any = { cost: Number };
-  authorFilter: any = { user_name: '' };
+
 
   articleUpDownCountUpdate(techarticleid, updateType) {
     let userDetails = this.getLoggedInUserObject();

@@ -50,6 +50,31 @@ export class MyprofileComponent implements OnInit {
   constructor(private httpnew: Http, private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private fb: FormBuilder) { }
   userDetails: any;
   userImagePath;
+  strImage;
+  showEdit: boolean;
+  internshipDetails: boolean;
+  readUrl(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = (event: ProgressEvent) => {
+        this.strImage = (<FileReader>event.target).result;
+        this.url = this.strImage.split(',')[1];
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+
+  editProfile() {
+    this.showEdit = true;
+  }
+
+  showinternship() {
+    this.internshipDetails = true;
+  }
+  nointernship() {
+    this.internshipDetails = false;
+  }
   ngOnInit() {
     this.userDetails = this.getLoggedInUserObject();
     var url = this.endpoint + 'getProfilePageContent.php' + "/random=" + new Date().getTime();

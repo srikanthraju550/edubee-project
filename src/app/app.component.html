@@ -32,8 +32,8 @@
                     <a routerLink="/techevent" class="main-header">TECH CONNECT</a>
 
                 </li>
-                <li><a routerLink="/prozectme" class="main-header">PROZECT ME</a></li>
-                <li><a href="#" class="main-header">BUSINESS</a></li>
+                <!-- <li><a routerLink="/prozectme" class="main-header">PROZECT ME</a></li>
+                <li><a href="#" class="main-header">BUSINESS</a></li> -->
 
 
                 <li *ngIf="!checkLoginStatus()">
@@ -41,8 +41,8 @@
                             style="display: inline;"></i></a>
                     <ul class="hidden sub-drop" style="position:absolute;margin-left:104px;top:-15px;">
                         <li class="sub-menu-header"><a class="dropdown-item" routerLink="/myprofile">MY PROFILE</a></li>
-                        <li class="sub-menu-header"><a class="dropdown-item" routerLink="/engshipRequest">Engship
-                                Requests</a></li>
+                        <!-- <li class="sub-menu-header"><a class="dropdown-item" routerLink="/engshipRequest">Engship
+                                Requests</a></li> -->
                         <li class="sub-menu-header"><a class="dropdown-item"
                                 [routerLink]="['/staticContent','myTechBank']">My Tech Bank</a></li>
                         <li class="sub-menu-header"><a class="dropdown-item"
@@ -120,9 +120,9 @@
                                 </ul>
                             </li>
                             <li><a (click)="goStuation()">Stuvation</a></li>
-                            <li><a (click)="goEngShip()">ENG SHIP</a></li>
-                            <li><a (click)="goProzeMe()">PROZECT ME</a></li>
-                            <li><a href="#">BUSINESS</a></li>
+                            <!-- <li><a (click)="goEngShip()">ENG SHIP</a></li> -->
+                            <!-- <li><a (click)="goProzeMe()">PROZECT ME</a></li>
+                            <li><a href="#">BUSINESS</a></li> -->
                             <li class="showInMobile" *ngIf="checkLoginStatus()"><a class="main-header"
                                     style="font-size:13px;" data-toggle="modal" href="#"
                                     data-target="#loginModal">LOGIN</a></li>
@@ -141,8 +141,8 @@
                             </li>
                             <li *ngIf="!checkLoginStatus()">
                                 <a class="dropdown-item" routerLink="/myprofile">MY PROFILE</a></li>
-                            <li *ngIf="!checkLoginStatus()"><a class="dropdown-item"
-                                    routerLink="/engshipRequest">Engship Requests</a></li>
+                            <!-- <li *ngIf="!checkLoginStatus()"><a class="dropdown-item"
+                                    routerLink="/engshipRequest">Engship Requests</a></li> -->
                             <li *ngIf="!checkLoginStatus()"><a class="dropdown-item" (click)="logout()">LOGOUT</a>
                             </li>
                         </ul>
@@ -373,6 +373,11 @@
                                 (click)="selectPaid('no')" name="is_paid">&nbsp; No
                         </div>
 
+                        <div class="form-group col-6" *ngIf="showCost">
+                            <label for="cost"><span class="red">*</span> Cost:</label>
+                            <input myNumberOnly type="text" class="form-control" formControlName="cost">
+
+                        </div>
 
                     </div>
                     <div class="row">
@@ -395,8 +400,8 @@
                     </div>
                     <div class="form-group">
                         <label for="abstract"><span class="red">*</span> Abstract:</label>
-                        <textarea class="form-control" formControlName="abstract" placeholder="1000 words"
-                            maxlength="1000"></textarea>
+                        <textarea class="form-control" formControlName="abstract" placeholder="500 words"
+                            maxlength="500"></textarea>
 
                     </div>
                     <div class="row">
@@ -436,11 +441,7 @@
                                 value="2" (click)="fileType('file')">&nbsp;
                             File Upload
                         </div>
-                        <div class="form-group col-6" *ngIf="showCost">
-                            <label for="cost"><span class="red">*</span> Cost:</label>
-                            <input myNumberOnly type="text" class="form-control" formControlName="cost">
 
-                        </div>
                         <div class="form-group col-6" *ngIf="showLink">
                             <label for="publicationlink"><span class="red">*</span> Publication Link:</label>
                             <input type="text" class="form-control" formControlName="publication_link">
@@ -489,7 +490,7 @@
                     id="closeCreateStuvationFormModal">&times;</button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="createStuvationForm" (ngSubmit)="onCreateStuvationFormSubmit()"
+                <form [formGroup]="createStuvationForm" (ngSubmit)="onCreateStuvationFormSubmit('stuation')"
                     enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-6">
@@ -509,9 +510,13 @@
                         </div>
 
                     </div>
-
+                    <div class="form-group">
+                        <label for="title"><span class="red">*</span> Title:</label>
+                        <input type="text" class="form-control" formControlName="title">
+                    </div>
 
                     <div class="row">
+
                         <div class="form-group col-6">
                             <label for="technology"><span class="red">*</span> Engineering Technology:</label>
                             <select type="text" class="form-control" (change)="getSubTechList($event.target.value)"
@@ -523,7 +528,7 @@
 
                         </div>
                         <div class="form-group col-6">
-                            <label for="subtechnology"><span class="red">*</span> Sub-Engineering Technology:</label>
+                            <label for="subtechnology"> Sub-Engineering Technology:</label>
                             <select type="text" class="form-control" formControlName="sub_technology_id"
                                 name="sub_technology_id" (change)="getSubtechId($event.target.value)">
                                 <option>Select Subtechnology</option>
@@ -533,7 +538,7 @@
                         </div>
                     </div>
 
-                    <h3>Innovation Details</h3>
+                    <h3 style="color:#5b3ab1 !important;font-size:20px;">Innovation Details :</h3>
                     <div class="row">
                         <div class="form-group col-12">
                             <label for="idea"><span class="red">*</span> Idea:</label>
@@ -547,6 +552,18 @@
 
                             <label for="ideaDescription"><span class="red">*</span> Idea Description:</label>
                             <textarea class="form-control" formControlName="ideaDescription" maxlength="500"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row" *ngIf="createStuvationForm.value.projectStatus!='ongoing'">
+                        <div class="form-group col-6">
+
+                            <label for="file">File :</label>
+                            &nbsp;&nbsp;
+
+                            <input class="form-control" type="file" accept="image1/*" (change)="readUrl($event)"
+                                formControlName="file">
+
                         </div>
                     </div>
                     <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
@@ -951,7 +968,7 @@
                     id="closeCreateStuvationFormModal">&times;</button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="createStuvationForm" (ngSubmit)="onCreateStuvationFormSubmit()"
+                <form [formGroup]="createProjtecStuvationForm" (ngSubmit)="onCreateStuvationFormSubmit('project')"
                     enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-6">
@@ -978,8 +995,8 @@
                     </div>
                     <div class="form-group">
                         <label for="abstract"><span class="red">*</span> Abstract:</label>
-                        <textarea class="form-control" formControlName="abstract" placeholder="1000 words"
-                            maxlength="1000"></textarea>
+                        <textarea class="form-control" formControlName="abstract" placeholder="500 words"
+                            maxlength="500"></textarea>
                     </div>
 
                     <div class="row">
@@ -994,7 +1011,7 @@
 
                         </div>
                         <div class="form-group col-6">
-                            <label for="subtechnology"><span class="red">*</span> Sub-Engineering Technology:</label>
+                            <label for="subtechnology"> Sub-Engineering Technology:</label>
                             <select type="text" class="form-control" formControlName="sub_technology_id"
                                 name="sub_technology_id" (change)="getSubtechId($event.target.value)">
                                 <option>Select Subtechnology</option>
@@ -1004,9 +1021,19 @@
                         </div>
                     </div>
 
+                    <div class="row" *ngIf="createProjtecStuvationForm.value.projectStatus!='ongoing'">
+                        <div class="form-group col-6">
 
+                            <label for="file">File :</label>
+                            &nbsp;&nbsp;
 
-                    <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
+                            <input class="form-control" type="file" accept="image1/*" (change)="readUrl($event)"
+                                formControlName="file">
+
+                        </div>
+                    </div>
+
+                    <div class="row" *ngIf="createProjtecStuvationForm.value.projectStatus=='ongoing'">
                         <div class="form-group col-6">
                             <br />
                             <label for="prototypeAvailable"><span class="red">*</span> Prototype Available :</label>
@@ -1018,7 +1045,7 @@
                                 value="N">&nbsp;
                             No
                         </div>
-                        <div class="form-group col-6" *ngIf="createStuvationForm.value.prototypeAvailable=='Y'">
+                        <div class="form-group col-6" *ngIf="createProjtecStuvationForm.value.prototypeAvailable=='Y'">
 
                             <label for="referenceLink">Reference Link :</label>
                             &nbsp;&nbsp;
@@ -1029,7 +1056,7 @@
                         </div>
                     </div>
 
-                    <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
+                    <div class="row" *ngIf="createProjtecStuvationForm.value.projectStatus=='ongoing'">
 
                         <div class="form-group col-6">
                             <br />
@@ -1063,7 +1090,7 @@
                             No
                         </div>
 
-                        <div class="form-group col-6" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
+                        <div class="form-group col-6" *ngIf="createProjtecStuvationForm.value.projectStatus=='ongoing'">
 
                             <label for="teamSize">Team Size :</label>
                             &nbsp;&nbsp;
@@ -1072,7 +1099,7 @@
 
                     </div>
 
-                    <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
+                    <div class="row" *ngIf="createProjtecStuvationForm.value.projectStatus=='ongoing'">
                         <div class="form-group col-6">
                             <br />
                             <label for="lookingStudentPartner">Looking Student partner :</label>
@@ -1092,7 +1119,7 @@
                                 min='{{this.minDateString}}'>
                         </div>
                     </div>
-                    <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
+                    <div class="row" *ngIf="createProjtecStuvationForm.value.projectStatus=='ongoing'">
 
                         <div class="form-group col-6">
                             <br />
@@ -1177,8 +1204,8 @@
                     </div>
                     <div class="form-group">
                         <label for="abstract"><span class="red">*</span> Abstract:</label>
-                        <textarea class="form-control" formControlName="abstract" placeholder="1000 words"
-                            maxlength="1000"></textarea>
+                        <textarea class="form-control" formControlName="abstract" placeholder="500 words"
+                            maxlength="500"></textarea>
                     </div>
                     <!-- <div class="form-group">
                         <label for="technologyArea"><span class="red">*</span> Technology Area:</label>
@@ -1212,28 +1239,28 @@
 
                         <div class="row">
                             <div class="form-group col-4">
-                                <label>
-                                    *Place:
+
+                                <label for="technology"><span class="red">*</span>Place:
                                     <input type="text" class="form-control" formControlName="place">
                                 </label>
                             </div>
                             <div class="form-group col-4">
-                                <label>
-                                    *City:
+
+                                <label for="technology"><span class="red">*</span>City:
                                     <input type="text" class="form-control" formControlName="city">
                                 </label>
                             </div>
                             <div class="form-group col-4">
-                                <label>
-                                    *Address:
+
+                                <label for="technology"><span class="red">*</span>Address:
                                     <input type="text" class="form-control" formControlName="address">
                                 </label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-4">
-                                <label>
-                                    *Event Date:
+
+                                <label for="technology"><span class="red">*</span>Event Date:
 
                                     <input type="date" class="form-control" formControlName="date"
                                         min='{{this.minDateString}}'>
@@ -1242,14 +1269,14 @@
 
                             </div>
                             <div class="form-group col-4">
-                                <label>
-                                    *From Time:
+
+                                <label for="technology"><span class="red">*</span>From Time:
                                     <input type="text" class="form-control" formControlName="fromTime">
                                 </label>
                             </div>
                             <div class="form-group col-4">
-                                <label>
-                                    *To Time:
+
+                                <label for="technology"><span class="red">*</span>To Time:
                                     <input type="text" class="form-control" formControlName="toTime">
                                 </label>
                             </div>
@@ -1261,34 +1288,34 @@
                     <div formGroupName="registrationDetails">
                         <div class="row">
                             <div class="form-group col-4">
-                                <label>
-                                    *Web Address:
+
+                                <label for="technology"><span class="red">*</span>Web Address:
                                     <input type="text" class="form-control" formControlName="webaddress">
                                 </label>
                             </div>
                             <div class="form-group col-4">
-                                <label>
-                                    *Maximum Registration Allowed:
+
+                                <label for="technology"><span class="red">*</span>Maximum Registration Allowed:
                                     <input myNumberOnly type="text" class="form-control" formControlName="maxregcount">
                                 </label>
                             </div>
                             <div class="form-group col-4">
-                                <label>
-                                    *Registration Fee:
+
+                                <label for="technology"><span class="red">*</span>Registration Fee:
                                     <input myNumberOnly type="text" class="form-control" formControlName="regfee">
                                 </label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-4">
-                                <label>
-                                    *Eligibility:
+
+                                <label for="technology"><span class="red">*</span>Eligibility:
                                     <textarea type="text" class="form-control" formControlName="eligibility"></textarea>
                                 </label>
                             </div>
                             <div class="form-group col-4">
-                                <label>
-                                    *Seat Capacity:
+
+                                <label for="technology"><span class="red">*</span>Seat Capacity:
                                     <input myNumberOnly type="text" class="form-control" formControlName="seatcapacity">
                                 </label>
                             </div>
@@ -1308,20 +1335,20 @@
                     <div formGroupName="expertDetails">
                         <div class="row">
                             <div class="form-group col-4">
-                                <label>
-                                    *Name:
+
+                                <label for="technology"><span class="red">*</span>Name:
                                     <input type="text" class="form-control" formControlName="name">
                                 </label>
                             </div>
                             <div class="form-group col-4">
-                                <label>
-                                    *Company:
+
+                                <label for="technology"><span class="red">*</span>Company:
                                     <input type="text" class="form-control" formControlName="company">
                                 </label>
                             </div>
                             <div class="form-group col-4">
-                                <label>
-                                    *Speaker Type:
+
+                                <label for="technology"><span class="red">*</span>Speaker Type:
                                     <select type="text" class="form-control" formControlName="speakerType">
                                         <option>Student</option>
                                         <option>Professional</option>
@@ -1331,20 +1358,20 @@
                         </div>
                         <div class="row">
                             <div class="form-group col-4">
-                                <label>
-                                    *Working Location:
+
+                                <label for="technology"><span class="red">*</span>Working Location:
                                     <input type="text" class="form-control" formControlName="worklocation">
                                 </label>
                             </div>
                             <div class="form-group col-4">
-                                <label>
-                                    *Position:
+
+                                <label for="technology"><span class="red">*</span>Position:
                                     <input type="text" class="form-control" formControlName="position">
                                 </label>
                             </div>
                             <div class="form-group col-4">
-                                <label>
-                                    *Experience:
+
+                                <label for="technology"><span class="red">*</span>Experience:
                                     <input myNumberOnly type="text" class="form-control" formControlName="experience">
                                 </label>
 
@@ -1776,14 +1803,16 @@
                 <form [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmit()" enctype="multipart/form-data">
 
                     <div class="form-group">
-                        <input type="text" class="form-control" formControlName="email" placeholder="Username or Email">
+                        <input type="text" class="form-control" formControlName="email" placeholder="Username or Email"
+                            [ngClass]="{'invalid':error}">
                         <div *ngIf="logValid.email.touched && logValid.email.invalid" class="alert alert-danger">
                             <!-- Email is Required -->
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                        <input type="password" class="form-control" formControlName="password" placeholder="Password"
+                            [ngClass]="{'invalid':error}">
                         <div *ngIf="logValid.password.touched && logValid.password.invalid" class="alert alert-danger">
                             <!-- Password is Required -->
                         </div>
@@ -2288,6 +2317,41 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+</div>
+
+
+<div id="addThought" class="modal fade" role="dialog">
+    <div class="modal-dialog stuv-popup">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
+                <span style="text-align: center; color: white; width: 100%;">
+                    <h4>Add Thoughts</h4>
+                </span>
+                <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
+                    id="closeCreatethoughtModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="createThought" (ngSubmit)="submitThought()" enctype="multipart/form-data">
+
+                    <div class="form-group">
+                        <label for="title"><span class="red">*</span> Comment:</label>
+                        <textarea class="form-control" formControlName="comment" placeholder="500 words"
+                            maxlength="500"></textarea>
+
+                    </div>
+
+
+                    <div style="width: 100%; text-align: center; align-items: center">
+                        <button type="submit" class="btn btn-primary">Add Thought
+                        </button>
+
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

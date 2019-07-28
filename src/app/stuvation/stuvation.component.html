@@ -3,9 +3,9 @@
     &nbsp;
   </div>
   <div class="col-md-4 col-sm-12 col-xs-12">
-    <h2 class="text-center" style="position: relative;
+    <h4 class="text-center" style="position: relative;
     top: 11px;
-    color: #420aa7;">Stuvations</h2>
+    color: #420aa7;font-size:27px">Stuvations (Student + Innovation)</h4>
   </div>
   <div class="col-md-4 col-sm-12 col-xs-12" *ngIf="!checkLoginStatus()" style="display:inline-flex">
     <button type="button" class="btn btn-primary buttonarticle"
@@ -33,8 +33,8 @@
       [(ngModel)]="stuvationFilter.title" *ngIf="showKeyword" />
 
 
-    <!-- <input type="text" class="form-control filter-input" placeholder="Search with Article Title.."
-      name="techarticledetails" [(ngModel)]="stuvationFilter.project_type" *ngIf="showArticle" /> -->
+    <input type="text" class="form-control filter-input" placeholder="Search with Project Type.."
+      name="techarticledetails" [(ngModel)]="stuvationFilter.project_type" *ngIf="showArticle" />
 
     <!-- <input type="text" class="form-control filter-input" placeholder="Search with Technology.."
       name="techarticledetails" [(ngModel)]="stuvationFilter.technology" *ngIf="showTechnology" />
@@ -117,34 +117,36 @@
                }}</span><br />
               <b>Technology</b> : {{stuvation?.technology}}
               <br />
-              <b>Sub-Technology</b> : {{stuvation?.sub_technology}}
-              <div *ngIf="stuvation.project_type=='Innovation'">
-                <br />
+              <span> <b>Sub-Technology</b> :
+                {{stuvation?.sub_technology}} <br /></span>
+              <div>
+
                 <b>Idea</b> : {{stuvation?.idea}}
                 <br />
                 <b>Idea Description</b> : {{stuvation?.ideaDescription}}
 
               </div>
-              <br />
-              <div *ngIf="stuvation.project_status=='ongoing'">
+              <div>
 
-                <b>Prototype Available ?</b> : {{stuation?.prototype_available}}
-                <br />
-                <b>Reference Link</b> : {{stuation?.ref_link}}
-                <br />
-                <b>Expected Budget</b> : {{stuation?.exp_budget}}
-                <br />
-                <b>Team Size</b> : {{stuation?.team_size}}<br />
-                <b>Student Partner Last Date Of Joining</b> :
-                <br />
-                <div *ngIf="stuvation.project_type=='Innovation'">
-                  <b>Idea Description</b> : {{stuvation?.idea_desc}}
+                <span><b>Prototype Available </b> :
+                  {{stuation?.prototype_available}} <br /></span>
+
+                <span><b>Reference Link</b> : {{stuation?.ref_link}}
+                  <br /></span>
+                <span> <b>Expected Budget</b> : {{stuation?.exp_budget}}
+                  <br /></span>
+                <span><b>Team Size</b> : {{stuation?.team_size}}<br />
+                  <b>Student Partner Last Date Of Joining</b> :
+                  <br /></span>
+                <div *ngIf="stuvation?.ideaDescription=='Innovation'">
+                  <span> <b>Idea Description</b> :
+                    {{stuvation?.ideaDescription}}</span>
                 </div>
 
               </div>
               <div style="text-align:justify">
                 <!-- *ngIf="stuvation.project_type!='Innovation'" -->
-                <b>Abstract</b> : {{stuvation?.abstract}}
+                <span> <b>Abstract</b> : {{stuvation?.abstract}}</span>
               </div>
 
             </div>
@@ -162,13 +164,15 @@
               </div>
 
               <div class="lke-dis">
-                <button *ngIf="!checkLoginStatus()" class="btn btn-light buttonarticle"
-                  (click)="likeStuation(stuvation.stuvation_id,stuvation.like_count,stuvation.user_id)"
-                  style="display:inline">
-                  {{stuvation.like_count}}
-                  <img src="../assets/images/thumbsUp.png" alt="Card image cap" style="height:15px;">
-                </button>
-                &nbsp;&nbsp;
+                <button *ngIf="!checkLoginStatus() && stuvation.is_followed== 'FALSE'"
+                  class="nav-link btn btn-light buttonarticle" style="color: white !important;"
+                  (click)="followerUpdate(stuvation.stuvation_id,'1');">Follow</button>
+
+
+
+                <button *ngIf="!checkLoginStatus() && stuvation.is_followed== 'TRUE'"
+                  class="nav-link btn btn-light buttonarticle" style="color: white !important;"
+                  (click)="followerUpdate(stuvation.stuvation_id,'2');">Unfollow</button>
 
               </div>
 
@@ -182,17 +186,14 @@
 
 
                 <li class="nav-item" style="margin-left:2%">
-                  <button *ngIf="!checkLoginStatus() && stuvation.is_followed== 'FALSE'"
-                    class="nav-link btn btn-light buttonarticle"
-                    style=" margin-left: 0 !important; color: white !important;"
-                    (click)="followerUpdate(stuvation.stuvation_id,'1');">Follow</button> </li>
-
-                <li class="nav-item" style="margin-left:2%">
-                  <button *ngIf="!checkLoginStatus() && stuvation.is_followed== 'TRUE'"
-                    class="nav-link btn btn-light buttonarticle"
-                    style=" margin-left: 0 !important; color: white !important;"
-                    (click)="followerUpdate(stuvation.stuation_id,'2');">Unfollow</button>
+                  <button *ngIf="!checkLoginStatus()" class="btn btn-light buttonarticle"
+                    (click)="likeStuation(stuvation.stuvation_id,stuvation.like_count,stuvation.user_id)">
+                    {{stuvation.like_count}}
+                    <img src="../assets/images/thumbsUp.png" alt="Card image cap" style="height:15px;">
+                  </button>
                 </li>
+
+
                 <li class="nav-item">
                   <button class="nav-link btn btn-light commentbutton buttonarticle" data-toggle="modal"
                     data-target="#showStuvationDiscussionModal"
@@ -204,6 +205,18 @@
                     data-target="#showJoinTeamPopupModal" (click)="showJoinTeamPopup(stuvation)">Connect
                     &amp; Join as a Team</button>
                 </li>
+
+
+                <li class="nav-item" *ngIf="stuvation.cfile!=''">
+                  <a [href]="file_path + stuvation.cfile" target="_blank" download>
+                    <button class="nav-link btn btn-light veiwbutton buttonarticle" data-toggle="modal">View /
+                      Download
+                    </button>
+                  </a>
+                </li>
+
+
+
 
 
               </ul>

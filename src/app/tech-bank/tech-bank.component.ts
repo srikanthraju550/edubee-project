@@ -21,7 +21,7 @@ export class TechBankComponent implements OnInit {
   //homePageDataFromService=[];
   homePageContent: any = [];
   teamDetails: any = [];
-  techtalkdetails: any = [];
+  techtalkdetails = [];
   techteachdetails: any = [];
   techteachLength: any = 0;
   selectedModel: string;
@@ -53,7 +53,7 @@ export class TechBankComponent implements OnInit {
   getTechTeachList() {
     let userDetails = this.getLoggedInUserObject();
     this.httpnew.get(this.Baseurl + 'tech-teach-list').subscribe(response => {
-      this.ResponseData = response.json().data;
+      this.ResponseData = response.json().data.reverse();
     });
 
   }
@@ -61,7 +61,7 @@ export class TechBankComponent implements OnInit {
   getTechTalkList() {
     let userDetails = this.getLoggedInUserObject();
     this.httpnew.get(this.Baseurl + 'tech-talk-list').subscribe(response => {
-      this.techtalkdetails = response.json().data;
+      this.techtalkdetails = response.json().data.reverse();
     });
 
   }

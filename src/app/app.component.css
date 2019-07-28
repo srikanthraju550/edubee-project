@@ -402,6 +402,10 @@ ul li a:hover + .hidden, .hidden:hover {
  height:auto;
 }
 
+.invalid{
+  border:1px solid red;
+}
+
 .custom-ss-footer li,h3,p{
   color: white !important;
 }

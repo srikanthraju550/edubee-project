@@ -17,30 +17,30 @@
 
   <div class="col-md-6">
 
-    <input type="text" class="form-control filter-input" placeholder="Search with Name.." name="techarticledetails"
-      [(ngModel)]="techArticleFilter.user_name" *ngIf="showKeyword" />
+    <input type="text" class="form-control filter-input" placeholder="Search with Title.." name="techarticledetails"
+      [(ngModel)]="techArticleFilterr.title" *ngIf="showKeyword" />
 
 
-    <input type="text" class="form-control filter-input" placeholder="Search with Article Title.."
-      name="techarticledetails" [(ngModel)]="techArticleFilter.title" *ngIf="showArticle" />
+    <input type="text" class="form-control filter-input" placeholder="Search with Type.." name="techarticledetails"
+      [(ngModel)]="techArticleFilterr.article_type" *ngIf="showArticle" />
 
 
     <select type="text" class="form-control filter-input" *ngIf="showTechnology"
-      [(ngModel)]="techArticleFilter.technology" name="technology_id">
+      [(ngModel)]="techArticleFilterr.technology" name="technology_id">
       <option *ngFor="let technology of technologyList; let i = index;">
         {{technology.name}}</option>
     </select>
 
     <select type="text" class="form-control filter-input" *ngIf="showSubTech"
-      [(ngModel)]="techArticleFilter.sub_technology">
+      [(ngModel)]="techArticleFilterr.sub_technology">
       <option *ngFor="let subtechnology of subtechnologylist; let i = index; ">{{subtechnology.name}}</option>
     </select>
 
     <input type="text" class="form-control filter-input" placeholder="Search with Author.." name="techarticledetails"
-      [(ngModel)]="techArticleFilter.user_name" *ngIf="showAuthor" />
+      [(ngModel)]="techArticleFilterr.user_name" *ngIf="showAuthor" />
 
     <input type="text" class="form-control filter-input" placeholder="Search with Author.." name="techarticledetails"
-      [(ngModel)]="techArticleFilter.cost" *ngIf="showCost" />
+      [(ngModel)]="techArticleFilterr.cost" *ngIf="showCost" />
 
   </div>
   <div class="col-md-6">
@@ -48,39 +48,33 @@
       <div class="col-4">
         <p (click)="selectKeyword()"> <span class="radio-btns">&nbsp;</span><span class="white-radio">&nbsp;</span><i
             class="fa fa-check" *ngIf="showKeyword"></i> Keyword</p>
-        <!-- <input type="checkbox" class="techBankEventCheckbox" name="keywordFilter" [(ngModel)]="keywordFilter"
-          value="Keyword">&nbsp;Keyword -->
+
       </div>
       <div class="col-4">
 
         <p (click)="selectType()"> <span class="radio-btns">&nbsp;</span><span class="white-radio">&nbsp;</span><i
             class="fa fa-check" *ngIf="showArticle"></i> Type</p>
-        <!-- <input type="checkbox" name="articleTypeFilter" class="techBankEventCheckbox" [(ngModel)]="articleTypeFilter"
-          value="Type">&nbsp;Type -->
+
       </div>
       <div class=" col-4">
         <p (click)="selectTechnology()"> <span class="radio-btns">&nbsp;</span><span class="white-radio">&nbsp;</span><i
             class="fa fa-check" *ngIf="showTechnology"></i>Technology</p>
-        <!-- <input type="checkbox" name="techFilter" class="techBankEventCheckbox" [(ngModel)]="techFilter"
-          value="Technology">&nbsp;Technology -->
+
       </div>
       <div class=" col-4">
         <p (click)="selectSubTechnology()"> <span class="radio-btns">&nbsp;</span><span
             class="white-radio">&nbsp;</span><i class="fa fa-check" *ngIf="showSubTech"></i>SubTechnology</p>
-        <!-- <input type="checkbox" name="subTechFilter" class="techBankEventCheckbox" [(ngModel)]="subTechFilter"
-          value="SubTechnology">&nbsp;SubTechnology -->
+
       </div>
       <div class="col-4">
         <p (click)="selectAuthor()"> <span class="radio-btns">&nbsp;</span><span class="white-radio">&nbsp;</span><i
             class="fa fa-check" *ngIf="showAuthor"></i>Author</p>
-        <!-- <input type="checkbox" name="authorFilter" class="techBankEventCheckbox" [(ngModel)]="authorFilter"
-          value="SubTechnology">&nbsp;Author -->
+
       </div>
       <div class="col-4">
         <p (click)="selectFree()"> <span class="radio-btns">&nbsp;</span><span class="white-radio">&nbsp;</span><i
             class="fa fa-check" *ngIf="showCost"></i>Free</p>
-        <!-- <input type="checkbox" name="freeFilter" class="techBankEventCheckbox" [(ngModel)]="freeFilter.cost"
-          value="SubTechnology">&nbsp;Free -->
+
       </div>
     </div>
   </div>
@@ -93,7 +87,7 @@
     <div class="col-12" style="margin-top: 1em;">
       <!-- -->
       <div class="card card-articles" style="width: 100%;"
-        *ngFor="let techarticle of ResponseData | filterBy:techArticleFilter ; let i = index;"
+        *ngFor="let techarticle of ResponseData | filterBy:techArticleFilterr ; let i = index;"
         [ngClass]="{'techarticleRow1' : i%2==0 } ">
 
 
@@ -132,12 +126,15 @@
                     )</span>
                 </h5>
                 <div class="lke-dis">
-                  <button *ngIf="!checkLoginStatus() " class="btn btn-light buttonarticle"
-                    (click)="likeArticle(techarticle.tech_article_id,techarticle.like_count,techarticle.user_id)"
-                    style="display:inline">
-                    {{techarticle.like_count}}
-                    <img src="../assets/images/thumbsUp.png" alt="Card image cap" style="height:15px;">
-                  </button>
+                  <button
+                    *ngIf="!checkLoginStatus() && techarticle.is_followed== 'FALSE' && userid != techarticle.user_id"
+                    class="nav-link btn btn-light buttonarticle" style=" color: white !important;"
+                    (click)="followerUpdate(techarticle.tech_article_id,'1');">Follow</button>
+
+                  <button *ngIf="!checkLoginStatus() && techarticle.is_followed== 'TRUE'"
+                    class="nav-link btn btn-light buttonarticle" style="color: white !important;"
+                    (click)="followerUpdate(techarticle.tech_article_id,'2');">Unfollow</button>
+
                   &nbsp;&nbsp;
 
                 </div>
@@ -157,40 +154,35 @@
                 </li>
 
                 <li class="nav-item" style="margin-left:2%">
-                  <button
-                    *ngIf="!checkLoginStatus() && techarticle.is_followed== 'FALSE' && userid != techarticle.user_id"
-                    class="nav-link btn btn-light buttonarticle"
-                    style=" margin-left: 0 !important; color: white !important;"
-                    (click)="followerUpdate(techarticle.tech_article_id,'1');">Follow</button> </li>
+                  <button *ngIf="!checkLoginStatus() " class="btn btn-light buttonarticle"
+                    (click)="likeArticle(techarticle.tech_article_id,techarticle.like_count,techarticle.user_id)"
+                    style="display:inline">
+                    {{techarticle.like_count}}
+                    <img src="../assets/images/thumbsUp.png" alt="Card image cap" style="height:15px;">
+                  </button></li>
 
-                <li class="nav-item" style="margin-left:2%">
-                  <button *ngIf="!checkLoginStatus() && techarticle.is_followed== 'TRUE'"
-                    class="nav-link btn btn-light buttonarticle"
-                    style=" margin-left: 0 !important; color: white !important;"
-                    (click)="followerUpdate(techarticle.tech_article_id,'2');">Unfollow</button>
-                </li>
+
                 <li class="nav-item">
                   <button class="nav-link btn btn-light commentbutton buttonarticle" data-toggle="modal"
                     data-target="#commentsModal" (click)="showTechArticleComments(techarticle)">Comments</button>
                 </li>
                 <li class="nav-item">
                   <button class="nav-link btn btn-light veiwbutton buttonarticle"
-                    *ngIf="techarticle.publication_link =='' && (techarticle.publication_file==null  || techarticle.publication_file == '')"
-                    data-toggle="modal" data-target="#buynowModal1"
-                    (click)="viewTechTeachDetails(techarticle)">View/Download
+                    *ngIf="techarticle.publication_file=='' && techarticle.publication_link ==''" data-toggle="modal"
+                    data-target="#buynowModal1" (click)="viewTechTeachDetails(techarticle)">View
                     full Article</button>
                 </li>
-                <li class="nav-item"
-                  *ngIf="(techarticle.publication_file!='' || techarticle.publication_file!=null ) && techarticle.publication_link ==''">
+                <li class="nav-item" *ngIf="techarticle.publication_file!='' && techarticle.publication_link ==''">
                   <a [href]="file_path1 + techarticle.publication_file" target="_blank" download>
-                    <button class="nav-link btn btn-light veiwbutton buttonarticle" data-toggle="modal">View/Download
+                    <button class="nav-link btn btn-light veiwbutton buttonarticle" data-toggle="modal">Download
                       full Article</button>
                   </a>
                 </li>
-                <li class="nav-item"
-                  *ngIf="(techarticle.publication_file=='' || techarticle.publication_file==null ) && techarticle.publication_link !=''">
+
+
+                <li class="nav-item" *ngIf="techarticle.publication_file=='' && techarticle.publication_link !=''">
                   <a [href]="techarticle.publication_link" target="_blank">
-                    <button class="nav-link btn btn-light veiwbutton buttonarticle" data-toggle="modal">View/Download
+                    <button class="nav-link btn btn-light veiwbutton buttonarticle" data-toggle="modal">View
                       full Article</button>
                   </a>
                 </li>
