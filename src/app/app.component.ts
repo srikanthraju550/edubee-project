@@ -449,7 +449,7 @@ export class AppComponent {
 
     // stop here if form is invalid
     if (this.createTechArticleForm.invalid) {
-      alert('Required fields Missing, Please fill * marks fields, Please fill * marks fields');
+      alert('Required fields Missing, Please fill * marks fields');
       return;
     }
 
@@ -747,7 +747,7 @@ export class AppComponent {
       'tech_teach_type_id=' + this.techTeachTypeId +
       '&topic=' + this.createTechTeachForm.value.topic +
       '&abstract=' + this.createTechTeachForm.value.abstract +
-      '&technology_area=' + this.createTechTeachForm.value.technologyArea +
+      // '&technology_area=' + this.createTechTeachForm.value.technologyArea +
       '&technology_id=' + this.techId +
       '&sub_technology_id=' + this.subTechId +
       '&place=' + this.createTechTeachForm.value.venueDetails.place +
@@ -774,7 +774,7 @@ export class AppComponent {
         alert(res.json().message);
         this.createTechTeachForm.reset();
         document.getElementById("closeCreateTechTeachModal").click();
-        // location.reload();
+        location.reload();
       } else {
         alert(res.json().message);
       }
@@ -805,7 +805,7 @@ export class AppComponent {
       '&tech_talk_type_id=' + this.selectedTechTalkType +
       '&topic=' + this.createTechTalkForm.value.topic +
       '&abstract=' + this.createTechTalkForm.value.abstract +
-      '&technology_area=' + this.createTechTalkForm.value.technologyArea +
+      // '&technology_area=' + this.createTechTalkForm.value.technologyArea +
       '&technology_id=' + this.techId +
       '&sub_technology_id=' + this.subTechId +
       '&place=' + this.createTechTalkForm.value.venueDetails.place +
@@ -831,8 +831,8 @@ export class AppComponent {
       if (res.json().status === true) {
         alert(res.json().message);
         document.getElementById("closeCreateTechTeachModal").click();
-        // this.createTechTalkForm.reset();
-        // location.reload();
+        this.createTechTalkForm.reset();
+        location.reload();
       } else {
         alert(res.json().message);
       }

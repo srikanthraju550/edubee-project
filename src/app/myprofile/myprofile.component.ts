@@ -4,6 +4,10 @@ import { HttpClient } from '../../../node_modules/@angular/common/http';
 import { MainServiceService } from '../main-service.service';
 import { Validators, FormBuilder, FormArray, FormControl } from '../../../node_modules/@angular/forms';
 import { HttpModule, Http, Response, Headers, RequestOptions } from '@angular/http';
+import { ExcelService } from '../export-excel';
+import * as jspdf from 'jspdf';
+import * as jsPDF from 'jspdf';
+
 
 
 @Component({
@@ -12,31 +16,7 @@ import { HttpModule, Http, Response, Headers, RequestOptions } from '@angular/ht
   styleUrls: ['./myprofile.component.css']
 })
 export class MyprofileComponent implements OnInit {
-  studentRegistrationForm = this.fb.group({
-    name: ['asd', Validators.required],
-    email: ['asd1', Validators.required],
-    contact: ['4325', Validators.required],
-    dob: ['07/13/1994', Validators.required],
-    username: ['asda', Validators.required],
-    password: ['qwe', Validators.required],
-    confirmpassword: ['qwe', Validators.required],
-    schoolname: ['asd', Validators.required],
-    schoolcity: ['1', Validators.required],
-    schoolstate: ['1', Validators.required],
-    college: ['sv', Validators.required],
-    collegecity: ['1', Validators.required],
-    collegestate: ['1', Validators.required],
-    collegebranch: ['asf', Validators.required],
-    miniprojecttitle: ['asd', Validators.required],
-    miniprojectdescription: ['we', Validators.required],
-    majorprojecttitle: ['q', Validators.required],
-    majorprojectdescription: ['gg', Validators.required],
-    technologies: ['hh', Validators.required],
-    skills: ['tt', Validators.required],
-    profilePicture: ['', Validators.required],
-    agreeTermsAndConditions: [false, Validators.required]
 
-  });;
   techarticledetails: any = [];
   techtalkdetails: any;
   techteachdetails: any;
@@ -44,25 +24,71 @@ export class MyprofileComponent implements OnInit {
   cityconfig: any = [];
   stateconfig: any = [];
   profilePageCounterValues;
+  hidediv: boolean;
 
   endpoint: string = "../assets/services/";
   url: string = "http://theengineersfactory.com/dashboard/";
-  constructor(private httpnew: Http, private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private fb: FormBuilder) { }
+  constructor(private httpnew: Http, private excelService: ExcelService, private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private fb: FormBuilder) { }
   userDetails: any;
   userImagePath;
+  filePAth;
+  turl;
+  iurl;
   strImage;
   showEdit: boolean;
   internshipDetails: boolean;
-  readUrl(event: any) {
+  readUrl(event: any, action) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
       reader.onload = (event: ProgressEvent) => {
         this.strImage = (<FileReader>event.target).result;
-        this.url = this.strImage.split(',')[1];
+        if (action == 'training') {
+          this.turl = this.strImage.split(',')[1];
+        } else {
+          this.iurl = this.strImage.split(',')[1];
+        }
       }
       reader.readAsDataURL(event.target.files[0]);
     }
   }
+
+
+  engineerRegistrationForm = this.fb.group({
+    name: [''],
+    email: [''],
+    contact: [''],
+    dob: [''],
+    username: [''],
+    school: [''],
+    college: [''],
+    branch: [''],
+    miniProjectTitle: [''],
+    miniProjectDescription: [''],
+    majorProjecTtitle: [''],
+    majorProjectDescription: [''],
+    internRole: [''],
+    internCompany: [''],
+    internDurationFrom: [''],
+    internDurationTo: [''],
+    internCerftification: [''],
+    skills: [''],
+    skillDescription: [''],
+    trainingRole: [''],
+    trainingCompany: [''],
+    trainingDurationFrom: [''],
+    trainingDurationTo: [''],
+    trainingCertification: [''],
+
+
+
+    // workExperience: this.fb.array([
+    //   this.fb.group({
+    //     role: [''],
+    //     companyName: [''],
+    //     yearsOfExperience: ['']
+    //   })
+    // ])
+  });
 
 
   editProfile() {
@@ -75,144 +101,152 @@ export class MyprofileComponent implements OnInit {
   nointernship() {
     this.internshipDetails = false;
   }
+  public pdfurl;
   ngOnInit() {
     this.userDetails = this.getLoggedInUserObject();
-    var url = this.endpoint + 'getProfilePageContent.php' + "/random=" + new Date().getTime();
-    if (!this.checkLoginStatus())
-      url += "?userid=" + this.userDetails['userid'];
-    console.log(url);
-    this.http.get(url).subscribe(data => {
-      console.log(data);
-      this.profileInformation = data['1'].profileInformation[0];
-      this.stateconfig = data['2'].stateconfig;
-      this.cityconfig = data['3'].cityconfig;
-      this.profilePageCounterValues = data['4'].profilePageCounterValues[0];
-      console.log(this.profileInformation);
-      console.log(this.stateconfig);
-      console.log(this.profilePageCounterValues);
 
-      this.profilePageCounterValues['totalScore'] =
-        (this.profilePageCounterValues['@researchPaperCount'] * 20)
-        + (this.profilePageCounterValues['@whitePaperCount'] * 10)
-        + (this.profilePageCounterValues['@articleCount'] * 5)
-        + (this.profilePageCounterValues['@techTalkCount'] * 10)
-        + (this.profilePageCounterValues['@techMeetCount'] * 10)
-        + (this.profilePageCounterValues['@workshopCount'] * 20)
-        + (this.profilePageCounterValues['@trainingsCount'] * 20)
-        + (this.profilePageCounterValues['@miniProjectCount'] * 20)
-        + (this.profilePageCounterValues['@majorProjectCount'] * 50)
-        + (this.profilePageCounterValues['@stuvationCount'] * 100)
-        + (this.profilePageCounterValues['@projectsCount'] * 20)
-        + (this.profilePageCounterValues['@internshipCount'] * 20)
-        + (this.profilePageCounterValues['@scholarshipCount'] * 20)
-        + (this.profilePageCounterValues['@mentorshipCount'] * 20)
-        ;
-
-      console.log(this.userDetails);
-      console.log(this.getCityName(this.profileInformation.schoolcityid));
-      if (this.userDetails['usertype'] == 'student') {
-        this.studentRegistrationForm = this.fb.group({
-          name: [this.profileInformation.name, Validators.required],
-          email: [this.profileInformation.emailaddress, Validators.required],
-          contact: [this.profileInformation.contactnumber, Validators.required],
-          dob: [this.profileInformation.dob, Validators.required],
-          schoolname: [this.profileInformation.school, Validators.required],
-          schoolcity: [this.profileInformation.schoolcityid, Validators.required],
-          schoolstate: [this.profileInformation.schoolstateid, Validators.required],
-          college: [this.profileInformation.college, Validators.required],
-          collegecity: [this.profileInformation.collegecityid, Validators.required],
-          collegestate: [this.profileInformation.collegestateid, Validators.required],
-          collegebranch: [this.profileInformation.branch, Validators.required],
-          miniprojecttitle: [this.profileInformation.miniprojecttitle, Validators.required],
-          miniprojectdescription: [this.profileInformation.miniprojectdescription, Validators.required],
-          majorprojecttitle: [this.profileInformation.majorprojecttitle, Validators.required],
-          majorprojectdescription: [this.profileInformation.majorprojectdescription, Validators.required],
-          technologies: [this.profileInformation.technologylist, Validators.required],
-          skills: [this.profileInformation.skillslist, Validators.required],
-          userId: [this.userDetails['userid']]
-
-        });
-        this.updateCityList(this.studentRegistrationForm.value.collegestate, 'college');
-        this.updateCityList(this.studentRegistrationForm.value.schoolstate, 'school');
-        console.log(this.studentRegistrationForm);
-      } else {
-        this.engineerRegistrationForm = this.fb.group({
-          name: [this.profileInformation.name, Validators.required],
-          email: [this.profileInformation.emailaddress, Validators.required],
-          contact: [this.profileInformation.contactnumber, Validators.required],
-          dob: [this.profileInformation.dob, Validators.required],
-          schoolname: [this.profileInformation.school, Validators.required],
-          schoolcity: [this.profileInformation.schoolcityid, Validators.required],
-          schoolstate: [this.profileInformation.schoolstateid, Validators.required],
-          college: [this.profileInformation.college, Validators.required],
-          collegecity: [this.profileInformation.collegecityid, Validators.required],
-          collegestate: [this.profileInformation.collegestateid, Validators.required],
-          collegebranch: [this.profileInformation.branch, Validators.required],
-          miniprojecttitle: [this.profileInformation.miniprojecttitle, Validators.required],
-          miniprojectdescription: [this.profileInformation.miniprojectdescription, Validators.required],
-          majorprojecttitle: [this.profileInformation.majorprojecttitle, Validators.required],
-          majorprojectdescription: [this.profileInformation.majorprojectdescription, Validators.required],
-          technologies: [this.profileInformation.technologylist, Validators.required],
-          skills: [this.profileInformation.skillslist, Validators.required],
-          userId: [this.userDetails['userid']]
-
-        });
-        this.updateCityList(this.engineerRegistrationForm.value.collegestate, 'college');
-        this.updateCityList(this.engineerRegistrationForm.value.schoolstate, 'school');
-        console.log(this.engineerRegistrationForm);
-      }
-
-    });
+    this.pdfurl = 'http://theengineersfactory.com/dashboard/get_profile_pdf/' + this.userDetails['user_id'];
     this.userImagePath = sessionStorage.getItem('userImagePath');
     this.getUserData();
   }
-  userData = [];
+  userData = {
+    stuvation: {
+      mini_project_count: '',
+      major_project_count: '',
+      stuation_count: ''
+    },
+    tech_bank: {
+      research_paper_count: '',
+      white_paper_count: '',
+      article_count: ''
+    },
+    tech_talk: {
+      tech_talk_count: '',
+      tech_teach_count: '',
+      work_shop_count: '',
+      trainings_count: ''
+    }
+  };
+  profileData = {
+    intern_certificate: '',
+    certificate: '',
+    certificate2: '',
+  };
+
+  excelData = [];
+  exportAsXLSX(): void {
+    this.excelService.exportAsExcelFile(this.excelData, 'Profile-data');
+  }
+
+
   getUserData() {
     this.httpnew.get(this.url + 'user-profile' + '?user_id=' + this.userDetails['user_id']).subscribe(data => {
+      this.excelData = data.json().data;
       this.userData = data.json();
+      this.profileData = data.json().data[0];
+      this.filePAth = data.json().file_path;
+
+      this.engineerRegistrationForm = this.fb.group({
+        name: [data.json().data[0].name],
+        email: [data.json().data[0].email],
+        contact: [data.json().data[0].mobile],
+        dob: [data.json().data[0].dob],
+        username: [data.json().data[0].username],
+        school: [data.json().data[0].school],
+        college: [data.json().data[0].college],
+        branch: [data.json().data[0].branch],
+        miniProjectTitle: [data.json().data[0].mini_project_title],
+        miniProjectDescription: [data.json().data[0].mini_project_desc],
+        majorProjecTtitle: [data.json().data[0].major_project_title],
+        majorProjectDescription: [data.json().data[0].major_project_desc],
+        internRole: [data.json().data[0].intern_role],
+        internCompany: [data.json().data[0].intern_company],
+        internDurationFrom: [data.json().data[0].intern_from],
+        internDurationTo: [data.json().data[0].intern_to],
+        internCerftification: [data.json().data[0].intern_certificate],
+        skills: [data.json().data[0].skills],
+        skillDescription: [data.json().data[0].skill_desc],
+        trainingRole: [data.json().data[0].training_role],
+        trainingCompany: [data.json().data[0].training_company],
+        trainingDurationFrom: [data.json().data[0].training_from],
+        trainingDurationTo: [data.json().data[0].training_to],
+        trainingCertification: [data.json().data[0].certificate2],
+
+      });
     });
   }
 
-  onEngineerRegistrationFormSubmi() {
-    console.warn(this.engineerRegistrationForm.value);
-    let headers = new Headers({ 'Content-Type': 'multipart/form-data' });
 
-    this.http.post(this.endpoint + 'engineerUpdateRegistration.php', this.engineerRegistrationForm.value, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
-      //  this.http.post('http://localhost:8080/edubee/engineerRegistration.php', this.engineerRegistrationForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-      console.log(data);
-      let parsedData: JSON = JSON.parse('' + data);
-      console.log(parsedData);
-      if (parsedData['profieUpdationStatus'] == 'successful') {
 
-        alert('Profile Updated Successfully');
+  editProfileChanges() {
 
-      } else if (parsedData['profieUpdationStatus'] == 'partiallySuccessful') {
-        alert('Partially Profile Updated');
+    // stop here if form is invalid
+    if (this.engineerRegistrationForm.invalid) {
+      alert('Required fields Missing, Please fill * marks fields');
+      return;
+    }
+
+    let userDetails = this.getLoggedInUserObject();
+    const headers = new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+
+
+    var params =
+      'user_id=' + userDetails['user_id'] +
+      '&email=' + this.engineerRegistrationForm.value.email +
+      '&name=' + this.engineerRegistrationForm.value.name +
+      '&profile_image=' + "" +
+      '&mobile=' + this.engineerRegistrationForm.value.contact +
+      '&dob=' + this.engineerRegistrationForm.value.dob +
+      '&school=' + this.engineerRegistrationForm.value.school +
+      '&college=' + this.engineerRegistrationForm.value.college +
+      '&branch=' + this.engineerRegistrationForm.value.branch +
+      '&mini_project_title=' + this.engineerRegistrationForm.value.miniProjectTitle +
+      '&mini_project_desc=' + this.engineerRegistrationForm.value.miniProjectDescription +
+      '&major_project_title=' + this.engineerRegistrationForm.value.majorProjecTtitle +
+      '&major_project_desc=' + this.engineerRegistrationForm.value.majorProjectDescription +
+      '&intern_role=' + this.engineerRegistrationForm.value.internRole +
+      '&intern_company=' + this.engineerRegistrationForm.value.internCompany +
+      '&intern_from=' + this.engineerRegistrationForm.value.internDurationFrom +
+      '&intern_to=' + this.engineerRegistrationForm.value.internDurationTo +
+      '&intern_certificate=' + this.iurl +
+      '&skills=' + this.engineerRegistrationForm.value.skills +
+      '&skill_desc=' + this.engineerRegistrationForm.value.skillDescription +
+      '&training_role=' + this.engineerRegistrationForm.value.trainingRole +
+      '&training_company=' + this.engineerRegistrationForm.value.trainingCompany +
+      '&training_from=' + this.engineerRegistrationForm.value.trainingDurationFrom +
+      '&training_to=' + this.engineerRegistrationForm.value.trainingDurationTo +
+      '&training_certificate=' + this.turl
+
+
+
+
+    this.httpnew.post(this.url + 'edit-profile', params, { headers: headers }).subscribe(res => {
+      if (res.json().status === true) {
+        alert(res.json().message);
+        document.getElementById("closeCreateTechTeachModal").click();
+        this.getUserData();
+
+        this.showEdit = false;
+      } else {
+        alert(res.json().message);
       }
-
-    });
+    })
   }
 
-  onStudentRegistrationFormUpdate() {
-    console.warn(this.studentRegistrationForm.value);
 
-    let headers = new Headers({ 'Content-Type': 'multipart/form-data' });
-    this.http.post(this.endpoint + 'studentUpdateRegistration.php', this.studentRegistrationForm.value, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
-      //  this.http.post('http://localhost:8080/edubee/studentRegistration.php', this.studentRegistrationForm.value,{headers:{'Content-Type': 'multipart/form-data'}, responseType: 'json'}).subscribe(data => {
-      console.log(data);
-      let parsedData: JSON = JSON.parse('' + data);
-      console.log(parsedData);
-      if (parsedData['profieUpdationStatus'] == 'successful') {
 
-        alert('Profile Updated Successfully');
+  html2text(html) {
+    var tag = document.createElement('div');
+    tag.innerHTML = html;
 
-      } else if (parsedData['profieUpdationStatus'] == 'partiallySuccessful') {
-        alert('Partially Profile Updated');
-      }
-
-    });
-
+    return tag.innerText;
   }
+
+
+
+
   collegecitylist: any = [];
   schoolcitylist: any = [];
   updateCityList(stateid, listname) {
@@ -249,38 +283,6 @@ export class MyprofileComponent implements OnInit {
     });
   }
 
-
-  engineerRegistrationForm = this.fb.group({
-    name: ['', Validators.required],
-    email: ['', Validators.required],
-    contact: ['', Validators.required],
-    dob: ['', Validators.required],
-    username: ['', Validators.required],
-    password: ['qwe', Validators.required],
-    confirmpassword: ['qwe', Validators.required],
-    schoolname: ['asd', Validators.required],
-    schoolcity: ['1', Validators.required],
-    schoolstate: ['1', Validators.required],
-    college: ['sv', Validators.required],
-    collegecity: ['1', Validators.required],
-    collegestate: ['1', Validators.required],
-    collegebranch: ['asf', Validators.required],
-    miniprojecttitle: ['asd', Validators.required],
-    miniprojectdescription: ['we', Validators.required],
-    majorprojecttitle: ['q', Validators.required],
-    majorprojectdescription: ['gg', Validators.required],
-    technologies: ['hh', Validators.required],
-    skills: ['tt', Validators.required],
-    profilePicture: ['', Validators.required],
-    agreeTermsAndConditions: [false, Validators.required],
-    workExperience: this.fb.array([
-      this.fb.group({
-        role: [''],
-        companyName: [''],
-        yearsOfExperience: ['']
-      })
-    ])
-  });
 
   get workExperience() {
     return this.engineerRegistrationForm.get('workExperience') as FormArray;

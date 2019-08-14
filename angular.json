@@ -34,7 +34,8 @@
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "src/assets/js/MultiCarousel.js",
               "src/assets/js/myJsFile.js",
-              "src/assets/js/counter.js"
+              "src/assets/js/counter.js",
+              "node_modules/jspdf/dist/jspdf.min.js"
             ]
           },
           "configurations": {

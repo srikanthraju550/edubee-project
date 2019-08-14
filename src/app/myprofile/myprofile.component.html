@@ -26,30 +26,30 @@
         <div class="col-sm-4" style="border: 1px solid blue;">
           <span style="color:#33099e; font-weight: bold">Stuvation</span>
           <hr class="hrnew">
-          Mini: {{profilePageCounterValues['@miniProjectCount']}}
-          <br /> Major: {{profilePageCounterValues['@majorProjectCount']}}
-          <br /> Stuvation: {{profilePageCounterValues['@stuvationCount']}}
+          Mini: {{userData.stuvation.mini_project_count}}
+          <br /> Major: {{userData.stuvation.major_project_count}}
+          <br /> Stuvation: {{userData.stuvation.stuation_count}}
         </div>
         <div class="col-sm-4" style="border: 1px solid blue;">
           <span style="color:#33099e; font-weight: bold">Tech Bank</span>
           <hr class="hrnew">
-          Research Paper: {{profilePageCounterValues['@researchPaperCount']}}
-          <br /> White Paper: {{profilePageCounterValues['@whitePaperCount']}}
-          <br /> Articles: {{profilePageCounterValues['@articleCount']}}
+          Research Paper: {{userData.tech_bank.research_paper_count}}
+          <br /> White Paper: {{userData.tech_bank.white_paper_count}}
+          <br /> Articles: {{userData.tech_bank.article_count}}
 
         </div>
         <div class="col-sm-4" style="border: 1px solid blue;">
           <span style="color:#33099e; font-weight: bold">Tech Connect</span>
           <hr class="hrnew">
-          Tech Talk: {{profilePageCounterValues['@techTalkCount']}}
-          <br /> Tech Teach: {{profilePageCounterValues['@techMeetCount']}}
-          <br /> Workshop: {{profilePageCounterValues['@workshopCount']}}
-          <br /> Trainings: {{profilePageCounterValues['@trainingsCount']}}
+          Tech Talk:{{userData.tech_talk?.tech_talk_count}}
+          <br /> Tech Teach: {{userData.tech_talk?.tech_teach_count}}
+          <br /> Workshop: {{userData.tech_talk?.work_shop_count}}
+          <br /> Trainings: {{userData.tech_talk?.trainings_count}}
         </div>
       </div>
     </div>
     <div class="col-sm-2" style="text-align: center; ">
-      <div class="circle" style="font-weight: bold;margin-left: 1em;">{{this.profilePageCounterValues['totalScore']}}
+      <div class="circle" style="font-weight: bold;margin-left: 1em;">
         <span style="padding-left: 8%;font-size: 12px">Over all Grade</span>
       </div>
       <br />
@@ -82,27 +82,28 @@
         </div>
         <div class="form-group">
           <label for="contact">Contact Number:</label>
-          <input type="text" myNumberOnly class="form-control" formControlName="contact" minlength="10" maxlength="10">
+          <input type="text" myNumberOnly myNumberOnly class="form-control" formControlName="contact" minlength="10"
+            maxlength="10">
         </div>
         <div class="form-group">
           <label for="dob">Date of birth:</label>
-          <input type="date" class="form-control" formControlName="dob">
+          <input type="date" myNumberOnly class="form-control" formControlName="dob">
         </div>
         <div class="form-group">
           <label for="contact">School:</label>
-          <input type="text" class="form-control" formControlName="contact">
+          <input type="text" class="form-control" formControlName="school">
         </div>
         <div class="form-group">
           <label for="contact">College:</label>
-          <input type="text" class="form-control" formControlName="contact">
+          <input type="text" class="form-control" formControlName="college">
         </div>
         <div class="form-group">
           <label for="contact">Branch:</label>
-          <input type="text" class="form-control" formControlName="contact">
+          <input type="text" class="form-control" formControlName="branch">
         </div>
-        <div style="width: 100%; text-align: end;" *ngIf="showEdit">
+        <!-- <div style="width: 100%; text-align: end;" *ngIf="showEdit">
           <button type="submit" class="btn btn-primary">Edit</button>
-        </div>
+        </div> -->
 
       </div>
 
@@ -118,11 +119,11 @@
         </span>
         <div class="form-group">
           <label for="miniprojecttitle">Project Title:</label>
-          <input type="text" class="form-control" formControlName="miniprojecttitle">
+          <input type="text" class="form-control" formControlName="miniProjectTitle">
         </div>
         <div class="form-group">
           <label for="miniprojectdescription">Project Description:</label>
-          <input type="text" class="form-control" formControlName="miniprojectdescription">
+          <input type="text" class="form-control" formControlName="miniProjectDescription">
         </div>
       </div>
       <div class="col-sm-12">
@@ -131,15 +132,15 @@
         </span>
         <div class="form-group">
           <label for="majorprojecttitle">Project Title:</label>
-          <input type="text" class="form-control" formControlName="majorprojecttitle">
+          <input type="text" class="form-control" formControlName="majorProjecTtitle">
         </div>
         <div class="form-group">
           <label for="majorprojectdescription">Project Description:</label>
-          <input type="text" class="form-control" formControlName="majorprojectdescription">
+          <input type="text" class="form-control" formControlName="majorProjectDescription">
         </div>
-        <div style="width: 100%; text-align: end;" *ngIf="showEdit">
+        <!-- <div style="width: 100%; text-align: end;" *ngIf="showEdit">
           <button type="submit" class="btn btn-primary">Edit</button>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -150,7 +151,7 @@
       </span>
 
       <div class="col-sm-12">
-        <div class="form-group" *ngIf=" showEdit">
+        <div class="form-group" *ngIf="showEdit">
 
           <label for="majorprojectdescription"> Have you done any Internship?</label><br />
           <label class="form-check-label" style="padding-left: 2%">
@@ -165,18 +166,18 @@
 
         <div class="form-group">
           <label for="majorprojectdescription">Role:</label>
-          <input type="text" class="form-control" formControlName="majorprojectdescription">
+          <input type="text" class="form-control" formControlName="internRole">
         </div>
         <div class="form-group">
           <label for="majorprojectdescription">Company:</label>
-          <input type="text" class="form-control" formControlName="majorprojectdescription">
+          <input type="text" class="form-control" formControlName="internCompany">
         </div>
         <label for="majorprojectdescription">Duration:</label>
         <div class="row">
 
           <div class="col-md-4">
             <div class="form-group">
-              <input type="date" class="form-control" formControlName="majorprojectdescription">
+              <input type="date" myNumberOnly class="form-control" formControlName="internDurationFrom">
             </div>
 
           </div>
@@ -185,19 +186,24 @@
           </div>
           <div class="col-md-4">
             <div class="form-group">
-              <input type="date" class="form-control" formControlName="majorprojectdescription">
+              <input type="date" myNumberOnly class="form-control" formControlName="internDurationTo">
             </div>
           </div>
         </div>
-        <div class="form-group">
-          <label for="majorprojectdescription">Certificates:</label>
-          <input type="file" class="form-control" style="border: none" formControlName="majorprojectdescription">
+
+        <div class="form-group" *ngIf="profileData.intern_certificate!=''">
+          <label for="majorprojectdescription">Certificate: </label>
+          <a target="blank"
+            [href]="filePAth +profileData.intern_certificate">&nbsp;&nbsp;{{ profileData.intern_certificate}}</a>
+          <!-- <input type="file" class="form-control" style="border: none" formControlName="trainingCertificate"> -->
         </div>
-        <div class="form-group" *ngIf="internshipDetails && showEdit">
+
+        <div class="form-group" *ngIf="showEdit">
           <label for="majorprojectdescription">Upload any Certification:</label>
-          <input type="file" class="form-control" style="border: none" formControlName="majorprojectdescription">
+          <input type="file" class="form-control" style="border: none" (change)="readUrl($event,'intern')"
+            formControlName="internCerftification">
         </div>
-        <div class="form-group" *ngIf="internshipDetails && showEdit">
+        <div class="form-group" *ngIf="showEdit">
 
           <label for="majorprojectdescription"> Do you have any scholorship?</label><br />
           <label class="form-check-label" style="padding-left: 2%">
@@ -210,9 +216,9 @@
             No</label>
         </div>
 
-        <div style="width: 100%; text-align: end;" *ngIf="showEdit">
+        <!-- <div style="width: 100%; text-align: end;" *ngIf="showEdit">
           <button type="submit" class="btn btn-primary">Edit</button>
-        </div>
+        </div> -->
       </div>
 
     </div>
@@ -227,15 +233,15 @@
 
         <div class="form-group">
           <label for="majorprojectdescription">Skills:</label>
-          <input type="text" class="form-control" formControlName="majorprojectdescription">
+          <input type="text" class="form-control" formControlName="skills">
         </div>
         <div class="form-group">
           <label for="majorprojectdescription">Description:</label>
-          <input type="text" class="form-control" formControlName="majorprojectdescription">
+          <input type="text" class="form-control" formControlName="skillDescription">
         </div>
-        <div style="width: 100%; text-align: end;" *ngIf="showEdit">
+        <!-- <div style="width: 100%; text-align: end;" *ngIf="showEdit">
           <button type="submit" class="btn btn-primary">Edit</button>
-        </div>
+        </div> -->
       </div>
 
     </div>
@@ -251,18 +257,18 @@
 
         <div class="form-group">
           <label for="majorprojectdescription">Role:</label>
-          <input type="text" class="form-control" formControlName="majorprojectdescription">
+          <input type="text" class="form-control" formControlName="trainingRole">
         </div>
         <div class="form-group">
           <label for="majorprojectdescription">Company:</label>
-          <input type="text" class="form-control" formControlName="majorprojectdescription">
+          <input type="text" class="form-control" formControlName="trainingCompany">
         </div>
         <label for="majorprojectdescription">Duration:</label>
         <div class="row">
 
           <div class="col-md-4">
             <div class="form-group">
-              <input type="date" class="form-control" formControlName="majorprojectdescription">
+              <input type="date" myNumberOnly class="form-control" formControlName="trainingDurationFrom">
             </div>
 
           </div>
@@ -271,38 +277,46 @@
           </div>
           <div class="col-md-4">
             <div class="form-group">
-              <input type="date" class="form-control" formControlName="majorprojectdescription">
+              <input type="date" myNumberOnly class="form-control" formControlName="trainingDurationTo">
             </div>
           </div>
         </div>
-        <div class="form-group">
-          <label for="majorprojectdescription">Certificate:</label>
-          <input type="file" class="form-control" style="border: none" formControlName="majorprojectdescription">
+        <div class="form-group" *ngIf="profileData.certificate2!=''">
+          <label for="majorprojectdescription">Certificate: </label>
+          <a target="blank" [href]="filePAth  + profileData.certificate2">&nbsp;&nbsp;{{ profileData.certificate2}}</a>
+          <!-- <input type="file" class="form-control" style="border: none" formControlName="trainingCertificate"> -->
         </div>
 
         <div class="form-group">
           <label for="majorprojectdescription">Any other Certificate:</label>
-          <input type="file" class="form-control" style="border: none" formControlName="majorprojectdescription">
+          <input type="file" class="form-control" style="border: none" (change)="readUrl($event,'training')"
+            formControlName="trainingCertification">
         </div>
 
 
-        <div style="width: 100%; text-align: end;" *ngIf="showEdit">
+        <!-- <div style="width: 100%; text-align: end;" *ngIf="showEdit">
           <button type="submit" class="btn btn-primary">Edit</button>
-        </div>
+        </div> -->
       </div>
 
     </div>
 
 
-
-
     <div style="width: 100%; text-align: center; align-items: center">
+      <!-- <button type="submit" class="btn btn-primary" *ngIf="!showEdit" (click)="generatePDF()">Download
+        Details</button> -->
+      <a [href]="pdfurl" target="_blank" *ngIf="!showEdit" class="buttonarticle">
 
+        Download
+        Details
 
-      <button type="submit" class="btn btn-primary" *ngIf="showEdit">Save All Details</button>
+      </a>
+      <a class="buttonarticle" *ngIf="showEdit" (click)="editProfileChanges()">Save All
+        Details</a>
     </div>
     <br />
   </form>
+
 
 
 </div>

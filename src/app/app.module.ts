@@ -38,6 +38,10 @@ import { EngshipRequestComponent } from './engship-request/engship-request.compo
 import { NumberOnlyDirective, AlphabetsOnly, AlphaNumericOnly } from './number';
 import { StaticdataComponent } from './staticdata/staticdata.component';
 
+//service
+import { ExcelService } from './export-excel';
+
+
 
 
 const appRoutes: Routes = [
@@ -97,7 +101,7 @@ const appRoutes: Routes = [
     FileUploadModule
     //  DemoUtilsModule
   ],
-  providers: [],
+  providers: [ExcelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
