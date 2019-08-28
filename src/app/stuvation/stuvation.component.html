@@ -306,7 +306,7 @@
 
             <div class="col-md-10 col-sm-12">
               <b>Name</b> :
-              {{articlecomment.user_name}}
+              <a [routerLink]="['/myprofile',articlecomment.user_id]">{{articlecomment.user_name}}</a>
               <br />
               <b>Comment</b> :
               <span *ngIf="!showEdit">

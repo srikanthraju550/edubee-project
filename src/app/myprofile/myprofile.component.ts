@@ -7,6 +7,8 @@ import { HttpModule, Http, Response, Headers, RequestOptions } from '@angular/ht
 import { ExcelService } from '../export-excel';
 import * as jspdf from 'jspdf';
 import * as jsPDF from 'jspdf';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
 
 
 
@@ -25,10 +27,22 @@ export class MyprofileComponent implements OnInit {
   stateconfig: any = [];
   profilePageCounterValues;
   hidediv: boolean;
-
+  editButton: boolean;
+  user_id;
   endpoint: string = "../assets/services/";
   url: string = "http://theengineersfactory.com/dashboard/";
-  constructor(private httpnew: Http, private excelService: ExcelService, private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private fb: FormBuilder) { }
+  constructor(private httpnew: Http, private route: ActivatedRoute, private excelService: ExcelService, private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private fb: FormBuilder) {
+    this.userDetails = this.getLoggedInUserObject();
+    this.route.params.subscribe((params: Params) => {
+      this.user_id = params['id'];
+      if (this.user_id == this.userDetails['user_id']) {
+        this.editButton = true;
+      } else {
+        this.editButton = false;
+      }
+      document.getElementById("closeCommentsModal").click();
+    });
+  }
   userDetails: any;
   userImagePath;
   filePAth;
@@ -92,6 +106,7 @@ export class MyprofileComponent implements OnInit {
 
 
   editProfile() {
+
     this.showEdit = true;
   }
 
@@ -105,7 +120,7 @@ export class MyprofileComponent implements OnInit {
   ngOnInit() {
     this.userDetails = this.getLoggedInUserObject();
 
-    this.pdfurl = 'http://theengineersfactory.com/dashboard/get_profile_pdf/' + this.userDetails['user_id'];
+    this.pdfurl = 'http://theengineersfactory.com/dashboard/get_profile_pdf/' + this.user_id;
     this.userImagePath = sessionStorage.getItem('userImagePath');
     this.getUserData();
   }
@@ -130,21 +145,25 @@ export class MyprofileComponent implements OnInit {
   profileData = {
     intern_certificate: '',
     certificate: '',
-    certificate2: '',
+    certificate2:'',
+    image: '',
+    name: ''
   };
 
   excelData = [];
+  imagePath;
   exportAsXLSX(): void {
     this.excelService.exportAsExcelFile(this.excelData, 'Profile-data');
   }
 
 
   getUserData() {
-    this.httpnew.get(this.url + 'user-profile' + '?user_id=' + this.userDetails['user_id']).subscribe(data => {
+    this.httpnew.get(this.url + 'user-profile' + '?user_id=' + this.user_id).subscribe(data => {
       this.excelData = data.json().data;
       this.userData = data.json();
       this.profileData = data.json().data[0];
       this.filePAth = data.json().file_path;
+      this.imagePath = data.json().image_path;
 
       this.engineerRegistrationForm = this.fb.group({
         name: [data.json().data[0].name],

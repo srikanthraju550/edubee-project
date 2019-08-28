@@ -8,10 +8,10 @@
     <div class="col-sm-2" style="text-align: center">
       <div>
         <img class="profilepicture" style="height: 111px;width:111px;border-radius:55%"
-          [src]="userImagePath + '/' + getLoggedInUserObject()['image']" alt="Card image cap">
+          [src]="imagePath +profileData.image" alt="Card image cap">
       </div>
       <div>
-        <b style=" text-transform: capitalize;">{{getLoggedInUserObject()['name'] | titlecase}}</b>
+        <b style=" text-transform: capitalize;">{{profileData.name | titlecase}}</b>
         <br />
         <span style="font-size: 0.85rem; text-transform: capitalize;">Followers</span>
         <br />
@@ -57,7 +57,7 @@
         data-toggle="modal" data-target="#createTechArticleModal" (click)="editProfile()">Edit Profile</button> -->
 
       <button type="button" class="btn btn-primary" style="background-color: #33099e; color: white;font-weight: bold;"
-        (click)="editProfile()">Edit Profile</button>
+        (click)="editProfile()" *ngIf="editButton">Edit Profile</button>
 
     </div>
   </div>

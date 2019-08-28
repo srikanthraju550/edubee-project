@@ -40,7 +40,8 @@
                     <a href="#" class="main-header">PROFILE <i class="fa fa-caret-right"
                             style="display: inline;"></i></a>
                     <ul class="hidden sub-drop" style="position:absolute;margin-left:104px;top:-15px;">
-                        <li class="sub-menu-header"><a class="dropdown-item" routerLink="/myprofile">MY PROFILE</a></li>
+                        <li class="sub-menu-header"><a class="dropdown-item"
+                                [routerLink]="['/myprofile',getLoggedInUserObject()['user_id']]">MY PROFILE</a></li>
                         <!-- <li class="sub-menu-header"><a class="dropdown-item" routerLink="/engshipRequest">Engship
                                 Requests</a></li> -->
                         <li class="sub-menu-header"><a class="dropdown-item"
@@ -140,7 +141,8 @@
                                 </ul>
                             </li>
                             <li *ngIf="!checkLoginStatus()">
-                                <a class="dropdown-item" routerLink="/myprofile">MY PROFILE</a></li>
+                                <a class="dropdown-item"
+                                    [routerLink]="['/myprofile',getLoggedInUserObject()['user_id']]">MY PROFILE</a></li>
                             <!-- <li *ngIf="!checkLoginStatus()"><a class="dropdown-item"
                                     routerLink="/engshipRequest">Engship Requests</a></li> -->
                             <li *ngIf="!checkLoginStatus()"><a class="dropdown-item" (click)="logout()">LOGOUT</a>
@@ -2151,6 +2153,7 @@
                                         <!-- UserName is Required -->
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <!-- <label for="password">Password:</label> -->
                                     <input type="password" class="form-control" formControlName="password"

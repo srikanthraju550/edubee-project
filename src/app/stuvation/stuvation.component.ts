@@ -377,4 +377,8 @@ export class StuvationComponent implements OnInit {
     })
   }
 
+  showProfileData() {
+
+  }
+
 }

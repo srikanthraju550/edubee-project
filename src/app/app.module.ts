@@ -50,7 +50,7 @@ const appRoutes: Routes = [
   { path: 'techevent', component: TechBankComponent },
   { path: 'techbank', component: TechArticleComponent },
   { path: 'admin', component: AdminComponent },
-  { path: 'myprofile', component: MyprofileComponent },
+  { path: 'myprofile/:id', component: MyprofileComponent },
   { path: 'stuvation', component: StuvationComponent },
   { path: 'engship', component: EngshipComponent },
   { path: 'cityChapter', component: CityChapterComponent },
