@@ -89,14 +89,14 @@ export class StuvationComponent implements OnInit {
     })
   }
 
-  followerUpdate(stuationId, operationType) {
+  followerUpdate(stuationId, userId, operationType) {
     let userDetails = this.getLoggedInUserObject();
 
     const headers = new Headers({
       'Content-Type': 'application/x-www-form-urlencoded'
     });
 
-    var params = 'user_id=' + userDetails['user_id'] + '&stuvation_id=' + stuationId + '&action=' + operationType
+    var params = 'user_id=' + userDetails['user_id'] + '&followed_user_id=' + userId + '&action=' + operationType
     this.httpnew.post(this.Baseurl + 'follow-stuvation', params, { headers: headers }).subscribe(res => {
       if (res.json().status === true) {
 

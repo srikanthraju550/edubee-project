@@ -166,13 +166,13 @@
               <div class="lke-dis">
                 <button *ngIf="!checkLoginStatus() && stuvation.is_followed== 'FALSE'"
                   class="nav-link btn btn-light buttonarticle" style="color: white !important;"
-                  (click)="followerUpdate(stuvation.stuvation_id,'1');">Follow</button>
+                  (click)="followerUpdate(stuvation.stuvation_id,stuvation.user_id,'1');">Follow</button>
 
 
 
                 <button *ngIf="!checkLoginStatus() && stuvation.is_followed== 'TRUE'"
                   class="nav-link btn btn-light buttonarticle" style="color: white !important;"
-                  (click)="followerUpdate(stuvation.stuvation_id,'2');">Unfollow</button>
+                  (click)="followerUpdate(stuvation.stuvation_id,stuvation.user_id,'2');">Unfollow</button>
 
               </div>
 
