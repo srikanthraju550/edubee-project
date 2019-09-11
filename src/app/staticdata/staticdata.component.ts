@@ -26,6 +26,7 @@ export class StaticdataComponent implements OnInit {
   getMyTechTalktData = [];
   StuvResponseData = [];
   getMyStuvData = [];
+  image_path;
   title;
   constructor(private route: ActivatedRoute, private http: Http, private mainService: MainServiceService) {
     this.route.params.subscribe((params: Params) => {
@@ -66,54 +67,70 @@ export class StaticdataComponent implements OnInit {
 
   getMyTechBankData() {
     this.getMyTechBankDataList = [];
+    var tbData = [];
     let userDetails = this.getLoggedInUserObject();
     this.http.get(this.Baseurl + 'tech-article-list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
       this.ResponseData = response.json().data;
       for (var i = 0; i < this.ResponseData.length; i++) {
         if (this.ResponseData[i].user_id === userDetails['user_id']) {
-          this.getMyTechBankDataList.push(this.ResponseData[i]);
+          tbData.push(this.ResponseData[i]);
         }
       }
+      this.getMyTechBankDataList = tbData.reverse();
       // console.log(this.getMyTechBankDataList);
+      this.image_path = response.json().image_path;
+
       this.file_path = response.json().image_path;
     });
   }
   getMyTechConnectData() {
     this.getMyTechConnctData = [];
+    var tteData = [];
     let userDetails = this.getLoggedInUserObject();
     this.http.get(this.Baseurl + 'tech-teach-list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
       this.TechResponseData = response.json().data;
       for (var i = 0; i < this.TechResponseData.length; i++) {
         if (this.TechResponseData[i].user_id === userDetails['user_id']) {
-          this.getMyTechConnctData.push(this.TechResponseData[i]);
+          tteData.push(this.TechResponseData[i]);
         }
       }
+      this.image_path = response.json().image_path;
+
+      this.getMyTechConnctData = tteData.reverse();
       // console.log(this.getMyTechConnctData);
     });
   }
   getMyTechtalkData() {
     this.getMyTechTalktData = [];
+    var ttDAta = [];
     let userDetails = this.getLoggedInUserObject();
     this.http.get(this.Baseurl + 'tech-talk-list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
       this.TechtlkResponseData = response.json().data;
       for (var i = 0; i < this.TechtlkResponseData.length; i++) {
         if (this.TechtlkResponseData[i].user_id === userDetails['user_id']) {
-          this.getMyTechTalktData.push(this.TechtlkResponseData[i]);
+          ttDAta.push(this.TechtlkResponseData[i]);
         }
       }
+      this.image_path = response.json().image_path;
+
+      this.getMyTechTalktData = ttDAta.reverse()
       // console.log(this.getMyTechTalktData);
     });
   }
   getMyStuation() {
     this.getMyStuvData = [];
+    var sData = [];
     let userDetails = this.getLoggedInUserObject();
+
     this.http.get(this.Baseurl + 'stuvation-list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
       this.StuvResponseData = response.json().data;
       for (var i = 0; i < this.StuvResponseData.length; i++) {
         if (this.StuvResponseData[i].user_id === userDetails['user_id']) {
-          this.getMyStuvData.push(this.StuvResponseData[i]);
+          sData.push(this.StuvResponseData[i]);
         }
       }
+      this.image_path = response.json().image_path;
+      this.getMyStuvData = sData.reverse();
       console.log(this.getMyStuvData);
     });
   }
@@ -187,7 +204,7 @@ export class StaticdataComponent implements OnInit {
       var params = 'user_id=' + userDetails['user_id'] + '&comment_id=' + data.comment_id + '&comment=' + data.comment
       this.http.post(this.Baseurl + 'update-tech-article-comment', params, { headers: headers }).subscribe(res => {
         if (res.json().status === true) {
-          alert(res.json().message);
+          // alert(res.json().message);
           document.getElementById("closeCommentsModal").click();
         } else {
           alert(res.json().message);
@@ -197,7 +214,7 @@ export class StaticdataComponent implements OnInit {
       var params = 'user_id=' + userDetails['user_id'] + '&comment_id=' + data.comment_id
       this.http.post(this.Baseurl + 'delete-tech-article-comment', params, { headers: headers }).subscribe(res => {
         if (res.json().status === true) {
-          alert(res.json().message);
+          // alert(res.json().message);
           document.getElementById("closeCommentsModal").click();
         } else {
           alert(res.json().message);
@@ -215,7 +232,7 @@ export class StaticdataComponent implements OnInit {
     var params = 'user_id=' + userDetails['user_id'] + '&tech_article_id=' + this.articleId + '&comment=' + this.comment
     this.http.post(this.Baseurl + 'tech-article-comment', params, { headers: headers }).subscribe(res => {
       if (res.json().status === true) {
-        alert('comment added successfully');
+        // alert('comment added successfully');
         document.getElementById("closeCommentsModal").click();
         this.getMyTechBankData();
       } else {
@@ -242,7 +259,7 @@ export class StaticdataComponent implements OnInit {
   showstuvationComments(stuation) {
     this.showInput = false;
     this.comment = '';
-    this.stuationId = stuation.stuation_id;
+    this.stuationId = stuation.stuvation_id;
     this.stuvationcomments = [];
     let userDetails = this.getLoggedInUserObject();
     this.userid = userDetails['name'].toString();

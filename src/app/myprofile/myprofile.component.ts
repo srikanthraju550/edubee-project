@@ -50,6 +50,7 @@ export class MyprofileComponent implements OnInit {
   iurl;
   strImage;
   showEdit: boolean;
+  imageUrl = '';
   internshipDetails: boolean;
   readUrl(event: any, action) {
     if (event.target.files && event.target.files[0]) {
@@ -58,6 +59,8 @@ export class MyprofileComponent implements OnInit {
         this.strImage = (<FileReader>event.target).result;
         if (action == 'training') {
           this.turl = this.strImage.split(',')[1];
+        } else if (action == 'image') {
+          this.imageUrl = this.strImage.split(',')[1];
         } else {
           this.iurl = this.strImage.split(',')[1];
         }
@@ -145,7 +148,7 @@ export class MyprofileComponent implements OnInit {
   profileData = {
     intern_certificate: '',
     certificate: '',
-    certificate2:'',
+    certificate2: '',
     image: '',
     name: ''
   };
@@ -164,7 +167,12 @@ export class MyprofileComponent implements OnInit {
       this.profileData = data.json().data[0];
       this.filePAth = data.json().file_path;
       this.imagePath = data.json().image_path;
-
+      this.strImage = this.imagePath + this.profileData.image;
+      // sessionStorage.setItem("userImagePath", this.imagePath + this.profileData.image);
+      // this.getLoggedInUserObject()['image'] = this.strImage;
+      sessionStorage.setItem("userProfileImage", this.strImage);
+      console.log(this.getLoggedInUserObject());
+      console.log(this.strImage);
       this.engineerRegistrationForm = this.fb.group({
         name: [data.json().data[0].name],
         email: [data.json().data[0].email],
@@ -215,7 +223,7 @@ export class MyprofileComponent implements OnInit {
       'user_id=' + userDetails['user_id'] +
       '&email=' + this.engineerRegistrationForm.value.email +
       '&name=' + this.engineerRegistrationForm.value.name +
-      '&profile_image=' + "" +
+      '&profile_image=' + this.imageUrl +
       '&mobile=' + this.engineerRegistrationForm.value.contact +
       '&dob=' + this.engineerRegistrationForm.value.dob +
       '&school=' + this.engineerRegistrationForm.value.school +
@@ -243,10 +251,11 @@ export class MyprofileComponent implements OnInit {
 
     this.httpnew.post(this.url + 'edit-profile', params, { headers: headers }).subscribe(res => {
       if (res.json().status === true) {
-        alert(res.json().message);
+        // alert(res.json().message);
         document.getElementById("closeCreateTechTeachModal").click();
+        location.reload();
         this.getUserData();
-
+        
         this.showEdit = false;
       } else {
         alert(res.json().message);

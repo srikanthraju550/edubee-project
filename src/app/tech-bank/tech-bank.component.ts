@@ -87,7 +87,7 @@ export class TechBankComponent implements OnInit {
     this.http.post(this.endpoint + 'applyForTechEvents.php', registrationObject, { headers: { 'Content-Type': 'multipart/form-data' }, responseType: 'json' }).subscribe(data => {
       let parsedData: JSON = JSON.parse('' + data);
       if (parsedData['techEventRegistrationQuery'] == 'done') {
-        alert('Registered Successfully for the Event');
+        // alert('Registered Successfully for the Event');
         this.ngOnInit();
       } else if (parsedData['techEventRegistrationQuery'] == 'failed') {
         alert('Registration Failed for the Event');
@@ -112,7 +112,7 @@ export class TechBankComponent implements OnInit {
 
     this.httpnew.post(this.Baseurl + 'apply-event', params, { headers: headers }).subscribe(res => {
       if (res.json().status === true) {
-        alert(res.json().message);
+        // alert(res.json().message);
       } else {
         alert(res.json().message);
       }

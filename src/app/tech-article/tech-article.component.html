@@ -21,9 +21,19 @@
       [(ngModel)]="techArticleFilterr.title" *ngIf="showKeyword" />
 
 
-    <input type="text" class="form-control filter-input" placeholder="Search with Type.." name="techarticledetails"
-      [(ngModel)]="techArticleFilterr.article_type" *ngIf="showArticle" />
+    <!-- <input type="text" class="form-control filter-input" placeholder="Search with Type.." name="techarticledetails"
+      [(ngModel)]="techArticleFilterr.article_type" *ngIf="showArticle" /> -->
 
+    <select type="text" class="form-control filter-input" *ngIf="showArticle"
+      [(ngModel)]="techArticleFilterr.article_type">
+      <option>
+        Article</option>
+      <option>
+        Research Paper</option>
+      <option>
+        White Paper
+      </option>
+    </select>
 
     <select type="text" class="form-control filter-input" *ngIf="showTechnology"
       [(ngModel)]="techArticleFilterr.technology" name="technology_id">
@@ -86,8 +96,9 @@
   <div class="row">
     <div class="col-12" style="margin-top: 1em;">
       <!-- -->
+      <!-- <p *ngFor="let techarticle of ResponseDataArticle | filterBy:techArticleFilterr  ; let i = index;"> p</p> -->
       <div class="card card-articles" style="width: 100%;"
-        *ngFor="let techarticle of ResponseData | filterBy:techArticleFilterr ; let i = index;"
+        *ngFor="let techarticle of ResponseDataArticle | filterBy:techArticleFilterr  ; let i = index;"
         [ngClass]="{'techarticleRow1' : i%2==0 } ">
 
 
@@ -98,13 +109,13 @@
 
               <b>Title</b> : {{techarticle.title}}
               <br />
-              <b>Technology</b> : {{techarticle.technology}} ,
+              <b>Technology</b> : {{techarticle.technology}}
               &nbsp;&nbsp;
-              <b>Sub-Technology</b> : {{techarticle.sub_technology}}
-              <br />
-              <b *ngIf="techarticle.article_type=='Article'">Price :
+              <span *ngIf="techarticle.sub_technology!=null"> , <b>Sub-Technology</b> : {{techarticle.sub_technology}}
+              </span><br />
+              <b *ngIf="techarticle.article_type=='Article' && techarticle.cost!='' ">Price :
                 <span style="color:#255B88">{{techarticle.cost}} rs</span>
-              </b><br *ngIf="techarticle.article_type=='Article'" />
+                <br /> </b>
               <b> Abstract </b>: {{techarticle.abstract}}
 
 
@@ -120,7 +131,8 @@
 
               <div class="">
                 <h5 class="card-title" style="color:#33099e;"><span class="title-name">
-                  </span><b>{{techarticle.user_name}}</b>
+                  </span><b><a [routerLink]="['/myprofile',techarticle.user_id]"
+                      style="color: black">{{techarticle.user_name}}</a></b>
                   <br />
                   <span style="font-size: 0.85rem;color:rgb(22, 22, 22);"> ( {{techarticle.follow_count}} followers
                     )</span>
@@ -129,16 +141,16 @@
                   <button
                     *ngIf="!checkLoginStatus() && techarticle.is_followed== 'FALSE' && userid != techarticle.user_id"
                     class="nav-link btn btn-light buttonarticle" style=" color: white !important;"
-                    (click)="followerUpdate(techarticle.tech_article_id,'1');">Follow</button>
+                    (click)="followerUpdate(techarticle.tech_article_id,techarticle.user_id,'1');">Follow</button>
 
                   <button *ngIf="!checkLoginStatus() && techarticle.is_followed== 'TRUE'"
-                    class="nav-link btn btn-light buttonarticle" style="color: white !important;"
-                    (click)="followerUpdate(techarticle.tech_article_id,'2');">Unfollow</button>
+                    class="nav-link btn btn-light buttonarticle" style="color: white !important;" (click)="followerUpdate(techarticle.tech_article_id,techarticle.user_id,
+                    '2');">Unfollow</button>
 
                   &nbsp;&nbsp;
 
                 </div>
-                <br />
+
               </div>
             </div>
 
@@ -189,7 +201,7 @@
               </ul>
             </div>
           </div>
-          <br />
+
         </div>
 
         <div id="buynowModal1" class="modal fade" role="dialog">

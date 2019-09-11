@@ -52,6 +52,7 @@ export class StuvationComponent implements OnInit {
     let userDetails = this.getLoggedInUserObject();
     this.httpnew.get(this.Baseurl + 'stuvation-list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
       this.ResponseData = response.json().data.reverse();
+      console.log(this.ResponseData)
       this.image_path = response.json().image_path;
       this.file_path = response.json().file_path;
     });
@@ -145,7 +146,7 @@ export class StuvationComponent implements OnInit {
     var params = 'user_id=' + userDetails['user_id'] + '&stuvation_id=' + this.stuationId + '&comment=' + this.comment
     this.httpnew.post(this.Baseurl + 'stuvation-comment', params, { headers: headers }).subscribe(res => {
       if (res.json().status === true) {
-        alert('comment added successfully');
+        // alert('comment added successfully');
         document.getElementById("closeCommentsModal").click();
         this.getstuationData();
       } else {
@@ -162,7 +163,7 @@ export class StuvationComponent implements OnInit {
       var params = 'user_id=' + userDetails['user_id'] + '&comment_id=' + data.comment_id + '&comment=' + data.comment
       this.httpnew.post(this.Baseurl + 'update-stuvation-comment', params, { headers: headers }).subscribe(res => {
         if (res.json().status === true) {
-          alert(res.json().message);
+          // alert(res.json().message);
           document.getElementById("closeCommentsModal").click();
         } else {
           alert(res.json().message);
@@ -172,7 +173,7 @@ export class StuvationComponent implements OnInit {
       var params = 'user_id=' + userDetails['user_id'] + '&comment_id=' + data.comment_id
       this.httpnew.post(this.Baseurl + 'delete-stuvation-comment', params, { headers: headers }).subscribe(res => {
         if (res.json().status === true) {
-          alert(res.json().message);
+          // alert(res.json().message);
           document.getElementById("closeCommentsModal").click();
         } else {
           alert(res.json().message);
@@ -234,7 +235,7 @@ export class StuvationComponent implements OnInit {
     var params = 'user_id=' + userDetails['user_id'] + '&stuvation_id=' + projectid + '&role=' + rolename + '&description=' + comment
     this.httpnew.post(this.Baseurl + 'join-team', params, { headers: headers }).subscribe(res => {
       if (res.json().status === true) {
-        alert(res.json().message);
+        // alert(res.json().message);
         document.getElementById("closeJoinTeamPopupModal").click();
         this.getstuationData();
       } else {
@@ -286,7 +287,7 @@ export class StuvationComponent implements OnInit {
       let parsedData: JSON = JSON.parse('' + data);
       console.log(parsedData);
       if (parsedData['stuvationConnectOperation'] == 'done') {
-        alert('Sent Successfully. Creator will contact you.');
+        // alert('Sent Successfully. Creator will contact you.');
         this.ngOnInit();
       } else if (parsedData['stuvationConnectOperation'] == 'failed') {
         alert('Failed to Join');

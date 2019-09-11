@@ -171,7 +171,7 @@ margin-left: 25%;
   background: url(/assets/images/headerbg.png) no-repeat fixed center center;
   background-size: cover;
   height: auto;
-  overflow: hidden;
+  /* overflow: hidden; */
   padding: 12px 0px;
 }
 
@@ -767,10 +767,16 @@ ul.main-menu li{
 
 }
 @media screen and (min-width: 360px) and (max-width: 539px) {
-
+  .user-name-header{
+    display: none;
+}
 }
 
-@media screen and (min-width: 460px) and (max-width: 767px) {}
+@media screen and (min-width: 460px) and (max-width: 767px) {
+  .user-name-header{
+    display: none;
+}
+}
 
 @media only screen and (min-width: 540px) and (max-width: 767px) {
   .main-menu li a {

@@ -16,13 +16,13 @@
 
                 <b>Title</b> : {{techarticle.title}}
                 <br />
-                <b>Technology</b> : {{techarticle.technology}} ,
+                <b>Technology</b> : {{techarticle.technology}}
                 &nbsp;&nbsp;
-                <b>Sub-Technology</b> : {{techarticle.sub_technology}}
-                <br />
-                <b *ngIf="techarticle.article_type=='Article'">Price :
+                <span *ngIf="techarticle.sub_technology!=null"> , <b>Sub-Technology</b> : {{techarticle.sub_technology}}
+                </span><br />
+                <b *ngIf="techarticle.article_type=='Article' && techarticle.cost!=''">Price :
                   <span style="color:#255B88">{{techarticle.cost}} rs</span>
-                </b><br *ngIf="techarticle.article_type=='Article'" />
+                  <br /></b>
                 <b> Abstract </b>: {{techarticle.abstract}}
 
 
@@ -53,7 +53,7 @@
                     &nbsp;&nbsp;
 
                   </div>
-                  <br />
+
                 </div>
               </div>
 
@@ -86,7 +86,7 @@
                 </ul>
               </div>
             </div>
-            <br />
+
           </div>
 
         </div>
@@ -123,13 +123,15 @@
                   <div><b class="crd-lft">Topic</b> <span class="crd-ryt">: {{techteach.topic}}</span></div>
                   <div><b class="crd-lft">Abstract</b> <span class="crd-ryt">: {{techteach.abstract}}</span></div>
                   <div><b class="crd-lft">Technology</b> <span class="crd-ryt">: {{techteach.technology}}</span></div>
-                  <div><b class="crd-lft">Sub Technology</b> <span class="crd-ryt">: {{techteach.sub_technology}}</span>
+                  <div *ngIf="techteach.sub_technology!=null"><b class="crd-lft">Sub Technology</b> <span
+                      class="crd-ryt">: {{techteach.sub_technology}}</span>
+                    <br />
                   </div>
                   <!-- <div><b class="crd-lft">Created on</b> <span class="crd-ryt">: {{techteach.createdon}}</span></div>
         <div><b class="crd-lft">Event on</b> <span class="crd-ryt">: {{techteach.venuedate}}</span></div>
         <div><b class="crd-lft" style="font-size: 14px;">No.of People Applied</b> <span class="crd-ryt"> :
             {{techteach.registrationCount}}</span></div> -->
-                  <br />
+
 
                   <span class="cardSubHeading crd-hdng">Industrial Expert</span>
                   <div><b class="crd-lft">Name</b> <span class="crd-ryt">: {{techteach.user_name}}</span></div>
@@ -199,15 +201,17 @@
                     <div><b class="crd-lft">Abstract</b> <span class="crd-ryt">: {{techtalkdata.abstract}}</span></div>
                     <div><b class="crd-lft">Technology</b> <span class="crd-ryt">: {{techtalkdata.technology}}</span>
                     </div>
-                    <div><b class="crd-lft">Sub Technology</b> <span class="crd-ryt">:
+                    <div *ngIf="techtalkdata.sub_technology!=null"><b class="crd-lft">Sub Technology</b> <span
+                        class="crd-ryt">:
                         {{techtalkdata.sub_technology}}</span>
+                      <br />
                     </div>
 
                     <!-- <div><b class="crd-lft">Created on</b> <span class="crd-ryt">: {{techtalkdata.createdon}}</span></div>
               <div><b class="crd-lft">Event on</b> <span class="crd-ryt">: {{techtalkdata.venuedate}}</span></div>
               <div><b class="crd-lft" style="font-size: 14px;">No.of People Applied</b> <span class="crd-ryt"> :
                   {{techtalkdata.registrationCount}}</span></div> -->
-                    <br />
+
 
                     <span class="cardSubHeading crd-hdng">Industrial Expert</span>
 
@@ -293,42 +297,42 @@
                 </div>
                 <div class="row">
                   <div class="col-md-5 col-sm-12 tec_lft">
-                    <b> Project Type </b> : {{stuvation.project_type}}
-                    <br />
+                    <span *ngIf="stuvation.project_type!=''"> <b> Project Type </b> : {{stuvation.project_type}}
+                      <br /></span>
                     <b>Project Status</b> : <span style="color: green; font-weight: bold"
-                      *ngIf="stuvation.project_status=='completed'">{{stuvation.project_status}}</span>
+                      *ngIf="stuvation.project_status=='completed'">{{stuvation.project_status}}<br /></span>
                     <span style="color: #da9101; font-weight: bold" *ngIf="stuvation.project_status=='ongoing'">{{stuvation.project_status
-                       }}</span><br />
+                       }}<br /></span>
                     <b>Technology</b> : {{stuvation?.technology}}
-                    <br />
-                    <span> <b>Sub-Technology</b> :
-                      {{stuvation?.sub_technology}} <br /></span>
+
+                    <span *ngIf="stuvation.sub_technology!=null">, <b>Sub-Technology</b> :
+                      {{stuvation?.sub_technology}} </span>
                     <div>
 
-                      <b>Idea</b> : {{stuvation?.idea}}
-                      <br />
-                      <b>Idea Description</b> : {{stuvation?.ideaDescription}}
+                      <span *ngIf="stuvation.idea!==''"><b>Idea</b> : {{stuvation?.idea}}
+                        <br /></span>
+                      <span *ngIf="stuvation.idea_desc!==''"> <b>Idea Description</b> : {{stuvation?.idea_desc}}</span>
 
                     </div>
                     <div>
 
-                      <span><b>Prototype Available </b> :
+                      <span *ngIf="stuvation.prototype_available!==''"><b>Prototype Available </b> :
                         {{stuation?.prototype_available}} <br /></span>
 
-                      <span><b>Reference Link</b> : {{stuation?.ref_link}}
+                      <span *ngIf="stuvation.ref_link!=''"><b>Reference Link</b> : {{stuation?.ref_link}}
                         <br /></span>
-                      <span> <b>Expected Budget</b> : {{stuation?.exp_budget}}
+                      <span *ngIf="stuvation.exp_budget!=''"> <b>Expected Budget</b> : {{stuation?.exp_budget}}
                         <br /></span>
-                      <span><b>Team Size</b> : {{stuation?.team_size}}<br />
-                        <b>Student Partner Last Date Of Joining</b> :
+                      <span *ngIf="stuvation.team_size!='0'"><b>Team Size</b> : {{stuation?.team_size}}<br />
+                        <b>Student Partner Last Date Of Joining</b> : {{stuvation?.last_date_of_joining}}
                         <br /></span>
-                      <div *ngIf="stuvation?.ideaDescription=='Innovation'">
+                      <div *ngIf="stuvation?.idea_desc=='Innovation' && stuvation.idea_desc!=''">
                         <span> <b>Idea Description</b> :
-                          {{stuvation?.ideaDescription}}</span>
+                          {{stuvation?.idea_desc}}</span>
                       </div>
 
                     </div>
-                    <div style="text-align:justify">
+                    <div *ngIf="stuvation.abstract!= 'undefined'">
                       <!-- *ngIf="stuvation.project_type!='Innovation'" -->
                       <span> <b>Abstract</b> : {{stuvation?.abstract}}</span>
                     </div>
@@ -358,13 +362,13 @@
 
 
 
-                      <li class="nav-item" style="margin-left:2%">
+                      <!-- <li class="nav-item" style="margin-left:2%">
                         <button *ngIf="!checkLoginStatus()" class="btn btn-light buttonarticle"
                           (click)="likeStuation(stuvation.stuvation_id,stuvation.like_count,stuvation.user_id)">
                           {{stuvation.like_count}}
                           <img src="../assets/images/thumbsUp.png" alt="Card image cap" style="height:15px;">
                         </button>
-                      </li>
+                      </li> -->
 
 
                       <li class="nav-item">
@@ -412,6 +416,8 @@
       </div>
       <div class="modal-body">
         <div class="card cmnts" *ngFor="let articlecomment of stuvationcomments; let i = index; ">
+          <p *ngIf="stuvationcomments.length==0" style="text-align: center">No Data Available</p>
+
           <div class="card-body row">
 
             <div class="col-md-10 col-sm-12">
@@ -442,6 +448,7 @@
           id="closeCommentsModal">&times;</button>
       </div>
       <div class="modal-body">
+        <p *ngIf="articlecomments.length==0" style="text-align: center">No Data Available</p>
         <div class="card cmnts" *ngFor="let articlecomment of articlecomments; let i = index; ">
           <div class="card-body row">
 
@@ -456,7 +463,7 @@
                 placeholder="500 Characters" maxlength="500"></textarea>
             </div>
 
-            <div class="col-md-2 col-sm-12">
+            <!-- <div class="col-md-2 col-sm-12">
               <button *ngIf="(userid === articlecomment.user_name) && !showInput" class="btn btn-light"
                 style="background-color: #e6e5e5;height: 2.5em;" (click)="commentsEdit()">
                 Edit
@@ -469,10 +476,10 @@
                 style="background-color: #e6e5e5;height: 2.5em;" (click)="commentsEditDelete(articlecomment,'delete')">
                 Delete
               </button>
-            </div>
+            </div> -->
           </div>
         </div>
-        <div class="card">
+        <!-- <div class="card">
           <div class="card-body row">
             <div class="col--md-10  col-sm-12 col-xs-12">
               <textarea style="width: 100%;" [(ngModel)]="comment" placeholder="500 Characters"
@@ -485,7 +492,7 @@
               </button>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -611,7 +618,8 @@
               <br />
               <b>Technology Name</b> : {{selectedTechTeach.technology}}
               <br />
-              <b>Sub Technology Name</b> : {{selectedTechTeach.sub_technology}}
+              <b>Sub Technology Name</b> :
+              {{selectedTechTeach.sub_technology}}
               <br />
               <br />
             </div>

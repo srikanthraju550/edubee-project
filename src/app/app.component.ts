@@ -61,7 +61,7 @@ export class AppComponent {
   isCollapsed = true;
   title = 'app';
   url;
-
+  public userProfileImage;
 
   // endpoint: string = "../assets/services/"
   endpoint: string = "http://theengineersfactory.com/dashboard/";
@@ -238,7 +238,10 @@ export class AppComponent {
     //document.getElementById("datefield").setAttribute("min", today.toDateString());
     // let url = this.endpoint1 + 'getHomePageContent.php' + "/random=" + new Date().getTime();
     let userDetails = this.getLoggedInUserObject();
-    console.log(userDetails);
+
+    this.userProfileImage = sessionStorage.getItem('userProfileImage');
+
+    console.log(this.userProfileImage);
     // if (!this.checkLoginStatus())
     //   url += "?userid=" + userDetails['user_id'];
 
@@ -474,7 +477,7 @@ export class AppComponent {
 
     this.http.post(this.Baseurl + 'create-tech-article', params, { headers: headers }).subscribe(data => {
       if (data.json().status === true) {
-        alert(data.json().message);
+        // alert(data.json().message);
         document.getElementById("closeCreateTechArticleModal").click();
         this.router.navigate(['/techbank'])
         location.reload();
@@ -529,7 +532,7 @@ export class AppComponent {
 
       this.http.post(this.Baseurl + 'create-stuvation', params, { headers: headers }).subscribe(data => {
         if (data.json().status === true) {
-          alert(data.json().message);
+          // alert(data.json().message);
           document.getElementById("createProjectModal").click();
           document.getElementById("createStuvationModal").click();
           this.router.navigate(['/stuvation'])
@@ -578,7 +581,7 @@ export class AppComponent {
 
       this.http.post(this.Baseurl + 'create-stuvation', params, { headers: headers }).subscribe(data => {
         if (data.json().status === true) {
-          alert(data.json().message);
+          // alert(data.json().message);
           document.getElementById("createProjectModal").click();
           document.getElementById("createStuvationModal").click();
           this.router.navigate(['/stuvation'])
@@ -676,7 +679,7 @@ export class AppComponent {
       let parsedData: JSON = JSON.parse('' + data);
       console.log(parsedData);
       if (parsedData['stuvationdetailsquery'] == 'done') {
-        alert('Engship has been sent for Admin Approval. After confirmation it will be reflected.');
+        // alert('Engship has been sent for Admin Approval. After confirmation it will be reflected.');
         document.getElementById("closeCreateEngshipFormModal").click();
         location.reload();
       } else if (parsedData['stuvationdetailsquery'] == 'failed') {
@@ -744,7 +747,7 @@ export class AppComponent {
 
     var params = 'tech_teach_id=' + '' +
       '&user_id=' + userDetails['user_id'] +
-      'tech_teach_type_id=' + this.techTeachTypeId +
+      '&tech_teach_type_id=' + this.techTeachTypeId +
       '&topic=' + this.createTechTeachForm.value.topic +
       '&abstract=' + this.createTechTeachForm.value.abstract +
       // '&technology_area=' + this.createTechTeachForm.value.technologyArea +
@@ -771,7 +774,7 @@ export class AppComponent {
 
     this.http.post(this.endpoint + 'create-tech-teach', params, { headers: headers }).subscribe(res => {
       if (res.json().status === true) {
-        alert(res.json().message);
+        // alert(res.json().message);
         this.createTechTeachForm.reset();
         document.getElementById("closeCreateTechTeachModal").click();
         location.reload();
@@ -829,7 +832,7 @@ export class AppComponent {
 
     this.http.post(this.endpoint + 'create-tech-talk', params, { headers: headers }).subscribe(res => {
       if (res.json().status === true) {
-        alert(res.json().message);
+        // alert(res.json().message);
         document.getElementById("closeCreateTechTeachModal").click();
         this.createTechTalkForm.reset();
         location.reload();
@@ -903,11 +906,14 @@ export class AppComponent {
 
     this.http.post(this.endpoint + 'user-login', params, { headers: headers }).subscribe(response => {
       if (response.json().status !== false) {
-
         this.loginForm.reset();
         let parsedData = response.json().data;
+
         sessionStorage.setItem("loggedInUserName", JSON.stringify(parsedData[0]));
         sessionStorage.setItem("userImagePath", response.json().image_path);
+        let aa = sessionStorage.getItem('userImagePath') + '/' + response.json().data[0].image;
+        console.log(aa)
+        sessionStorage.setItem("userProfileImage", aa);
         sessionStorage.setItem("userId", response.json().user_id);
         document.getElementById("closeLoginForm").click();
         this.ngOnInit();
@@ -984,7 +990,7 @@ export class AppComponent {
       this.engineerRegistrationForm.reset();
       this.strImage = '';
       this.router.navigate(['/']);
-      alert('Profile Created Successfully');
+      // alert('Profile Created Successfully');
       // this.uploader.uploadAll();
       document.getElementById("closeEngineerRegistrationForm").click();
     })
@@ -1007,7 +1013,7 @@ export class AppComponent {
       this.studentRegistrationForm.reset();
       this.strImage = '';
       this.router.navigate(['/']);
-      alert('Profile Created Successfully');
+      // alert('Profile Created Successfully');
       // this.uploader.uploadAll();
       document.getElementById("closeStudentRegistrationForm").click();
     })

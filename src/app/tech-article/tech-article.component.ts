@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MainServiceService } from '../main-service.service';
 import { Http, Headers } from '@angular/http';
+import { FilterPipe } from 'ngx-filter-pipe';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { FilterPipe } from '../filter.pipe';
-// import { FilterPipe } from '../filter.pipe';
 
 @Component({
   selector: 'app-tech-article',
@@ -16,7 +16,7 @@ export class TechArticleComponent implements OnInit {
   endpoint: string = "../assets/services/";
   Baseurl = "http://theengineersfactory.com/dashboard/";
   selectedTecharticle: any;
-  constructor(private http: HttpClient, private httpnew: Http, private mainService: MainServiceService) { }
+  constructor(private modal: NgbModal, private http: HttpClient, private httpnew: Http, private mainService: MainServiceService, private filterPipe: FilterPipe) { }
   sliderContent: any = [];
   //homePageDataFromService=[];
   homePageContent: any = [];
@@ -24,7 +24,7 @@ export class TechArticleComponent implements OnInit {
   techarticledetails: any = [];
   userid: string;
   technologyList = [];
-  ResponseData: any = [];
+  ResponseDataArticle: any = [];
   file_path: string;
   file_path1: string;
   techArticleFilte;
@@ -57,11 +57,11 @@ export class TechArticleComponent implements OnInit {
   getArticles() {
     let userDetails = this.getLoggedInUserObject();
     this.httpnew.get(this.Baseurl + 'tech-article-list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
-      this.ResponseData = response.json().data.reverse();
-      console.log(this.ResponseData);
+      this.ResponseDataArticle = response.json().data.reverse();
+      console.log(this.ResponseDataArticle);
       this.file_path = response.json().image_path;
       this.file_path1 = response.json().file_path;
-      // console.log(this.ResponseData);
+      // console.log(this.ResponseDataArticle);
     });
   }
 
@@ -128,7 +128,7 @@ export class TechArticleComponent implements OnInit {
 
     this.httpnew.post(this.Baseurl + 'buy-tech-article', requestObject, { headers: headers }).subscribe(res => {
       if (res.json().status === true) {
-        alert(res.json().message);
+        // alert(res.json().message);
         document.getElementById("buynowModal").click();
         this.ngOnInit();
       } else {
@@ -139,14 +139,14 @@ export class TechArticleComponent implements OnInit {
     });
   }
 
-  followerUpdate(articleId, operationType) {
+  followerUpdate(articleId, userid, operationType) {
     let userDetails = this.getLoggedInUserObject();
 
     const headers = new Headers({
       'Content-Type': 'application/x-www-form-urlencoded'
     });
 
-    var params = 'user_id=' + userDetails['user_id'] + '&tech_article_id=' + articleId + '&action=' + operationType
+    var params = 'user_id=' + userDetails['user_id'] + '&followed_user_id=' + userid + '&action=' + operationType
     this.httpnew.post(this.Baseurl + 'follow-tech-article', params, { headers: headers }).subscribe(res => {
       if (res.json().status === true) {
         this.ngOnInit();
@@ -170,7 +170,7 @@ export class TechArticleComponent implements OnInit {
       'Content-Type': 'application/x-www-form-urlencoded'
     });
 
-    var params = 'user_id=' + userDetails['user_id'] + '&tech_article_id=' + articleId + '&action=' + this.action
+    var params = 'user_id=' + userDetails['user_id'] + '&followed_user_id' + user_id + '&tech_article_id=' + articleId + '&action=' + this.action
     this.httpnew.post(this.Baseurl + 'like-tech-article', params, { headers: headers }).subscribe(res => {
 
       if (this.action === 1) {
@@ -195,7 +195,7 @@ export class TechArticleComponent implements OnInit {
     var params = 'user_id=' + userDetails['user_id'] + '&tech_article_id=' + this.articleId + '&comment=' + this.comment
     this.httpnew.post(this.Baseurl + 'tech-article-comment', params, { headers: headers }).subscribe(res => {
       if (res.json().status === true) {
-        alert('comment added successfully');
+        // alert('comment added successfully');
         document.getElementById("closeCommentsModal").click();
         this.getArticles();
       } else {
@@ -216,7 +216,7 @@ export class TechArticleComponent implements OnInit {
       var params = 'user_id=' + userDetails['user_id'] + '&comment_id=' + data.comment_id + '&comment=' + data.comment
       this.httpnew.post(this.Baseurl + 'update-tech-article-comment', params, { headers: headers }).subscribe(res => {
         if (res.json().status === true) {
-          alert(res.json().message);
+          // alert(res.json().message);
           document.getElementById("closeCommentsModal").click();
         } else {
           alert(res.json().message);
@@ -226,7 +226,7 @@ export class TechArticleComponent implements OnInit {
       var params = 'user_id=' + userDetails['user_id'] + '&comment_id=' + data.comment_id
       this.httpnew.post(this.Baseurl + 'delete-tech-article-comment', params, { headers: headers }).subscribe(res => {
         if (res.json().status === true) {
-          alert(res.json().message);
+          // alert(res.json().message);
           document.getElementById("closeCommentsModal").click();
         } else {
           alert(res.json().message);
@@ -255,17 +255,17 @@ export class TechArticleComponent implements OnInit {
   abstract;
   showcost = false;
   viewTechTeachDetails(techTeach): void {
-    for (var i = 0; i < this.ResponseData.length; i++) {
-      if (techTeach.tech_article_id === this.ResponseData[i].tech_article_id) {
-        this.articletype = this.ResponseData[i].article_type;
-        this.articletitle = this.ResponseData[i].title;
-        this.emailaddress = this.ResponseData[i].contact_email;
-        this.contactnumber = this.ResponseData[i].contact_number;
-        this.cost = this.ResponseData[i].cost;
-        this.technologyname = this.ResponseData[i].technology;
-        this.subtechname = this.ResponseData[i].sub_technology;
-        this.abstract = this.ResponseData[i].abstract;
-        if (this.ResponseData[i].article_type == 'Article') {
+    for (var i = 0; i < this.ResponseDataArticle.length; i++) {
+      if (techTeach.tech_article_id === this.ResponseDataArticle[i].tech_article_id) {
+        this.articletype = this.ResponseDataArticle[i].article_type;
+        this.articletitle = this.ResponseDataArticle[i].title;
+        this.emailaddress = this.ResponseDataArticle[i].contact_email;
+        this.contactnumber = this.ResponseDataArticle[i].contact_number;
+        this.cost = this.ResponseDataArticle[i].cost;
+        this.technologyname = this.ResponseDataArticle[i].technology;
+        this.subtechname = this.ResponseDataArticle[i].sub_technology;
+        this.abstract = this.ResponseDataArticle[i].abstract;
+        if (this.ResponseDataArticle[i].article_type == 'Article') {
           this.showcost = true;
         }
         return;
