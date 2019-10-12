@@ -155,6 +155,7 @@ export class MyprofileComponent implements OnInit {
 
   excelData = [];
   imagePath;
+  grade;
   exportAsXLSX(): void {
     this.excelService.exportAsExcelFile(this.excelData, 'Profile-data');
   }
@@ -168,6 +169,7 @@ export class MyprofileComponent implements OnInit {
       this.filePAth = data.json().file_path;
       this.imagePath = data.json().image_path;
       this.strImage = this.imagePath + this.profileData.image;
+      this.grade = parseInt(data.json().data[0].join_event_score) + parseInt(data.json().data[0].stuvation_score) + parseInt(data.json().data[0].tech_talk_score) + parseInt(data.json().data[0].tech_teach_score)
       // sessionStorage.setItem("userImagePath", this.imagePath + this.profileData.image);
       // this.getLoggedInUserObject()['image'] = this.strImage;
       sessionStorage.setItem("userProfileImage", this.strImage);
@@ -255,7 +257,7 @@ export class MyprofileComponent implements OnInit {
         document.getElementById("closeCreateTechTeachModal").click();
         location.reload();
         this.getUserData();
-        
+
         this.showEdit = false;
       } else {
         alert(res.json().message);

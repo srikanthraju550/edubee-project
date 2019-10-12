@@ -187,6 +187,7 @@ export class HomeComponent implements OnInit {
   viewAllData = [];
   image_path;
   aboutData;
+  profile_path;
   date;
   dataDate;
   ngOnInit(): void {
@@ -198,6 +199,7 @@ export class HomeComponent implements OnInit {
 
       this.sliderContent = data.json().banners_data;
       this.image_path = data.json().image_path;
+      this.profile_path = data.json().profile_image_path
       this.quickRegData = data.json().quick_registration;
       this.filterquickRegData = this.quickRegData[0];
       this.teamDetails = data.json().student_thoughts;
@@ -211,8 +213,8 @@ export class HomeComponent implements OnInit {
         var eventObject = {
           // start: subDays(startOfDay(new Date(this.techteachdetails[i].start_date)), 1),
           // end: addDays(new Date(this.techteachdetails[i].end_date), 1),
-          start: new Date(this.techteachdetails[i].start_date),
-          end: new Date(this.techteachdetails[i].end_date),
+          start: new Date(this.techteachdetails[i].event_date),
+          end: new Date(this.techteachdetails[i].event_date),
           title: 'Tech Teach Topic : ' + this.techteachdetails[i].topic,
           color: colors.blue
         };
@@ -237,7 +239,7 @@ export class HomeComponent implements OnInit {
 
       this.date = new Date();
       for (var i = 0; i < this.techteachdetails.length; i++) {
-        this.dataDate = new Date(this.techteachdetails[i].venue_date);
+        this.dataDate = new Date(this.techteachdetails[i].event_date);
         if (this.date.getMonth() + 1 === this.dataDate.getMonth() + 1) {
           this.calenderDataForCalender.push(this.techteachdetails[i]);
         }
@@ -252,7 +254,7 @@ export class HomeComponent implements OnInit {
     this.calenderDataForCalender = [];
     this.date = new Date(date);
     for (var i = 0; i < this.techteachdetails.length; i++) {
-      this.dataDate = new Date(this.techteachdetails[i].venue_date);
+      this.dataDate = new Date(this.techteachdetails[i].event_date);
       if (this.date.getMonth() + 1 === this.dataDate.getMonth() + 1) {
         this.calenderDataForCalender.push(this.techteachdetails[i]);
       }
@@ -263,7 +265,7 @@ export class HomeComponent implements OnInit {
     this.calenderDataForCalender = [];
     this.date = new Date(date);
     for (var i = 0; i < this.techteachdetails.length; i++) {
-      this.dataDate = new Date(this.techteachdetails[i].venue_date);
+      this.dataDate = new Date(this.techteachdetails[i].event_date);
       if (this.date.getMonth() + 1 === this.dataDate.getMonth() + 1) {
         this.calenderDataForCalender.push(this.techteachdetails[i]);
       }
@@ -282,15 +284,15 @@ export class HomeComponent implements OnInit {
     this.selCal = 'tech talk';
     this.calenderDataForCalender = [];
     for (var i = 0; i < this.techtalkdetails.length; i++) {
-      this.dataDate = new Date(this.techtalkdetails[i].venue_date);
+      this.dataDate = new Date(this.techtalkdetails[i].event_date);
       if (this.date.getMonth() + 1 === this.dataDate.getMonth() + 1) {
         this.calenderDataForCalender.push(this.techtalkdetails[i]);
       }
     }
     for (let techTalk of this.techtalkdetails) {
       var eventObject = {
-        start: new Date(techTalk.start_date),
-        end: new Date(techTalk.end_date),
+        start: new Date(techTalk.event_date),
+        end: new Date(techTalk.event_date),
         title: 'Tech Talk Topic : ' + techTalk.topic,
         color: colors.lightblue
       };
@@ -307,15 +309,15 @@ export class HomeComponent implements OnInit {
     console.log(this.techteachdetails);
     this.calenderDataForCalender = [];
     for (var i = 0; i < this.techteachdetails.length; i++) {
-      this.dataDate = new Date(this.techteachdetails[i].venue_date);
+      this.dataDate = new Date(this.techteachdetails[i].event_date);
       if (this.date.getMonth() + 1 === this.dataDate.getMonth() + 1) {
         this.calenderDataForCalender.push(this.techteachdetails[i]);
       }
     }
     for (let techTeach of this.techteachdetails) {
       var eventObject = {
-        start: new Date(techTeach.start_date),
-        end: new Date(techTeach.end_date),
+        start: new Date(techTeach.event_date),
+        end: new Date(techTeach.event_date),
         title: 'Tech Teach Topic : ' + techTeach.topic,
         color: colors.blue
       };
@@ -336,7 +338,7 @@ export class HomeComponent implements OnInit {
     }
     this.calenderDataForCalender = [];
     for (var i = 0; i < this.allEvents.length; i++) {
-      this.dataDate = new Date(this.allEvents[i].venue_date);
+      this.dataDate = new Date(this.allEvents[i].event_date);
       if (this.date.getMonth() + 1 === this.dataDate.getMonth() + 1) {
         this.calenderDataForCalender.push(this.allEvents[i]);
       }
@@ -345,8 +347,8 @@ export class HomeComponent implements OnInit {
 
     for (let techTalk of this.techtalkdetails) {
       var eventObject = {
-        start: new Date(techTalk.start_date),
-        end: new Date(techTalk.end_date),
+        start: new Date(techTalk.event_date),
+        end: new Date(techTalk.event_date),
         title: 'Tech Talk Topic : ' + techTalk.topic,
         color: colors.lightblue
       };
@@ -356,8 +358,8 @@ export class HomeComponent implements OnInit {
 
     for (let techTeach of this.techteachdetails) {
       var eventObject = {
-        start: new Date(techTeach.start_date),
-        end: new Date(techTeach.end_date),
+        start: new Date(techTeach.event_date),
+        end: new Date(techTeach.event_date),
         title: 'Tech Teach Topic : ' + techTeach.topic,
         color: colors.blue
       };

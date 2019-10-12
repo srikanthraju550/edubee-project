@@ -171,6 +171,7 @@
     /* left: -60px; */
     font-size: 14px;
     float: left;
+    left:2%;
 ">
                         {{getLoggedInUserObject()['name'] | titlecase}}
                     </span>
@@ -561,10 +562,10 @@
                                 :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="lookingProfessorGuidance"
-                                formControlName="lookingProfessorGuidance" selected value="Y">&nbsp;
+                                formControlName="lookingProfessorGuidance" selected value="Yes">&nbsp;
                             Yes&nbsp;&nbsp;
                             <input type="radio" name="lookingProfessorGuidance"
-                                formControlName="lookingProfessorGuidance" value="N">&nbsp;
+                                formControlName="lookingProfessorGuidance" value="No">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6">
@@ -1030,10 +1031,10 @@
                                 :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="lookingProfessorGuidance"
-                                formControlName="lookingProfessorGuidance" selected value="Y">&nbsp;
+                                formControlName="lookingProfessorGuidance" selected value="Yes">&nbsp;
                             Yes&nbsp;&nbsp;
                             <input type="radio" name="lookingProfessorGuidance"
-                                formControlName="lookingProfessorGuidance" value="N">&nbsp;
+                                formControlName="lookingProfessorGuidance" value="No">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6">
@@ -1461,8 +1462,7 @@
                             <div class="form-group col-4">
                                 <label>
                                     <span class="red">*</span> Eligibility:
-                                    <textarea myNumberOnly type="text" class="form-control"
-                                        formControlName="eligibility"></textarea>
+                                    <textarea type="text" class="form-control" formControlName="eligibility"></textarea>
                                 </label>
                             </div>
                             <div class="form-group col-4">
@@ -1671,8 +1671,7 @@
                             <div class="form-group col-4">
                                 <label>
                                     <span class="red">*</span> Eligibility:
-                                    <textarea myNumberOnly type="text" class="form-control"
-                                        formControlName="eligibility"></textarea>
+                                    <textarea type="text" class="form-control" formControlName="eligibility"></textarea>
                                 </label>
                             </div>
                             <div class="form-group col-4">

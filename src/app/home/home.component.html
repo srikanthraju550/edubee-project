@@ -198,14 +198,13 @@
                                 </div>
                                 <div class="col-md-10 col-lg-10 cal-ico">
                                     <p><img src="../assets/images/calendar.png" class="custom-ss-event-date-img">
-                                        {{data.venue_date}}</p>
+                                        {{data.event_date}}</p>
                                     <p>
                                         <img src="../assets/images/placeholder.png" class="custom-ss-event-date-img">
                                         {{data.address}},{{data.city}}</p>
                                 </div>
                             </div>
-                            <div class="btn custom-ss-event-btn" data-toggle="modal"
-                                data-target="#studentRegistrationModal">Register Now</div>
+                            <div class="btn custom-ss-event-btn" routerLink="/techevent">Register Now</div>
                         </div>
 
                     </div>
@@ -301,7 +300,7 @@
                                 <div class="col-sm-3 col-md-3 col-lg-2"></div>
                                 <div class="col-sm-3 col-md-3 col-lg-4">
                                     <img class="profilepicture" style="border-radius: 10em;"
-                                        [src]="image_path + userInfo.profile_image">
+                                        [src]="profile_path + userInfo.profile_image">
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-6 ">
                                     <br />
