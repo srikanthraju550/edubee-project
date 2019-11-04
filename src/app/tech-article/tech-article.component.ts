@@ -4,6 +4,8 @@ import { MainServiceService } from '../main-service.service';
 import { Http, Headers } from '@angular/http';
 import { FilterPipe } from 'ngx-filter-pipe';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AppComponent } from '../app.component';
+import { Validators, FormBuilder, FormArray, ValidationErrors, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -16,7 +18,7 @@ export class TechArticleComponent implements OnInit {
   endpoint: string = "../assets/services/";
   Baseurl = "http://theengineersfactory.com/dashboard/";
   selectedTecharticle: any;
-  constructor(private modal: NgbModal, private http: HttpClient, private httpnew: Http, private mainService: MainServiceService, private filterPipe: FilterPipe) { }
+  constructor(private modal: NgbModal, private http: HttpClient, private httpnew: Http, public app: AppComponent, private fb: FormBuilder, private mainService: MainServiceService, private filterPipe: FilterPipe) { }
   sliderContent: any = [];
   //homePageDataFromService=[];
   homePageContent: any = [];
@@ -27,14 +29,31 @@ export class TechArticleComponent implements OnInit {
   ResponseDataArticle: any = [];
   file_path: string;
   file_path1: string;
-  techArticleFilte;
-  techArticleFilterr: any = { title: '', user_name: '', technology: '', sub_technology: '', cost: 0, article_type: '' };
+  public techArticleFilterr: any = { title: '', user_name: '', technology: '', sub_technology: '', cost: '', article_type: '' };
   keywordFilter: any = { user_name: '' };
   techFilter: any = { technology: '' };
   subTechFilter: any = { sub_technology: '' };
   articleTypeFilter = "";
   freeFilter: any = { cost: Number };
   authorFilter: any = { user_name: '' };
+  createTechart() {
+    this.app.createTechArticleForm = this.fb.group({
+      contact_email: ['', Validators.required],
+      contact_number: ['', Validators.required],
+      title: ['', Validators.required],
+      abstract: ['', Validators.required],
+      technology_id: ['', Validators.required],
+      sub_technology_id: [''],
+      article_type: ['', Validators.required],
+      is_paid: [''],
+      cost: [''],
+      publicationSelector: ['', Validators.required],
+      publication_link: [''],
+      publication_file: [''],
+      is_agreed: ['', Validators.required]
+
+    });
+  }
   ngOnInit(): void {
 
     let userDetails = this.getLoggedInUserObject();
@@ -281,6 +300,11 @@ export class TechArticleComponent implements OnInit {
   showCost = false;
 
   selectKeyword() {
+    this.techArticleFilterr.article_type = '';
+    this.techArticleFilterr.technology = '';
+    this.techArticleFilterr.user_name = '';
+    this.techArticleFilterr.cost = '';
+    this.techArticleFilterr.sub_technology = '';
     this.showKeyword = true;
     this.showArticle = false;
     this.showTechnology = false;
@@ -290,6 +314,11 @@ export class TechArticleComponent implements OnInit {
   }
 
   selectType() {
+    this.techArticleFilterr.title = '';
+    this.techArticleFilterr.sub_technology = '';
+    this.techArticleFilterr.technology = '';
+    this.techArticleFilterr.cost = '';
+    this.techArticleFilterr.user_name = '';
     this.showKeyword = false;
     this.showArticle = true;
     this.showTechnology = false;
@@ -299,6 +328,11 @@ export class TechArticleComponent implements OnInit {
   }
 
   selectTechnology() {
+    this.techArticleFilterr.sub_technology = '';
+    this.techArticleFilterr.title = '';
+    this.techArticleFilterr.user_name = '';
+    this.techArticleFilterr.cost = '';
+    this.techArticleFilterr.article_type = '';
     this.showKeyword = false;
     this.showArticle = false;
     this.showTechnology = true;
@@ -308,6 +342,11 @@ export class TechArticleComponent implements OnInit {
     this.getTechnologyList();
   }
   selectSubTechnology() {
+    this.techArticleFilterr.article_type = '';
+    this.techArticleFilterr.title = '';
+    this.techArticleFilterr.user_name = '';
+    this.techArticleFilterr.cost = '';
+    this.techArticleFilterr.technology = '';
     this.showKeyword = false;
     this.showArticle = false;
     this.showTechnology = false
@@ -327,6 +366,11 @@ export class TechArticleComponent implements OnInit {
   }
 
   selectAuthor() {
+    this.techArticleFilterr.article_type = '';
+    this.techArticleFilterr.technology = '';
+    this.techArticleFilterr.sub_technology = '';
+    this.techArticleFilterr.title = '';
+    this.techArticleFilterr.cost = '';
     this.showKeyword = false;
     this.showArticle = false;
     this.showTechnology = false
@@ -335,6 +379,11 @@ export class TechArticleComponent implements OnInit {
     this.showCost = false;
   }
   selectFree() {
+    this.techArticleFilterr.article_type = '';
+    this.techArticleFilterr.technology = '';
+    this.techArticleFilterr.sub_technology = '';
+    this.techArticleFilterr.user_name = '';
+    this.techArticleFilterr.title = '';
     this.showKeyword = false;
     this.showArticle = false;
     this.showTechnology = false

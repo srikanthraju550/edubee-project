@@ -202,7 +202,7 @@ export class HomeComponent implements OnInit {
       this.profile_path = data.json().profile_image_path
       this.quickRegData = data.json().quick_registration;
       this.filterquickRegData = this.quickRegData[0];
-      this.teamDetails = data.json().student_thoughts;
+      this.teamDetails = data.json().student_thoughts.reverse();
       // this.homePageContent = data['3'].homePageData;
       // this.getHomePageCounterValues = data['12'].getHomePageCounterValues[0];
       this.techtalkdetails = data.json().tech_talk_details;

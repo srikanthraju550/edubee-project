@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { MainServiceService } from '../main-service.service';
 import { FilterPipe } from 'ngx-filter-pipe';
 import { Http, Headers } from '@angular/http';
+import { AppComponent } from '../app.component';
+import { Validators, FormBuilder, FormArray, ValidationErrors, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-tech-bank',
@@ -16,7 +18,7 @@ export class TechBankComponent implements OnInit {
   // endpoint: string = "../assets/services/";
   endpoint: string = "../assets/services/";
   Baseurl = "http://theengineersfactory.com/dashboard/";
-  constructor(private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private filterPipe: FilterPipe, private httpnew: Http) { }
+  constructor(private modal: NgbModal, private http: HttpClient, public app: AppComponent, private fb: FormBuilder, private mainService: MainServiceService, private filterPipe: FilterPipe, private httpnew: Http) { }
   sliderContent: any = [];
   //homePageDataFromService=[];
   homePageContent: any = [];
@@ -32,6 +34,74 @@ export class TechBankComponent implements OnInit {
   techFilter = "";
   subTechFilter = "";
   techEventFilter: any = { user_name: '', technology: '', sub_technology: '' };
+
+  createTech() {
+    this.app.
+      createTechTalkForm = this.fb.group({
+        topic: ['', Validators.required],
+        technology: ['', Validators.required],
+        subtechnology: [''],
+        techtalktype: ['', Validators.required],
+        venueDetails: this.fb.group({
+          place: ['', Validators.required],
+          city: ['', Validators.required],
+          address: ['', Validators.required],
+          date: ['', Validators.required],
+          fromTime: ['', Validators.required],
+          toTime: ['', Validators.required]
+        }),
+        registrationDetails: this.fb.group({
+          webaddress: ['', Validators.required],
+          maxregcount: ['', Validators.required],
+          regfee: ['', Validators.required],
+          eligibility: ['', Validators.required],
+          seatcapacity: ['', Validators.required]
+        }),
+        expertDetails: this.fb.group({
+          name: ['', Validators.required],
+          company: ['', Validators.required],
+          speakerType: ['', Validators.required],
+          worklocation: ['', Validators.required],
+          position: ['', Validators.required],
+          experience: ['', Validators.required]
+        }),
+        userDetails: this.fb.group(this.getLoggedInUserObject()),
+        agreeTermsAndConditions: [false, Validators.required]
+      });
+
+    this.app.createTechTeachForm = this.fb.group({
+      topic: ['', Validators.required],
+      abstract: ['', Validators.required],
+      technology: ['', Validators.required],
+      subtechnology: [''],
+      techteachtype: ['', Validators.required],
+      venueDetails: this.fb.group({
+        place: ['', Validators.required],
+        city: ['', Validators.required],
+        address: ['', Validators.required],
+        date: ['', Validators.required],
+        fromTime: ['', Validators.required],
+        toTime: ['', Validators.required]
+      }),
+      registrationDetails: this.fb.group({
+        webaddress: ['', Validators.required],
+        maxregcount: ['', Validators.required],
+        regfee: ['', Validators.required],
+        eligibility: ['', Validators.required],
+        seatcapacity: ['', Validators.required]
+      }),
+      expertDetails: this.fb.group({
+        name: ['', Validators.required],
+        company: ['', Validators.required],
+        speakerType: ['', Validators.required],
+        worklocation: ['', Validators.required],
+        position: ['', Validators.required],
+        experience: ['', Validators.required]
+      }),
+      userDetails: this.fb.group(this.getLoggedInUserObject())
+
+    });
+  }
   ResponseData = [];
 
   ngOnInit(): void {
@@ -150,6 +220,8 @@ export class TechBankComponent implements OnInit {
   }
 
   selectType() {
+    this.techEventFilter.technology = '';
+    this.techEventFilter.sub_technology = '';
     this.showKeyword = false;
     this.showArticle = true;
     this.showTechnology = false;
@@ -159,6 +231,8 @@ export class TechBankComponent implements OnInit {
   }
 
   selectTechnology() {
+    this.techEventFilter.user_name = '';
+    this.techEventFilter.sub_technology = '';
     this.showKeyword = false;
     this.showArticle = false;
     this.showTechnology = true;
@@ -168,6 +242,8 @@ export class TechBankComponent implements OnInit {
     this.getTechnologyList();
   }
   selectSubTechnology() {
+    this.techEventFilter.user_name = '';
+    this.techEventFilter.technology = '';
     this.showKeyword = false;
     this.showArticle = false;
     this.showTechnology = false

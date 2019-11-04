@@ -7,7 +7,8 @@
   </div>
   <div class="col-md-4 col-sm-12 col-xs-12">
     <button *ngIf="!checkLoginStatus()" type="button" class="buttonarticle crt-btn" data-toggle="modal"
-      data-target="#createTechArticleModal" style="margin:auto;display:block;float:initial;margin-top:10px">Create Tech
+      data-target="#createTechArticleModal" (click)="createTechart()"
+      style="margin:auto;display:block;float:initial;margin-top:10px">Create Tech
       Article</button>
   </div>
 </div>
@@ -49,7 +50,7 @@
     <input type="text" class="form-control filter-input" placeholder="Search with Author.." name="techarticledetails"
       [(ngModel)]="techArticleFilterr.user_name" *ngIf="showAuthor" />
 
-    <input type="text" class="form-control filter-input" placeholder="Search with Author.." name="techarticledetails"
+    <input type="text" class="form-control filter-input" placeholder="Search with freecost.." name="techarticledetails"
       [(ngModel)]="techArticleFilterr.cost" *ngIf="showCost" />
 
   </div>

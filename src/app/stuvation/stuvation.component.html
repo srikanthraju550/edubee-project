@@ -10,10 +10,10 @@
   <div class="col-md-4 col-sm-12 col-xs-12" *ngIf="!checkLoginStatus()" style="display:inline-flex">
     <button type="button" class="btn btn-primary buttonarticle"
       style="background-color: #33099e; color: white;font-weight: bold;" data-toggle="modal"
-      data-target="#createProjectModal">Create Academic Proz</button> &nbsp;&nbsp;
+      data-target="#createProjectModal" (click)="clearDataProz()">Create Academic Proz</button> &nbsp;&nbsp;
     <button type="button" class="btn btn-primary buttonarticle"
       style="background-color: #33099e; color: white;font-weight: bold;" data-toggle="modal"
-      data-target="#createStuvationModal">Create Innovation Proz</button>
+      data-target="#createStuvationModal" (click)="clearInProz()">Create Innovation Proz</button>
   </div>
   <div class="col-md-4 col-sm-12 col-xs-12" *ngIf="checkLoginStatus()" style="display:inline-flex">
     <button type="button" class="btn btn-primary buttonarticle"

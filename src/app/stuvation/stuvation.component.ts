@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { MainServiceService } from '../main-service.service';
-
 import { FilterPipe } from 'ngx-filter-pipe';
 import { Http, Headers } from '@angular/http';
+import { AppComponent } from '../app.component';
+import { Validators, FormBuilder, FormArray, ValidationErrors, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-stuvation',
@@ -14,13 +15,11 @@ import { Http, Headers } from '@angular/http';
 export class StuvationComponent implements OnInit {
   // endpoint: string = "../assets/services/"
   // endpoint: string = "../assets/services/"
-  endpoint: string = "../assets/services/"
-
-
+  endpoint: string = "../assets/services/";
   // endpoint: string = "../assets/services/"
   selectedStuvation: any;
   constructor(private modal: NgbModal, private http: HttpClient, private httpnew: Http,
-    private mainService: MainServiceService, private filterPipe: FilterPipe) { }
+    private mainService: MainServiceService, private filterPipe: FilterPipe, public app: AppComponent, private fb: FormBuilder) { }
   sliderContent: any = [];
   //homePageDataFromService=[];
   homePageContent: any = [];
@@ -28,6 +27,8 @@ export class StuvationComponent implements OnInit {
   stuvationdetails: any = [];
   userId;
   Baseurl = "http://theengineersfactory.com/dashboard/";
+  stuvationFilter: any = { title: '', technology: '', sub_technology: '', project_type: '' };
+
   ngOnInit(): void {
     //this.http.get('../assets/services/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
     let url = this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime();
@@ -45,21 +46,67 @@ export class StuvationComponent implements OnInit {
     this.getstuationData();
   }
 
+  clearDataProz() {
+    this.app.createProjtecStuvationForm = this.fb.group({
+      projectType: ['', Validators.required],
+      projectStatus: ['', Validators.required],
+      title: ['', Validators.required],
+      abstract: ['', Validators.required],
+      sub_technology_id: [''],
+      technology_id: ['', Validators.required],
+      idea: [''],
+      ideaDescription: [''],
+      prototypeAvailable: ['Yes'],
+      referenceLink: [''],
+      expectedBudget: [''],
+      lookingProfessorGuidance: ['Yes'],
+      lookingMentorship: ['Yes'],
+      lookingStudentPartner: ['Yes'],
+      lookingSponsorship: ['Yes'],
+      teamSize: [''],
+      lastDateOfJoining: ['1'],
+      noOfSponsors: [''],
+      file: [''],
+    });
+  }
+
+  clearInProz() {
+    this.app.createStuvationForm = this.fb.group({
+      projectType: ['', Validators.required],
+      projectStatus: ['', Validators.required],
+      title: ['', Validators.required],
+      // abstract: ['', Validators.required],
+      sub_technology_id: [''],
+      technology_id: ['', Validators.required],
+      idea: ['', Validators.required],
+      ideaDescription: ['', Validators.required],
+      prototypeAvailable: ['Yes'],
+      referenceLink: [''],
+      expectedBudget: [''],
+      lookingProfessorGuidance: ['Yes'],
+      lookingMentorship: ['Yes'],
+      lookingStudentPartner: ['Yes'],
+      lookingSponsorship: ['Yes'],
+      teamSize: [''],
+      lastDateOfJoining: ['1'],
+      noOfSponsors: [''],
+      file: ['']
+    });
+  }
   ResponseData = [];
   image_path;
   file_path;
+  action: number;
+  liked: boolean;
   getstuationData() {
     let userDetails = this.getLoggedInUserObject();
     this.httpnew.get(this.Baseurl + 'stuvation-list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
       this.ResponseData = response.json().data.reverse();
-      console.log(this.ResponseData)
       this.image_path = response.json().image_path;
       this.file_path = response.json().file_path;
     });
   }
 
-  action: number;
-  liked: boolean;
   likeStuation(stuationId, operationType, user_id) {
     let userDetails = this.getLoggedInUserObject();
     if (parseInt(operationType) > 0 && (user_id === userDetails['user_id'])) {
@@ -182,8 +229,6 @@ export class StuvationComponent implements OnInit {
     }
   }
 
-  stuvationFilter: any = { title: '', technology: '', sub_technology: '', project_type: '' };
-
   keywordFilter = "";
   techFilter = "";
   subTechFilter = "";
@@ -196,8 +241,6 @@ export class StuvationComponent implements OnInit {
     this.selectedStuvation = stuvation;
     this.stuvationConnectModel = '';
     this.joinTeamAsConnectModel = '';
-
-    console.log(this.selectedStuvation);
   }
 
   stuvationUpDownCountUpdate(stuvationid, updateType) {
@@ -314,8 +357,10 @@ export class StuvationComponent implements OnInit {
   showSubTech = false;
   showAuthor = false;
   showCost = false;
-
   selectKeyword() {
+    this.stuvationFilter.project_type = '';
+    this.stuvationFilter.technology = '';
+    this.stuvationFilter.sub_technology = '';
     this.showKeyword = true;
     this.showArticle = false;
     this.showTechnology = false;
@@ -325,6 +370,9 @@ export class StuvationComponent implements OnInit {
   }
 
   selectType() {
+    this.stuvationFilter.technology = '';
+    this.stuvationFilter.title = '';
+    this.stuvationFilter.sub_technology = '';
     this.showKeyword = false;
     this.showArticle = true;
     this.showTechnology = false;
@@ -334,6 +382,9 @@ export class StuvationComponent implements OnInit {
   }
 
   selectTechnology() {
+    this.stuvationFilter.title = '';
+    this.stuvationFilter.project_type = '';
+    this.stuvationFilter.sub_technology = '';
     this.showKeyword = false;
     this.showArticle = false;
     this.showTechnology = true;
@@ -343,6 +394,9 @@ export class StuvationComponent implements OnInit {
     this.getTechnologyList();
   }
   selectSubTechnology() {
+    this.stuvationFilter.technology = '';
+    this.stuvationFilter.project_type = '';
+    this.stuvationFilter.title = '';
     this.showKeyword = false;
     this.showArticle = false;
     this.showTechnology = false

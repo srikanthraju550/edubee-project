@@ -5,7 +5,8 @@
   </div>
   <div class="col-md-4">
     <button *ngIf="!checkLoginStatus()" type="button" data-toggle="modal" class="buttonarticle"
-      data-target="#createTechConnectModal" style="margin:auto;display:block;float:initial;margin-top:10px;">
+      data-target="#createTechConnectModal" (click)=createTech()
+      style="margin:auto;display:block;float:initial;margin-top:10px;">
       Create Tech Connect</button>
   </div>
 </div>
@@ -76,7 +77,8 @@
               <span class="cardSubHeading crd-hdng">Tech Connect Details</span>
               <div><b class="crd-lft">Type</b> <span class="crd-ryt">: {{techteach.tech_teach_type}}</span></div>
               <div><b class="crd-lft">Topic</b> <span class="crd-ryt">: {{techteach.topic}}</span></div>
-              <div><b class="crd-lft">Abstract</b> <span class="crd-ryt">: {{techteach.abstract}}</span></div>
+              <div *ngIf="techteach.abstract!=undefined"><b class="crd-lft">Abstract</b> <span class="crd-ryt">:
+                  {{techteach.abstract}}</span></div>
               <div><b class="crd-lft">Technology</b> <span class="crd-ryt">: {{techteach.technology}}</span></div>
               <div *ngIf="techteach.sub_technology!=null"><b class="crd-lft">Sub Technology</b> <span class="crd-ryt">:
                   {{techteach.sub_technology}}</span>
@@ -84,7 +86,7 @@
             </div>
 
             <div class="col-md-3">
-              <span class="cardSubHeading crd-hdng">Industrial Expert</span>
+              <span class="cardSubHeading crd-hdng">Speaker Details</span>
               <div><b class="crd-lft">Name</b> <a [routerLink]="['/myprofile',techteach.user_id]"
                   style="color: black"><span class="crd-ryt">: {{techteach.user_name}}</span></a></div>
               <div><b class="crd-lft">Company</b> <span class="crd-ryt">:
@@ -106,7 +108,7 @@
             <div class="col-md-3">
               <span class="cardSubHeading crd-hdng">Registration Details</span>
 
-              <div><b class="crd-lft">No. of Registration</b> <span class="crd-ryt">:
+              <div><b class="crd-lft">Number of People Applied</b> <span class="crd-ryt">:
                   {{techteach.seat_capacity}}</span>
               </div>
 
@@ -143,7 +145,8 @@
               <span class="cardSubHeading crd-hdng">Tech Connect Details</span>
               <div><b class="crd-lft">Type</b> <span class="crd-ryt">: {{techtalkdata.tech_talk_type}}</span></div>
               <div><b class="crd-lft">Topic</b> <span class="crd-ryt">: {{techtalkdata.topic}}</span></div>
-              <div><b class="crd-lft">Abstract</b> <span class="crd-ryt">: {{techtalkdata.abstract}}</span></div>
+              <div *ngIf="techtalkdata.abstract!=undefined"><b class="crd-lft">Abstract</b> <span class="crd-ryt">:
+                  {{techtalkdata.abstract}}</span></div>
               <div><b class="crd-lft">Technology</b> <span class="crd-ryt">: {{techtalkdata.technology}}</span></div>
               <div *ngIf="techtalkdata.sub_technology!=null"><b class="crd-lft">Sub Technology</b> <span
                   class="crd-ryt">:
@@ -152,7 +155,7 @@
             </div>
 
             <div class="col-md-3">
-              <span class="cardSubHeading crd-hdng">Industrial Expert</span>
+              <span class="cardSubHeading crd-hdng">Speaker Details</span>
               <div><b class="crd-lft">Name</b> <span class="crd-ryt">: {{techtalkdata.user_name}}</span></div>
               <div><b class="crd-lft">Company</b> <span class="crd-ryt">:
                   {{techtalkdata.company}}</span></div>
@@ -177,7 +180,7 @@
             <div class="col-md-3">
               <span class="cardSubHeading crd-hdng">Registration Details</span>
 
-              <div><b class="crd-lft">No. of Registration</b> <span class="crd-ryt">:
+              <div><b class="crd-lft">Number of People Applied</b> <span class="crd-ryt">:
                   {{techtalkdata.seat_capacity}}</span>
               </div>
               <ul class="nav nav-pills crd-btn-dv">
@@ -272,7 +275,7 @@
                 <br />
                 <b>Abstract</b> : {{selectedTechTeach.abstract}}
                 <br />
-                <b>Industrial Expert</b> : {{selectedTechTeach.speaker_name}}
+                <b>Speaker Details</b> : {{selectedTechTeach.speaker_name}}
                 <br />
                 <b>No. of Years Experience</b> : {{selectedTechTeach.experience}}
                 <br />
@@ -365,7 +368,7 @@
                 <br />
                 <b>Tech Talk Type</b> : {{selectedTechTalk.tech_talk_type}}
                 <br />
-                <b>Industrial Expert</b> : {{selectedTechTalk.user_name}}
+                <b>Speaker Details</b> : {{selectedTechTalk.user_name}}
                 <br />
                 <b>No. of Years Experience</b> : {{selectedTechTalk.experience}}
                 <br />

@@ -81,11 +81,15 @@
                             {{filterquickRegData?.button_name}} </button>
                         <button *ngIf="techTitle =='Stuvation'&&!checkLoginStatus() "
                             class="custom-ss-quick-register-block-button" data-toggle="modal"
-                            data-target="#createStuvationModal">
+                            data-target="#createstationfromhome">
                             {{filterquickRegData?.button_name}} </button>
-                        <button *ngIf="(techTitle=='Tech Teach' || techTitle=='Tech Talk')&&!checkLoginStatus()"
+                        <button *ngIf="(techTitle=='Tech Teach')&&!checkLoginStatus()"
                             class="custom-ss-quick-register-block-button" data-toggle="modal"
-                            data-target="#createTechConnectModal">
+                            data-target="#createTechTeachModal">
+                            {{filterquickRegData?.button_name}} </button>
+                        <button *ngIf="(techTitle=='Tech Talk')&&!checkLoginStatus()"
+                            class="custom-ss-quick-register-block-button" data-toggle="modal"
+                            data-target="#createTechTalkModal">
                             {{filterquickRegData?.button_name}} </button>
 
                     </div>
@@ -94,6 +98,9 @@
         </div>
     </div>
 </div>
+
+
+
 <div class="row" style="text-align: center; margin: 2em;">
 
     <div class="col-md-12">
