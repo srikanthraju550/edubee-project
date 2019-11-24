@@ -158,8 +158,8 @@
             <div class="col-md-3 tec_ryt">
 
               <ul *ngIf="!checkLoginStatus()" class="nav nav-pills">
-
-                <li class="nav-item " *ngIf="techarticle.cost!='' && techarticle.article_type=='Article'">
+                <li class="nav-item "
+                  *ngIf="techarticle.cost!='' && techarticle.article_type=='Article' && techarticle.user_id!=getLoggedInUserObject()['user_id']">
 
                   <button class="nav-link btn btn-light buybutton buttonarticle" data-toggle="modal"
                     data-target="#buynowModal" (click)="buyNowModelClick(techarticle)">Buy

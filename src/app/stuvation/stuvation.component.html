@@ -312,7 +312,7 @@
 
 
 <div id="showJoinTeamPopupModal" class="modal fade" role="dialog">
-  <div class="modal-dialog stuv-popup" style="">
+  <div class="modal-dialog stuv-popup">
 
     <!-- Modal content-->
     <div class="modal-content">
@@ -345,8 +345,10 @@
                 *ngIf="selectedStuvation.is_looking_for_guidance=='Yes' && selectedStuvation.project_status=='ongoing'">
                 Professional
                 Guide</option>
-              <option value="Mentor" *ngIf="selectedStuvation.is_looking_for_mentorship=='Y'">Mentor</option>
-              <option value="Student Partner"
+              <option value="Mentor"
+                *ngIf="selectedStuvation.is_looking_for_mentorship=='Yes'  && selectedStuvation.project_status=='ongoing'">
+                Mentor</option>
+              <option value=" Student Partner"
                 *ngIf="selectedStuvation.is_looking_for_student_partner=='Yes' && selectedStuvation.project_status=='ongoing'">
                 Student
                 Partner</option>

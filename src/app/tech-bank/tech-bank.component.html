@@ -88,7 +88,7 @@
             <div class="col-md-3">
               <span class="cardSubHeading crd-hdng">Speaker Details</span>
               <div><b class="crd-lft">Name</b> <a [routerLink]="['/myprofile',techteach.user_id]"
-                  style="color: black"><span class="crd-ryt">: {{techteach.user_name}}</span></a></div>
+                  style="color: black"><span class="crd-ryt">: {{techteach.expert_name}}</span></a></div>
               <div><b class="crd-lft">Company</b> <span class="crd-ryt">:
                   {{techteach.company}}</span></div>
               <div><b class="crd-lft">Positionl</b> <span class="crd-ryt" style="font-size: 14px;">:
@@ -156,7 +156,7 @@
 
             <div class="col-md-3">
               <span class="cardSubHeading crd-hdng">Speaker Details</span>
-              <div><b class="crd-lft">Name</b> <span class="crd-ryt">: {{techtalkdata.user_name}}</span></div>
+              <div><b class="crd-lft">Name</b> <span class="crd-ryt">: {{techtalkdata.expert_name}}</span></div>
               <div><b class="crd-lft">Company</b> <span class="crd-ryt">:
                   {{techtalkdata.company}}</span></div>
               <div><b class="crd-lft">Position</b> <span class="crd-ryt" style="font-size: 14px;">:
@@ -275,7 +275,7 @@
                 <br />
                 <b>Abstract</b> : {{selectedTechTeach.abstract}}
                 <br />
-                <b>Speaker Details</b> : {{selectedTechTeach.speaker_name}}
+                <b>Speaker Details</b> : {{selectedTechTeach.expert_name}}
                 <br />
                 <b>No. of Years Experience</b> : {{selectedTechTeach.experience}}
                 <br />
@@ -368,7 +368,7 @@
                 <br />
                 <b>Tech Talk Type</b> : {{selectedTechTalk.tech_talk_type}}
                 <br />
-                <b>Speaker Details</b> : {{selectedTechTalk.user_name}}
+                <b>Speaker Details</b> : {{selectedTechTalk.expert_name}}
                 <br />
                 <b>No. of Years Experience</b> : {{selectedTechTalk.experience}}
                 <br />

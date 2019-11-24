@@ -173,8 +173,7 @@ export class MyprofileComponent implements OnInit {
       // sessionStorage.setItem("userImagePath", this.imagePath + this.profileData.image);
       // this.getLoggedInUserObject()['image'] = this.strImage;
       sessionStorage.setItem("userProfileImage", this.strImage);
-      console.log(this.getLoggedInUserObject());
-      console.log(this.strImage);
+
       this.engineerRegistrationForm = this.fb.group({
         name: [data.json().data[0].name],
         email: [data.json().data[0].email],
@@ -255,8 +254,9 @@ export class MyprofileComponent implements OnInit {
       if (res.json().status === true) {
         // alert(res.json().message);
         document.getElementById("closeCreateTechTeachModal").click();
-        location.reload();
         this.getUserData();
+        window.location.reload();
+
 
         this.showEdit = false;
       } else {

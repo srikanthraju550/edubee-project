@@ -215,8 +215,8 @@ export class AppComponent {
   techConnectSelector1: string;
   showTechTeach = false;
   showTechTalk = false;
-  showacadamicProz=false;
-  showInnovationProz=false;
+  showacadamicProz = false;
+  showInnovationProz = false;
   openMe(): void {
     this.showTechTeach = true;
     this.showTechTalk = false;
@@ -227,13 +227,13 @@ export class AppComponent {
     this.showTechTalk = true;
     this.getTechTalkList();
   }
-  openMe2(){
-    this.showacadamicProz=true;
-    this.showInnovationProz=false;
+  openMe2() {
+    this.showacadamicProz = true;
+    this.showInnovationProz = false;
   }
-  openMe3(){
-    this.showInnovationProz=true;
-    this.showacadamicProz=false;
+  openMe3() {
+    this.showInnovationProz = true;
+    this.showacadamicProz = false;
   }
   minDateString;
   submitted = false;
@@ -243,6 +243,8 @@ export class AppComponent {
   projectTypeId;
   ngOnInit(): void {
     let today = new Date();
+    this.getTechTypeList();
+    this.getTechTalkList();
     this.userImagePath = sessionStorage.getItem('userImagePath');
     this.minDateString = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
     //document.getElementById("datefield").setAttribute("min", today.toDateString());

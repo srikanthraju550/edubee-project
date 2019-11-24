@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '../../node_modules/@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MainServiceService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   checkLoginStatus(): boolean {
     //console.log(sessionStorage.getItem('loggedInUserName'));
@@ -30,6 +31,7 @@ export class MainServiceService {
 
   logout(): void {
     sessionStorage.setItem("loggedInUserName", "");
+    this.router.navigate(['/home']);
   }
 
   getCommonDataForAll(): any {

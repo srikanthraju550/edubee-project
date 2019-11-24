@@ -365,6 +365,8 @@ export class TechArticleComponent implements OnInit {
 
   }
 
+
+
   selectAuthor() {
     this.techArticleFilterr.article_type = '';
     this.techArticleFilterr.technology = '';

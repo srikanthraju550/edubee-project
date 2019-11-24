@@ -4,7 +4,8 @@
       <h2 class="text-center">{{title}}</h2><br />
       <div *ngIf="showTechbank">
         <div class="row">
-          <p class="text-center" *ngIf="getMyTechBankDataList.length==0">No Data Available</p>
+          <p class="text-center" *ngIf="getMyTechBankDataList.length==0" style="text-align: center">No Data Available
+          </p>
         </div>
         <div class="card card-articles" *ngFor="let techarticle of getMyTechBankDataList"
           [ngClass]="{'techarticleRow1' : i%2==0 } ">
@@ -96,6 +97,11 @@
 
 
       <div *ngIf="showTechconnect">
+        <div class="row">
+          <p class="text-center" *ngIf="getMyTechConnctData.length==0" style="text-align: center;margin:auto">No Data
+            Available
+          </p>
+        </div>
         <div class="container-fluid">
           <div class="row">
             <div class="col-12" style="margin-top: 1em;">
@@ -250,7 +256,8 @@
       <div *ngIf="showstuation" class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <p class="text-center" *ngIf="getMyStuvData.length==0">No Data Available</p>
+            <p class="text-center" *ngIf="getMyStuvData.length==0" style="text-align: center;margin:auto">No Data
+              Available</p>
           </div>
           <div class="col-12" style="margin-top: 1em;">
             <div class="card" style="width: 100%;" *ngFor="let stuvation of getMyStuvData ; let i = index;">
