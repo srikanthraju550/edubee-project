@@ -34,8 +34,8 @@
 
                 <!-- <img class="profilepicture" *ngIf="techarticle.profile_image!=='' || techarticle.profile_image!==null" -->
                 <img class="profilepicture" [src]="file_path + techarticle.profile_image" alt="Profile Pic">
-                <!-- <img class="profilepicture" *ngIf="techarticle.profile_image==''" src="../assets/images/user-dummy.png"
-                alt="Profile Pic"> -->
+                <img class="profilepicture" *ngIf="techarticle.profile_image==''" src="../assets/images/user-dummy.png"
+                  alt="Profile Pic">
 
                 <div class="">
                   <h5 class="card-title" style="color:#33099e;"><span class="title-name">
@@ -322,6 +322,8 @@
 
                     <div>
                       <img class="profilepicture" [src]="image_path + stuvation.profile_image" alt="Card image cap">
+                      <img class="profilepicture" *ngIf="stuvation.profile_image==''"
+                        src="../assets/images/user-dummy.png" alt="Profile Pic">
                     </div>
                     <div>
                       <b>{{stuvation.user_name | uppercase}}</b>

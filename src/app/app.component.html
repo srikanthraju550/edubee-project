@@ -34,6 +34,8 @@
                                 [routerLink]="['/myprofile',getLoggedInUserObject()['user_id']]">MY PROFILE</a></li>
                         <!-- <li class="sub-menu-header"><a class="dropdown-item" routerLink="/engshipRequest">Engship
                                 Requests</a></li> -->
+
+
                         <li class="sub-menu-header"><a class="dropdown-item"
                                 [routerLink]="['/staticContent','myTechBank']">My Tech Bank</a></li>
                         <li class="sub-menu-header"><a class="dropdown-item"
@@ -77,8 +79,13 @@
                             <li><a (click)="hidemenu()" class="close_btn"><i class="fa fa-times-circle"
                                         aria-hidden="true"></i></a></li>
                             <li *ngIf="!checkLoginStatus()">
-                                <img class="profilepicture" style="border-radius: 10em;"
+                                <img class="profilepicture" *ngIf="getLoggedInUserObject()['image'] !=''"
+                                    style="border-radius: 10em;"
                                     [src]="userImagePath + '/' + getLoggedInUserObject()['image']">
+                                <img class="profilepicture" style="border-radius: 10em;"
+                                    *ngIf="getLoggedInUserObject()['image']==''" src="../assets/images/user-dummy.png"
+                                    alt="Profile Pic">
+
                                 <a>{{getLoggedInUserObject()['name'] | titlecase}}</a>
                             </li>
                             <li><a (click)="goHome()">Home</a></li>
@@ -162,9 +169,7 @@
                 </ul>
 
                 <div class="col-sm-6 user-name-header" *ngIf="!checkLoginStatus()">
-                    <span *ngIf="!checkLoginStatus()" style="color: white;
-    font-weight: bold;
-    text-align: right;
+                    <span *ngIf="!checkLoginStatus()" style="color: white;font-weight: bold;text-align: right;
     width: 100%;
     top: 20px;
     position: absolute;
@@ -180,16 +185,12 @@
                     <a role="button" aria-haspopup="true" aria-expanded="false">
 
                         <img class="profilepicture" style="border-radius: 10em;" [src]="userProfileImage">
-
+                        <img class="profilepicture" style="border-radius: 10em;" *ngIf="userProfileImage==''"
+                            src="../assets/images/user-dummy.png" alt="Profile Pic">
                     </a>
                 </div>
-
             </div>
         </div>
-
-
-
-
 
     </div>
 
@@ -1233,7 +1234,7 @@
                                 <label for="technology"><span class="red">*</span>Event Date:
 
                                     <input myNumberOnly type="date" class="form-control" formControlName="date"
-                                        min='{{this.minDateString}}'>
+                                        min='{{this.minDateString}}' max="{{this.minDateString}}">
                                 </label>
                                 <!-- <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [minDate]="{year: 2010, month: 1, day: 1}" formControlName="date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" > -->
 
@@ -2411,7 +2412,7 @@
                 <form [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmit()" enctype="multipart/form-data">
 
                     <div class="form-group">
-                        <input type="text" class="form-control" formControlName="email" placeholder="Username or Email"
+                        <input type="text" class="form-control" formControlName="email" placeholder="Email"
                             [ngClass]="{'invalid':error}">
                         <div *ngIf="logValid.email.touched && logValid.email.invalid" class="alert alert-danger">
                             <!-- Email is Required -->
@@ -2799,6 +2800,7 @@
                                     </div>
 
                                     <button type="submit"
+                                        [ngClass]="{'disable-btn' : !studentRegistrationForm.valid || !studentRegistrationForm.value.is_agreed}"
                                         [disabled]="!studentRegistrationForm.valid || !studentRegistrationForm.value.is_agreed"
                                         class="btn btn-primary">Sign Up!</button>
                                 </div>
@@ -2919,6 +2921,7 @@
                                     Conditions</label>
                             </div>
                             <button type="submit"
+                                [ngClass]="{'disable-btn' :!engineerRegistrationForm.valid || !engineerRegistrationForm.value.is_agreed }"
                                 [disabled]="!engineerRegistrationForm.valid || !engineerRegistrationForm.value.is_agreed"
                                 class="btn btn-primary">Sign Up!</button>
                         </div>

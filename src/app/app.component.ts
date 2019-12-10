@@ -999,9 +999,14 @@ export class AppComponent {
       '&profile_image=' + this.engineerRegistrationForm.value.profile_image +
       '&is_agreed=' + this.engineerRegistrationForm.value.is_agreed
     this.http.post(this.endpoint + 'user-register', params, { headers: headers }).subscribe(res => {
-      this.engineerRegistrationForm.reset();
-      this.strImage = '';
-      this.router.navigate(['/']);
+      if (res.json().status == false) {
+        alert(res.json().message);
+        return;
+      } else {
+        this.engineerRegistrationForm.reset();
+        this.strImage = '';
+        this.router.navigate(['/']);
+      }
       // alert('Profile Created Successfully');
       // this.uploader.uploadAll();
       document.getElementById("closeEngineerRegistrationForm").click();
@@ -1022,9 +1027,14 @@ export class AppComponent {
       '&profile_image=' + this.studentRegistrationForm.value.profile_image +
       '&is_agreed=' + this.studentRegistrationForm.value.is_agreed
     this.http.post(this.endpoint + 'user-register', params, { headers: headers }).subscribe(res => {
-      this.studentRegistrationForm.reset();
-      this.strImage = '';
-      this.router.navigate(['/']);
+      if (res.json().status == false) {
+        alert(res.json().message);
+        return;
+      } else {
+        this.studentRegistrationForm.reset();
+        this.strImage = '';
+        this.router.navigate(['/']);
+      }
       // alert('Profile Created Successfully');
       // this.uploader.uploadAll();
       document.getElementById("closeStudentRegistrationForm").click();
