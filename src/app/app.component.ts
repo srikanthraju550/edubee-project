@@ -776,7 +776,7 @@ export class AppComponent {
       '&reg_fee=' + this.createTechTeachForm.value.registrationDetails.regfee +
       '&eligibility=' + this.createTechTeachForm.value.registrationDetails.eligibility +
       '&seat_capacity=' + this.createTechTeachForm.value.registrationDetails.seatcapacity +
-      '&expert_name=' + this.createTechTeachForm.value.expertDetails.name +
+      '&spekaer_name=' + this.createTechTeachForm.value.expertDetails.name +
       '&company=' + this.createTechTeachForm.value.expertDetails.company +
       '&speaker_type=' + this.createTechTeachForm.value.expertDetails.speakerType +
       '&working_location=' + this.createTechTeachForm.value.expertDetails.worklocation +
@@ -834,7 +834,7 @@ export class AppComponent {
       '&reg_fee=' + this.createTechTalkForm.value.registrationDetails.regfee +
       '&eligibility=' + this.createTechTalkForm.value.registrationDetails.eligibility +
       '&seat_capacity=' + this.createTechTalkForm.value.registrationDetails.seatcapacity +
-      '&expert_name=' + this.createTechTalkForm.value.expertDetails.name +
+      '&spekaer_name=' + this.createTechTalkForm.value.expertDetails.name +
       '&company=' + this.createTechTalkForm.value.expertDetails.company +
       '&speaker_type=' + this.createTechTalkForm.value.expertDetails.speakerType +
       '&working_location=' + this.createTechTalkForm.value.expertDetails.worklocation +
@@ -1096,6 +1096,8 @@ export class AppComponent {
   }
   showStudentForm: boolean;
   showgEnForm = true;
+  statusValue: any;
+  statusInnValue: any;
   openStudentForm() {
     this.showStudentForm = true;
     this.showgEnForm = false;
@@ -1105,4 +1107,18 @@ export class AppComponent {
     this.showStudentForm = false;
   }
 
+  closeModals() {
+    this.showacadamicProz = false;
+    this.showInnovationProz = false;
+  }
+
+  changeStatusType(value) {
+    this.statusValue = value;
+    console.log(value);
+  }
+
+  changeInnovationStatusType(value) {
+    this.statusInnValue = value;
+    console.log(value);
+  }
 }

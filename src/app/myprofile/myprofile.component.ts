@@ -31,7 +31,7 @@ export class MyprofileComponent implements OnInit {
   user_id;
   endpoint: string = "../assets/services/";
   url: string = "http://theengineersfactory.com/dashboard/";
-  constructor(private httpnew: Http, private route: ActivatedRoute, private excelService: ExcelService, private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private fb: FormBuilder) {
+  constructor(private httpnew: Http, private route: ActivatedRoute, private router: Router, private excelService: ExcelService, private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private fb: FormBuilder) {
     this.userDetails = this.getLoggedInUserObject();
     this.route.params.subscribe((params: Params) => {
       this.user_id = params['id'];
@@ -108,10 +108,10 @@ export class MyprofileComponent implements OnInit {
   });
 
 
-  editProfile() {
-
-    this.showEdit = true;
-  }
+  // editProfile() {
+  //   this.editButton = true;
+  //   this.showEdit = true;
+  // }
 
   showinternship() {
     this.internshipDetails = true;
@@ -122,10 +122,16 @@ export class MyprofileComponent implements OnInit {
   public pdfurl;
   ngOnInit() {
     this.userDetails = this.getLoggedInUserObject();
+    console.log(this.userDetails);
+    if (this.getLoggedInUserObject()['name'] != undefined) {
+      this.pdfurl = 'http://theengineersfactory.com/dashboard/get_profile_pdf/' + this.user_id;
+      this.userImagePath = sessionStorage.getItem('userImagePath');
+      this.getUserData();
+    } else {
+      this.router.navigate(['/home'])
+    }
 
-    this.pdfurl = 'http://theengineersfactory.com/dashboard/get_profile_pdf/' + this.user_id;
-    this.userImagePath = sessionStorage.getItem('userImagePath');
-    this.getUserData();
+
   }
   userData = {
     stuvation: {
@@ -258,7 +264,7 @@ export class MyprofileComponent implements OnInit {
         window.location.reload();
 
 
-        this.showEdit = false;
+        // this.showEdit = false;
       } else {
         alert(res.json().message);
       }

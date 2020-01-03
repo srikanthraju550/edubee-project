@@ -2,8 +2,9 @@
     <h1 class="custom-heading animated zoomInLeft"><span>STUVATION</span></h1>
     <p class="custom-ss animated fadeInRight">S t u d e n t <span>+</span> i n n o v a t i o n</p>
     <p class="arrows"><i class="fa fa-arrow-circle-left" (click)="decreaseSlider()"></i>&nbsp;&nbsp;
-        <span>{{sliderValue}}</span>&nbsp;&nbsp;<i class="fa fa-arrow-circle-right" (click)="increaseSlider()"></i></p>
-    <div class="container-fluid" *ngIf="firstSlide">
+        <span>{{sliderValue}} / {{sliderContent.length}}</span>&nbsp;&nbsp;<i class="fa fa-arrow-circle-right"
+            (click)="increaseSlider()"></i></p>
+    <!-- <div class="container-fluid" *ngIf="firstSlide">
         <div class="row ">
             <div class="img-lft col-md-6 col-sm-12 animated fadeInLeft">
                 <img [src]="image_path + sliderContent[0]?.image" />
@@ -20,9 +21,30 @@
             </div>
             <div class="col-md-1 col-sm-0"></div>
         </div>
+    </div> -->
+    <div *ngFor="let slider of sliderContent">
+        <div class="container-fluid" *ngIf="slider.IsShown">
+            <div class="row">
+                <div class="img-lft col-md-6 col-sm-12 animated fadeInLeft">
+                    <img [src]="image_path + slider?.image" />
+                </div>
+                <div class="col-md-5 col-sm-12 animated fadeInRight">
+                    <div class="content-ryt">
+                        <h4 class="custom-ss-content"> {{slider?.title}}</h4>
+                        <p> {{slider?.description}}</p>
+                        <h3 class="custom-s-content"> <span>" </span>IT'S NOT ABOUT IDEAS.<br> ITS ABOUT MAKING
+                            IDEAS
+                            HAPPEN</h3>
+
+                    </div>
+                </div>
+                <div class="col-md-1 col-sm-0"></div>
+            </div>
+        </div>
     </div>
 
-    <div class="container-fluid" *ngIf="secondSlide">
+
+    <!-- <div class="container-fluid" *ngIf="secondSlide">
         <div class="row ">
             <div class="img-lft col-md-6 col-sm-12 animated fadeInLeft">
                 <img [src]="image_path + sliderContent[1]?.image" />
@@ -39,7 +61,7 @@
             </div>
             <div class="col-md-1 col-sm-0"></div>
         </div>
-    </div>
+    </div> -->
 </div>
 <br />
 
@@ -173,21 +195,21 @@
                             <a>
                                 <h4>Tech Teach</h4>
                                 <img src="../assets/images/events-tech-talk.png">
-                                <p>{{techteachdetails.length}} Events</p>
+                                <p>{{techTeachData.length}} Events</p>
                             </a>
                         </li>
                         <li (click)="showTechTalkCal()" [ngClass]="{'active':selCal=='tech talk'}">
                             <a>
                                 <h4>Tech Talk</h4>
                                 <img src="../assets/images/tech-teach-events.png">
-                                <p>{{techtalkdetails.length}} Events</p>
+                                <p>{{techTalkData.length}} Events</p>
                             </a>
                         </li>
                         <li (click)="showAllEventsCal()" [ngClass]="{'active':selCal=='all events'}">
                             <a>
                                 <h4>All Events</h4>
                                 <img src="../assets/images/events.png">
-                                <p>{{allEventsCount}}
+                                <p>{{techTeachData.length + techTalkData.length}}
                                     Events</p>
                             </a>
                         </li>

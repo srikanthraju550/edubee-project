@@ -41,7 +41,7 @@
                         <li class="sub-menu-header"><a class="dropdown-item"
                                 [routerLink]="['/staticContent','myTechConnect']">My Tech Connect</a></li>
                         <li class="sub-menu-header"><a class="dropdown-item"
-                                [routerLink]="['/staticContent','myStuation']">My Stuation</a></li>
+                                [routerLink]="['/staticContent','myStuation']">My Stuvation</a></li>
                         <li class="sub-menu-header"><a class="dropdown-item" (click)="logout()">LOGOUT</a>
 
                     </ul>
@@ -219,7 +219,7 @@
                 <p>Bridge the gap between industry and academia</p>
             </div>
             <div class="col-md-3">
-                <h3>Our Vission</h3>
+                <h3>Our Vision</h3>
                 <p>Make In India @ Made by Indians</p>
             </div>
             <div class="col-md-2">
@@ -237,7 +237,7 @@
                     <li>FAQ's</li>
                     <li>Privacy Policy</li><br />
                     <li><button type="button" class="custom-ss-download-broucher-btn"><i class="fa fa-download"></i>
-                            &nbsp;<a href="assets/dummy.pdf" download>Download Broucher</a></button></li>
+                            &nbsp;<a href="assets/dummy.pdf" download>Download Brochure</a></button></li>
                 </ul>
             </div>
         </div>
@@ -1782,7 +1782,7 @@
 
                 </span>
                 <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
-                    id="closeCreateTechTeachModal">&times;</button>
+                    id="closeCreateTechTeachModal" (click)="closeModals()">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -1817,7 +1817,8 @@
                         </div>
                         <div class="form-group col-6">
                             <label for="projectStatus"><span class="red">*</span> Project Status:</label>
-                            <select type="text" class="form-control" formControlName="projectStatus">
+                            <select type="text" class="form-control" formControlName="projectStatus"
+                                (click)="changeStatusType($event.target.value)">
                                 <option value="completed">COMPLETED</option>
                                 <option value="ongoing">ONGOING</option>
                             </select>
@@ -1869,7 +1870,7 @@
                         </div>
                     </div>
 
-                    <div class="row" *ngIf="createStuvationForm.value.projectStatus!='ongoing'">
+                    <div class="row" *ngIf="statusValue!='ongoing'">
                         <div class="form-group col-6">
 
                             <label for="file">File :</label>
@@ -1880,7 +1881,7 @@
 
                         </div>
                     </div>
-                    <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
+                    <div class="row" *ngIf="statusValue=='ongoing'">
                         <div class="form-group col-6">
                             <br />
                             <label for="prototypeAvailable">Prototype Available :</label>
@@ -1905,7 +1906,7 @@
                         </div>
                     </div>
 
-                    <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
+                    <div class="row" *ngIf="statusValue=='ongoing'">
 
                         <div class="form-group col-6">
                             <br />
@@ -1940,7 +1941,7 @@
                             No
                         </div>
 
-                        <div class="form-group col-6" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
+                        <div class="form-group col-6" *ngIf="statusValue=='ongoing'">
 
                             <label for="teamSize">Team Size :</label>
                             &nbsp;&nbsp;
@@ -1949,7 +1950,7 @@
 
                     </div>
 
-                    <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
+                    <div class="row" *ngIf="statusValue=='ongoing'">
                         <div class="form-group col-6">
                             <br />
                             <label for="lookingStudentPartner">Looking Student partner :</label>
@@ -1969,7 +1970,7 @@
                                 min='{{this.minDateString}}'>
                         </div>
                     </div>
-                    <div class="row" *ngIf="createStuvationForm.value.projectStatus=='ongoing'">
+                    <div class="row" *ngIf="statusValue=='ongoing'">
 
                         <div class="form-group col-6">
                             <br />
@@ -2012,7 +2013,8 @@
                         </div>
                         <div class="form-group col-6">
                             <label for="projectStatus"><span class="red">*</span> Project Status:</label>
-                            <select type="text" class="form-control" formControlName="projectStatus">
+                            <select type="text" class="form-control" formControlName="projectStatus"
+                                (click)="changeInnovationStatusType($event.target.value)">
                                 <option value="completed">COMPLETED</option>
                                 <option value="ongoing">ONGOING</option>
                             </select>
@@ -2050,7 +2052,7 @@
                         </div>
                     </div>
 
-                    <div class="row" *ngIf="createProjtecStuvationForm.value.projectStatus!='ongoing'">
+                    <div class="row" *ngIf="statusInnValue!='ongoing'">
                         <div class="form-group col-6">
 
                             <label for="file">File :</label>
@@ -2062,7 +2064,7 @@
                         </div>
                     </div>
 
-                    <div class="row" *ngIf="createProjtecStuvationForm.value.projectStatus=='ongoing'">
+                    <div class="row" *ngIf="statusInnValue=='ongoing'">
                         <div class="form-group col-6">
                             <br />
                             <label for="prototypeAvailable"><span class="red">*</span> Prototype Available :</label>
@@ -2085,7 +2087,7 @@
                         </div>
                     </div>
 
-                    <div class="row" *ngIf="createProjtecStuvationForm.value.projectStatus=='ongoing'">
+                    <div class="row" *ngIf="statusInnValue=='ongoing'">
 
                         <div class="form-group col-6">
                             <br />
@@ -2120,7 +2122,7 @@
                             No
                         </div>
 
-                        <div class="form-group col-6" *ngIf="createProjtecStuvationForm.value.projectStatus=='ongoing'">
+                        <div class="form-group col-6" *ngIf="statusInnValue=='ongoing'">
 
                             <label for="teamSize">Team Size :</label>
                             &nbsp;&nbsp;
@@ -2129,7 +2131,7 @@
 
                     </div>
 
-                    <div class="row" *ngIf="createProjtecStuvationForm.value.projectStatus=='ongoing'">
+                    <div class="row" *ngIf="statusInnValue=='ongoing'">
                         <div class="form-group col-6">
                             <br />
                             <label for="lookingStudentPartner">Looking Student partner :</label>
@@ -2149,7 +2151,7 @@
                                 min='{{this.minDateString}}'>
                         </div>
                     </div>
-                    <div class="row" *ngIf="createProjtecStuvationForm.value.projectStatus=='ongoing'">
+                    <div class="row" *ngIf="statusInnValue=='ongoing'">
 
                         <div class="form-group col-6">
                             <br />
@@ -2236,8 +2238,8 @@
                     </div>
 
 
-                    <span style="color: #176086; text-decoration: underline; ">
-                        <h3>Venue Details</h3>
+                    <span style="color: #176086 !important; text-decoration: underline; ">
+                        <h3 style="color: #176086 !important;">Venue Details</h3>
                     </span>
                     <div formGroupName="venueDetails">
 
@@ -2284,8 +2286,8 @@
                             </div>
                         </div>
                     </div>
-                    <span style="color: #176086; text-decoration: underline; ">
-                        <h3>Registration Details</h3>
+                    <span style="color: #176086 !important; text-decoration: underline; ">
+                        <h3 style="color: #176086 !important;">Registration Details</h3>
                     </span>
                     <div formGroupName="registrationDetails">
                         <div class="row">
@@ -2330,10 +2332,10 @@
                                 </div> -->
                         </div>
                     </div>
-                    <span style="color: #176086; text-decoration: underline; ">
-                        <h3>Speaker Details</h3>
+                    <span style="color: #176086 !important; text-decoration: underline; ">
+                        <h3 style="color: #176086 !important;">Speaker Details</h3>
                     </span>
-                    <div formGroupName="expertDetails">
+                    <div formGroupName=" expertDetails">
                         <div class="row">
                             <div class="form-group col-4">
                                 <label>

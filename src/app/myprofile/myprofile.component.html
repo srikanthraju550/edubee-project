@@ -13,7 +13,7 @@
         <img class="profilepicture" style="border-radius: 10em;" *ngIf="strImage==undefined"
           src="../assets/images/user-dummy.png" alt="Profile Pic">
 
-        <input *ngIf="showEdit" class="form-control" type="file" accept="image1/*" (change)="readUrl($event,'image')">
+        <input *ngIf="editButton" class="form-control" type="file" accept="image1/*" (change)="readUrl($event,'image')">
 
 
         <!-- <img [src]="strImage" alt="" width="100" height="100"
@@ -58,7 +58,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-2" style="text-align: center; ">
+    <!-- <div class="col-sm-2" style="text-align: center; ">
       <div class="circle" style="font-weight: bold;
       /* margin-left: 1em; */
       font-size: 15px;
@@ -66,16 +66,16 @@
       height: 90%;
       margin-top: -32px;
       padding-top: 20px;">Over all Grade {{grade}}
-        <!-- <span style="padding-left: 8%;font-size: 12px"></span> -->
+        <span style="padding-left: 8%;font-size: 12px"></span>
       </div>
       <br />
-      <!-- <button type="button" class="btn btn-primary" style="background-color: #33099e; color: white;font-weight: bold;"
-        data-toggle="modal" data-target="#createTechArticleModal" (click)="editProfile()">Edit Profile</button> -->
+      <button type="button" class="btn btn-primary" style="background-color: #33099e; color: white;font-weight: bold;"
+        data-toggle="modal" data-target="#createTechArticleModal" (click)="editProfile()">Edit Profile</button>
 
       <button type="button" class="btn btn-primary" style="background-color: #33099e; color: white;font-weight: bold;"
         (click)="editProfile()" *ngIf="editButton">Edit Profile</button>
 
-    </div>
+    </div> -->
   </div>
   <br />
   <div class="row">
@@ -173,7 +173,7 @@
       </span>
 
       <div class="col-sm-12">
-        <div class="form-group" *ngIf="showEdit">
+        <div class="form-group" *ngIf="editButton">
 
           <label for="majorprojectdescription"> Have you done any Internship?</label><br />
           <label class="form-check-label" style="padding-left: 2%">
@@ -224,12 +224,12 @@
           <!-- <input type="file" class="form-control" style="border: none" formControlName="trainingCertificate"> -->
         </div>
 
-        <div class="form-group" *ngIf="showEdit">
+        <div class="form-group" *ngIf="editButton">
           <label for="majorprojectdescription">Upload any Certification:</label>
           <input type="file" class="form-control" style="border: none" (change)="readUrl($event,'intern')"
             formControlName="internCerftification" [attr.disabled]="editButton==false?'':null">
         </div>
-        <div class="form-group" *ngIf="showEdit">
+        <div class="form-group" *ngIf="editButton">
 
           <label for="majorprojectdescription"> Do you have any scholorship?</label><br />
           <label class="form-check-label" style="padding-left: 2%">
@@ -333,16 +333,15 @@
     </div>
 
 
-    <div style="width: 100%; text-align: center; align-items: center">
+    <div style="width: 100%; text-align: center; align-items: center;">
       <!-- <button type="submit" class="btn btn-primary" *ngIf="!showEdit" (click)="generatePDF()">Download
         Details</button> -->
-      <a [href]="pdfurl" target="_blank" *ngIf="!showEdit" class="buttonarticle">
-
+      <a [href]="pdfurl" target="_blank" class="buttonarticle">
         Download
         Details
 
       </a>
-      <a class="buttonarticle" *ngIf="showEdit" (click)="editProfileChanges()">Save All
+      <a class="buttonarticle" *ngIf="editButton" (click)="editProfileChanges()">Save All
         Details</a>
     </div>
     <br />
