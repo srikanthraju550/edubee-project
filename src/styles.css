@@ -377,9 +377,9 @@ width: 85%;
     color: red;
 }
 
-.ovrflw_h{
+/* .ovrflw_h{
     overflow: hidden;
-}
+} */
 
       /***************mediaquaries*********/
 @media screen and (min-width:120px)and (max-width:319px) {}

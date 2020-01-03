@@ -789,7 +789,7 @@ export class AppComponent {
         // alert(res.json().message);
         this.createTechTeachForm.reset();
         document.getElementById("closeCreateTechTeachModal").click();
-        location.reload();
+        // location.reload();
       } else {
         alert(res.json().message);
       }
@@ -847,7 +847,7 @@ export class AppComponent {
         // alert(res.json().message);
         document.getElementById("closeCreateTechTeachModal").click();
         this.createTechTalkForm.reset();
-        location.reload();
+        // location.reload();
       } else {
         alert(res.json().message);
       }
@@ -1000,11 +1000,12 @@ export class AppComponent {
       '&is_agreed=' + this.engineerRegistrationForm.value.is_agreed
     this.http.post(this.endpoint + 'user-register', params, { headers: headers }).subscribe(res => {
       if (res.json().status == false) {
-        alert(res.json().message);
+        alert(res.json().message.error);
         return;
       } else {
         this.engineerRegistrationForm.reset();
         this.strImage = '';
+        alert(res.json().message);
         this.router.navigate(['/']);
       }
       // alert('Profile Created Successfully');
@@ -1028,10 +1029,11 @@ export class AppComponent {
       '&is_agreed=' + this.studentRegistrationForm.value.is_agreed
     this.http.post(this.endpoint + 'user-register', params, { headers: headers }).subscribe(res => {
       if (res.json().status == false) {
-        alert(res.json().message);
+        alert(res.json().message.error);
         return;
       } else {
         this.studentRegistrationForm.reset();
+        alert(res.json().message);
         this.strImage = '';
         this.router.navigate(['/']);
       }
