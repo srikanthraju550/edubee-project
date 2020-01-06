@@ -79,6 +79,8 @@
                             <li><a (click)="hidemenu()" class="close_btn"><i class="fa fa-times-circle"
                                         aria-hidden="true"></i></a></li>
                             <li *ngIf="!checkLoginStatus()">
+
+
                                 <img class="profilepicture" *ngIf="getLoggedInUserObject()['image'] !=''"
                                     style="border-radius: 10em;"
                                     [src]="userImagePath + '/' + getLoggedInUserObject()['image']">
@@ -184,9 +186,15 @@
                 <div class="col-sm-6 user-name-header" *ngIf="!checkLoginStatus()">
                     <a role="button" aria-haspopup="true" aria-expanded="false">
 
-                        <img class="profilepicture" style="border-radius: 10em;" [src]="userProfileImage">
+                        <img class="profilepicture" *ngIf="getLoggedInUserObject()['image'] !=''"
+                            style="border-radius: 10em;" [src]="userImagePath + '/' + getLoggedInUserObject()['image']">
+                        <img class="profilepicture" style="border-radius: 10em;"
+                            *ngIf="getLoggedInUserObject()['image']==''" src="../assets/images/user-dummy.png"
+                            alt="Profile Pic">
+
+                        <!-- <img class="profilepicture" style="border-radius: 10em;" [src]="userProfileImage">
                         <img class="profilepicture" style="border-radius: 10em;" *ngIf="userProfileImage==''"
-                            src="../assets/images/user-dummy.png" alt="Profile Pic">
+                            src="../assets/images/user-dummy.png" alt="Profile Pic"> -->
                     </a>
                 </div>
             </div>
@@ -536,10 +544,10 @@
                             <label for="prototypeAvailable">Prototype Available :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="prototypeAvailable" formControlName="prototypeAvailable" selected
-                                value="Y" style="position: relative;top: 3px;">&nbsp;
+                                value="Y" style="position: relative;top: 2px;">&nbsp;
                             Yes&nbsp;&nbsp;
                             <input type="radio" name="prototypeAvailable" formControlName="prototypeAvailable" value="N"
-                                style="position: relative;top: 3px;">&nbsp;
+                                style="position: relative;top: 2px;">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6" *ngIf="createStuvationForm.value.prototypeAvailable=='Y'">
@@ -564,11 +572,11 @@
                             &nbsp;&nbsp;
                             <input type="radio" name="lookingProfessorGuidance"
                                 formControlName="lookingProfessorGuidance" selected value="Yes"
-                                style="position: relative;top: 3px;">&nbsp;
+                                style="position: relative;top: 2px;">&nbsp;
                             Yes&nbsp;&nbsp;
                             <input type="radio" name="lookingProfessorGuidance"
                                 formControlName="lookingProfessorGuidance" value="No"
-                                style="position: relative;top: 3px;">&nbsp;
+                                style="position: relative;top: 2px;">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6">
@@ -585,10 +593,10 @@
                             <label for="lookingMentorship">Looking Mentorship from Industrial Experts :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="lookingMentorship" formControlName="lookingMentorship" selected
-                                value="Yes" style="position: relative;top: 3px;">&nbsp;
+                                value="Yes" style="position: relative;top: 2px;">&nbsp;
                             <span>Yes</span>&nbsp;&nbsp;
                             <input type="radio" name="lookingMentorship" formControlName="lookingMentorship" value="No"
-                                style="position: relative;top: 3px;">&nbsp;
+                                style="position: relative;top: 2px;">&nbsp;
                             <span>No</span>
                         </div>
 
@@ -607,10 +615,10 @@
                             <label for="lookingStudentPartner">Looking Student partner :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="lookingStudentPartner" formControlName="lookingStudentPartner"
-                                selected value="Yes" style="position: relative;top: 3px;">&nbsp;
+                                selected value="Yes" style="position: relative;top: 2px;">&nbsp;
                             Yes&nbsp;&nbsp;
                             <input type="radio" name="lookingStudentPartner" formControlName="lookingStudentPartner"
-                                value="No" style="position: relative;top: 3px;">&nbsp;
+                                value="No" style="position: relative;top: 2px;">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6">
@@ -628,10 +636,10 @@
                             <label for="lookingSponsorship">Looking sponsorship :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="lookingSponsorship" formControlName="lookingSponsorship" selected
-                                value="Yes" style="position: relative;top: 3px;">&nbsp;
+                                value="Yes" style="position: relative;top: 2px;">&nbsp;
                             Yes&nbsp;&nbsp;
                             <input type="radio" name="lookingSponsorship" formControlName="lookingSponsorship"
-                                value="No" style="position: relative;top: 3px;">&nbsp;
+                                value="No" style="position: relative;top: 2px;">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6">
@@ -863,11 +871,11 @@
                                 &nbsp;&nbsp;
                                 <input type="radio" name="lookingForEFSupportFlag"
                                     formControlName="lookingForEFSupportFlag" selected value="Y"
-                                    style="position: relative;top: 3px;">&nbsp;
+                                    style="position: relative;top: 2px;">&nbsp;
                                 Yes&nbsp;&nbsp;
                                 <input type="radio" name="lookingForEFSupportFlag"
                                     formControlName="lookingForEFSupportFlag" value="N"
-                                    style="position: relative;top: 3px;">&nbsp;
+                                    style="position: relative;top: 2px;">&nbsp;
                                 No
                             </div>
                         </div>
@@ -1011,10 +1019,10 @@
                             <label for="prototypeAvailable"><span class="red">*</span> Prototype Available :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="prototypeAvailable" formControlName="prototypeAvailable" selected
-                                value="Y" style="position: relative;top: 3px;">&nbsp;
+                                value="Y" style="position: relative;top: 2px;">&nbsp;
                             Yes&nbsp;&nbsp;
                             <input type="radio" name="prototypeAvailable" formControlName="prototypeAvailable" value="N"
-                                style="position: relative;top: 3px;">&nbsp;
+                                style="position: relative;top: 2px;">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6" *ngIf="createProjtecStuvationForm.value.prototypeAvailable=='Y'">
@@ -1037,11 +1045,11 @@
                             &nbsp;&nbsp;
                             <input type="radio" name="lookingProfessorGuidance"
                                 formControlName="lookingProfessorGuidance" selected value="Yes"
-                                style="position: relative;top: 3px;">&nbsp;
+                                style="position: relative;top: 2px;">&nbsp;
                             Yes&nbsp;&nbsp;
                             <input type="radio" name="lookingProfessorGuidance"
                                 formControlName="lookingProfessorGuidance" value="No"
-                                style="position: relative;top: 3px;">&nbsp;
+                                style="position: relative;top: 2px;">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6">
@@ -1058,10 +1066,10 @@
                             <label for="lookingMentorship">Looking Mentorship from Industrial Experts :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="lookingMentorship" formControlName="lookingMentorship" selected
-                                value="Yes" style="position: relative;top: 3px;">&nbsp;
+                                value="Yes" style="position: relative;top: 2px;">&nbsp;
                             <span>Yes</span>&nbsp;&nbsp;
                             <input type="radio" name="lookingMentorship" formControlName="lookingMentorship" value="No"
-                                style="position: relative;top: 3px;">&nbsp;
+                                style="position: relative;top: 2px;">&nbsp;
                             <span>No</span>
                         </div>
 
@@ -1080,10 +1088,10 @@
                             <label for="lookingStudentPartner">Looking Student partner :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="lookingStudentPartner" formControlName="lookingStudentPartner"
-                                selected value="Yes" style="position: relative;top: 3px;">&nbsp;
+                                selected value="Yes" style="position: relative;top: 2px;">&nbsp;
                             Yes&nbsp;&nbsp;
                             <input type="radio" name="lookingStudentPartner" formControlName="lookingStudentPartner"
-                                value="No" style="position: relative;top: 3px;">&nbsp;
+                                value="No" style="position: relative;top: 2px;">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6">
@@ -1101,10 +1109,10 @@
                             <label for="lookingSponsorship">Looking sponsorship :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="lookingSponsorship" formControlName="lookingSponsorship" selected
-                                value="Yes" style="position: relative;top: 3px;">&nbsp;
+                                value="Yes" style="position: relative;top: 2px;">&nbsp;
                             Yes&nbsp;&nbsp;
                             <input type="radio" name="lookingSponsorship" formControlName="lookingSponsorship"
-                                value="No" style="position: relative;top: 3px;">&nbsp;
+                                value="No" style="position: relative;top: 2px;">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6">
@@ -1896,10 +1904,10 @@
                             <label for="prototypeAvailable">Prototype Available :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="prototypeAvailable" formControlName="prototypeAvailable" selected
-                                value="Y" style="position: relative;top: 3px;">&nbsp;
+                                value="Y" style="position: relative;top: 2px;">&nbsp;
                             Yes&nbsp;&nbsp;
                             <input type="radio" name="prototypeAvailable" formControlName="prototypeAvailable" value="N"
-                                style="position: relative;top: 3px;">&nbsp;
+                                style="position: relative;top: 2px;">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6" *ngIf="createStuvationForm.value.prototypeAvailable=='Y'">
@@ -1924,11 +1932,11 @@
                             &nbsp;&nbsp;
                             <input type="radio" name="lookingProfessorGuidance"
                                 formControlName="lookingProfessorGuidance" selected value="Yes"
-                                style="position: relative;top: 3px;">&nbsp;
+                                style="position: relative;top: 2px;">&nbsp;
                             Yes&nbsp;&nbsp;
                             <input type="radio" name="lookingProfessorGuidance"
                                 formControlName="lookingProfessorGuidance" value="No"
-                                style="position: relative;top: 3px;">&nbsp;
+                                style="position: relative;top: 2px;">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6">
@@ -1945,10 +1953,10 @@
                             <label for="lookingMentorship">Looking Mentorship from Industrial Experts :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="lookingMentorship" formControlName="lookingMentorship" selected
-                                value="Yes" style="position: relative;top: 3px;">&nbsp;
+                                value="Yes" style="position: relative;top: 2px;">&nbsp;
                             <span>Yes</span>&nbsp;&nbsp;
                             <input type="radio" name="lookingMentorship" formControlName="lookingMentorship" value="No"
-                                style="position: relative;top: 3px;">&nbsp;
+                                style="position: relative;top: 2px;">&nbsp;
                             <span>No</span>
                         </div>
 
@@ -1967,10 +1975,10 @@
                             <label for="lookingStudentPartner">Looking Student partner :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="lookingStudentPartner" formControlName="lookingStudentPartner"
-                                selected value="Yes" style="position: relative;top: 3px;">&nbsp;
+                                selected value="Yes" style="position: relative;top: 2px;">&nbsp;
                             Yes&nbsp;&nbsp;
                             <input type="radio" name="lookingStudentPartner" formControlName="lookingStudentPartner"
-                                value="No" style="position: relative;top: 3px;">&nbsp;
+                                value="No" style="position: relative;top: 2px;">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6">
@@ -1988,10 +1996,10 @@
                             <label for="lookingSponsorship">Looking sponsorship :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="lookingSponsorship" formControlName="lookingSponsorship" selected
-                                value="Yes" style="position: relative;top: 3px;">&nbsp;
+                                value="Yes" style="position: relative;top: 2px;">&nbsp;
                             Yes&nbsp;&nbsp;
                             <input type="radio" name="lookingSponsorship" formControlName="lookingSponsorship"
-                                value="No" style="position: relative;top: 3px;">&nbsp;
+                                value="No" style="position: relative;top: 2px;">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6">
@@ -2081,10 +2089,10 @@
                             <label for="prototypeAvailable"><span class="red">*</span> Prototype Available :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="prototypeAvailable" formControlName="prototypeAvailable" selected
-                                value="Y" style="position: relative;top: 3px;">&nbsp;
+                                value="Y" style="position: relative;top: 2px;">&nbsp;
                             Yes&nbsp;&nbsp;
                             <input type="radio" name="prototypeAvailable" formControlName="prototypeAvailable" value="N"
-                                style="position: relative;top: 3px;">&nbsp;
+                                style="position: relative;top: 2px;">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6" *ngIf="createProjtecStuvationForm.value.prototypeAvailable=='Y'">
@@ -2107,11 +2115,11 @@
                             &nbsp;&nbsp;
                             <input type="radio" name="lookingProfessorGuidance"
                                 formControlName="lookingProfessorGuidance" selected value="Yes"
-                                style="position: relative;top: 3px;">&nbsp;
+                                style="position: relative;top: 2px;">&nbsp;
                             Yes&nbsp;&nbsp;
                             <input type="radio" name="lookingProfessorGuidance"
                                 formControlName="lookingProfessorGuidance" value="No"
-                                style="position: relative;top: 3px;">&nbsp;
+                                style="position: relative;top: 2px;">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6">
@@ -2128,10 +2136,10 @@
                             <label for="lookingMentorship">Looking Mentorship from Industrial Experts :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="lookingMentorship" formControlName="lookingMentorship" selected
-                                value="Yes" style="position: relative;top: 3px;">&nbsp;
+                                value="Yes" style="position: relative;top: 2px;">&nbsp;
                             <span>Yes</span>&nbsp;&nbsp;
                             <input type="radio" name="lookingMentorship" formControlName="lookingMentorship" value="No"
-                                style="position: relative;top: 3px;">&nbsp;
+                                style="position: relative;top: 2px;">&nbsp;
                             <span>No</span>
                         </div>
 
@@ -2150,10 +2158,10 @@
                             <label for="lookingStudentPartner">Looking Student partner :</label>
                             &nbsp;&nbsp;
                             <input type="radio" name="lookingStudentPartner" formControlName="lookingStudentPartner"
-                                selected value="Yes" style="position: relative;top: 3px;">&nbsp;
+                                selected value="Yes" style="position: relative;top: 2px;">&nbsp;
                             Yes&nbsp;&nbsp;
                             <input type="radio" name="lookingStudentPartner" formControlName="lookingStudentPartner"
-                                value="No" style="position: relative;top: 3px;">&nbsp;
+                                value="No" style="position: relative;top: 2px;">&nbsp;
                             No
                         </div>
                         <div class="form-group col-6">

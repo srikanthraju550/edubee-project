@@ -60,7 +60,7 @@ export class AppComponent {
   }
   isCollapsed = true;
   title = 'app';
-  url;
+  url = '';
   public userProfileImage;
 
   // endpoint: string = "../assets/services/"
@@ -494,10 +494,12 @@ export class AppComponent {
         this.router.navigate(['/techbank'])
         location.reload();
       } else {
-        alert(data.json().message);
+        alert(data.json().message.error);
       }
 
 
+    }, (err) => {
+      alert(err.json().message.error);
     });
   }
 
@@ -550,8 +552,10 @@ export class AppComponent {
           this.router.navigate(['/stuvation'])
           location.reload();
         } else {
-          alert(data.json().message);
+          alert(data.json().message.error);
         }
+      }, (err) => {
+        alert(err.json().message.error);
       });
     } else {
 
@@ -599,7 +603,7 @@ export class AppComponent {
           this.router.navigate(['/stuvation'])
           location.reload();
         } else {
-          alert(data.json().message);
+          alert(data.json().message.error);
         }
 
 
@@ -699,6 +703,8 @@ export class AppComponent {
 
       }
 
+    }, (err) => {
+      alert(err.json().message.error);
     });
   }
 
@@ -791,7 +797,7 @@ export class AppComponent {
         document.getElementById("closeCreateTechTeachModal").click();
         // location.reload();
       } else {
-        alert(res.json().message);
+        alert(res.json().message.error);
       }
     })
   }
@@ -849,7 +855,7 @@ export class AppComponent {
         this.createTechTalkForm.reset();
         // location.reload();
       } else {
-        alert(res.json().message);
+        alert(res.json().message.error);
       }
     })
   }
@@ -930,9 +936,11 @@ export class AppComponent {
         document.getElementById("closeLoginForm").click();
         this.ngOnInit();
       } else {
-        alert(response.json().message);
+        alert(response.json().message.error);
         this.error = true;
       }
+    }, (err) => {
+      alert(err.json().message.error);
     })
   }
 
@@ -997,7 +1005,8 @@ export class AppComponent {
       '&password=' + this.engineerRegistrationForm.value.password +
       '&con_password=' + this.engineerRegistrationForm.value.con_password +
       '&profile_image=' + this.engineerRegistrationForm.value.profile_image +
-      '&is_agreed=' + this.engineerRegistrationForm.value.is_agreed
+      '&is_agreed=' + this.engineerRegistrationForm.value.is_agreed +
+      '&user_type=' + this.selectedType
     this.http.post(this.endpoint + 'user-register', params, { headers: headers }).subscribe(res => {
       if (res.json().status == false) {
         alert(res.json().message.error);
@@ -1011,6 +1020,8 @@ export class AppComponent {
       // alert('Profile Created Successfully');
       // this.uploader.uploadAll();
       document.getElementById("closeEngineerRegistrationForm").click();
+    }, (err) => {
+      alert(err.json().message.error);
     })
   }
 
@@ -1026,7 +1037,8 @@ export class AppComponent {
       '&password=' + this.studentRegistrationForm.value.password +
       '&con_password=' + this.studentRegistrationForm.value.con_password +
       '&profile_image=' + this.studentRegistrationForm.value.profile_image +
-      '&is_agreed=' + this.studentRegistrationForm.value.is_agreed
+      '&is_agreed=' + this.studentRegistrationForm.value.is_agreed +
+      '&user_type=' + this.selectedType
     this.http.post(this.endpoint + 'user-register', params, { headers: headers }).subscribe(res => {
       if (res.json().status == false) {
         alert(res.json().message.error);
@@ -1040,6 +1052,8 @@ export class AppComponent {
       // alert('Profile Created Successfully');
       // this.uploader.uploadAll();
       document.getElementById("closeStudentRegistrationForm").click();
+    }, (err) => {
+      alert(err.json().message.error);
     })
 
 
@@ -1058,10 +1072,17 @@ export class AppComponent {
     var params = 'comment=' + this.createThought.value.comment + '&user_id=' + userDetails['user_id']
 
     this.http.post(this.endpoint + 'student-thought', params, { headers: headers }).subscribe(res => {
-      this.createThought.reset();
-      location.reload();
-      this.router.navigate(['/']);
-      document.getElementById("closeCreatethoughtModal").click();
+      if (res.json().status == false) {
+        alert(res.json().message.error);
+        return;
+      } else {
+        this.createThought.reset();
+        location.reload();
+        this.router.navigate(['/']);
+        document.getElementById("closeCreatethoughtModal").click();
+      }
+    }, (err) => {
+      alert(err.json().message.error);
     })
   }
   openmenu() {
@@ -1100,13 +1121,16 @@ export class AppComponent {
   showgEnForm = true;
   statusValue: any;
   statusInnValue: any;
+  selectedType = 'engineer';
   openStudentForm() {
     this.showStudentForm = true;
     this.showgEnForm = false;
+    this.selectedType = 'student';
   }
   openEngForm() {
     this.showgEnForm = true;
     this.showStudentForm = false;
+    this.selectedType = 'engineer';
   }
 
   closeModals() {

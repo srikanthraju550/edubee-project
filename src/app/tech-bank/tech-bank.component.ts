@@ -165,6 +165,8 @@ export class TechBankComponent implements OnInit {
         alert('Already Registered for the Event');
       }
 
+    }, (err) => {
+      alert(err.json().message.error);
     });
   }
   techteachid: any;
@@ -182,10 +184,12 @@ export class TechBankComponent implements OnInit {
 
     this.httpnew.post(this.Baseurl + 'apply-event', params, { headers: headers }).subscribe(res => {
       if (res.json().status === true) {
-        // alert(res.json().message);
-      } else {
         alert(res.json().message);
+      } else {
+        alert(res.json().message.error);
       }
+    }, (err) => {
+      alert(err.json().message.error);
     })
 
 

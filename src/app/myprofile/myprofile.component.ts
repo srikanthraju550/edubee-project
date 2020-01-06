@@ -266,8 +266,10 @@ export class MyprofileComponent implements OnInit {
 
         // this.showEdit = false;
       } else {
-        alert(res.json().message);
+        alert(res.json().message.error);
       }
+    }, (err) => {
+      alert(err.json().message.error);
     })
   }
 

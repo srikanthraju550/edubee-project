@@ -101,6 +101,8 @@ export class EngshipComponent implements OnInit {
       } else if (parsedData['alreadyRegistered'] == 'true') {
         alert('Already Joined');
       }
+    }, (err) => {
+      alert(err.json().message.error);
     });
   }
 

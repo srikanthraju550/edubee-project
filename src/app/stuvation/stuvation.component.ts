@@ -132,8 +132,10 @@ export class StuvationComponent implements OnInit {
 
         this.ngOnInit();
       } else {
-        alert(res.json().message);
+        alert(res.json().message.error);
       }
+    }, (err) => {
+      alert(err.json().message.error);
     })
   }
 
@@ -150,8 +152,10 @@ export class StuvationComponent implements OnInit {
 
         this.ngOnInit();
       } else {
-        alert(res.json().message);
+        alert(res.json().message.error);
       }
+    }, (err) => {
+      alert(err.json().message.error);
     })
   }
 
@@ -197,8 +201,10 @@ export class StuvationComponent implements OnInit {
         document.getElementById("closeCommentsModal").click();
         this.getstuationData();
       } else {
-        alert(res.json().message);
+        alert(res.json().message.error);
       }
+    }, (err) => {
+      alert(err.json().message.error);
     })
   }
   commentsEditDelete(data, action) {
@@ -213,8 +219,10 @@ export class StuvationComponent implements OnInit {
           // alert(res.json().message);
           document.getElementById("closeCommentsModal").click();
         } else {
-          alert(res.json().message);
+          alert(res.json().message.error);
         }
+      }, (err) => {
+        alert(err.json().message.error);
       })
     } else if (action === 'delete') {
       var params = 'user_id=' + userDetails['user_id'] + '&comment_id=' + data.comment_id
@@ -223,8 +231,10 @@ export class StuvationComponent implements OnInit {
           // alert(res.json().message);
           document.getElementById("closeCommentsModal").click();
         } else {
-          alert(res.json().message);
+          alert(res.json().message.error);
         }
+      }, (err) => {
+        alert(err.json().message.error);
       })
     }
   }
@@ -262,6 +272,8 @@ export class StuvationComponent implements OnInit {
         alert('Failed to update');
       }
 
+    }, (err) => {
+      alert(err.json().message.error);
     });
   }
 
@@ -282,8 +294,10 @@ export class StuvationComponent implements OnInit {
         document.getElementById("closeJoinTeamPopupModal").click();
         this.getstuationData();
       } else {
-        alert(res.json().message);
+        alert(res.json().message.error);
       }
+    }, (err) => {
+      alert(err.json().message.error);
     })
   }
 
@@ -336,6 +350,8 @@ export class StuvationComponent implements OnInit {
         alert('Failed to Join');
       }
 
+    }, (err) => {
+      alert(err.json().message.error);
     });
   }
 

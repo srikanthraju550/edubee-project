@@ -207,8 +207,10 @@ export class StaticdataComponent implements OnInit {
           // alert(res.json().message);
           document.getElementById("closeCommentsModal").click();
         } else {
-          alert(res.json().message);
+          alert(res.json().message.error);
         }
+      }, (err) => {
+        alert(err.json().message.error);
       })
     } else if (action === 'delete') {
       var params = 'user_id=' + userDetails['user_id'] + '&comment_id=' + data.comment_id
@@ -217,8 +219,10 @@ export class StaticdataComponent implements OnInit {
           // alert(res.json().message);
           document.getElementById("closeCommentsModal").click();
         } else {
-          alert(res.json().message);
+          alert(res.json().message.error);
         }
+      }, (err) => {
+        alert(err.json().message.error);
       })
     }
   }
@@ -236,8 +240,10 @@ export class StaticdataComponent implements OnInit {
         document.getElementById("closeCommentsModal").click();
         this.getMyTechBankData();
       } else {
-        alert(res.json().message);
+        alert(res.json().message.error);
       }
+    }, (err) => {
+      alert(err.json().message.error);
     })
   }
 

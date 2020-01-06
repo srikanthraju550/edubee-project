@@ -104,6 +104,8 @@ export class TechArticleComponent implements OnInit {
         alert('Failed to update');
       }
 
+    }, (err) => {
+      alert(err.json().message.error);
     });
   }
   articlecomments = [];
@@ -151,10 +153,12 @@ export class TechArticleComponent implements OnInit {
         document.getElementById("buynowModal").click();
         this.ngOnInit();
       } else {
-        alert(res.json().message);
+        alert(res.json().message.error);
       }
       //this.articlecomments=parsedData['articlecomments'];
 
+    }, (err) => {
+      alert(err.json().message.error);
     });
   }
 
@@ -170,8 +174,10 @@ export class TechArticleComponent implements OnInit {
       if (res.json().status === true) {
         this.ngOnInit();
       } else {
-        alert(res.json().message);
+        alert(res.json().message.error);
       }
+    }, (err) => {
+      alert(err.json().message.error);
     })
   }
   action: number;
@@ -200,8 +206,10 @@ export class TechArticleComponent implements OnInit {
       if (res.json().status === true) {
         this.ngOnInit();
       } else {
-        alert(res.json().message);
+        alert(res.json().message.error);
       }
+    }, (err) => {
+      alert(err.json().message.error);
     })
   }
 
@@ -218,8 +226,10 @@ export class TechArticleComponent implements OnInit {
         document.getElementById("closeCommentsModal").click();
         this.getArticles();
       } else {
-        alert(res.json().message);
+        alert(res.json().message.error);
       }
+    }, (err) => {
+      alert(err.json().message.error);
     })
   }
   showInput: boolean;
@@ -238,8 +248,10 @@ export class TechArticleComponent implements OnInit {
           // alert(res.json().message);
           document.getElementById("closeCommentsModal").click();
         } else {
-          alert(res.json().message);
+          alert(res.json().message.error);
         }
+      }, (err) => {
+        alert(err.json().message.error);
       })
     } else if (action === 'delete') {
       var params = 'user_id=' + userDetails['user_id'] + '&comment_id=' + data.comment_id
@@ -248,8 +260,10 @@ export class TechArticleComponent implements OnInit {
           // alert(res.json().message);
           document.getElementById("closeCommentsModal").click();
         } else {
-          alert(res.json().message);
+          alert(res.json().message.error);
         }
+      }, (err) => {
+        alert(err.json().message.error);
       })
     }
   }

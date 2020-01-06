@@ -79,6 +79,8 @@ export class EngshipRequestComponent implements OnInit {
         alert('Already Joined');
       }
 
+    }, (err) => {
+      alert(err.json().message.error);
     });
   }
 
