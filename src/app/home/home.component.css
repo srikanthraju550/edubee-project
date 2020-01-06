@@ -302,6 +302,17 @@
 .student1{
   font-family: inherit;font-weight: 600;font-weight: 600;font-size: 15px;
   text-align: left;
+  display: inline-block; 
+
+}
+div#ourTeamSlider .carousel-item{
+  height: 175px;
+}
+._usr_info{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 /* .document{
@@ -657,6 +668,14 @@ img.custom-ss-student-thoughts-block-img {
   font-size: 22px;
 }
 
+.testimo .carousel-indicators li{
+ background-color: rgba(193, 192, 192, 0.5);
+}
+.testimo .carousel-indicators li.active {
+  background-color: #191970;
+}
+
+
 .calender ul{
   list-style:none;
 }
@@ -708,9 +727,9 @@ outline: 1px solid slategrey;
 
 .custom-ss-our-events-block .active {
   border-bottom: 8px solid #1099ca;
-  -webkit-box-shadow: 1px 6px 49px -4px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 1px 6px 49px -4px rgba(0, 0, 0, 0.75);
-  box-shadow: 1px 6px 49px -4px rgba(0, 0, 0, 0.75) !important;
+  -webkit-box-shadow: 1px 6px 18px -4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 6px 18px -4px rgba(0, 0, 0, 0.75);
+  box-shadow: 1px 6px 18px -4px rgba(0, 0, 0, 0.75) !important;
 }
 
 .custom-ss-our-events-block .custom-ss-our-event-menu-block {
@@ -736,9 +755,9 @@ position: absolute;
 
   .custom-ss-our-events-block li:hover, .custom-ss-our-events-block .active {
     border-bottom: 8px solid #1099ca;
-    -webkit-box-shadow: 1px 6px 49px -4px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 1px 6px 49px -4px rgba(0, 0, 0, 0.75);
-    box-shadow: 1px 6px 49px -4px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 1px 6px 18px -4px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 1px 6px 18px -4px rgba(0, 0, 0, 0.75);
+    box-shadow: 1px 6px 18px -4px rgba(0, 0, 0, 0.75);
 }
 
 
@@ -765,6 +784,9 @@ position: absolute;
   text-align: justify;
 }
 
+.img-lft.animated {
+  animation-duration: 1s;
+}
 
  /***************mediaquaries*********/
  @media screen and (min-width:120px)and (max-width:319px) {}

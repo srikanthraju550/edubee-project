@@ -376,6 +376,14 @@ width: 85%;
 .red{
     color: red;
 }
+.img-lft img {
+    width: 100%!important;
+    object-fit: cover;
+    height: auto;
+    max-height: 460px;
+}
+
+
 
 /* .ovrflw_h{
     overflow: hidden;
