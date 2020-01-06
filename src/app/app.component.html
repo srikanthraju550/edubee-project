@@ -1171,9 +1171,10 @@
                         <input type="text" class="form-control" formControlName="topic">
                     </div>
                     <div class="form-group">
-                        <label for="topic"><span class="red">* </span> Tech Teach Type:</label>
+                        <label for="techteachtype"><span class="red">* </span> Tech Teach Type:</label>
                         <select type="text" class="form-control" formControlName="techteachtype"
                             (change)="selectTechTeachType($event.target.value)">
+                            <option value=''></option>
                             <option *ngFor="let type of techTeachTypeList; let i = index;" [value]="type.type_id">
                                 {{type.name}}</option>
                         </select>
@@ -1368,9 +1369,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="topic"><span class="red">*</span> Tech Talk Type:</label>
+                        <label for="techtalktype"><span class="red">*</span> Tech Talk Type:</label>
                         <select type="text" class="form-control" formControlName="techtalktype"
                             (change)="selectTechtalkType($event.target.value)">
+                            <option value=''></option>
                             <option *ngFor="let type of techTalkTypeList; let i = index;" [value]="type.type_id">
                                 {{type.name}}</option>
                         </select>
@@ -1575,7 +1577,8 @@
                         <input type="text" class="form-control" formControlName="topic">
                     </div>
                     <div class="form-group">
-                        <label for="topic"><span class="red">* </span> Tech Teach Type:</label>
+                        <label for="techteachtype"><span class="red">* </span> Tech Teach Type:</label>
+                        <option value=''></option>
                         <select type="text" class="form-control" formControlName="techteachtype"
                             (change)="selectTechTeachType($event.target.value)">
                             <option *ngFor="let type of techTeachTypeList; let i = index;" [value]="type.type_id">
@@ -2221,9 +2224,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="topic"><span class="red">*</span> Tech Talk Type:</label>
+                        <label for="techtalktype"><span class="red">*</span> Tech Talk Type:</label>
                         <select type="text" class="form-control" formControlName="techtalktype"
                             (change)="selectTechtalkType($event.target.value)">
+                            <option value=''></option>
                             <option *ngFor="let type of techTalkTypeList; let i = index;" [value]="type.type_id">
                                 {{type.name}}</option>
                         </select>
