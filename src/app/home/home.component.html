@@ -325,25 +325,22 @@
                                 </span>
                                 {{userInfo.comment}}
                             </p>
-                            <div class="row">
-                                <div class="col-sm-3 col-md-3 col-lg-2"></div>
-                                <div class="col-sm-3 col-md-3 col-lg-4">
-                                    <img class="profilepicture" style="border-radius: 10em;"
-                                        *ngIf="userInfo.profile_image!=''"
-                                        [src]="profile_path + userInfo.profile_image">
 
-                                    <img class="profilepicture" style="border-radius: 10em;"
-                                        *ngIf="userInfo.profile_image==''" src="../assets/images/user-dummy.png"
-                                        alt="Profile Pic">
-                                </div>
-                                <div class="col-sm-6 col-md-6 col-lg-6 ">
-                                    <br />
-                                    <div class="student1 custom-ss-testimoni-details">
-                                        <h4>&nbsp;{{userInfo.name}}</h4>
-                                    </div>
 
+                            <div class="text-center _usr_info">
+                                <img class="profilepicture" style="border-radius: 10em;"
+                                    *ngIf="userInfo.profile_image!=''" [src]="profile_path + userInfo.profile_image">
+
+                                <img class="profilepicture" style="border-radius: 10em;"
+                                    *ngIf="userInfo.profile_image==''" src="../assets/images/user-dummy.png"
+                                    alt="Profile Pic">
+                                <div class="student1 custom-ss-testimoni-details">
+                                    <h4>&nbsp;{{userInfo.name}}</h4>
                                 </div>
+
                             </div>
+
+
                         </div>
                     </div>
                     <br />

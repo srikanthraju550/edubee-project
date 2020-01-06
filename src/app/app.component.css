@@ -262,10 +262,10 @@ ul {
 /*Style for menu links*/
 .main-menu li a {
   display:block;
-  min-width:115px;
-  height: 50px;
+  min-width:125px;
+  height: 40px;
   text-align: center;
-  line-height: 50px;
+  line-height: 40px;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   color: #fff;
   /* background: #2f3036; */
@@ -287,8 +287,8 @@ top: 120px;
 li:hover ul a {
   background: #f3f3f3;
   color: #2f3036;
-  height: 40px;
-  line-height: 40px;
+  height: 35px;
+  line-height: 35px;
 }
 /*Hover state for dropdown links*/
 li:hover ul a:hover {
@@ -575,7 +575,8 @@ cursor: pointer;
 }
 
 .sub-menu-header{
-  height: 25px !important;
+  /* height: 25px !important; */
+  height: auto !important;
   cursor: pointer;
 }
 
