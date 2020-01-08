@@ -543,7 +543,6 @@ export class AppComponent {
         '&is_looking_for_mentorship=' + this.createStuvationForm.value.lookingMentorship
 
 
-
       this.http.post(this.Baseurl + 'create-stuvation', params, { headers: headers }).subscribe(data => {
         if (data.json().status === true) {
           // alert(data.json().message);
@@ -936,11 +935,11 @@ export class AppComponent {
         document.getElementById("closeLoginForm").click();
         this.ngOnInit();
       } else {
-        alert(response.json().message.error);
+        alert(response.json().message);
         this.error = true;
       }
     }, (err) => {
-      alert(err.json().message.error);
+      alert(err.json().message);
     })
   }
 

@@ -27,6 +27,7 @@ export class NumberOnlyDirective {
     }
 }
 
+
 @Directive({
     selector: '[alphabetsOnly]'
 })

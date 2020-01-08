@@ -4,24 +4,7 @@
     <p class="arrows"><i class="fa fa-arrow-circle-left" (click)="decreaseSlider()"></i>&nbsp;&nbsp;
         <span>{{sliderValue}} / {{sliderContent.length}}</span>&nbsp;&nbsp;<i class="fa fa-arrow-circle-right"
             (click)="increaseSlider()"></i></p>
-    <!-- <div class="container-fluid" *ngIf="firstSlide">
-        <div class="row ">
-            <div class="img-lft col-md-6 col-sm-12 animated fadeInLeft">
-                <img [src]="image_path + sliderContent[0]?.image" />
-            </div>
-            <div class="col-md-5 col-sm-12 animated fadeInRight">
-                <div class="content-ryt">
-                    <h4 class="custom-ss-content"> {{sliderContent[0]?.title}}</h4>
-                    <p> {{sliderContent[0]?.description}}</p>
-                    <h3 class="custom-s-content"> <span>" </span>IT'S NOT ABOUT IDEAS.<br> ITS ABOUT MAKING
-                        IDEAS
-                        HAPPEN</h3>
 
-                </div>
-            </div>
-            <div class="col-md-1 col-sm-0"></div>
-        </div>
-    </div> -->
     <div *ngFor="let slider of sliderContent">
         <div class="container-fluid" *ngIf="slider.IsShown">
             <div class="row">
@@ -32,9 +15,9 @@
                     <div class="content-ryt">
                         <h4 class="custom-ss-content"> {{slider?.title}}</h4>
                         <p> {{slider?.description}}</p>
-                        <h3 class="custom-s-content"> <span>" </span>IT'S NOT ABOUT IDEAS.<br> ITS ABOUT MAKING
+                        <!-- <h3 class="custom-s-content"> <span>" </span>IT'S NOT ABOUT IDEAS.<br> ITS ABOUT MAKING
                             IDEAS
-                            HAPPEN</h3>
+                            HAPPEN</h3> -->
 
                     </div>
                 </div>
@@ -112,6 +95,10 @@
                         <button *ngIf="(techTitle=='Tech Talk')&&!checkLoginStatus()"
                             class="custom-ss-quick-register-block-button" data-toggle="modal"
                             data-target="#createTechTalkModal">
+                            {{filterquickRegData?.button_name}} </button>
+                        <button
+                            *ngIf="(techTitle!='Tech Talk' && techTitle!='Stuvation' && techTitle!='Tech Teach')&&!checkLoginStatus()"
+                            class="custom-ss-quick-register-block-button" data-toggle="modal">
                             {{filterquickRegData?.button_name}} </button>
 
                     </div>
@@ -320,9 +307,9 @@
                             [ngClass]="{'active' : i==0 }">
 
                             <p class="card-text">
-                                <span>
+                                <!-- <span>
                                     <img src="assets/images/quote.png">
-                                </span>
+                                </span> -->
                                 {{userInfo.comment}}
                             </p>
 

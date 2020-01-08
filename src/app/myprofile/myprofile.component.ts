@@ -40,7 +40,9 @@ export class MyprofileComponent implements OnInit {
       } else {
         this.editButton = false;
       }
-      document.getElementById("closeCommentsModal").click();
+      if (document.getElementById("closeCommentsModal").click() != null) {
+        document.getElementById("closeCommentsModal").click();
+      };
     });
   }
   userDetails: any;
@@ -57,9 +59,9 @@ export class MyprofileComponent implements OnInit {
       var reader = new FileReader();
       reader.onload = (event: ProgressEvent) => {
         this.strImage = (<FileReader>event.target).result;
-        if (action == 'training') {
+        if (action === 'training') {
           this.turl = this.strImage.split(',')[1];
-        } else if (action == 'image') {
+        } else if (action === 'image') {
           this.imageUrl = this.strImage.split(',')[1];
         } else {
           this.iurl = this.strImage.split(',')[1];
@@ -120,20 +122,7 @@ export class MyprofileComponent implements OnInit {
     this.internshipDetails = false;
   }
   public pdfurl;
-  ngOnInit() {
-    this.userDetails = this.getLoggedInUserObject();
-    console.log(this.userDetails);
-    if (this.getLoggedInUserObject()['name'] != undefined) {
-      this.pdfurl = 'http://theengineersfactory.com/dashboard/get_profile_pdf/' + this.user_id;
-      this.userImagePath = sessionStorage.getItem('userImagePath');
-      this.getUserData();
-    } else {
-      this.router.navigate(['/home'])
-    }
-
-
-  }
-  userData = {
+  public userData = {
     stuvation: {
       mini_project_count: '',
       major_project_count: '',
@@ -151,9 +140,8 @@ export class MyprofileComponent implements OnInit {
       trainings_count: ''
     }
   };
-  profileData = {
+  public profileData = {
     intern_certificate: '',
-    certificate: '',
     certificate2: '',
     image: '',
     name: ''
@@ -162,6 +150,20 @@ export class MyprofileComponent implements OnInit {
   excelData = [];
   imagePath;
   grade;
+  ngOnInit() {
+    this.userDetails = this.getLoggedInUserObject();
+    console.log(this.userDetails);
+    if (this.getLoggedInUserObject()['name'] != undefined) {
+      this.pdfurl = 'http://theengineersfactory.com/dashboard/get_profile_pdf/' + this.user_id;
+      this.userImagePath = sessionStorage.getItem('userImagePath');
+      this.getUserData();
+    } else {
+      this.router.navigate(['/home'])
+    }
+
+
+  }
+
   exportAsXLSX(): void {
     this.excelService.exportAsExcelFile(this.excelData, 'Profile-data');
   }
@@ -171,7 +173,11 @@ export class MyprofileComponent implements OnInit {
     this.httpnew.get(this.url + 'user-profile' + '?user_id=' + this.user_id).subscribe(data => {
       this.excelData = data.json().data;
       this.userData = data.json();
-      this.profileData = data.json().data[0];
+      this.profileData.intern_certificate = data.json().data[0].intern_certificate;
+      this.profileData.certificate2 = data.json().data[0].certificate2;
+      this.profileData.image = data.json().data[0].image;
+      this.profileData.name = data.json().data[0].name;
+
       this.filePAth = data.json().file_path;
       this.imagePath = data.json().image_path;
       this.strImage = this.imagePath + this.profileData.image;
@@ -179,7 +185,7 @@ export class MyprofileComponent implements OnInit {
       // sessionStorage.setItem("userImagePath", this.imagePath + this.profileData.image);
       // this.getLoggedInUserObject()['image'] = this.strImage;
       sessionStorage.setItem("userProfileImage", this.strImage);
-
+      console.log(this.profileData);
       this.engineerRegistrationForm = this.fb.group({
         name: [data.json().data[0].name],
         email: [data.json().data[0].email],
@@ -251,7 +257,7 @@ export class MyprofileComponent implements OnInit {
       '&training_company=' + this.engineerRegistrationForm.value.trainingCompany +
       '&training_from=' + this.engineerRegistrationForm.value.trainingDurationFrom +
       '&training_to=' + this.engineerRegistrationForm.value.trainingDurationTo +
-      '&training_certificate=' + this.turl
+      '&certificate2=' + this.turl
 
 
 
@@ -261,7 +267,7 @@ export class MyprofileComponent implements OnInit {
         // alert(res.json().message);
         document.getElementById("closeCreateTechTeachModal").click();
         this.getUserData();
-        window.location.reload();
+        // window.location.reload();
 
 
         // this.showEdit = false;

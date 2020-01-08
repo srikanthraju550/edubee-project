@@ -467,7 +467,8 @@
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="projectType"><span class="red">*</span> Project Type:</label>
-                            <select type="text" class="form-control" formControlName="projectType">
+                            <select type="text" class="form-control" formControlName="projectType"
+                                (change)="selectProjectType($event.target.value)">
                                 <option [value]="5">
                                     Innovation</option>
                             </select>
@@ -1257,13 +1258,15 @@
                             <div class="form-group col-4">
 
                                 <label for="technology"><span class="red">*</span>From Time:
-                                    <input myNumberOnly type="text" class="form-control" formControlName="fromTime">
+                                    <input myNumberOnly type="text" pattern="\d{2}" class="form-control" maxlength="2"
+                                        formControlName="fromTime">
                                 </label>
                             </div>
                             <div class="form-group col-4">
 
                                 <label for="technology"><span class="red">*</span>To Time:
-                                    <input myNumberOnly type="text" class="form-control" formControlName="toTime">
+                                    <input myNumberOnly type="text" pattern="\d{2}" class="form-control" maxlength="2"
+                                        formControlName="toTime">
                                 </label>
                             </div>
                         </div>
@@ -1358,7 +1361,8 @@
                             <div class="form-group col-4">
 
                                 <label for="technology"><span class="red">*</span>Experience:
-                                    <input myNumberOnly type="text" class="form-control" formControlName="experience">
+                                    <input myNumberOnly type="text" pattern="\d{2}" maxlength="2" class="form-control"
+                                        formControlName="experience">
                                 </label>
 
                             </div>
@@ -1440,13 +1444,15 @@
                             <div class="form-group col-4">
                                 <label>
                                     <span class="red">*</span> From Time:
-                                    <input myNumberOnly type="text" class="form-control" formControlName="fromTime">
+                                    <input myNumberOnly type="text" pattern="\d{2}" class="form-control" maxlength="2"
+                                        formControlName="fromTime">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
                                     <span class="red">*</span> To Time:
-                                    <input myNumberOnly type="text" class="form-control" formControlName="toTime">
+                                    <input myNumberOnly type="text" pattern="\d{2}" class="form-control" maxlength="2"
+                                        formControlName="toTime">
                                 </label>
                             </div>
                         </div>
@@ -1540,7 +1546,8 @@
                             <div class="form-group col-4">
                                 <label>
                                     <span class="red">*</span> Experience:
-                                    <input myNumberOnly type="text" class="form-control" formControlName="experience">
+                                    <input myNumberOnly type="text" pattern="\d{2}" maxlength="2" class="form-control"
+                                        formControlName="experience">
                                 </label>
 
                             </div>
@@ -1663,13 +1670,15 @@
                             <div class="form-group col-4">
 
                                 <label for="technology"><span class="red">*</span>From Time:
-                                    <input myNumberOnly type="text" class="form-control" formControlName="fromTime">
+                                    <input myNumberOnly type="text" pattern="\d{2}" class="form-control" maxlength="2"
+                                        formControlName="fromTime">
                                 </label>
                             </div>
                             <div class="form-group col-4">
 
                                 <label for="technology"><span class="red">*</span>To Time:
-                                    <input myNumberOnly type="text" class="form-control" formControlName="toTime">
+                                    <input myNumberOnly maxlength="2" pattern="\d{2}" type="text" class="form-control"
+                                        formControlName="toTime">
                                 </label>
                             </div>
                         </div>
@@ -1764,7 +1773,8 @@
                             <div class="form-group col-4">
 
                                 <label for="technology"><span class="red">*</span>Experience:
-                                    <input myNumberOnly type="text" class="form-control" formControlName="experience">
+                                    <input myNumberOnly type="text" pattern="\d{2}" maxlength="2" class="form-control"
+                                        formControlName="experience">
                                 </label>
 
                             </div>
@@ -1826,7 +1836,8 @@
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="projectType"><span class="red">*</span> Project Type:</label>
-                            <select type="text" class="form-control" formControlName="projectType">
+                            <select type="text" class="form-control" formControlName="projectType"
+                                (change)="selectProjectType($event.target.value)">
                                 <option [value]="5">
                                     Innovation</option>
                             </select>
@@ -2297,13 +2308,15 @@
                             <div class="form-group col-4">
                                 <label>
                                     <span class="red">*</span> From Time:
-                                    <input myNumberOnly type="text" class="form-control" formControlName="fromTime">
+                                    <input myNumberOnly type="text" pattern="\d{2}" class="form-control" maxlength="2"
+                                        formControlName="fromTime">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
                                     <span class="red">*</span> To Time:
-                                    <input myNumberOnly type="text" class="form-control" formControlName="toTime">
+                                    <input myNumberOnly type="text" pattern="\d{2}" class="form-control" maxlength="2"
+                                        formControlName="toTime">
                                 </label>
                             </div>
                         </div>
@@ -2397,7 +2410,8 @@
                             <div class="form-group col-4">
                                 <label>
                                     <span class="red">*</span> Experience:
-                                    <input myNumberOnly type="text" class="form-control" formControlName="experience">
+                                    <input myNumberOnly type="text" pattern="\d{2}" maxlength="2" class="form-control"
+                                        formControlName="experience">
                                 </label>
 
                             </div>
