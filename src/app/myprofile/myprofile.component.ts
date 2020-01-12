@@ -31,96 +31,6 @@ export class MyprofileComponent implements OnInit {
   user_id;
   endpoint: string = "../assets/services/";
   url: string = "http://theengineersfactory.com/dashboard/";
-  constructor(private httpnew: Http, private route: ActivatedRoute, private router: Router, private excelService: ExcelService, private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private fb: FormBuilder) {
-    this.userDetails = this.getLoggedInUserObject();
-    this.route.params.subscribe((params: Params) => {
-      this.user_id = params['id'];
-      if (this.user_id == this.userDetails['user_id']) {
-        this.editButton = true;
-      } else {
-        this.editButton = false;
-      }
-      if (document.getElementById("closeCommentsModal").click() != null) {
-        document.getElementById("closeCommentsModal").click();
-      };
-    });
-  }
-  userDetails: any;
-  userImagePath;
-  filePAth;
-  turl;
-  iurl;
-  strImage;
-  showEdit: boolean;
-  imageUrl = '';
-  internshipDetails: boolean;
-  readUrl(event: any, action) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-      reader.onload = (event: ProgressEvent) => {
-        this.strImage = (<FileReader>event.target).result;
-        if (action === 'training') {
-          this.turl = this.strImage.split(',')[1];
-        } else if (action === 'image') {
-          this.imageUrl = this.strImage.split(',')[1];
-        } else {
-          this.iurl = this.strImage.split(',')[1];
-        }
-      }
-      reader.readAsDataURL(event.target.files[0]);
-    }
-  }
-
-
-  engineerRegistrationForm = this.fb.group({
-    name: [''],
-    email: [''],
-    contact: [''],
-    dob: [''],
-    username: [''],
-    school: [''],
-    college: [''],
-    branch: [''],
-    miniProjectTitle: [''],
-    miniProjectDescription: [''],
-    majorProjecTtitle: [''],
-    majorProjectDescription: [''],
-    internRole: [''],
-    internCompany: [''],
-    internDurationFrom: [''],
-    internDurationTo: [''],
-    internCerftification: [''],
-    skills: [''],
-    skillDescription: [''],
-    trainingRole: [''],
-    trainingCompany: [''],
-    trainingDurationFrom: [''],
-    trainingDurationTo: [''],
-    trainingCertification: [''],
-
-
-
-    // workExperience: this.fb.array([
-    //   this.fb.group({
-    //     role: [''],
-    //     companyName: [''],
-    //     yearsOfExperience: ['']
-    //   })
-    // ])
-  });
-
-
-  // editProfile() {
-  //   this.editButton = true;
-  //   this.showEdit = true;
-  // }
-
-  showinternship() {
-    this.internshipDetails = true;
-  }
-  nointernship() {
-    this.internshipDetails = false;
-  }
   public pdfurl;
   public userData = {
     stuvation: {
@@ -140,26 +50,108 @@ export class MyprofileComponent implements OnInit {
       trainings_count: ''
     }
   };
-  public profileData = {
-    intern_certificate: '',
-    certificate2: '',
-    image: '',
-    name: ''
-  };
+  public profileData;
 
   excelData = [];
   imagePath;
   grade;
-  ngOnInit() {
+  userDetails: any;
+  userImagePath;
+  filePAth;
+  turl;
+  iurl;
+  public strImage;
+  showEdit: boolean;
+  imageUrl = '';
+  internshipDetails: boolean;
+
+  public engineerRegistrationForm;
+
+  constructor(private httpnew: Http, private route: ActivatedRoute, private router: Router, private excelService: ExcelService, private modal: NgbModal, private http: HttpClient, private mainService: MainServiceService, private fb: FormBuilder) {
     this.userDetails = this.getLoggedInUserObject();
-    console.log(this.userDetails);
-    if (this.getLoggedInUserObject()['name'] != undefined) {
-      this.pdfurl = 'http://theengineersfactory.com/dashboard/get_profile_pdf/' + this.user_id;
+    this.engineerRegistrationForm = this.fb.group({
+      name: [''],
+      email: [''],
+      contact: [''],
+      dob: [''],
+      school: [''],
+      college: [''],
+      branch: [''],
+      miniProjectTitle: [''],
+      miniProjectDescription: [''],
+      majorProjecTtitle: [''],
+      majorProjectDescription: [''],
+      internRole: [''],
+      internCompany: [''],
+      internDurationFrom: [''],
+      internDurationTo: [''],
+      internCerftification: [''],
+      skills: [''],
+      skillDescription: [''],
+      trainingRole: [''],
+      trainingCompany: [''],
+      trainingDurationFrom: [''],
+      trainingDurationTo: [''],
+      trainingCertification: [''],
+    });
+    this.profileData = {
+      intern_certificate: '',
+      certificate2: '',
+      image: '',
+      name: ''
+    };
+    this.route.params.subscribe((params: Params) => {
+      this.user_id = params['id'];
+      if (this.user_id == this.userDetails['user_id']) {
+        this.editButton = true;
+      } else {
+        this.editButton = false;
+      }
+      if (document.getElementById("closeCommentsModal").click() != null) {
+        document.getElementById("closeCommentsModal").click();
+      };
+    });
+
+    if (this.userDetails != undefined) {
       this.userImagePath = sessionStorage.getItem('userImagePath');
       this.getUserData();
     } else {
       this.router.navigate(['/home'])
     }
+  }
+
+  readUrl(event: any, action) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = (event: ProgressEvent) => {
+        this.strImage = (<FileReader>event.target).result;
+        if (action === 'training') {
+          this.turl = this.strImage.split(',')[1];
+        } else if (action === 'image') {
+          this.imageUrl = this.strImage.split(',')[1];
+        } else {
+          this.iurl = this.strImage.split(',')[1];
+        }
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+
+  // editProfile() {
+  //   this.editButton = true;
+  //   this.showEdit = true;
+  // }
+
+  showinternship() {
+    this.internshipDetails = true;
+  }
+  nointernship() {
+    this.internshipDetails = false;
+  }
+
+  ngOnInit() {
+
 
 
   }
@@ -175,7 +167,7 @@ export class MyprofileComponent implements OnInit {
       this.userData = data.json();
       this.profileData.intern_certificate = data.json().data[0].intern_certificate;
       this.profileData.certificate2 = data.json().data[0].certificate2;
-      this.profileData.image = data.json().data[0].image;
+      this.profileData.image = data.json().image_path + data.json().data[0].image;
       this.profileData.name = data.json().data[0].name;
 
       this.filePAth = data.json().file_path;
@@ -183,7 +175,7 @@ export class MyprofileComponent implements OnInit {
       this.strImage = this.imagePath + this.profileData.image;
       this.grade = parseInt(data.json().data[0].join_event_score) + parseInt(data.json().data[0].stuvation_score) + parseInt(data.json().data[0].tech_talk_score) + parseInt(data.json().data[0].tech_teach_score)
       // sessionStorage.setItem("userImagePath", this.imagePath + this.profileData.image);
-      // this.getLoggedInUserObject()['image'] = this.strImage;
+
       sessionStorage.setItem("userProfileImage", this.strImage);
       console.log(this.profileData);
       this.engineerRegistrationForm = this.fb.group({
@@ -191,7 +183,6 @@ export class MyprofileComponent implements OnInit {
         email: [data.json().data[0].email],
         contact: [data.json().data[0].mobile],
         dob: [data.json().data[0].dob],
-        username: [data.json().data[0].username],
         school: [data.json().data[0].school],
         college: [data.json().data[0].college],
         branch: [data.json().data[0].branch],
@@ -214,6 +205,7 @@ export class MyprofileComponent implements OnInit {
 
       });
     });
+    console.log(this.engineerRegistrationForm);
   }
 
 
@@ -267,7 +259,7 @@ export class MyprofileComponent implements OnInit {
         // alert(res.json().message);
         document.getElementById("closeCreateTechTeachModal").click();
         this.getUserData();
-        // window.location.reload();
+        window.location.reload();
 
 
         // this.showEdit = false;

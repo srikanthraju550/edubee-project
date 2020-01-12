@@ -117,7 +117,7 @@
                   <button class="nav-link btn btn-light buttonarticle" (click)="viewTechTeachDetails(techteach)"
                     data-toggle="modal" data-target="#detailsModal">More Detail's</button>
                 </li>
-                <li class="nav-item" *ngIf="!checkLoginStatus()">
+                <li class="nav-item" *ngIf="!checkLoginStatus()  && techteach.showReg == undefined">
                   <button class="nav-link btn btn-light buttonarticle" (click)="applyForEventTechTalk(techteach)">Apply
                     for this event</button>
                 </li>
@@ -188,7 +188,7 @@
                   <button class="nav-link btn btn-light  buttonarticle" (click)="viewTechTalkDetails(techtalkdata)"
                     data-toggle="modal" data-target="#detailsModal">More Detail's</button>
                 </li>
-                <li class="nav-item" *ngIf="!checkLoginStatus()">
+                <li class="nav-item" *ngIf="!checkLoginStatus() && techtalkdata.showReg == undefined">
                   <button class="nav-link btn btn-light buttonarticle"
                     (click)="applyForEventTechTalk(techtalkdata)">Apply for the event</button>
                 </li>
@@ -303,7 +303,8 @@
               </div>
             </div>
 
-            <ul class="nav nav-pills" style="float: right;" *ngIf="!checkLoginStatus()">
+            <ul class="nav nav-pills" style="float: right;"
+              *ngIf="!checkLoginStatus() && selectedTechTeach.showReg == undefined">
               <li class="nav-item">
                 <button class="nav-link btn btn-light buttonarticle"
                   (click)="applyForEventTechTeach(selectedTechTeach)">Apply for the event</button>
@@ -390,7 +391,8 @@
                 <br />
               </div>
             </div>
-            <ul class="nav nav-pills" style="float: right;" *ngIf="!checkLoginStatus()">
+            <ul class="nav nav-pills" style="float: right;"
+              *ngIf="!checkLoginStatus() && selectedTechTalk.showReg == undefined">
               <li class="nav-item">
                 <button class="nav-link btn btn-light buttonarticle"
                   (click)="applyForEventTechTalk(selectedTechTalk)">Apply for the event</button>

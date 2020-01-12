@@ -7,17 +7,16 @@
   <div class="row">
     <div class="col-sm-2" style="text-align: center">
       <div>
-        <img class="profilepicture" *ngIf="getLoggedInUserObject()['image'] !=''"
-          style="height: 111px;width:111px;border-radius:55%" [src]="strImage" alt="Profile image">
+        <img class="profilepicture" style="height: 111px;width:111px;border-radius:55%" [src]="profileData.image"
+          alt="Profile image" />
 
-        <img class="profilepicture" style="border-radius: 10em;" *ngIf="getLoggedInUserObject()['image'] ==''"
-          src="../assets/images/user-dummy.png" alt="Profile Pic">
+        <img class="profilepicture" style="border-radius: 10em;" *ngIf="profileData.image == ''"
+          src="../assets/images/user-dummy.png" alt="Profile Pic" />
 
-        <input *ngIf="editButton" class="form-control" type="file" accept="image1/*" (change)="readUrl($event,'image')">
+        <input class="form-control" type="file" accept="image1/*" (change)="readUrl($event,'image')" />
 
 
-        <!-- <img [src]="strImage" alt="" width="100" height="100"
-                style="max-width: 100px; max-height: 100px;"> -->
+        <!-- <img [src]="profileData.image" alt="" width="100" height="100" style="max-width: 100px; max-height: 100px;"> -->
 
       </div>
       <div>
@@ -227,7 +226,7 @@
         <div class="form-group" *ngIf="editButton">
           <label for="majorprojectdescription">Upload any Certification:</label>
           <input type="file" class="form-control" style="border: none" (change)="readUrl($event,'intern')"
-            formControlName="internCerftification" [attr.disabled]="editButton==false?'':null">
+            [attr.disabled]="editButton==false?'':null" />
         </div>
         <div class="form-group" *ngIf="editButton">
 
@@ -321,7 +320,7 @@
         <div class="form-group">
           <label for="majorprojectdescription">Any other Certificate:</label>
           <input type="file" class="form-control" style="border: none" (change)="readUrl($event,'training')"
-            formControlName="trainingCertification" [attr.disabled]="editButton==false?'':null">
+            [attr.disabled]="editButton==false?'':null" />
         </div>
 
 

@@ -606,6 +606,8 @@ export class AppComponent {
         }
 
 
+      }, (err) => {
+        alert(err.json().message.error);
       });
 
 
@@ -798,6 +800,8 @@ export class AppComponent {
       } else {
         alert(res.json().message.error);
       }
+    }, (err) => {
+      alert(err.json().message.error);
     })
   }
   selectedTechTalkType;
@@ -852,10 +856,12 @@ export class AppComponent {
         // alert(res.json().message);
         document.getElementById("closeCreateTechTeachModal").click();
         this.createTechTalkForm.reset();
-        // location.reload();
+        location.reload();
       } else {
         alert(res.json().message.error);
       }
+    }, (err) => {
+      alert(err.json().message.error);
     })
   }
 

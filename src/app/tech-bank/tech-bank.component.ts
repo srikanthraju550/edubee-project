@@ -34,7 +34,8 @@ export class TechBankComponent implements OnInit {
   techFilter = "";
   subTechFilter = "";
   techEventFilter: any = { user_name: '', technology: '', sub_technology: '' };
-
+  date;
+  dataDate;
   createTech() {
     this.app.
       createTechTalkForm = this.fb.group({
@@ -124,6 +125,15 @@ export class TechBankComponent implements OnInit {
     let userDetails = this.getLoggedInUserObject();
     this.httpnew.get(this.Baseurl + 'tech-teach-list').subscribe(response => {
       this.ResponseData = response.json().data.reverse();
+      for (var i = 0; i < this.ResponseData.length; i++) {
+        this.dataDate = new Date(this.ResponseData[i].event_date);
+
+        if (this.date.getFullYear() >= this.dataDate.getFullYear()) {
+          if (this.date.getMonth() + 1 >= this.dataDate.getMonth() + 1) {
+            this.ResponseData[i].showReg = false;
+          }
+        }
+      }
     });
 
   }
@@ -132,6 +142,17 @@ export class TechBankComponent implements OnInit {
     let userDetails = this.getLoggedInUserObject();
     this.httpnew.get(this.Baseurl + 'tech-talk-list').subscribe(response => {
       this.techtalkdetails = response.json().data.reverse();
+      this.date = new Date();
+      for (var i = 0; i < this.techtalkdetails.length; i++) {
+        this.dataDate = new Date(this.techtalkdetails[i].event_date);
+        console.log(this.dataDate.getMonth() + 1);
+        if (this.date.getFullYear() >= this.dataDate.getFullYear()) {
+          if (this.dataDate.getMonth() + 1 >= this.date.getMonth() + 1) {
+            this.techtalkdetails[i].showReg = false;
+          }
+        }
+      }
+      console.log(this.techtalkdetails);
     });
 
   }
