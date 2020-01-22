@@ -105,7 +105,7 @@ export class TechBankComponent implements OnInit {
   }
   ResponseData = [];
 
-  ngOnInit(): void {
+  ngOnInit() {
     // this.http.get(this.endpoint + 'getHomePageContent.php' + "/random=" + new Date().getTime()).subscribe(data => {
     //   //this.http.get('http://localhost:8080/edubee/getHomePageContent.php'+"/random="+new Date().getTime()).subscribe(data => {
     //   this.sliderContent = data['0'].sliderContent;
@@ -125,12 +125,16 @@ export class TechBankComponent implements OnInit {
     let userDetails = this.getLoggedInUserObject();
     this.httpnew.get(this.Baseurl + 'tech-teach-list').subscribe(response => {
       this.ResponseData = response.json().data.reverse();
+      this.date = new Date();
+
       for (var i = 0; i < this.ResponseData.length; i++) {
         this.dataDate = new Date(this.ResponseData[i].event_date);
-
         if (this.date.getFullYear() >= this.dataDate.getFullYear()) {
           if (this.date.getMonth() + 1 >= this.dataDate.getMonth() + 1) {
-            this.ResponseData[i].showReg = false;
+            if (this.date.getDate() >= this.dataDate.getDate()) {
+              this.ResponseData[i].showReg = false;
+            }
+
           }
         }
       }
@@ -147,8 +151,10 @@ export class TechBankComponent implements OnInit {
         this.dataDate = new Date(this.techtalkdetails[i].event_date);
         console.log(this.dataDate.getMonth() + 1);
         if (this.date.getFullYear() >= this.dataDate.getFullYear()) {
-          if (this.dataDate.getMonth() + 1 >= this.date.getMonth() + 1) {
-            this.techtalkdetails[i].showReg = false;
+          if (this.date.getMonth() + 1 >= this.dataDate.getMonth() + 1) {
+            if (this.date.getDate() >= this.dataDate.getDate()) {
+              this.techtalkdetails[i].showReg = false;
+            }
           }
         }
       }
