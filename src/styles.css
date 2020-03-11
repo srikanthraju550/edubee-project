@@ -383,7 +383,26 @@ width: 85%;
     max-height: 460px;
 }
 
+a{
+    font-size: 13px;
+}
 
+h1{
+    font-size: 30px;
+}
+
+.title-style{
+    position: relative;
+    top: 11px;
+    color: #420aa7;
+    font-size:27px
+}
+
+.profile-title{
+    color : white;
+     margin: 0.5em;
+     font-size: 20px;
+}
 
 /* .ovrflw_h{
     overflow: hidden;

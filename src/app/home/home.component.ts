@@ -220,7 +220,7 @@ export class HomeComponent implements OnInit {
       this.techteachdetails = data.json().tech_teach_details;
       this.aboutData = data.json().about_us[0];
       for (var i = 0; i < this.techteachdetails.length; i++) {
-        this.techteachdetails[i].topic = 'tech teach';
+        // this.techteachdetails[i].topic = 'tech teach';
         var eventObject = {
           start: new Date(this.techteachdetails[i].event_date),
           end: new Date(this.techteachdetails[i].event_date),
@@ -230,9 +230,9 @@ export class HomeComponent implements OnInit {
         this.events.push(eventObject);
       }
 
-      for (var i = 0; i < this.techtalkdetails.length; i++) {
-        this.techtalkdetails[i].topic = 'tech talk';
-      }
+      // for (var i = 0; i < this.techtalkdetails.length; i++) {
+      //   this.techtalkdetails[i].topic = 'tech talk';
+      // }
 
       this.refresh.next();
       this.calendarOptions = {
@@ -285,6 +285,7 @@ export class HomeComponent implements OnInit {
     this.techTalkData = [];
     for (var i = 0; i < this.techteachdetails.length; i++) {
       this.dataDate = new Date(this.techteachdetails[i].event_date);
+      this.techteachdetails[i].type = 'Tech Teach';
       if (this.date.getFullYear() == this.dataDate.getFullYear()) {
         if (this.date.getMonth() + 1 === this.dataDate.getMonth() + 1) {
           this.techTeachData.push(this.techteachdetails[i]);
@@ -294,6 +295,7 @@ export class HomeComponent implements OnInit {
 
     for (var i = 0; i < this.techtalkdetails.length; i++) {
       this.dataDate = new Date(this.techtalkdetails[i].event_date);
+      this.techtalkdetails[i].type = 'Tech Talk';
       if (this.date.getFullYear() == this.dataDate.getFullYear()) {
         if (this.date.getMonth() + 1 === this.dataDate.getMonth() + 1) {
           this.techTalkData.push(this.techtalkdetails[i]);
@@ -331,6 +333,7 @@ export class HomeComponent implements OnInit {
         }
         if (this.date.getFullYear() == this.dataDate.getFullYear()) {
           if (this.date.getMonth() + 1 === this.dataDate.getMonth() + 1) {
+
             this.calenderDataForCalender.push(this.techtalkdetails[i]);
           }
         }
@@ -359,7 +362,7 @@ export class HomeComponent implements OnInit {
       var eventObject = {
         start: new Date(data.event_date),
         end: new Date(data.event_date),
-        title: data.topic + ': ' + data.topic,
+        title: data.type + ':' + data.topic,
         color: colors.lightblue
       };
       this.events.push(eventObject);

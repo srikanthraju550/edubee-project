@@ -549,7 +549,7 @@ export class AppComponent {
           document.getElementById("createProjectModal").click();
           document.getElementById("createStuvationModal").click();
           this.router.navigate(['/stuvation'])
-          location.reload();
+          //location.reload();;
         } else {
           alert(data.json().message.error);
         }
@@ -632,7 +632,7 @@ export class AppComponent {
     //   if (parsedData['stuvationdetailsquery'] == 'done') {
     //     alert('Stuvation has been sent for Admin Approval. After confirmation it will be reflected.');
     //     document.getElementById("closeCreateStuvationFormModal").click();
-    //     location.reload();
+    //     //location.reload();;
     //   } else if (parsedData['stuvationdetailsquery'] == 'failed') {
     //     alert('Stuvation creation Failed');
 
@@ -783,7 +783,7 @@ export class AppComponent {
       '&reg_fee=' + this.createTechTeachForm.value.registrationDetails.regfee +
       '&eligibility=' + this.createTechTeachForm.value.registrationDetails.eligibility +
       '&seat_capacity=' + this.createTechTeachForm.value.registrationDetails.seatcapacity +
-      '&spekaer_name=' + this.createTechTeachForm.value.expertDetails.name +
+      '&expert_name=' + this.createTechTeachForm.value.expertDetails.name +
       '&company=' + this.createTechTeachForm.value.expertDetails.company +
       '&speaker_type=' + this.createTechTeachForm.value.expertDetails.speakerType +
       '&working_location=' + this.createTechTeachForm.value.expertDetails.worklocation +
@@ -796,7 +796,7 @@ export class AppComponent {
         // alert(res.json().message);
         this.createTechTeachForm.reset();
         document.getElementById("closeCreateTechTeachModal").click();
-        // location.reload();
+        location.reload();
       } else {
         alert(res.json().message.error);
       }
@@ -887,7 +887,7 @@ export class AppComponent {
   //     console.log(parsedData);
   //     if (parsedData['techtalkdetailsQuery'] == 'done') {
   //       alert('Tech Talk Created');
-  //       location.reload();
+  //       //location.reload();;
   //       document.getElementById("closeCreateTechTalkModal").click();
   //       this.createTechTalkForm.reset();
   //     } else if (parsedData['techtalkdetailsQuery'] == 'failed') {

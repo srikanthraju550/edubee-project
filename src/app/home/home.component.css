@@ -440,8 +440,8 @@ div#ourTeamSlider .carousel-item{
 }
 
 .tech-data-div h1{
-  color: midnightblue;
-  font-size: 35px;
+  /* color: midnightblue;
+  font-size: 35px; */
   margin-top: 45px;
 }
 
@@ -624,7 +624,7 @@ h1.custom-heading{
 }
 .custom-ss-student-thoughts-block {
   background: #f3f3f3;
-  padding: 40px 0px;
+  padding-bottom: 25px;
 }
 .testimo{
   background: white;

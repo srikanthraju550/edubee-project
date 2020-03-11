@@ -46,16 +46,16 @@
 
                     </ul>
                 </li>
-                <li class="showInMobile" *ngIf="checkLoginStatus()"><a class="main-header" style="font-size:13px;"
-                        data-toggle="modal" href="#" data-target="#loginModal">LOGIN</a></li>
-                <li class="showInMobile" *ngIf="checkLoginStatus()"> <a class="main-header" style="font-size:13px;"
-                        data-toggle="dropdown" href="#" role="button">SIGN UP ￬</a>
+                <li class="showInMobile" *ngIf="checkLoginStatus()"><a class="main-header" data-toggle="modal" href="#"
+                        data-target="#loginModal">LOGIN</a></li>
+                <li class="showInMobile" *ngIf="checkLoginStatus()"> <a class="main-header" data-toggle="dropdown"
+                        href="#" role="button">SIGN UP ￬</a>
 
                     <ul class="hidden sign-up-sub">
-                        <li><a class="main-header" style="font-size:13px;" data-toggle="modal"
-                                data-target="#studentRegistrationModal" href="#">STUDENT</a></li>
-                        <li> <a class="main-header" style="font-size:13px;" data-toggle="modal"
-                                data-target="#engineerRegistrationModal" href="#">ENGINEER</a></li>
+                        <li><a class="main-header" data-toggle="modal" data-target="#studentRegistrationModal"
+                                href="#">STUDENT</a></li>
+                        <li> <a class="main-header" data-toggle="modal" data-target="#engineerRegistrationModal"
+                                href="#">ENGINEER</a></li>
                     </ul>
 
                 </li>
@@ -99,17 +99,16 @@
                             </li>
                             <li><a (click)="goStuation()">Stuvation</a></li>
                             <li class="showInMobile" *ngIf="checkLoginStatus()"><a class="main-header"
-                                    style="font-size:13px;" data-toggle="modal" href="#"
-                                    data-target="#loginModal">LOGIN</a></li>
+                                    data-toggle="modal" href="#" data-target="#loginModal">LOGIN</a></li>
                             <li class="showInMobile" *ngIf="checkLoginStatus()"> <a class="main-header"
-                                    style="font-size:13px;" data-toggle="dropdown" href="#" role="button">SIGN UP <i
-                                        class="fa fa-caret-down" style="display: inline;"></i></a>
+                                    data-toggle="dropdown" href="#" role="button">SIGN UP <i class="fa fa-caret-down"
+                                        style="display: inline;"></i></a>
 
                                 <ul class="hidden sign-up-sub">
-                                    <li><a class="main-header" style="font-size:13px;" data-toggle="modal"
+                                    <li><a class="main-header" data-toggle="modal"
                                             data-target="#studentRegistrationModal" href
                                             (click)="openRegistrationFprm()">STUDENT</a></li>
-                                    <li> <a class="main-header" style="font-size:13px;" data-toggle="modal"
+                                    <li> <a class="main-header" data-toggle="modal"
                                             data-target="#engineerRegistrationModal" href
                                             (click)="openRegistrationFprm()">ENGINEER</a></li>
                                 </ul>
@@ -148,21 +147,21 @@
                     </li>
                 </ul> -->
                 <ul class="login-btn">
-                    <li *ngIf="checkLoginStatus()"><a class="main-header" style="font-size:13px;text-align: center;"
+                    <li *ngIf="checkLoginStatus()"><a class="main-header" style="text-align: center;"
                             data-toggle="modal" href="#" data-target="#loginModal"><i class="fa fa-sign-in"></i>&nbsp;
                             LOGIN</a></li>
-                    <li *ngIf="checkLoginStatus()"> <a class="main-header" style="font-size:13px;text-align: center;"
+                    <li *ngIf="checkLoginStatus()"> <a class="main-header" style="text-align: center;"
                             data-toggle="modal" data-target="#studentRegistrationModal" href="#" role="button">&nbsp;<i
                                 class="fa fa-user-plus"></i>&nbsp;
                             SIGN
                             UP</a>
 
                         <!-- <ul class="hidden sign-up-sub">
-                            <li><a class="main-header" style="font-size:13px;" data-toggle="modal"
+                            <li><a class="main-header"  data-toggle="modal"
                                     data-target="#studentRegistrationModal" href
                                     (click)="openRegistrationFprm()">STUDENT</a>
                             </li>
-                            <li> <a class="main-header" style="font-size:13px;" data-toggle="modal"
+                            <li> <a class="main-header"  data-toggle="modal"
                                     data-target="#engineerRegistrationModal" href
                                     (click)="openRegistrationFprm()">ENGINEER</a></li>
                         </ul> -->
@@ -176,7 +175,7 @@
     top: 20px;
     position: absolute;
     /* left: -60px; */
-    font-size: 14px;
+    
     float: left;
     left:2%;
 ">
@@ -288,8 +287,7 @@
         <!-- <span style="width: 100%;  color: black;">
         <hr style="border-top: 1px solid black !important;" /></span> -->
 
-        <div class="col-12"
-            style=" color: black;; font-size: small;margin-top: 13px;text-align: center;color: #7c12d0;">
+        <div class="col-12" style=" color: black;font-size:small;margin-top: 13px;text-align: center;color: #7c12d0;">
             Copyright @ 2018 theengineersfactory.com. All rights reserved.
         </div>
         <!-- <div class="col-6">
@@ -308,12 +306,11 @@
 <!-- Modal -->
 <div id="createTechArticleModal" class="modal fade" role="dialog">
     <div class="modal-dialog createtech">
-
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                <span style="text-align: center; color: white; width: 100%;">
-                    <h4>CREATE A TECH ARTICLE</h4>
+                <span style="text-align: center; color: white; width: 100%;font-size: 27px;">
+                    <h4>Create a Tech Article</h4>
                 </span>
                 <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
                     id="closeCreateTechArticleModal">&times;</button>
@@ -455,8 +452,8 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                <span style="text-align: center; color: white; width: 100%;">
-                    <h4>CREATE INNOVATION PROZ</h4>
+                <span style="text-align: center; color: white; width: 100%;font-size: 27px;">
+                    <h4>Create Innovation Proz</h4>
                 </span>
                 <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
                     id="closeCreateStuvationFormModal">&times;</button>
@@ -510,8 +507,7 @@
                             </select>
                         </div>
                     </div>
-
-                    <h3 style="color:#5b3ab1 !important;font-size:20px;">Innovation Details :</h3>
+                    <h3 style="color:#5b3ab1 !important;font-size: 20px;">Innovation Details :</h3>
                     <div class="row">
                         <div class="form-group col-12">
                             <label for="idea"><span class="red">*</span> Idea:</label>
@@ -672,8 +668,8 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                <span style="text-align: center; color: white; width: 100%;">
-                    <h4>CREATE ENGSHIP</h4>
+                <span style="text-align: center; color: white; width: 100%;font-size: 27px;">
+                    <h4>Create Engship</h4>
                 </span>
                 <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
                     id="closeCreateEngshipnFormModal">&times;</button>
@@ -916,7 +912,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                <span style="text-align: center; color: white; width: 100%;">
+                <span style="text-align: center; color: white; width: 100%;font-size: 27px;">
                     <h4>Engship Terms and Conditions</h4>
                 </span>
                 <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
@@ -942,8 +938,8 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                <span style="text-align: center; color: white; width: 100%;">
-                    <h4>CREATE Academic Project</h4>
+                <span style="text-align: center; color: white; width: 100%;font-size: 27px;">
+                    <h4>Create Academic Project</h4>
                 </span>
                 <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
                     id="closeCreateStuvationFormModal">&times;</button>
@@ -1147,8 +1143,8 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                <span style="text-align: center; color: white; width: 100%;">
-                    <h4>CREATE A TECH CONNECT</h4>
+                <span style="text-align: center; color: white; width: 100%;font-size: 27px;">
+                    <h4>Create a Tech Connect</h4>
                 </span>
                 <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
                     id="closeCreateTechTeachModal">&times;</button>
@@ -1217,7 +1213,7 @@
 
 
                     <span style="color: #176086; text-decoration: underline; ">
-                        <h3 style="color: #176086  !important;font-size:20px"><span class="red">*</span> Venue
+                        <h3 style="color: #176086  !important;font-size: 20px;"> Venue
                             Details
                         </h3>
                     </span>
@@ -1270,7 +1266,7 @@
                         </div>
                     </div>
                     <span style="color: #176086; text-decoration: underline;">
-                        <h3 style="color: #176086  !important;font-size:20px">Registration Details</h3>
+                        <h3 style="color: #176086  !important;font-size: 20px;">Registration Details</h3>
                     </span>
                     <div formGroupName="registrationDetails">
                         <div class="row">
@@ -1316,8 +1312,9 @@
                         </div>
                     </div>
                     <span style="color: #176086; text-decoration: underline; ">
-                        <h3 style="color: #176086  !important;font-size:20px">Industrial Expert Details</h3><span
-                            id="addbox" style="cursor:pointer;">&#43;</span>
+                        <h3 style="color: #176086  !important;font-size: 20px;">Industrial Expert Details</h3>
+                        <!-- <span
+                            id="" style="cursor:pointer;">&#43;</span> -->
                     </span>
                     <div formGroupName="expertDetails">
                         <div class="row">
@@ -1453,7 +1450,7 @@
                         </div>
                     </div>
                     <span style="color: #176086  !important; text-decoration: underline; ">
-                        <h3 style="color: #176086  !important;font-size:20px">Registration Details</h3>
+                        <h3 style="color: #176086  !important;font-size: 20px;">Registration Details</h3>
                     </span>
                     <div formGroupName="registrationDetails">
                         <div class="row">
@@ -1499,7 +1496,7 @@
                         </div>
                     </div>
                     <span style="color: #176086  !important; text-decoration: underline; ">
-                        <h3 style="color: #176086  !important;font-size:20px">Speaker Details</h3>
+                        <h3 style="color: #176086  !important;font-size: 20px;">Speaker Details</h3>
                     </span>
                     <div formGroupName="expertDetails">
                         <div class="row">
@@ -1571,8 +1568,8 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                <span style="text-align: center; color: white; width: 100%;">
-                    <h4>CREATE A TECH TEACH</h4>
+                <span style="text-align: center; color: white; width: 100%;font-size: 27px;">
+                    <h4>Create a Tech Teach</h4>
                 </span>
                 <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
                     id="closeCreateTechTeachModal">&times;</button>
@@ -1623,7 +1620,7 @@
 
 
                     <span style="color: #176086; text-decoration: underline; ">
-                        <h3 style="color: #176086  !important;font-size:20px"><span class="red">*</span> Venue
+                        <h3 style="color: #176086  !important;font-size: 20px;"> Venue
                             Details
                         </h3>
                     </span>
@@ -1676,7 +1673,7 @@
                         </div>
                     </div>
                     <span style="color: #176086; text-decoration: underline;">
-                        <h3 style="color: #176086  !important;font-size:20px">Registration Details</h3>
+                        <h3 style="color: #176086  !important;font-size: 20px;">Registration Details</h3>
                     </span>
                     <div formGroupName="registrationDetails">
                         <div class="row">
@@ -1722,8 +1719,8 @@
                         </div>
                     </div>
                     <span style="color: #176086; text-decoration: underline; ">
-                        <h3 style="color: #176086  !important;font-size:20px">Industrial Expert Details</h3><span
-                            id="addbox" style="cursor:pointer;">&#43;</span>
+                        <h3 style="color: #176086  !important;font-size: 20px;">Industrial Expert Details</h3>
+                        <!-- <span                            id="addbox" style="cursor:pointer;">&#43;</span> -->
                     </span>
                     <div formGroupName="expertDetails">
                         <div class="row">
@@ -1794,9 +1791,9 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                <span style="text-align: center; color: white; width: 100%;">
-                    <h4 *ngIf="showacadamicProz">CREATE ACADEMIC PROZ</h4>
-                    <h4 *ngIf="showInnovationProz">CREATE INNOVATION PROZ</h4>
+                <span style="text-align: center; color: white; width: 100%;font-size: 27px;">
+                    <h4 *ngIf="showacadamicProz">Create Academic Project</h4>
+                    <h4 *ngIf="showInnovationProz">Create Innovation Proz</h4>
 
                 </span>
                 <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
@@ -1872,7 +1869,7 @@
                         </div>
                     </div>
 
-                    <h3 style="color:#5b3ab1 !important;font-size:20px;">Innovation Details :</h3>
+                    <h3 style="color:#5b3ab1 !important;font-size: 20px;">Innovation Details :</h3>
                     <div class="row">
                         <div class="form-group col-12">
                             <label for="idea"><span class="red">*</span> Idea:</label>
@@ -2219,8 +2216,8 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                <span style="text-align: center; color: white; width: 100%;">
-                    <h4>CREATE A TECH TALK</h4>
+                <span style="text-align: center; color: white; width: 100%;font-size: 27px;">
+                    <h4>Create a Tech Talk</h4>
                 </span>
                 <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
                     id="closeCreateTechTalkModal">&times;</button>
@@ -2263,7 +2260,7 @@
 
 
                     <span style="color: #176086 !important; text-decoration: underline; ">
-                        <h3 style="color: #176086 !important;">Venue Details</h3>
+                        <h3 style="color: #176086 !important;font-size:20px">Venue Details</h3>
                     </span>
                     <div formGroupName="venueDetails">
 
@@ -2311,7 +2308,7 @@
                         </div>
                     </div>
                     <span style="color: #176086 !important; text-decoration: underline; ">
-                        <h3 style="color: #176086 !important;">Registration Details</h3>
+                        <h3 style="color: #176086 !important;font-size: 20px;">Registration Details</h3>
                     </span>
                     <div formGroupName="registrationDetails">
                         <div class="row">
@@ -2357,7 +2354,7 @@
                         </div>
                     </div>
                     <span style="color: #176086 !important; text-decoration: underline; ">
-                        <h3 style="color: #176086 !important;">Speaker Details</h3>
+                        <h3 style="color: #176086 !important;font-size: 20px;">Speaker Details</h3>
                     </span>
                     <div formGroupName=" expertDetails">
                         <div class="row">
@@ -2428,8 +2425,8 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                <span style="text-align: center; color: white; width: 100%;">
-                    <h4>LOGIN</h4>
+                <span style="text-align: center; color: white; width: 100%;font-size: 27px;">
+                    <h4>Login</h4>
                 </span>
                 <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
                     id="closeLoginForm">&times;</button>
@@ -2496,8 +2493,8 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                <span style="text-align: center; color: white; width: 100%;">
-                    <h4>LOGIN ALERT</h4>
+                <span style="text-align: center; color: white; width: 100%;font-size: 27px;">
+                    <h4>Login Alert</h4>
                 </span>
                 <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
                     id="closeLoginForm">&times;</button>
@@ -2521,7 +2518,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                <span style="text-align: center; color: white; width: 100%;">
+                <span style="text-align: center; color: white; width: 100%;font-size: 27px;">
                     <h4>Stuvation Details</h4>
                 </span>
                 <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
@@ -2553,7 +2550,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                <span style="text-align: center; color: white; width: 100%;">
+                <span style="text-align: center; color: white; width: 100%;font-size: 27px;">
                     <h4>TechTeach Details</h4>
                 </span>
                 <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
@@ -2590,7 +2587,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                <span style="text-align: center; color: white; width: 100%;">
+                <span style="text-align: center; color: white; width: 100%;font-size: 27px;">
                     <h4>TechTalk Details</h4>
                 </span>
                 <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
@@ -2623,7 +2620,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                <span style="text-align: center; color: white; width: 100%;">
+                <span style="text-align: center; color: white; width: 100%;font-size: 27px;">
                     <h4>Academic Project Details</h4>
                 </span>
                 <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
@@ -2656,7 +2653,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                <span style="text-align: center; color: white; width: 100%;">
+                <span style="text-align: center; color: white; width: 100%;font-size: 27px;">
                     <h4>ProzectMe Details</h4>
                 </span>
                 <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
@@ -2689,7 +2686,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                <span style="text-align: center; color: white; width: 100%;">
+                <span style="text-align: center; color: white; width: 100%;font-size: 27px;">
                     <h4>Engship Details</h4>
                 </span>
                 <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
@@ -2724,7 +2721,7 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                    <span style="text-align: center; color: white; width: 100%;">
+                    <span style="text-align: center; color: white; width: 100%;font-size: 27px;">
                         <h4>Join as Student</h4>
                     </span>
                     <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"
@@ -2736,14 +2733,14 @@
                                 class="radio-btns">&nbsp;</span><span class="white-radio">&nbsp;</span><i
                                 class="fa fa-check" *ngIf="showStudentForm"></i>STUDENT
                         </p> &nbsp;&nbsp;
-                        <!-- <a class="main-header" style="font-size:13px;" data-toggle="modal"
+                        <!-- <a class="main-header"  data-toggle="modal"
                         (click)="openStudentForm()">STUDENT</a> -->
                         <p (click)="openEngForm()" style="color:black !important;position:relative"> <span
                                 class="radio-btns">&nbsp;</span><span class="white-radio">&nbsp;</span><i
                                 class="fa fa-check" *ngIf="showgEnForm"></i>ENGINEER
                         </p>
                     </div>
-                    <!-- <a class="main-header" style="font-size:13px;" data-toggle="modal"
+                    <!-- <a class="main-header"  data-toggle="modal"
                         (click)="openEngForm()">ENGINEER</a> -->
 
                     <form [formGroup]="studentRegistrationForm" (ngSubmit)="onStudentRegistrationFormSubmit()"
@@ -2856,7 +2853,7 @@
                                 class="radio-btns">&nbsp;</span><span class="white-radio">&nbsp;</span><i
                                 class="fa fa-check" *ngIf="showStudentForm"></i>STUDENT
                         </p>&nbsp;&nbsp;
-                        <!-- <a class="main-header" style="font-size:13px;" data-toggle="modal"
+                        <!-- <a class="main-header"  data-toggle="modal"
                         (click)="openStudentForm()">STUDENT</a> -->
                         <p (click)="openEngForm()" style="color:black !important;position:relative"> <span
                                 class="radio-btns">&nbsp;</span><span class="white-radio">&nbsp;</span><i
@@ -2968,7 +2965,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #36099f; text-align: center; align-items: center;">
-                <span style="text-align: center; color: white; width: 100%;">
+                <span style="text-align: center; color: white; width: 100%;font-size: 27px;">
                     <h4>Add Thoughts</h4>
                 </span>
                 <button style="float: right; color: white;" type="button" class="close" data-dismiss="modal"

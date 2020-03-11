@@ -1,7 +1,7 @@
 <div class="row tech-bank-filters" style="background-color: #F4F6F5; height: auto; ">
   <div class="col-md-4">&nbsp;</div>
   <div class="col-md-4 text1">
-    <h2 class="text-center tch-m-hdng">Tech Connect Programmes</h2>
+    <h4 class="text-center tch-m-hdng title-style">Tech Connect Programmes</h4>
   </div>
   <div class="col-md-4">
     <button *ngIf="!checkLoginStatus()" type="button" data-toggle="modal" class="buttonarticle"
@@ -30,7 +30,7 @@
     </select>
   </div>
   <div class="col-md-7 fltrs">
-    <div class="row" style="font-size: 1rem;">
+    <div class="row">
       <div class="col-4">
         <p (click)="selectKeyword()"> <span class="radio-btns">&nbsp;</span><span class="white-radio">&nbsp;</span><i
             class="fa fa-check" *ngIf="showKeyword"></i> Keyword</p>
@@ -86,12 +86,12 @@
             </div>
 
             <div class="col-md-3">
-              <span class="cardSubHeading crd-hdng">Speaker Details</span>
+              <span class="cardSubHeading crd-hdng">Industrial Details</span>
               <div><b class="crd-lft">Name</b> <a [routerLink]="['/myprofile',techteach.user_id]"
-                  style="color: black"><span class="crd-ryt">: {{techteach.speaker_name}}</span></a></div>
+                  style="color: black"><span class="crd-ryt">: {{techteach.expert_name}}</span></a></div>
               <div><b class="crd-lft">Company</b> <span class="crd-ryt">:
                   {{techteach.company}}</span></div>
-              <div><b class="crd-lft">Positionl</b> <span class="crd-ryt" style="font-size: 14px;">:
+              <div><b class="crd-lft">Positionl</b> <span class="crd-ryt">:
                   {{techteach.position}}</span></div>
             </div>
 
@@ -100,7 +100,7 @@
               <div><b class="crd-lft">Place</b> <span class="crd-ryt">: {{techteach.place}}</span></div>
               <div><b class="crd-lft">Address</b> <span class="crd-ryt">: {{techteach.address}}</span>
               </div>
-              <div><b class="crd-lft" style="font-size: 13px;">City</b> <span class="crd-ryt">:
+              <div><b class="crd-lft">City</b> <span class="crd-ryt">:
                   {{techteach.city}}</span></div>
               <div><b class="crd-lft">Date</b> <span class="crd-ryt">: {{techteach.event_date}}</span></div>
             </div>
@@ -155,16 +155,15 @@
             </div>
 
             <div class="col-md-3">
-              <span class="cardSubHeading crd-hdng">Speaker Details</span>
+              <span class="cardSubHeading crd-hdng">Industrial Details</span>
               <div><b class="crd-lft">Name</b> <span class="crd-ryt">: {{techtalkdata.speaker_name}}</span></div>
               <div><b class="crd-lft">Company</b> <span class="crd-ryt">:
                   {{techtalkdata.company}}</span></div>
-              <div><b class="crd-lft">Position</b> <span class="crd-ryt" style="font-size: 14px;">:
+              <div><b class="crd-lft">Position</b> <span class="crd-ryt">:
                   {{techtalkdata.position}}</span></div>
-              <div><b class="crd-lft">Email</b> <span class="crd-ryt" style="font-size: 14px;">:
+              <div><b class="crd-lft">Email</b> <span class="crd-ryt">:
                   {{techtalkdata.contact_email}}</span></div>
-              <div><b class="crd-lft">Contact</b> <span class="crd-ryt"
-                  style="font-size: 14px;">:{{techtalkdata.contact_number}}</span></div>
+              <div><b class="crd-lft">Contact</b> <span class="crd-ryt">:{{techtalkdata.contact_number}}</span></div>
             </div>
 
             <div class="col-md-3">
@@ -276,7 +275,7 @@
                 <br />
                 <b>Abstract</b> :<span style="word-wrap: break-word"> {{selectedTechTeach.abstract}}</span>
                 <br />
-                <b>Speaker Details</b> : {{selectedTechTeach.speaker_name}}
+                <b>Industrial Details</b> : {{selectedTechTeach.speaker_name}}
                 <br />
                 <b>No. of Years Experience</b> : {{selectedTechTeach.experience}}
                 <br />
@@ -370,7 +369,7 @@
                 <br />
                 <b>Tech Talk Type</b> : {{selectedTechTalk.tech_talk_type}}
                 <br />
-                <b>Speaker Details</b> : {{selectedTechTalk.speaker_name}}
+                <b>Industrial Details</b> : {{selectedTechTalk.speaker_name}}
                 <br />
                 <b>No. of Years Experience</b> : {{selectedTechTalk.experience}}
                 <br />
