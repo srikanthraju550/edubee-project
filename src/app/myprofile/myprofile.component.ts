@@ -161,12 +161,13 @@ export class MyprofileComponent implements OnInit {
   exportAsXLSX(): void {
     this.excelService.exportAsExcelFile(this.excelData, 'Profile-data');
   }
-
+  public techteachlength;
 
   getUserData() {
     this.httpnew.get(this.url + 'user-profile' + '?user_id=' + this.user_id).subscribe(data => {
       this.excelData = data.json().data;
       this.userData = data.json();
+      this.techteachlength = this.userData['tech_teach'].length
       this.profileData.intern_certificate = data.json().data[0].intern_certificate;
       this.profileData.certificate2 = data.json().data[0].certificate2;
       this.userImage = data.json().data[0].image;
