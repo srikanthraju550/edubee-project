@@ -58,7 +58,7 @@ export class TechArticleComponent implements OnInit {
 
     let userDetails = this.getLoggedInUserObject();
     if (!this.checkLoginStatus()) {
-      this.userid = userDetails['user_id'].toString();
+      this.userid = userDetails['user_id'];
     }
     console.log(this.userid);
 
@@ -76,8 +76,10 @@ export class TechArticleComponent implements OnInit {
   getArticles() {
     let userDetails = this.getLoggedInUserObject();
     this.httpnew.get(this.Baseurl + 'tech-article-list' + '?user_id=' + userDetails['user_id']).subscribe(response => {
-      this.ResponseDataArticle = response.json().data;
-      console.log(this.ResponseDataArticle);
+      this.ResponseDataArticle = response.json().data.reverse();
+      this.ResponseDataArticle.forEach(element => {
+        element.user_id = parseInt(element.user_id);
+      });
       this.file_path = response.json().image_path;
       this.file_path1 = response.json().file_path;
       // console.log(this.ResponseDataArticle);

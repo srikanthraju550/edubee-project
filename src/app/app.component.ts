@@ -250,7 +250,7 @@ export class AppComponent {
     //document.getElementById("datefield").setAttribute("min", today.toDateString());
     // let url = this.endpoint1 + 'getHomePageContent.php' + "/random=" + new Date().getTime();
     let userDetails = this.getLoggedInUserObject();
-
+    userDetails['Image'] = sessionStorage.getItem('userProfileImage');
     this.userProfileImage = sessionStorage.getItem('userProfileImage');
 
     console.log(this.userProfileImage);
@@ -398,6 +398,7 @@ export class AppComponent {
     agreeTermsAndConditions: [false, Validators.required]
 
   });
+
 
   _keyPress(event: any) {
     const pattern = /[0-9\+\-\ ]/;
@@ -549,7 +550,7 @@ export class AppComponent {
           document.getElementById("createProjectModal").click();
           document.getElementById("createStuvationModal").click();
           this.router.navigate(['/stuvation'])
-          //location.reload();;
+          location.reload();;
         } else {
           alert(data.json().message.error);
         }
@@ -588,7 +589,7 @@ export class AppComponent {
         '&is_looking_for_sponsership=' + this.createProjtecStuvationForm.value.lookingSponsorship +
         '&no_of_sponsers_required=' + this.createProjtecStuvationForm.value.noOfSponsors +
         '&file=' + (this.url === undefined ? '' : this.url) +
-        '&cfile=' + this.createProjtecStuvationForm.value.file +
+        '&cfile=' + (this.url === undefined ? '' : this.url) +
         '&is_looking_for_guidance=' + this.createProjtecStuvationForm.value.lookingProfessorGuidance +
         '&is_looking_for_mentorship=' + this.createProjtecStuvationForm.value.lookingMentorship
 
@@ -747,6 +748,8 @@ export class AppComponent {
     userDetails: this.fb.group(this.getLoggedInUserObject())
 
   });
+
+
   onCreateTechTeachFormSubmit() {
     this.createTechTeachForm.value.userDetails = this.getLoggedInUserObject();
     console.warn(this.createTechTeachForm.value);
@@ -757,6 +760,16 @@ export class AppComponent {
     if (this.createTechTeachForm.invalid) {
       alert('Required fields Missing, Please fill * marks fields');
       return;
+    }
+
+    var fTime = this.createTechTeachForm.value.venueDetails.fromTime.split(':');
+    var tTime = this.createTechTeachForm.value.venueDetails.toTime.split(':');
+    if (fTime.length == 0) {
+      this.createTechTeachForm.value.venueDetails.fromTime = this.createTechTeachForm.value.venueDetails.fromTime + ':00';
+    }
+
+    if (tTime.length == 0) {
+      this.createTechTeachForm.value.venueDetails.toTime = this.createTechTeachForm.value.venueDetails.toTime + ':00';
     }
 
     let userDetails = this.getLoggedInUserObject();
@@ -776,8 +789,8 @@ export class AppComponent {
       '&city=' + this.createTechTeachForm.value.venueDetails.city +
       '&address=' + this.createTechTeachForm.value.venueDetails.address +
       '&event_date=' + this.createTechTeachForm.value.venueDetails.date +
-      '&from_time=' + this.createTechTeachForm.value.venueDetails.fromTime +
-      '&to_time=' + this.createTechTeachForm.value.venueDetails.toTime +
+      '&from_time=' + this.createTechTeachForm.value.venueDetails.fromTime + ':00' +
+      '&to_time=' + this.createTechTeachForm.value.venueDetails.toTime + ':00' +
       '&web_address=' + this.createTechTeachForm.value.registrationDetails.webaddress +
       '&max_reg_allowed=' + this.createTechTeachForm.value.registrationDetails.maxregcount +
       '&reg_fee=' + this.createTechTeachForm.value.registrationDetails.regfee +
@@ -809,7 +822,6 @@ export class AppComponent {
     this.selectedTechTalkType = value;
   }
 
-
   onCreateTechTalkFormSubmit() {
     this.createTechTalkForm.value.userDetails = this.getLoggedInUserObject();
     this.submitted = true;
@@ -817,6 +829,17 @@ export class AppComponent {
     if (this.createTechTalkForm.invalid) {
       alert('Required fields Missing, Please fill * marks fields');
       return;
+    }
+
+
+    var fTime = this.createTechTalkForm.value.venueDetails.fromTime.split(':');
+    var tTime = this.createTechTalkForm.value.venueDetails.toTime.split(':');
+    if (fTime.length == 0) {
+      this.createTechTalkForm.value.venueDetails.fromTime = this.createTechTalkForm.value.venueDetails.fromTime + ':00';
+    }
+
+    if (tTime.length == 0) {
+      this.createTechTalkForm.value.venueDetails.toTime = this.createTechTalkForm.value.venueDetails.toTime + ':00';
     }
 
     let userDetails = this.getLoggedInUserObject();
@@ -836,14 +859,14 @@ export class AppComponent {
       '&city=' + this.createTechTalkForm.value.venueDetails.city +
       '&address=' + this.createTechTalkForm.value.venueDetails.address +
       '&event_date=' + this.createTechTalkForm.value.venueDetails.date +
-      '&from_time=' + this.createTechTalkForm.value.venueDetails.fromTime +
-      '&to_time=' + this.createTechTalkForm.value.venueDetails.toTime +
+      '&from_time=' + this.createTechTalkForm.value.venueDetails.fromTime + ':00' +
+      '&to_time=' + this.createTechTalkForm.value.venueDetails.toTime + ':00' +
       '&web_address=' + this.createTechTalkForm.value.registrationDetails.webaddress +
       '&max_reg_allowed=' + this.createTechTalkForm.value.registrationDetails.maxregcount +
       '&reg_fee=' + this.createTechTalkForm.value.registrationDetails.regfee +
       '&eligibility=' + this.createTechTalkForm.value.registrationDetails.eligibility +
       '&seat_capacity=' + this.createTechTalkForm.value.registrationDetails.seatcapacity +
-      '&spekaer_name=' + this.createTechTalkForm.value.expertDetails.name +
+      '&speaker_name=' + this.createTechTalkForm.value.expertDetails.name +
       '&company=' + this.createTechTalkForm.value.expertDetails.company +
       '&speaker_type=' + this.createTechTalkForm.value.expertDetails.speakerType +
       '&working_location=' + this.createTechTalkForm.value.expertDetails.worklocation +
@@ -870,7 +893,11 @@ export class AppComponent {
 
 
 
-
+  time_convert(num) {
+    var hours = Math.floor(num / 60);
+    var minutes = num % 60;
+    return hours + ":" + minutes;
+  }
 
 
 

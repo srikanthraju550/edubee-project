@@ -125,7 +125,7 @@
 
             <div class="col-md-3 tec_mdl">
 
-              <img class="profilepicture" *ngIf="techarticle.profile_image!=='' || techarticle.profile_image!==null"
+              <img class="profilepicture" *ngIf="techarticle.profile_image!=='' && techarticle.profile_image!==null"
                 [src]="file_path + techarticle.profile_image" alt="Profile Pic">
               <img class="profilepicture" *ngIf="techarticle.profile_image==''" src="../assets/images/user-dummy.png"
                 alt="Profile Pic">

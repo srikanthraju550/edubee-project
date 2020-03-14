@@ -51,7 +51,7 @@ export class MyprofileComponent implements OnInit {
     }
   };
   public profileData;
-
+  public userImage;
   excelData = [];
   imagePath;
   grade;
@@ -129,6 +129,8 @@ export class MyprofileComponent implements OnInit {
           this.turl = this.strImage.split(',')[1];
         } else if (action === 'image') {
           this.imageUrl = this.strImage.split(',')[1];
+          this.profileData.image = this.strImage;
+          this.userImage = this.strImage;
         } else {
           this.iurl = this.strImage.split(',')[1];
         }
@@ -167,6 +169,7 @@ export class MyprofileComponent implements OnInit {
       this.userData = data.json();
       this.profileData.intern_certificate = data.json().data[0].intern_certificate;
       this.profileData.certificate2 = data.json().data[0].certificate2;
+      this.userImage = data.json().data[0].image;
       this.profileData.image = data.json().image_path + data.json().data[0].image;
       this.profileData.name = data.json().data[0].name;
 

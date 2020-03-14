@@ -7,14 +7,13 @@
   <div class="row">
     <div class="col-sm-2" style="text-align: center">
       <div>
-        <img class="profilepicture" style="height: 111px;width:111px;border-radius:55%" [src]="profileData.image"
-          alt="Profile image" />
+        <img class="profilepicture" *ngIf="userImage != ''" style="height: 111px;width:111px;border-radius:55%"
+          [src]="profileData.image" alt="Profile image" />
 
-        <img class="profilepicture" style="border-radius: 10em;" *ngIf="profileData.image == ''"
+        <img class="profilepicture" style="border-radius: 10em;" *ngIf="userImage == ''"
           src="../assets/images/user-dummy.png" alt="Profile Pic" />
 
         <input class="form-control" type="file" accept="image1/*" (change)="readUrl($event,'image')" />
-
 
         <!-- <img [src]="profileData.image" alt="" width="100" height="100" style="max-width: 100px; max-height: 100px;"> -->
 
@@ -51,7 +50,7 @@
           <span style="color:#33099e; font-weight: bold">Tech Connect</span>
           <hr class="hrnew">
           Tech Talk:{{userData.tech_talk?.tech_talk_count}}
-          <br /> Tech Teach: {{userData.tech_talk?.tech_teach_count}}
+          <br /> Tech Teach: {{userData.tech_teach.length}}
           <br /> Workshop: {{userData.tech_talk?.work_shop_count}}
           <br /> Trainings: {{userData.tech_talk?.trainings_count}}
         </div>

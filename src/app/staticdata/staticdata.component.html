@@ -321,7 +321,8 @@
                   <div class="col-md-3 col-sm-6 tec_mdl">
 
                     <div>
-                      <img class="profilepicture" [src]="image_path + stuvation.profile_image" alt="Card image cap">
+                      <img class="profilepicture" *ngIf="stuvation.profile_image!=''"
+                        [src]="image_path + stuvation.profile_image" alt="Card image cap">
                       <img class="profilepicture" *ngIf="stuvation.profile_image==''"
                         src="../assets/images/user-dummy.png" alt="Profile Pic">
                     </div>

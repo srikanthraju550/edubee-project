@@ -146,7 +146,7 @@ export class StuvationComponent implements OnInit {
       'Content-Type': 'application/x-www-form-urlencoded'
     });
 
-    var params = 'user_id=' + userDetails['user_id'] + '&followed_user_id=' + userId + '&action=' + operationType
+    var params = 'user_id=' + userDetails['user_id'] + '&followed_user_id=' + userId + '&action=' + operationType + '&stuvation_id=' + stuationId
     this.httpnew.post(this.Baseurl + 'follow-stuvation', params, { headers: headers }).subscribe(res => {
       if (res.json().status === true) {
 

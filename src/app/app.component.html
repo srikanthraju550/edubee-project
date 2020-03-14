@@ -191,8 +191,8 @@
                             *ngIf="getLoggedInUserObject()['image']==''" src="../assets/images/user-dummy.png"
                             alt="Profile Pic">
 
-                        <!-- <img class="profilepicture" style="border-radius: 10em;" [src]="userProfileImage">
-                        <img class="profilepicture" style="border-radius: 10em;" *ngIf="userProfileImage==''"
+                        <!-- <img class="profilepicture" style="border-radius: 10em;" [src]="userProfileImage"> -->
+                        <!-- <img class="profilepicture" style="border-radius: 10em;" *ngIf="userProfileImage==''"
                             src="../assets/images/user-dummy.png" alt="Profile Pic"> -->
                     </a>
                 </div>
@@ -507,6 +507,7 @@
                             </select>
                         </div>
                     </div>
+
                     <h3 style="color:#5b3ab1 !important;font-size: 20px;">Innovation Details :</h3>
                     <div class="row">
                         <div class="form-group col-12">
@@ -1254,13 +1255,13 @@
                             <div class="form-group col-4">
 
                                 <label for="technology"><span class="red">*</span>From Time:
-                                    <input myNumberOnly type="text" class="form-control" formControlName="fromTime">
+                                    <input type="text" class="form-control" formControlName="fromTime">
                                 </label>
                             </div>
                             <div class="form-group col-4">
 
                                 <label for="technology"><span class="red">*</span>To Time:
-                                    <input myNumberOnly type="text" class="form-control" formControlName="toTime">
+                                    <input type="text" class="form-control" formControlName="toTime">
                                 </label>
                             </div>
                         </div>
@@ -1438,13 +1439,13 @@
                             <div class="form-group col-4">
                                 <label>
                                     <span class="red">*</span> From Time:
-                                    <input myNumberOnly type="text" class="form-control" formControlName="fromTime">
+                                    <input type="text" class="form-control" formControlName="fromTime">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
                                     <span class="red">*</span> To Time:
-                                    <input myNumberOnly type="text" class="form-control" formControlName="toTime">
+                                    <input type="text" class="form-control" formControlName="toTime">
                                 </label>
                             </div>
                         </div>
@@ -1661,13 +1662,13 @@
                             <div class="form-group col-4">
 
                                 <label for="technology"><span class="red">*</span>From Time:
-                                    <input myNumberOnly type="text" class="form-control" formControlName="fromTime">
+                                    <input type="text" class="form-control" formControlName="fromTime">
                                 </label>
                             </div>
                             <div class="form-group col-4">
 
                                 <label for="technology"><span class="red">*</span>To Time:
-                                    <input myNumberOnly type="text" class="form-control" formControlName="toTime">
+                                    <input type="text" class="form-control" formControlName="toTime">
                                 </label>
                             </div>
                         </div>
@@ -2240,7 +2241,6 @@
                         </select>
                     </div>
 
-
                     <div class="form-group">
                         <label for="technology"><span class="red">*</span> Technology:</label>
                         <select type="text" class="form-control" formControlName="technology"
@@ -2258,9 +2258,8 @@
                         </select>
                     </div>
 
-
                     <span style="color: #176086 !important; text-decoration: underline; ">
-                        <h3 style="color: #176086 !important;font-size:20px">Venue Details</h3>
+                        <h3 style="color: #176086  !important;font-size:20px">Venue Details</h3>
                     </span>
                     <div formGroupName="venueDetails">
 
@@ -2296,19 +2295,19 @@
                             <div class="form-group col-4">
                                 <label>
                                     <span class="red">*</span> From Time:
-                                    <input myNumberOnly type="text" class="form-control" formControlName="fromTime">
+                                    <input type="text" class="form-control" formControlName="fromTime">
                                 </label>
                             </div>
                             <div class="form-group col-4">
                                 <label>
                                     <span class="red">*</span> To Time:
-                                    <input myNumberOnly type="text" class="form-control" formControlName="toTime">
+                                    <input type="text" class="form-control" formControlName="toTime">
                                 </label>
                             </div>
                         </div>
                     </div>
-                    <span style="color: #176086 !important; text-decoration: underline; ">
-                        <h3 style="color: #176086 !important;font-size: 20px;">Registration Details</h3>
+                    <span style="color: #176086  !important; text-decoration: underline; ">
+                        <h3 style="color: #176086  !important;font-size: 20px;">Registration Details</h3>
                     </span>
                     <div formGroupName="registrationDetails">
                         <div class="row">
@@ -2345,18 +2344,18 @@
                                 </label>
                             </div>
                             <!-- <div class="form-group col-4">
-                                    <label>
-                                        Upload Poster:
-                                        <input type='file' class="form-control" (change)="readUrl($event)" formControlName="poster">
-                                        <img [src]="url" style="max-width: 100px; max-height: 100px;">
-                                    </label>
-                                </div> -->
+                                <label>
+                                    Upload Poster:
+                                    <input type='file' class="form-control" (change)="readUrl($event)" formControlName="poster">
+                                    <img [src]="url" style="max-width: 100px; max-height: 100px;">
+                                </label>
+                            </div> -->
                         </div>
                     </div>
-                    <span style="color: #176086 !important; text-decoration: underline; ">
-                        <h3 style="color: #176086 !important;font-size: 20px;">Speaker Details</h3>
+                    <span style="color: #176086  !important; text-decoration: underline; ">
+                        <h3 style="color: #176086  !important;font-size: 20px;">Speaker Details</h3>
                     </span>
-                    <div formGroupName=" expertDetails">
+                    <div formGroupName="expertDetails">
                         <div class="row">
                             <div class="form-group col-4">
                                 <label>
@@ -2406,7 +2405,8 @@
 
 
                     <div style="width: 100%; text-align: center; align-items: center">
-                        <button type="submit" class="btn btn-primary">Create a Tech Talk</button>
+                        <button type="submit" class="btn btn-primary">Create a
+                            Tech Talk</button>
                     </div>
                 </form>
             </div>
