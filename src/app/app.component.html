@@ -82,8 +82,7 @@
 
 
                                 <img class="profilepicture" *ngIf="getLoggedInUserObject()['image'] !=''"
-                                    style="border-radius: 10em;"
-                                    [src]="userImagePath + '/' + getLoggedInUserObject()['image']">
+                                    style="border-radius: 10em;" [src]="userProfileImage">
                                 <img class="profilepicture" style="border-radius: 10em;"
                                     *ngIf="getLoggedInUserObject()['image']==''" src="../assets/images/user-dummy.png"
                                     alt="Profile Pic">
@@ -186,7 +185,7 @@
                     <a role="button" aria-haspopup="true" aria-expanded="false">
 
                         <img class="profilepicture" *ngIf="getLoggedInUserObject()['image'] !=''"
-                            style="border-radius: 10em;" [src]="userImagePath + '/' + getLoggedInUserObject()['image']">
+                            style="border-radius: 10em;" [src]="userProfileImage">
                         <img class="profilepicture" style="border-radius: 10em;"
                             *ngIf="getLoggedInUserObject()['image']==''" src="../assets/images/user-dummy.png"
                             alt="Profile Pic">

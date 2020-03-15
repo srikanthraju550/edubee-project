@@ -176,11 +176,10 @@ export class MyprofileComponent implements OnInit {
 
       this.filePAth = data.json().file_path;
       this.imagePath = data.json().image_path;
-      this.strImage = this.imagePath + this.profileData.image;
+      this.strImage = this.profileData.image;
       this.grade = parseInt(data.json().data[0].join_event_score) + parseInt(data.json().data[0].stuvation_score) + parseInt(data.json().data[0].tech_talk_score) + parseInt(data.json().data[0].tech_teach_score)
       // sessionStorage.setItem("userImagePath", this.imagePath + this.profileData.image);
 
-      sessionStorage.setItem("userProfileImage", this.strImage);
       console.log(this.profileData);
       this.engineerRegistrationForm = this.fb.group({
         name: [data.json().data[0].name],
@@ -260,6 +259,8 @@ export class MyprofileComponent implements OnInit {
 
     this.httpnew.post(this.url + 'edit-profile', params, { headers: headers }).subscribe(res => {
       if (res.json().status === true) {
+        console.log('userimagepath', sessionStorage.getItem('userImagePath'));
+        sessionStorage.setItem("userProfileImage", this.strImage);
         // alert(res.json().message);
         document.getElementById("closeCreateTechTeachModal").click();
         this.getUserData();

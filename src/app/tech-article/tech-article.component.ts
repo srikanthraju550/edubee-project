@@ -402,6 +402,7 @@ export class TechArticleComponent implements OnInit {
     this.techArticleFilterr.sub_technology = '';
     this.techArticleFilterr.user_name = '';
     this.techArticleFilterr.title = '';
+    this.techArticleFilterr.cost = 0;
     this.showKeyword = false;
     this.showArticle = false;
     this.showTechnology = false
