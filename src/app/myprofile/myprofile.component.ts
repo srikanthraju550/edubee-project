@@ -153,9 +153,7 @@ export class MyprofileComponent implements OnInit {
   }
 
   ngOnInit() {
-
-
-
+    this.pdfurl = this.url + 'get_profile_pdf/' + this.user_id;
   }
 
   exportAsXLSX(): void {
@@ -260,7 +258,7 @@ export class MyprofileComponent implements OnInit {
     this.httpnew.post(this.url + 'edit-profile', params, { headers: headers }).subscribe(res => {
       if (res.json().status === true) {
         console.log('userimagepath', sessionStorage.getItem('userImagePath'));
-        sessionStorage.setItem("userProfileImage", this.strImage);
+        sessionStorage.setItem("userProfileImage", this.profileData.image);
         // alert(res.json().message);
         document.getElementById("closeCreateTechTeachModal").click();
         this.getUserData();

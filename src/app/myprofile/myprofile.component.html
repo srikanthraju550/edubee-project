@@ -226,8 +226,8 @@
 
         <div class="form-group" *ngIf="editButton">
           <label for="majorprojectdescription">Upload any Certification:</label>
-          <input type="file" class="form-control" style="border: none" (change)="readUrl($event,'intern')"
-            [attr.disabled]="editButton==false?'':null" />
+          <input type="file" class="form-control" style="border: none" accept=".pdf,.doc"
+            (change)="readUrl($event,'intern')" [attr.disabled]="editButton==false?'':null" />
         </div>
         <div class="form-group" *ngIf="editButton">
 
@@ -320,8 +320,8 @@
 
         <div class="form-group">
           <label for="majorprojectdescription">Any other Certificate:</label>
-          <input type="file" class="form-control" style="border: none" (change)="readUrl($event,'training')"
-            [attr.disabled]="editButton==false?'':null" />
+          <input type="file" class="form-control" style="border: none" accept=".pdf,.doc"
+            (change)="readUrl($event,'training')" [attr.disabled]="editButton==false?'':null" />
         </div>
 
 
