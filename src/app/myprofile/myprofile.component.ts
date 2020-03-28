@@ -58,8 +58,8 @@ export class MyprofileComponent implements OnInit {
   userDetails: any;
   userImagePath;
   filePAth;
-  turl;
-  iurl;
+  turl = '';
+  iurl = '';
   public strImage;
   showEdit: boolean;
   imageUrl = '';
@@ -168,8 +168,10 @@ export class MyprofileComponent implements OnInit {
       this.techteachlength = this.userData['tech_teach'].length
       this.profileData.intern_certificate = data.json().data[0].intern_certificate;
       this.profileData.certificate2 = data.json().data[0].certificate2;
-      this.userImage = data.json().data[0].image;
-      this.profileData.image = data.json().image_path + data.json().data[0].image;
+
+      var sessionUserImage = sessionStorage.getItem('userProfileImage');
+      this.userImage = sessionUserImage !== '' ? sessionUserImage : data.json().data[0].image;
+      this.profileData.image = this.userImage != '' ? this.userImage : data.json().image_path + data.json().data[0].image;
       this.profileData.name = data.json().data[0].name;
 
       this.filePAth = data.json().file_path;
@@ -229,7 +231,7 @@ export class MyprofileComponent implements OnInit {
       'user_id=' + userDetails['user_id'] +
       '&email=' + this.engineerRegistrationForm.value.email +
       '&name=' + this.engineerRegistrationForm.value.name +
-      '&profile_image=' + this.imageUrl +
+      '&profile_image=' + (this.imageUrl === undefined ? '' : this.imageUrl) +
       '&mobile=' + this.engineerRegistrationForm.value.contact +
       '&dob=' + this.engineerRegistrationForm.value.dob +
       '&school=' + this.engineerRegistrationForm.value.school +
@@ -243,14 +245,14 @@ export class MyprofileComponent implements OnInit {
       '&intern_company=' + this.engineerRegistrationForm.value.internCompany +
       '&intern_from=' + this.engineerRegistrationForm.value.internDurationFrom +
       '&intern_to=' + this.engineerRegistrationForm.value.internDurationTo +
-      '&intern_certificate=' + this.iurl +
+      '&intern_certificate=' + (this.iurl === undefined ? '' : this.iurl) +
       '&skills=' + this.engineerRegistrationForm.value.skills +
       '&skill_desc=' + this.engineerRegistrationForm.value.skillDescription +
       '&training_role=' + this.engineerRegistrationForm.value.trainingRole +
       '&training_company=' + this.engineerRegistrationForm.value.trainingCompany +
       '&training_from=' + this.engineerRegistrationForm.value.trainingDurationFrom +
       '&training_to=' + this.engineerRegistrationForm.value.trainingDurationTo +
-      '&certificate2=' + this.turl
+      '&certificate2=' + (this.turl === undefined ? '' : this.turl)
 
 
 
