@@ -90,6 +90,11 @@ export class AppComponent {
     this.strImage = '';
   }
 
+  openSignup() {
+    this.engineerRegistrationForm.reset();
+    this.studentRegistrationForm.reset();
+    this.strImage = '';
+  }
 
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
 
@@ -241,6 +246,7 @@ export class AppComponent {
   technologyList = [];
   projectTypeList = [];
   projectTypeId;
+  image;
   ngOnInit(): void {
     let today = new Date();
     this.getTechTypeList();
@@ -251,6 +257,7 @@ export class AppComponent {
     // let url = this.endpoint1 + 'getHomePageContent.php' + "/random=" + new Date().getTime();
     let userDetails = this.getLoggedInUserObject();
     userDetails['Image'] = sessionStorage.getItem('userProfileImage');
+    this.image = sessionStorage.getItem('image');
     this.userProfileImage = sessionStorage.getItem('userProfileImage');
 
     console.log(this.userProfileImage);
@@ -961,6 +968,7 @@ export class AppComponent {
 
         sessionStorage.setItem("loggedInUserName", JSON.stringify(parsedData[0]));
         sessionStorage.setItem("userImagePath", response.json().image_path);
+        sessionStorage.setItem("image", response.json().data[0].image);
         let aa = sessionStorage.getItem('userImagePath') + '/' + response.json().data[0].image;
         console.log(aa)
         sessionStorage.setItem("userProfileImage", aa);

@@ -81,11 +81,10 @@
                             <li *ngIf="!checkLoginStatus()">
 
 
-                                <img class="profilepicture" *ngIf="getLoggedInUserObject()['image'] !=''"
-                                    style="border-radius: 10em;" [src]="userProfileImage">
-                                <img class="profilepicture" style="border-radius: 10em;"
-                                    *ngIf="getLoggedInUserObject()['image']==''" src="../assets/images/user-dummy.png"
-                                    alt="Profile Pic">
+                                <img class="profilepicture" *ngIf="image !=''" style="border-radius: 10em;"
+                                    [src]="userProfileImage">
+                                <img class="profilepicture" style="border-radius: 10em;" *ngIf="image==''"
+                                    src="../assets/images/user-dummy.png" alt="Profile Pic">
 
                                 <a>{{getLoggedInUserObject()['name'] | titlecase}}</a>
                             </li>
@@ -99,9 +98,9 @@
                             <li><a (click)="goStuation()">Stuvation</a></li>
                             <li class="showInMobile" *ngIf="checkLoginStatus()"><a class="main-header"
                                     data-toggle="modal" href="#" data-target="#loginModal">LOGIN</a></li>
-                            <li class="showInMobile" *ngIf="checkLoginStatus()"> <a class="main-header"
-                                    data-toggle="dropdown" href="#" role="button">SIGN UP <i class="fa fa-caret-down"
-                                        style="display: inline;"></i></a>
+                            <li class="showInMobile" *ngIf="checkLoginStatus()" (click)="openSignup()"> <a
+                                    class="main-header" data-toggle="dropdown" href="#" role="button">SIGN UP <i
+                                        class="fa fa-caret-down" style="display: inline;"></i></a>
 
                                 <ul class="hidden sign-up-sub">
                                     <li><a class="main-header" data-toggle="modal"
@@ -149,11 +148,10 @@
                     <li *ngIf="checkLoginStatus()"><a class="main-header" style="text-align: center;"
                             data-toggle="modal" href="#" data-target="#loginModal"><i class="fa fa-sign-in"></i>&nbsp;
                             LOGIN</a></li>
-                    <li *ngIf="checkLoginStatus()"> <a class="main-header" style="text-align: center;"
-                            data-toggle="modal" data-target="#studentRegistrationModal" href="#" role="button">&nbsp;<i
-                                class="fa fa-user-plus"></i>&nbsp;
-                            SIGN
-                            UP</a>
+                    <li *ngIf="checkLoginStatus()" (click)="openSignup()"> <a class="main-header"
+                            style="text-align: center;" data-toggle="modal" data-target="#studentRegistrationModal"
+                            href="#" role="button">&nbsp;<i class="fa fa-user-plus"></i>&nbsp;
+                            SIGN UP</a>
 
                         <!-- <ul class="hidden sign-up-sub">
                             <li><a class="main-header"  data-toggle="modal"
@@ -184,11 +182,10 @@
                 <div class="col-sm-6 user-name-header" *ngIf="!checkLoginStatus()">
                     <a role="button" aria-haspopup="true" aria-expanded="false">
 
-                        <img class="profilepicture" *ngIf="getLoggedInUserObject()['image'] !=''"
-                            style="border-radius: 10em;" [src]="userProfileImage">
-                        <img class="profilepicture" style="border-radius: 10em;"
-                            *ngIf="getLoggedInUserObject()['image']==''" src="../assets/images/user-dummy.png"
-                            alt="Profile Pic">
+                        <img class="profilepicture" *ngIf="image !=''" style="border-radius: 10em;"
+                            [src]="userProfileImage">
+                        <img class="profilepicture" style="border-radius: 10em;" *ngIf="image==''"
+                            src="../assets/images/user-dummy.png" alt="Profile Pic">
 
                         <!-- <img class="profilepicture" style="border-radius: 10em;" [src]="userProfileImage"> -->
                         <!-- <img class="profilepicture" style="border-radius: 10em;" *ngIf="userProfileImage==''"

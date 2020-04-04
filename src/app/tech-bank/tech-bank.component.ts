@@ -128,6 +128,7 @@ export class TechBankComponent implements OnInit {
       this.date = new Date();
 
       for (var i = 0; i < this.ResponseData.length; i++) {
+        this.ResponseData[i].max_reg_allowed = parseInt(this.ResponseData[i].max_reg_allowed);
         this.dataDate = new Date(this.ResponseData[i].event_date);
         if (this.date.getFullYear() >= this.dataDate.getFullYear()) {
           if (this.date.getMonth() + 1 >= this.dataDate.getMonth() + 1) {
@@ -148,6 +149,7 @@ export class TechBankComponent implements OnInit {
       this.techtalkdetails = response.json().data.reverse();
       this.date = new Date();
       for (var i = 0; i < this.techtalkdetails.length; i++) {
+        this.techtalkdetails[i].max_reg_allowed = parseInt(this.techtalkdetails[i].max_reg_allowed);
         this.dataDate = new Date(this.techtalkdetails[i].event_date);
         console.log(this.dataDate.getMonth() + 1);
         if (this.date.getFullYear() >= this.dataDate.getFullYear()) {

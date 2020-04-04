@@ -29,6 +29,7 @@ export class MyprofileComponent implements OnInit {
   hidediv: boolean;
   editButton: boolean;
   user_id;
+  public showLoader: boolean;
   endpoint: string = "../assets/services/";
   url: string = "http://theengineersfactory.com/dashboard/";
   public pdfurl;
@@ -131,6 +132,7 @@ export class MyprofileComponent implements OnInit {
           this.imageUrl = this.strImage.split(',')[1];
           this.profileData.image = this.strImage;
           this.userImage = this.strImage;
+          // this.profilereImage = this.strImage;
         } else {
           this.iurl = this.strImage.split(',')[1];
         }
@@ -160,27 +162,28 @@ export class MyprofileComponent implements OnInit {
     this.excelService.exportAsExcelFile(this.excelData, 'Profile-data');
   }
   public techteachlength;
-
+  public profilereImage;
   getUserData() {
     this.httpnew.get(this.url + 'user-profile' + '?user_id=' + this.user_id).subscribe(data => {
       this.excelData = data.json().data;
       this.userData = data.json();
+      sessionStorage.setItem("userProfileImage", data.json().image_path + data.json().data[0].image);
+      sessionStorage.setItem("image", data.json().data[0].image);
+
       this.techteachlength = this.userData['tech_teach'].length
       this.profileData.intern_certificate = data.json().data[0].intern_certificate;
       this.profileData.certificate2 = data.json().data[0].certificate2;
-
       var sessionUserImage = sessionStorage.getItem('userProfileImage');
-      this.userImage = sessionUserImage !== '' ? sessionUserImage : data.json().data[0].image;
-      this.profileData.image = this.userImage != '' ? this.userImage : data.json().image_path + data.json().data[0].image;
+      var seesionImage = sessionStorage.getItem('image');
+      this.profilereImage = data.json().data[0].image;
+      var image = seesionImage !== '' ? sessionUserImage : data.json().data[0].image;
+      this.userImage = this.profileData.image = image != '' ? image : '';
       this.profileData.name = data.json().data[0].name;
-
       this.filePAth = data.json().file_path;
       this.imagePath = data.json().image_path;
       this.strImage = this.profileData.image;
       this.grade = parseInt(data.json().data[0].join_event_score) + parseInt(data.json().data[0].stuvation_score) + parseInt(data.json().data[0].tech_talk_score) + parseInt(data.json().data[0].tech_teach_score)
-      // sessionStorage.setItem("userImagePath", this.imagePath + this.profileData.image);
 
-      console.log(this.profileData);
       this.engineerRegistrationForm = this.fb.group({
         name: [data.json().data[0].name],
         email: [data.json().data[0].email],
@@ -214,7 +217,6 @@ export class MyprofileComponent implements OnInit {
 
 
   editProfileChanges() {
-
     // stop here if form is invalid
     if (this.engineerRegistrationForm.invalid) {
       alert('Required fields Missing, Please fill * marks fields');
@@ -259,9 +261,8 @@ export class MyprofileComponent implements OnInit {
 
     this.httpnew.post(this.url + 'edit-profile', params, { headers: headers }).subscribe(res => {
       if (res.json().status === true) {
-        console.log('userimagepath', sessionStorage.getItem('userImagePath'));
-        sessionStorage.setItem("userProfileImage", this.profileData.image);
         // alert(res.json().message);
+        // sessionStorage.setItem("userProfileImage", this.profileData.image);
         document.getElementById("closeCreateTechTeachModal").click();
         this.getUserData();
         window.location.reload();
@@ -272,6 +273,7 @@ export class MyprofileComponent implements OnInit {
         alert(res.json().message.error);
       }
     }, (err) => {
+      this.showLoader = false;
       alert(err.json().message.error);
     })
   }
