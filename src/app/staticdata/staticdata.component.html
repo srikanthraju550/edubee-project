@@ -33,7 +33,8 @@
               <div class="col-md-3 tec_mdl">
 
                 <!-- <img class="profilepicture" *ngIf="techarticle.profile_image!=='' || techarticle.profile_image!==null" -->
-                <img class="profilepicture" [src]="file_path + techarticle.profile_image" alt="Profile Pic">
+                <img class="profilepicture" *ngIf="techarticle.profile_image!=''"
+                  [src]="file_path + techarticle.profile_image" alt="Profile Pic">
                 <img class="profilepicture" *ngIf="techarticle.profile_image==''" src="../assets/images/user-dummy.png"
                   alt="Profile Pic">
 
@@ -70,11 +71,34 @@
                     <button class="nav-link btn btn-light commentbutton buttonarticle" data-toggle="modal"
                       data-target="#commentsModal" (click)="showTechArticleComments(techarticle)">Comments</button>
                   </li>
+
                   <li class="nav-item">
+                    <button class="nav-link btn btn-light veiwbutton buttonarticle"
+                      *ngIf="techarticle.publication_file=='' && techarticle.publication_link ==''" data-toggle="modal"
+                      data-target="#buynowModal1" (click)="viewTechTeachDetails(techarticle)">View
+                      full Article</button>
+                  </li>
+                  <li class="nav-item" *ngIf="techarticle.publication_file!='' && techarticle.publication_link ==''">
+                    <a [href]="file_path1 + techarticle.publication_file" target="_blank" download>
+                      <button class="nav-link btn btn-light veiwbutton buttonarticle" data-toggle="modal">Download
+                        full Article</button>
+                    </a>
+                  </li>
+
+
+                  <li class="nav-item" *ngIf="techarticle.publication_file=='' && techarticle.publication_link !=''">
+                    <a [href]="techarticle.publication_link" target="_blank">
+                      <button class="nav-link btn btn-light veiwbutton buttonarticle" data-toggle="modal">View
+                        full Article</button>
+                    </a>
+                  </li>
+
+
+                  <!-- <li class="nav-item">
                     <button class="nav-link btn btn-light veiwbutton buttonarticle"
                       *ngIf="techarticle.publication_link!='' &&  techarticle.article_type =='white paper' || techarticle.article_type =='Research Paper' "
                       data-toggle="modal" data-target="#buynowModal1"
-                      (click)="viewTechTeachDetails(techarticle)">View/Download
+                      (click)="viewTechTeachDetails1(techarticle)">View/Download
                       full Article</button>
                   </li>
                   <li class="nav-item"
@@ -83,7 +107,7 @@
                       <button class="nav-link btn btn-light veiwbutton buttonarticle" data-toggle="modal">View/Download
                         full Article</button>
                     </a>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
             </div>
@@ -133,7 +157,7 @@
                     </div>
 
                     <div class="col-md-3">
-                      <span class="cardSubHeading crd-hdng">Industrial Expert</span>
+                      <span class="cardSubHeading crd-hdng">Industrial Details</span>
                       <div><b class="crd-lft">Name</b> <a [routerLink]="['/myprofile',techteach.user_id]"
                           style="color: black"><span class="crd-ryt">: {{techteach.user_name}}</span></a></div>
                       <div><b class="crd-lft">Company</b> <span class="crd-ryt">:
@@ -191,7 +215,8 @@
                       <div><b class="crd-lft">Type</b> <span class="crd-ryt">: {{techtalkdata.tech_talk_type}}</span>
                       </div>
                       <div><b class="crd-lft">Topic</b> <span class="crd-ryt">: {{techtalkdata.topic}}</span></div>
-                      <div><b class="crd-lft">Abstract</b> <span class="crd-ryt">: {{techtalkdata.abstract}}</span>
+                      <div *ngIf="techtalkdata.abstract!=undefined"><b class="crd-lft">Abstract</b> <span
+                          class="crd-ryt">: {{techtalkdata.abstract}}</span>
                       </div>
                       <div><b class="crd-lft">Technology</b> <span class="crd-ryt">: {{techtalkdata.technology}}</span>
                       </div>
@@ -202,7 +227,7 @@
                     </div>
 
                     <div class="col-md-3">
-                      <span class="cardSubHeading crd-hdng">Industrial Expert</span>
+                      <span class="cardSubHeading crd-hdng">Industrial Details</span>
                       <div><b class="crd-lft">Name</b> <span class="crd-ryt">: {{techtalkdata.user_name}}</span></div>
                       <div><b class="crd-lft">Company</b> <span class="crd-ryt">:
                           {{techtalkdata.company}}</span></div>
@@ -550,7 +575,7 @@
               &nbsp;&nbsp;&nbsp; <span>
                 <b>Event on</b> : {{selectedTechTeach.event_date}}</span>
               &nbsp;&nbsp;&nbsp; <span>
-                <b>Number of people applied</b> : {{selectedTechTeach.no_of_users_applied}}</span>
+                <b>Number of people applied</b> : {{selectedTechTeach.no_of_people_applied}}</span>
             </div>
           </div>
           <br />
@@ -595,7 +620,7 @@
               <br />
               <b>Abstract</b> : {{selectedTechTeach.abstract}}
               <br />
-              <b>Industrial Expert</b> : {{selectedTechTeach.speaker_name}}
+              <b>Industrial Details</b> : {{selectedTechTeach.expert_name}}
               <br />
               <b>No. of Years Experience</b> : {{selectedTechTeach.experience}}
               <br />
@@ -611,7 +636,7 @@
               <br />
               <b>Web Address</b> : {{selectedTechTeach.web_address}}
               <br />
-              <b>Maximum Registration Count</b> : {{selectedTechTeach.maxregcount}}
+              <b>Maximum Registration Count</b> : {{selectedTechTeach.max_reg_allowed}}
               <br />
               <b>Registration Fees</b> : {{selectedTechTeach.reg_fee}} Rs Per Person
               <br />
@@ -641,7 +666,7 @@
                 <b>Event on</b> : {{selectedTechTalk.event_date}}</span>
               &nbsp;&nbsp;&nbsp;
               <span>
-                <b>Number of people applied</b> : {{selectedTechTalk.no_of_users_applied}}</span>
+                <b>Number of people applied</b> : {{selectedTechTalk.no_of_people_applied}}</span>
 
             </div>
           </div>
@@ -653,10 +678,10 @@
               <b>Name</b> : {{selectedTechTalk.user_name}}
 
               <br />
-              <b>Contact Number</b> :
+              <b>Contact Number</b> : {{selectedTechTalk.contact_number}}
 
               <br />
-              <b>Email</b> :
+              <b>Email</b> : {{selectedTechTalk.contact_email}}
               <br />
 
               <br />
@@ -689,7 +714,7 @@
               <br />
               <b>Tech Talk Type</b> : {{selectedTechTalk.tech_talk_type}}
               <br />
-              <b>Industrial Expert</b> : {{selectedTechTalk.user_name}}
+              <b>Industrial Details</b> : {{selectedTechTalk.speaker_name}}
               <br />
               <b>No. of Years Experience</b> : {{selectedTechTalk.experience}}
               <br />
@@ -699,7 +724,7 @@
               <br />
               <b>Web Address</b> : {{selectedTechTalk.web_address}}
               <br />
-              <b>Maximum Registration Count</b> :
+              <b>Maximum Registration Count</b> : {{selectedTechTalk.max_reg_allowed}}
               <br />
               <b>Registration Fees</b> : {{selectedTechTalk.reg_fee}} Rs Per Person
               <br />

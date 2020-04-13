@@ -57,7 +57,7 @@
 
 <br />
 
-<div class="container-fluid">
+<div class="container-fluid tech-bank-main">
   <div class="row">
     <div class="col-12" style="margin-top: 1em;">
 
@@ -91,7 +91,7 @@
                   style="color: black"><span class="crd-ryt">: {{techteach.expert_name}}</span></a></div>
               <div><b class="crd-lft">Company</b> <span class="crd-ryt">:
                   {{techteach.company}}</span></div>
-              <div><b class="crd-lft">Positionl</b> <span class="crd-ryt">:
+              <div><b class="crd-lft">Position</b> <span class="crd-ryt">:
                   {{techteach.position}}</span></div>
             </div>
 
@@ -156,7 +156,8 @@
 
             <div class="col-md-3">
               <span class="cardSubHeading crd-hdng">Industrial Details</span>
-              <div><b class="crd-lft">Name</b> <span class="crd-ryt">: {{techtalkdata.speaker_name}}</span></div>
+              <div><b class="crd-lft">Name</b> <a [routerLink]="['/myprofile',techtalkdata.user_id]"
+                  style="color: black">: {{techtalkdata.speaker_name}}</a></div>
               <div><b class="crd-lft">Company</b> <span class="crd-ryt">:
                   {{techtalkdata.company}}</span></div>
               <div><b class="crd-lft">Position</b> <span class="crd-ryt">:
@@ -306,7 +307,7 @@
               *ngIf="!checkLoginStatus() && selectedTechTeach.showReg == undefined">
               <li class="nav-item">
                 <button class="nav-link btn btn-light buttonarticle"
-                  (click)="applyForEventTechTeach(selectedTechTeach)">Apply for the event</button>
+                  (click)="applyForEventTechTalk(selectedTechTeach)">Apply for the event</button>
               </li>
             </ul>
 

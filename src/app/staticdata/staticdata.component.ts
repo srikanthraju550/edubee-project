@@ -28,6 +28,7 @@ export class StaticdataComponent implements OnInit {
   getMyStuvData = [];
   image_path;
   title;
+  file_path1;
   constructor(private route: ActivatedRoute, private http: Http, private mainService: MainServiceService) {
     this.route.params.subscribe((params: Params) => {
       this.action = params['action'];
@@ -39,6 +40,7 @@ export class StaticdataComponent implements OnInit {
         this.title = "My Tech Bank";
       } else if (this.action == 'myTechConnect') {
         this.getMyTechConnectData();
+        this.getMyTechtalkData();
         this.showTechbank = false;
         this.showTechconnect = true;
         this.showstuation = false;
@@ -81,6 +83,7 @@ export class StaticdataComponent implements OnInit {
       this.image_path = response.json().image_path;
 
       this.file_path = response.json().image_path;
+      this.file_path1 = response.json().file_path;
     });
   }
   getMyTechConnectData() {
@@ -147,7 +150,7 @@ export class StaticdataComponent implements OnInit {
   subtechname;
   abstract;
   showcost = false;
-  viewTechTeachDetails(techTeach): void {
+  viewTechTeachDetails1(techTeach): void {
     for (var i = 0; i < this.getMyTechBankDataList.length; i++) {
       if (techTeach.tech_article_id === this.getMyTechBankDataList[i].tech_article_id) {
         this.articletype = this.getMyTechBankDataList[i].article_type;
